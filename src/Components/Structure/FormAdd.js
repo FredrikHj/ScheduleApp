@@ -6,7 +6,6 @@ export let FormAdd = (props) => {
     let [ quantityOfSqlPosts, updateQuantityOfSqlPosts ] = useState(0);
     let [ incommingSQLDataCols, updateIncommingSQLDataCols ] = useState([]);
 
-    //let [ idNr, updateIdNr ] = useState('');
     let [ dateStr, updateDateStr ] = useState('');
     let [ monthStr, updateMonhthStr ] = useState('');
     let [ activityStr, updateActivityStr ] = useState('');
@@ -38,36 +37,14 @@ export let FormAdd = (props) => {
         if (dataset.type === 'place') updatePlaceStr(inputStr);
         if (dataset.type === 'content') updateContentStr(inputStr);
     }
-/*     let setAddSQLPostID = () => {
-        let addPostId = quantityOfSqlPosts;
-        addPostId++;
-        
-        return addPostId;
-    }
- */
+
 console.log(incommingSQLDataCols);
 
     let submitAddForm = (e) => {
-        let sqlBody = {
-/*          [incommingSQLDataCols[0]]: `'${ setAddSQLPostID() }'`,*/
-            sent: 0,
-            [incommingSQLDataCols[1]]: `'${ dateStr}'`,
-            [incommingSQLDataCols[2]]: `'${ monthStr }'`,
-            [incommingSQLDataCols[3]]: `'${ activityStr }'`,
-            [incommingSQLDataCols[4]]: `'${ stateStr }'`,
-            [incommingSQLDataCols[5]]: `'${ concernedStr }'`,
-            [incommingSQLDataCols[6]]: `'${ typeStr }'`,
-            [incommingSQLDataCols[7]]: `'${ placeStr }'`,
-            [incommingSQLDataCols[8]]: `'${ contentStr}'`,
-        };
-        let getBodiesValues = Object.values(sqlBody);
-        console.log(sqlBody);
+        let sqlBody = [0, dateStr, monthStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
         axiosPost(
-            'add', {
-                cols: `(sent, ${ incommingSQLDataCols.join(', ')})`,
-                data: `(${ getBodiesValues.join()});`,
-            }
+            'add', sqlBody
         );
 /*         setTimeout(() => {
             axiosGet();
@@ -80,8 +57,7 @@ console.log(incommingSQLDataCols);
             <table id="addSqlData" style={(props.addForm === true) ? {display: 'block'} : {display: 'none'}}>
                 <tbody>
                     <tr>
-{/*                         <td className="tableCol1">{ setAddSQLPostID() }</td>
- */}                        <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType }/></td>
+                        <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType }/></td>
                         <td><input type="text" className="addSqlInput" data-type="month" onChange={ setStrsType }/></td>
                         <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType }/></td>
                         <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType }/></td>

@@ -6,14 +6,15 @@ let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
 
 console.log(process.env);
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku
-//let backendURL = 'http://localhost:3001'; // Just test the backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+let backendURL = 'http://localhost:3001'; // Just test the backend 
+
 export let axiosGet = (/* type, currentSQLStatement */) => {
     axios.get(`${backendURL}/SQLData`).
     then(response => {
         // Store the incommingg API data in a object
         console.log(response.data);
-        updateSQLDataArr(response.data[0][0]);           
+        updateSQLDataArr(response.data[0]);           
         saveFilterBtns(response.data);
         updateSQLDataColsArr(Object.keys(response.data[0][0][0]));            
     }).
@@ -21,10 +22,10 @@ export let axiosGet = (/* type, currentSQLStatement */) => {
         //console.log(error.response);
     });
 }
-export let axiosPost = (postType, SQLStatementsObj) => {  
+export let axiosPost = (postType, formBody) => {  
     let type = '';
     let sendToSqlBackend = {
-        SQLStatementsObj,
+        formBody,
     };
     console.log(sendToSqlBackend);
     if (postType === 'filter') type = 'filter';
@@ -49,7 +50,7 @@ export let axiosPost = (postType, SQLStatementsObj) => {
     setTimeout(() => {
         axiosGet();
     }, 2000);
-}
+ }
 function saveFilterBtns(filterBtns) {
     /*
     Save both the months ans the cerncerned filter Btn in a individuall

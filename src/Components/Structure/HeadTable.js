@@ -52,8 +52,7 @@ export let HeadTable = () => {
             <table id="tableSchedule" style={(addForm === true) ? {marginTop: '-62px'} : null}>
                 <thead>
                     <tr>
-{/*                         <th className="tableCol1">ID</th>
- */}                        <th>Datum</th>
+                        <th>Datum</th>
                         <th>Månad</th>
                         <th className="tableCol4">Akitvitet</th>
                         <th>Status</th>
@@ -77,8 +76,7 @@ export let HeadTable = () => {
                                 
                                 return(
                                     <tr key={ rowCounter }>
-{/*                                         <td className="tableCol1">{ sqlDataObj.id }</td>
- */}                                        <td>{ cleanincomminggSQLDate(sqlDataObj.date) }</td>
+                                        <td>{ cleanincomminggSQLDate(sqlDataObj.date) }</td>
                                         <td>{ sqlDataObj.month }</td>
                                         <td className="tableCol4">{ sqlDataObj.activity }</td>
                                         <td>{ sqlDataObj.state }</td>
