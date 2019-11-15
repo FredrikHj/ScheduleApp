@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SQLDataArr$, SQLDataColsArr$ } from '../GlobalProps.js';
+import { SQLDataArr$ } from '../GlobalProps.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 
 export let FormAdd = (props) => {        
@@ -18,9 +18,6 @@ export let FormAdd = (props) => {
     useEffect(() => {
         SQLDataArr$.subscribe((SQLDataArr) => {      
             updateQuantityOfSqlPosts(SQLDataArr.length); 
-        });
-        SQLDataColsArr$.subscribe((SQLDataColsArr) => {      
-            updateIncommingSQLDataCols(SQLDataColsArr)    
         });
     }, []);
     let setStrsType = (e) => {
@@ -46,9 +43,9 @@ console.log(incommingSQLDataCols);
         axiosPost(
             'add', sqlBody
         );
-/*         setTimeout(() => {
-            axiosGet();
-        }, 3000);     */
+        setTimeout(() => {
+            axiosGet('/SQLData/NewRecord');
+        }, 3000);
         e.preventDefault();
     }
     

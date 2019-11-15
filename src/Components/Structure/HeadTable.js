@@ -20,9 +20,11 @@ export let HeadTable = () => {
 
     useEffect(() => {
         // Run default SQL list
-        //setInterval(() => {
-            axiosGet();
-        //}, 2100);
+        setTimeout(() => {
+            axiosGet('/SQLData');
+            
+        }, 2000);
+
             SQLDataArr$.subscribe((SQLDataArr) => {
                 console.log(SQLDataArr);
                 if (!SQLDataArr.affectedRows) {

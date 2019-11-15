@@ -1,22 +1,28 @@
 import axios from 'axios';
-import { updateSQLDataArr, updateSQLDataColsArr, updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr } from '../GlobalProps.js';
+import { updateSQLDataArr, updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
 
 console.log(process.env);
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
-//let backendURL = 'http://localhost:3001'; // Just test the backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+let backendURL = 'http://localhost:3001'; // Just test the backend 
 
-export let axiosGet = (/* type, currentSQLStatement */) => {
-    axios.get(`${backendURL}/SQLData`).
-    then(response => {
+export let axiosGet = (getStr) => {
+    console.log(backendURL + getStr);
+    
+    axios.get(backendURL + getStr).then(response => {
         // Store the incommingg API data in a object
         console.log(response.data);
-        updateSQLDataArr(response.data[0]);           
-        saveFilterBtns(response.data);
-        updateSQLDataColsArr(Object.keys(response.data[0][0][0]));            
+        let incommingResponse = response.data;
+    
+        if (incommingResponse[0][1].affectedRows === 1) {
+            updateSQLDataArr(incommingResponse[0][0]);
+        }
+        else updateSQLDataArr(incommingResponse[0]);
+
+        saveFilterBtns(incommingResponse);
     }).
     catch(error => {
         //console.log(error.response);
@@ -29,28 +35,19 @@ export let axiosPost = (postType, formBody) => {
     };
     console.log(sendToSqlBackend);
     if (postType === 'filter') type = 'filter';
-    if (postType === 'add') type = 'AddPost';
+    if (postType === 'add') type = 'AddRecord';
     axios.post(
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).
     then(response => {
-        console.log(response.data);
+        console.log(response);
         console.log(postType);
-        
-        // Update the returning sqlData table
-        let SQLStatementsObj = {
-            type: 'SELECT',
-            typeOfStatement: 'default',
-        }
-       if (postType !== 'add') updateSQLDataArr(response.data[0]);
+       //if (postType !== 'add') updateSQLDataArr(response.data[0]);
     }).
     catch(error => {
         //console.log(error.response);
     });
-    setTimeout(() => {
-        axiosGet();
-    }, 2000);
- }
+}
 function saveFilterBtns(filterBtns) {
     /*
     Save both the months ans the cerncerned filter Btn in a individuall
