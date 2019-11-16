@@ -15,23 +15,33 @@ let auth = {
     password: ''
 }
 export let HeadTable = () => {
-    let [ incommingSQLData, updateIncommingSQLData ] = useState([]);
+    let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+    let [ storedSQLData, updateStoredSQLData ] = useState([]);
+
     let [ addForm, setAddForm ] = useState(true);
 
     useEffect(() => {
         // Run default SQL list
         setTimeout(() => {
             axiosGet('/SQLData');
-            
         }, 2000);
 
-            SQLDataArr$.subscribe((SQLDataArr) => {
-                console.log(SQLDataArr);
-                if (!SQLDataArr.affectedRows) {
-                    updateIncommingSQLData(SQLDataArr);
-                }
-            });
+        SQLDataArr$.subscribe((SQLDataArr) => {
+            console.log(SQLDataArr);
+            if (!SQLDataArr.affectedRows) {
+                updateStoredSQLData(SQLDataArr);
+            }
+            else {
+                updateIncommingNewSQLData(SQLDataArr[0]);
+               // updateStoredSQLData(storedSQLData => [...storedSQLData, SQLDataArr[0]]);
+
+//                updateStoredSQLData([].push(incommingNewSQLData));
+            }
+        });
     }, []);
+    console.log(incommingNewSQLData);
+    console.log(storedSQLData);
+
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
@@ -43,7 +53,7 @@ export let HeadTable = () => {
         let cleanedDate = dateStrs.split('-')[0] + '-' + inSqlDateStr[1] + '-' + inSqlDateStr[2].split('')[0] + inSqlDateStr[2].split('')[1];
         return cleanedDate;
     }
-    console.log(incommingSQLData);
+    console.log(incommingNewSQLData);
     
     return (
         <>
@@ -66,9 +76,9 @@ export let HeadTable = () => {
                     </tr>
                 </thead>
                 <tbody id="tableScheduleBody" style={(addForm === true) ? {marginTop: '80px'} : null}>
-                    {(incommingSQLData.length !== 0) 
+                    {(storedSQLData.length !== 0) 
                         ?
-                            incommingSQLData.map((sqlDataObj, rowCounter) => {
+                            storedSQLData.map((sqlDataObj, rowCounter) => {
                                 let monthsStrs = sqlDataObj.month;
                                 let referedArr = sqlDataObj.concerned;
                                 

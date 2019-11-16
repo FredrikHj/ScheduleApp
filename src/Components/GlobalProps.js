@@ -1,4 +1,3 @@
-
 import {BehaviorSubject} from "rxjs";
 
 let headName = '';
@@ -20,9 +19,9 @@ export function updateSQLDataArr(SQLDataArr){
     
     if(SQLDataArr) SQLDataArr$.next(SQLDataArr);
 }
-export function updateSQLFilterMonthsBtnsArr(SQLFilterMonthsBtnsArr){  
+/* export function updateSQLFilterMonthsBtnsArr(SQLFilterMonthsBtnsArr){  
     if(SQLFilterMonthsBtnsArr) SQLFilterMonthsBtnsArr$.next(SQLFilterMonthsBtnsArr);
 }
 export function updateSQLFilterConcernedBtnsArr(SQLFilterConcernedBtnsArr){  
     if(SQLFilterConcernedBtnsArr) SQLFilterConcernedBtnsArr$.next(SQLFilterConcernedBtnsArr);
-}
+} */

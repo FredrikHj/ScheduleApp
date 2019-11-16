@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSQLDataArr, updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr } from '../GlobalProps.js';
+import { updateSQLDataArr/* , updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr */ } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let SQLFilterMonthsBtnsArr = [];
@@ -10,6 +11,7 @@ console.log(process.env);
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getStr) => {
+
     console.log(backendURL + getStr);
     
     axios.get(backendURL + getStr).then(response => {
@@ -62,6 +64,6 @@ function saveFilterBtns(filterBtns) {
         if (!SQLFilterConcernedBtnsArr.includes(filterMonthsBtnStr)) SQLFilterConcernedBtnsArr.push(filterConcernedBtnStr);
     }
     
-    updateSQLFilterMonthsBtnsArr(SQLFilterMonthsBtnsArr);
+/*     updateSQLFilterMonthsBtnsArr(SQLFilterMonthsBtnsArr);
     updateSQLFilterConcernedBtnsArr(SQLFilterConcernedBtnsArr);
-}
+ */}

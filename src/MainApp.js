@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import {Helmet} from "react-helmet";
 import { updateHeadName } from './Components/GlobalProps.js';
 
