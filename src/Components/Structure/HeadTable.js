@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SQLDataArr$ } from '../GlobalProps.js';
+import { savedSQLData$ } from '../GlobalProps.js';
 import { LogInOut } from './LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 
@@ -26,7 +26,7 @@ export let HeadTable = () => {
             axiosGet('/SQLData');
         }, 2000);
 
-        SQLDataArr$.subscribe((SQLDataArr) => {
+        savedSQLData$.subscribe((SQLDataArr) => {
             console.log(SQLDataArr);
             if (!SQLDataArr.affectedRows) {
                 updateStoredSQLData(SQLDataArr);
@@ -39,9 +39,10 @@ export let HeadTable = () => {
             }
         });
     }, []);
+
     console.log(incommingNewSQLData);
     console.log(storedSQLData);
-
+    
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSQLDataArr/* , updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr */ } from '../GlobalProps.js';
+import { updateSavedSQLData/* , updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr */ } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let SQLFilterMonthsBtnsArr = [];
@@ -16,13 +16,13 @@ export let axiosGet = (getStr) => {
     
     axios.get(backendURL + getStr).then(response => {
         // Store the incommingg API data in a object
-        console.log(response.data);
-        let incommingResponse = response.data;
+        console.log(response.data[0]);
+        let incommingResponse = response.data[0];
     
-        if (incommingResponse[0][1].affectedRows === 1) {
-            updateSQLDataArr(incommingResponse[0][0]);
+        if (incommingResponse[1].affectedRows === 1) {
+            updateSavedSQLData(incommingResponse);
         }
-        else updateSQLDataArr(incommingResponse[0]);
+        else updateSavedSQLData(incommingResponse);
 
         saveFilterBtns(incommingResponse);
     }).

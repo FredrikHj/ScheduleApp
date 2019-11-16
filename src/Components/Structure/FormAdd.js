@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SQLDataArr$ } from '../GlobalProps.js';
+import { savedSQLData$ } from '../GlobalProps.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 
 export let FormAdd = (props) => {        
@@ -16,7 +16,7 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
-        SQLDataArr$.subscribe((SQLDataArr) => {      
+        savedSQLData$.subscribe((SQLDataArr) => {      
             updateQuantityOfSqlPosts(SQLDataArr.length); 
         });
     }, []);

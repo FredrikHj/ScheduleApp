@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { SQLDataArr$ } from '../GlobalProps.js';
+import { savedSQLData$ } from '../GlobalProps.js';
 import { Months } from './Months.js';
 import { Concerned } from './Concerned.js';
 
@@ -19,7 +19,7 @@ export let Filtering = () => {
     let [ activeFilter, updateActiveFilter ] = useState(false);
 
     useEffect(() => {
-        SQLDataArr$.subscribe((SQLDataArr) => {
+        savedSQLData$.subscribe((SQLDataArr) => {
             updateincommingSQLData(SQLDataArr);
         });
     }, []);
