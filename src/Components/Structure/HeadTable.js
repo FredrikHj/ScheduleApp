@@ -6,20 +6,16 @@ import { axiosGet } from '../Data/Axios.js';
 import '../CSS/Table.css';
 
 import axios from 'axios';
-import { log, isArray } from 'util';
-import { setTimeout } from 'timers';
+import { log } from 'util';
 
 let SQLMonthsArr = [];
 let SQLReferedArr = [];
-let dateToDisplay= '';
-
 let auth = {
     userName: '',
     password: ''
 }
 export let HeadTable = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-
     let [ addForm, setAddForm ] = useState(true);
 
     useEffect(() => {
@@ -37,23 +33,13 @@ export let HeadTable = () => {
                 updateIncommingNewSQLData(SQLDataArr[0]);
             }
  */     });
-    },[]);
-    
+    },[]); 
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
-    let cleangIncommingSQLDate = (dateStr) => {
-       // console.log(dateStr.split());
-        
-/*             let inSqlDateStr = dateStr.split('-');
-            let cleanedDate = dateStr.split('-')[0] + '-' + inSqlDateStr[1] + '-' + inSqlDateStr[2].split('')[0] + inSqlDateStr[2].split('')[1];
- */    
-            //return cleanedDate;
-    }   
     console.log(incommingNewSQLData);
-    
     return (
         <>
             <LogInOut
@@ -78,26 +64,27 @@ export let HeadTable = () => {
                     {(incommingNewSQLData.length !== 0) 
                         ?
                         incommingNewSQLData.map((sqlDataObj, rowCounter) => {
-                            let monthsStrs = sqlDataObj.month;
-                            let referedArr = sqlDataObj.concerned;
-                            
-                            SQLMonthsArr.push(monthsStrs);
-                            SQLReferedArr.push(referedArr);
-                            
-                            return(
-                                <tr key={ rowCounter }>
-                                    <td>{ sqlDataObj.date }</td>
-                                    <td>{ sqlDataObj.month }</td>
-                                    <td className="tableCol4">{ sqlDataObj.activity }</td>
-                                    <td>{ sqlDataObj.state }</td>
-                                    <td>{ sqlDataObj.concerned }</td>
-                                    <td>{ sqlDataObj.type }</td>
-                                    <td>{ sqlDataObj.place }</td>
-                                    <td className="tableCol9">{ sqlDataObj.content }</td>
-                                    <td style={(addForm === true) ? {display: 'block'} : {display: 'none'}}>X</td>
-                                </tr>
-                            );
-                        })
+                                let monthsStrs = sqlDataObj.month;
+                                let referedArr = sqlDataObj.concerned;
+                                
+                                SQLMonthsArr.push(monthsStrs);
+                                SQLReferedArr.push(referedArr);
+                                //console.log(sqlDataObj);
+                                
+                                return(
+                                    <tr key={ rowCounter }>
+                                        <td>{ sqlDataObj.date }</td>
+                                        <td>{ sqlDataObj.month }</td>
+                                        <td className="tableCol4">{ sqlDataObj.activity }</td>
+                                        <td>{ sqlDataObj.state }</td>
+                                        <td>{ sqlDataObj.concerned }</td>
+                                        <td>{ sqlDataObj.type }</td>
+                                        <td>{ sqlDataObj.place }</td>
+                                        <td className="tableCol9">{ sqlDataObj.content }</td>
+                                        <td style={(addForm === true) ? {display: 'block'} : {display: 'none'}}>X</td>
+                                    </tr>
+                                );
+                            })
                         :   <tr>
                                 <td><p>Datan laddas in.... </p></td>
                             </tr>

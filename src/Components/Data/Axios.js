@@ -19,7 +19,7 @@ export let axiosGet = (getStr) => {
         console.log(response.data[0]);
         let incommingResponse = response.data[0];
     
-        if (incommingResponse[1].affectedRows === 1) {
+        if (incommingResponse[1].affectedRows === 1) {           
             updateSavedSQLData(incommingResponse);
         }
         else updateSavedSQLData(incommingResponse);

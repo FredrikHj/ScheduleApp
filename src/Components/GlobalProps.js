@@ -4,7 +4,6 @@ let headName = '';
 let incommingSQLDataArr = [];
 
 let savedSQLData = [];
-savedSQLData.push(incommingSQLDataArr);
 
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
@@ -18,10 +17,14 @@ export const SQLFilterConcernedBtnsArr$ = new BehaviorSubject(SQLFilterConcerned
 export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
-export function updateSavedSQLData(incommingSQLDataArr){ 
+export function updateSavedSQLData(incommingSQLDataArr){
     console.log(incommingSQLDataArr);
     
-    if(incommingSQLDataArr) savedSQLData$.next(incommingSQLDataArr);
+    if(incommingSQLDataArr) {
+        savedSQLData.push(incommingSQLDataArr);
+        savedSQLData$.next(savedSQLData[0]);
+    }
+    console.log(savedSQLData);
 }
 /* export function updateSQLFilterMonthsBtnsArr(SQLFilterMonthsBtnsArr){  
     if(SQLFilterMonthsBtnsArr) SQLFilterMonthsBtnsArr$.next(SQLFilterMonthsBtnsArr);
