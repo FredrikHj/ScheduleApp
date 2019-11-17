@@ -24,7 +24,7 @@ export let HeadTable = () => {
         // Run default SQL list
         setTimeout(() => {
             axiosGet('/SQLData');
-        }, 2000);
+        }, 1000);
 
         savedSQLData$.subscribe((SQLDataArr) => {
             console.log(SQLDataArr);
