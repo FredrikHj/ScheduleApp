@@ -34,7 +34,7 @@ let MainApp = () => {
       </section>    
       <hr id="hrLine"></hr>
       <main id="mainContainer">
-      <HeadTable/>
+        <HeadTable/>
       </main>
       <footer>
       </footer>

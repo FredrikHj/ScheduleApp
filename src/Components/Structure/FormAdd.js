@@ -38,6 +38,8 @@ export let FormAdd = (props) => {
 console.log(incommingSQLDataCols);
 
     let submitAddForm = (e) => {
+        console.log(dateStr);
+        
         let sqlBody = [0, dateStr, monthStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
         axiosPost(
