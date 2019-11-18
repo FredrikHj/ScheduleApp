@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
 import { updateHeadName } from './Components/GlobalProps.js';
 
-import { Header } from './Components/Structure/Header.js';
+import { Headbar } from './Components/Structure/Headbar.js';
 import { Information } from './Components/Structure/Information.js';
-import { HeadTable } from './Components/Structure/HeadTable.js';
-import { Filtering } from './Components/Structure/FilteringHead.js';
+import { SQLTable } from './Components/Structure/SQLTable.js';
+import { SearchFilter } from './Components/Structure/SearchFilter.js';
 
 let MainApp = () => {
   let [ appName, setAppName ] = useState('WorkshoppSchema');  
@@ -21,23 +21,21 @@ let MainApp = () => {
         <meta charSet="utf-8" />
         <title>{ appName }</title>
       </Helmet>
-      <header className="header">
-        <Header/>
-      </header>
-      <section className="infoNav">
+        <Headbar/>
+      {/* <section className="infoNav">
         <section className="infoNav__info">
           <Information/>
         </section>
         <nav className="infoNav__nav">
-          <Filtering/>
+          <SearchFilter/>
         </nav>
       </section>    
       <hr id="hrLine"></hr>
       <main id="mainContainer">
-        <HeadTable/>
+        <SQLTable/>
       </main>
       <footer>
-      </footer>
+      </footer> */}
     </>
   );
 }

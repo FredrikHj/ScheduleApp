@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { savedSQLData$ } from '../GlobalProps.js';
+import { incommingSQLDataArr$, updateSavedSQLData } from '../GlobalProps.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 
-export let FormAdd = (props) => {        
+export let FormAdd = (props) => {
+    let [ addedData, updateAddedData ] = useState(false);
     let [ quantityOfSqlPosts, updateQuantityOfSqlPosts ] = useState(0);
     let [ incommingSQLDataCols, updateIncommingSQLDataCols ] = useState([]);
 
@@ -16,7 +17,7 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
-        savedSQLData$.subscribe((SQLDataArr) => {      
+        incommingSQLDataArr$.subscribe((SQLDataArr) => {      
             updateQuantityOfSqlPosts(SQLDataArr.length); 
         });
     }, []);
@@ -38,13 +39,27 @@ export let FormAdd = (props) => {
 console.log(incommingSQLDataCols);
 
     let submitAddForm = (e) => {
+        updateAddedData(true);
         console.log(dateStr);
-        
+        // Created a body for the added data
         let sqlBody = [0, dateStr, monthStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
-        axiosPost(
-            'add', sqlBody
-        );
+/*         let sqlBodyObj = {
+            activity: activityStr,
+            concerned: concernedStr,
+            content: contentStr,
+            date: dateStr,
+            month: monthStr,
+            place: placeStr,
+            state: stateStr,
+            type: typeStr
+        } */
+        axiosPost('add', sqlBody);
+            // Save the body into the table for showing it exckluding the first item
+            //sqlBody.splice(0, 1);
+            
+        /* console.log(sqlBodyObj);
+        updateSavedSQLData(sqlBodyObj); */
         setTimeout(() => {
             axiosGet('/SQLData/NewRecord');
         }, 3000);

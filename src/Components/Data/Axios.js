@@ -3,28 +3,43 @@ import axios from 'axios';
 import { updateSavedSQLData/* , updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr */ } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
+let savedSQLDataArr = [];
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
 
 console.log(process.env);
-//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
-let backendURL = 'http://localhost:3001'; // Just test the backend 
+let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+//let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getStr) => {
 
     console.log(backendURL + getStr);
     
     axios.get(backendURL + getStr).then(response => {
-        // Store the incommingg API data in a object
-        console.log(response.data[0]);
-        let incommingResponse = response.data[0];
-    
-        if (incommingResponse[1].affectedRows === 1) {           
-            updateSavedSQLData(incommingResponse);
-        }
-        else updateSavedSQLData(incommingResponse);
+        // Store the incommingg API data in a variables
+        let incommingSQLRes = response.data[0];
 
-        saveFilterBtns(incommingResponse);
+        console.log(response);
+        /*  If incomming status of 200 = OK:
+            Data i push into a arry that is holding the data until the webbbrowser is closed 
+            */
+            console.log(incommingSQLRes);
+        if (response.status === 200) {
+            savedSQLDataArr.push(incommingSQLRes);         
+            updateSavedSQLData(savedSQLDataArr[0][0]);
+        }
+        /*  If incomming status of 201 = Created:
+            Data i push into a arry that is holding the data until the webbbrowser is closed 
+        */
+        if (response.status === 201) {
+            
+            savedSQLDataArr[0].push(incommingSQLRes[0][0]);
+            updateSavedSQLData[0](savedSQLDataArr);
+        }
+        else{
+        }
+
+        saveFilterBtns(incommingSQLRes);
     }).
     catch(error => {
         //console.log(error.response);

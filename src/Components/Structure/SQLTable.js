@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { savedSQLData$ } from '../GlobalProps.js';
+import { incommingSQLDataArr$ } from '../GlobalProps.js';
 import { LogInOut } from './LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 
@@ -14,32 +14,34 @@ let auth = {
     userName: '',
     password: ''
 }
-export let HeadTable = () => {
+export let SQLTable = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ addForm, setAddForm ] = useState(true);
 
     useEffect(() => {
         // Run default SQL list
+        setTimeout(() => {
             axiosGet('/SQLData');    
-        savedSQLData$.subscribe((SQLDataArr) => {
-/*             if (incommingNewSQLData.length > 0) {
-                return;
-            } */
+        }, 3000);
+        incommingSQLDataArr$.subscribe((SQLDataArr) => {
             console.log(SQLDataArr);
             updateIncommingNewSQLData(SQLDataArr);
-            /*             if (!SQLDataArr.affectedRows) {
+/*             if (SQLDataArr.affectedRows){
+                updateIncommingNewSQLData(SQLDataArr[0]);
             }
             else {
                 updateIncommingNewSQLData(SQLDataArr[0]);
-            }
- */     });
-    },[]); 
+            } */
+        });
+/*         setTimeout(() => {
+            savedSQLData.push(incommingNewSQLData);
+        }, 2000);
+ */    },[]); 
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
-    console.log(incommingNewSQLData);
     return (
         <>
             <LogInOut
@@ -67,8 +69,8 @@ export let HeadTable = () => {
                                 let monthsStrs = sqlDataObj.month;
                                 let referedArr = sqlDataObj.concerned;
                                 
-                                SQLMonthsArr.push(monthsStrs);
-                                SQLReferedArr.push(referedArr);
+                                //SQLMonthsArr.push(monthsStrs);
+                                //SQLReferedArr.push(referedArr);
                                 //console.log(sqlDataObj);
                                 
                                 return(
