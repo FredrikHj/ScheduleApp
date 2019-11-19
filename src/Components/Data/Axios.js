@@ -25,8 +25,8 @@ export let axiosGet = (getStr) => {
             */
             console.log(incommingSQLRes);
         if (response.status === 200) {
-            savedSQLDataArr.push(incommingSQLRes);         
-            updateSavedSQLData(savedSQLDataArr[0][0]);
+            //savedSQLDataArr.push(incommingSQLRes);         
+            updateSavedSQLData(incommingSQLRes);
         }
         /*  If incomming status of 201 = Created:
             Data i push into a arry that is holding the data until the webbbrowser is closed 

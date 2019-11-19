@@ -1,0 +1,95 @@
+#logInOut__username{
+  /* Användarnamn */
+  position: absolute;
+  width: 221px;
+  height: 50px;
+  left: 688px;
+  top: 14px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0;
+  color: #000000;
+}
+#logInOut__password{
+/* Lösenord */
+  position: absolute;
+  width: 221px;
+  height: 50px;
+  left: 932px;
+  top: 14px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0;
+  color: #000000;
+}
+#username__input{
+  /* Rectangle 2 */
+  position: absolute;
+  width: 228px;
+  height: 29px;
+  left: 681px;
+  top: 36px;
+
+  /* BG / Default List */
+  background: #F5F5F5;
+
+  /* Mono / Ljusare */
+  border: 1px solid #E5E5E5;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#password__input{
+  /* Rectangle 3 */
+  position: absolute;
+  width: 228px;
+  height: 29px;
+  left: 925px;
+  top: 36px;
+
+  /* BG / Default List */
+  background: #F5F5F5;
+
+  /* Mono / Ljusare */
+  border: 1px solid #E5E5E5;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+#logInOut__btnContainer{
+  position: absolute;
+  left: 1172px;
+  width: 181px;
+  height: 100%;
+}
+.btnContainer_submitBtn{
+  position: relative;
+  right: 108px;
+  top: 29px;
+  left: 0;
+  width: 141px;
+  height: 39px;
+  background: #AE0B05;
+  border-radius: 4px;
+}
+.btnContainer__headline{
+  position: relative;
+  left: 18px;
+  right: 18px;
+  top: 0px;
+  width: 105px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 11px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+}

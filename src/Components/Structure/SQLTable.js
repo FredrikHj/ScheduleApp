@@ -3,13 +3,11 @@ import { incommingSQLDataArr$ } from '../GlobalProps.js';
 import { LogInOut } from './LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 
-import '../CSS/Table.css';
+import '../CSS/SQLTable.css';
 
 import axios from 'axios';
 import { log } from 'util';
 
-let SQLMonthsArr = [];
-let SQLReferedArr = [];
 let auth = {
     userName: '',
     password: ''
@@ -43,47 +41,34 @@ export let SQLTable = () => {
         if (targetBtn === 'logOut') setAddForm(false);
     }
     return (
-        <>
-            <LogInOut
-                runAdmin={ runAdmin}
-                addForm={ addForm }
-            />
-            <table id="tableSchedule" style={(addForm === true) ? {marginTop: '-62px'} : null}>
+        <section id="container__tableSchedule">
+
+            <table id="tableSchedule__body">
                 <thead>
                     <tr>
                         <th>Datum</th>
-                        <th>Månad</th>
                         <th className="tableCol4">Akitvitet</th>
                         <th>Status</th>
                         <th>Berörda</th>
                         <th>Typ</th>
                         <th>Plats</th>
                         <th className="tableCol9">Innehåll</th>
-                        <th style={(addForm === true) ? {display: 'block',  height: '27px', lineHeight: '27px'} : {display: 'none'}}>Verktyg</th>
-                    </tr>
+                   </tr>
                 </thead>
-                <tbody id="tableScheduleBody" style={(addForm === true) ? {marginTop: '80px'} : null}>
+                <tbody id="tableSchedule__tBody">
                     {(incommingNewSQLData.length !== 0) 
                         ?
                         incommingNewSQLData.map((sqlDataObj, rowCounter) => {
-                                let monthsStrs = sqlDataObj.month;
-                                let referedArr = sqlDataObj.concerned;
-                                
-                                //SQLMonthsArr.push(monthsStrs);
-                                //SQLReferedArr.push(referedArr);
-                                //console.log(sqlDataObj);
                                 
                                 return(
                                     <tr key={ rowCounter }>
                                         <td>{ sqlDataObj.date }</td>
-                                        <td>{ sqlDataObj.month }</td>
                                         <td className="tableCol4">{ sqlDataObj.activity }</td>
                                         <td>{ sqlDataObj.state }</td>
                                         <td>{ sqlDataObj.concerned }</td>
                                         <td>{ sqlDataObj.type }</td>
                                         <td>{ sqlDataObj.place }</td>
                                         <td className="tableCol9">{ sqlDataObj.content }</td>
-                                        <td style={(addForm === true) ? {display: 'block'} : {display: 'none'}}>X</td>
                                     </tr>
                                 );
                             })
@@ -95,7 +80,7 @@ export let SQLTable = () => {
                     </tr>
                 </tbody>
             </table>
-        </>
+        </section>
     );
 
 }

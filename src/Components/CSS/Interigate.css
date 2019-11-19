@@ -51,16 +51,7 @@ input[type=checkbox]:checked + .checkbox__labelConcerned{
     color: black;
 }
 /* ================== Button style ================== */
-.adminBtn{
-  position: relative;
-  top: -210px;
-  left: 950px;
-  width: 366px;
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  z-index: 1;
-}
+
 .button {
   padding: 15px 25px;
   font-size: 24px;

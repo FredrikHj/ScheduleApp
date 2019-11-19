@@ -2,15 +2,12 @@ body {
   /* Frame 1 */
   position: relative;
   width: 1400px;
+  left: calc(50% - 700px);
   height: 1299px;
 
-/* BG / Default List */
+  /* BG / Default List */
 
   background: #F5F5F5;
-  margin-left: calc(50% - 700px);
-  font-family: "Times New Roman";
-  font-size: 20px;
-  background: #E5E5E5;
 }
 /* *{
   border: 1px solid red;
@@ -20,26 +17,16 @@ body {
 :root{
   --color-blue--: rgb(68, 68, 223);
 }
-#headbarContainer{
-  /* Rectangle 1 */
+#headbar__Container{
+/* Rectangle 1 */
   position: absolute;
   width: 1400px;
   height: 103px;
   left: 0px;
-  top: 0px;
-
-  /* Mono / Vit */
+  top: -7px;
   background: #FFFFFF;
-
-/*   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: bold;
-  text-align: center;
-  height: 50px;*/
 }
-#appname{
+#headbar__headLine{
   /* Worshop Schema */
   position: absolute;
   width: 221px;
@@ -52,166 +39,6 @@ body {
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
-
-  /* Röd / 004 */
+  margin: 0;
   color: #AE0B05;
-}
-#usernameBox{
-  /* Användarnamn */
-  position: absolute;
-  width: 221px;
-  height: 50px;
-  left: 688px;
-  top: 14px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-
-  color: #000000;
-}
-#passwordBox{
-  /* Lösenord */
-  position: absolute;
-  width: 221px;
-  height: 50px;
-  left: 932px;
-  top: 14px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-
-  color: #000000;
-}
-#inputUsername{
-  /* Rectangle 2 */
-  position: absolute;
-  width: 228px;
-  height: 29px;
-  left: 681px;
-  top: 36px;
-
-  /* BG / Default List */
-  background: #F5F5F5;
-
-  /* Mono / Ljusare */
-  border: 1px solid #E5E5E5;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
-#inputPassword{
-  /* Rectangle 3 */
-  position: absolute;
-  width: 228px;
-  height: 29px;
-  left: 925px;
-  top: 36px;
-
-  /* BG / Default List */
-  background: #F5F5F5;
-
-  /* Mono / Ljusare */
-  border: 1px solid #E5E5E5;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
-
-.headbar section{
-  width: 30%;
-}
-.infoNav{
-  display: flex;
-  flex-direction: row;
-  height: 207px;
-}
-.infoNav__info{
-  padding: 5px;
-  overflow-y: scroll;
-  width: 20%;
-  height: 197px;
-  margin-top: -36px;
-}
-.infoNav__nav{
-  width: 80%;
-  margin-top: -2px;
-  height: 197px;
-}
-.nav__headline{
-  margin-top: 0px;
-}
-.navFrame{
-  display: flex;
-  flex-direction: row;
-  height: 197px;
-}
-.navFrame__month{
-  border-right: 3px solid var(--color-blue--);
-  padding-top: 5px;
-  width: 37%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.filterRemove{
-  position: relative;
-  top: 3px;
-  left: 0px;
-  height: 30px;
-  width: 30px;
-}
-.ikonFilterRemove{
-  position: relative;
-  top: -10px;
-  left: -12px;
-}
-#admin{
-  width: 35%;
-  margin-left: 20px;
-  font-size: 20px;
-  margin-top: -36px;
-}
-.arrowDropDown{
-  position: relative;
-  top: -10px;
-  left: -2px;
-  font-size: 45px;
-}
-.filterCrossRemove{
-  position: relative;
-  color: red;
-  top: -5px;
-  left: -18px;
-  font-size: 15px;
-  font-weight: bold;
-}
-.navButtonsMonth, .navButtonsConcerned{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: -26px;
-}
-.navButtonsMonth{
-  width: 120%;
-}
-.navButtonsConcerned{
-  margin-left: -3px;
-}
-.navFrame__concerned{
-  border-left: 3px solid var(--color-blue--);
-  overflow-y: scroll;
-  padding-top: 5px;
-  width: 57%;
-}
-#hrLine{
-  width: 90%;
-  height: 1vh;
-  background-color: var(--color-blue--);
-}
-#mainContainer{
-  position: relative;
-  top: -75px; 
 }

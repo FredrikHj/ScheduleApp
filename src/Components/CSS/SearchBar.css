@@ -1,0 +1,14 @@
+#searchBar__Container{
+    position: relative;
+    left: calc(50% - 468.5px);
+    right: 0px;
+    top: 137px;
+    bottom: 0px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 937px;
+    height: 39px;
+
+}

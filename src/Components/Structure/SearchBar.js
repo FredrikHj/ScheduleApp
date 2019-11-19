@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { incommingSQLDataArr$ } from '../GlobalProps.js';
-import { Months } from './Months.js';
-import { Concerned } from './Concerned.js';
+import '../CSS/SearchBar.css';
 
 let activeMonthsStrArr = [];
 let activeConcernedStrArr = [];
@@ -14,7 +13,7 @@ let concernedArr = [];
 let monthsArr = [];
 
 let SQLStatementsObj = {};
-export let SearchFilter = () => {
+export let SearchBar = () => {
     let [ incommingSQLData, updateincommingSQLData ] = useState([]);
     let [ activeFilter, updateActiveFilter ] = useState(false);
 
@@ -144,26 +143,8 @@ export let SearchFilter = () => {
     console.log(SQLStatementsObj);
     
     return(
-        <>
-        <section className="navFrame">
-           <button className="button filterRemove" onClick={ sqlFilterRemove }>
-                <section className="ikonFilterRemove"> 
-                    <i className="material-icons">filter_list <span className="filterCrossRemove">X</span></i>
-                </section>
-            </button>
-            <section className="navFrame__month">
-                <Months
-                   sqlFiltering={ sqlFiltering }
-                   getFilterStr={ getFilterStr }
-                />
-            </section>
-            <section className="navFrame__concerned">
-                <Concerned
-                    sqlFiltering={ sqlFiltering }
-                    getFilterStr={ getFilterStr }
-                />
-            </section>
-          </section>
-        </>
+        <section id="searchBar__Container">
+            
+        </section>
     )
 } 
