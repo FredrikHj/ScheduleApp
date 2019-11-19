@@ -18,17 +18,9 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
-/* 
-    if(incommingSQLDataArr && firstRun === true) {
-        savedSQLDataArr.push(incommingSQLDataArr);
-        console.log(savedSQLDataArr);
-        incommingSQLDataArr$.next(savedSQLDataArr[0]);
-        firstRun = false;
-    } */
-    if(incommingSQLDataArr) {
-        //savedSQLDataArr[0].push(incommingSQLDataArr);
-        console.log(savedSQLDataArr);
 
+    if(incommingSQLDataArr) {
+        console.log(savedSQLDataArr);
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }

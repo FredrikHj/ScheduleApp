@@ -34,7 +34,9 @@ export let SQLTable = () => {
 /*         setTimeout(() => {
             savedSQLData.push(incommingNewSQLData);
         }, 2000);
- */    },[]); 
+ */ },[]); 
+ console.log(incommingNewSQLData);
+ 
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
@@ -42,7 +44,6 @@ export let SQLTable = () => {
     }
     return (
         <section id="container__tableSchedule">
-
             <table id="tableSchedule__body">
                 <thead>
                     <tr>
@@ -59,22 +60,22 @@ export let SQLTable = () => {
                     {(incommingNewSQLData.length !== 0) 
                         ?
                         incommingNewSQLData.map((sqlDataObj, rowCounter) => {
-                                
-                                return(
-                                    <tr key={ rowCounter }>
-                                        <td>{ sqlDataObj.date }</td>
-                                        <td className="tableCol4">{ sqlDataObj.activity }</td>
-                                        <td>{ sqlDataObj.state }</td>
-                                        <td>{ sqlDataObj.concerned }</td>
-                                        <td>{ sqlDataObj.type }</td>
-                                        <td>{ sqlDataObj.place }</td>
-                                        <td className="tableCol9">{ sqlDataObj.content }</td>
-                                    </tr>
-                                );
-                            })
-                        :   <tr>
-                                <td><p>Datan laddas in.... </p></td>
-                            </tr>
+                            
+                            return(
+                                <tr key={ rowCounter }>
+                                    <td>{ sqlDataObj.date }</td>
+                                    <td className="tableCol4">{ sqlDataObj.activity }</td>
+                                    <td>{ sqlDataObj.state }</td>
+                                    <td>{ sqlDataObj.concerned }</td>
+                                    <td>{ sqlDataObj.type }</td>
+                                    <td>{ sqlDataObj.place }</td>
+                                    <td className="tableCol9">{ sqlDataObj.content }</td>
+                                </tr>
+                            );
+                        })
+                    :   <tr>
+                            <td><p>Datan hämntas.... </p></td>
+                        </tr>
                     }
                     <tr>
                     </tr>

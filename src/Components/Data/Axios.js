@@ -38,8 +38,6 @@ export let axiosGet = (getStr) => {
         }
         else{
         }
-
-        saveFilterBtns(incommingSQLRes);
     }).
     catch(error => {
         //console.log(error.response);
@@ -51,6 +49,7 @@ export let axiosPost = (postType, formBody) => {
         formBody,
     };
     console.log(sendToSqlBackend);
+    if (postType === 'userValidate') type = 'userValidate';
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') type = 'AddRecord';
     axios.post(
@@ -64,21 +63,19 @@ export let axiosPost = (postType, formBody) => {
     catch(error => {
         //console.log(error.response);
     });
-}
-function saveFilterBtns(filterBtns) {
-    /*
+}     /*
     Save both the months ans the cerncerned filter Btn in a individuall
     array. The arrays are sep... from the filerering funtions!
     */
-    for (let index = 0; index < filterBtns.length; index++) {
+/*     for (let index = 0; index < filterBtns.length; index++) {
         let filterMonthsBtnStr = filterBtns[index].month;
         let filterConcernedBtnStr = filterBtns[index].concerned;
 
         // Check if the strings already is in the array 
         if (!SQLFilterMonthsBtnsArr.includes(filterMonthsBtnStr)) SQLFilterMonthsBtnsArr.push(filterMonthsBtnStr);
         if (!SQLFilterConcernedBtnsArr.includes(filterMonthsBtnStr)) SQLFilterConcernedBtnsArr.push(filterConcernedBtnStr);
-    }
+    } */
     
 /*     updateSQLFilterMonthsBtnsArr(SQLFilterMonthsBtnsArr);
     updateSQLFilterConcernedBtnsArr(SQLFilterConcernedBtnsArr);
- */}
+ */
