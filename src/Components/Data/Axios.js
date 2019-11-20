@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSavedSQLData/* , updateSQLFilterMonthsBtnsArr,  updateSQLFilterConcernedBtnsArr */ } from '../GlobalProps.js';
+import { updateSavedSQLData, updateFullName } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let savedSQLDataArr = [];
@@ -58,6 +58,13 @@ export let axiosPost = (postType, bodyData) => {
     then(response => {
         console.log(response.data);
         console.log(postType);
+
+        if (postType === 'userValidate'){
+            let fullName = response.data;
+            console.log(fullName);
+            
+            updateFullName(fullName);
+        } 
 
 
        //if (postType !== 'add') updateSQLDataArr(response.data[0]);

@@ -12,7 +12,6 @@ export let LogedIn = () => {
 
     useEffect(() => {
       
-    
 
     },[]); 
     return (
