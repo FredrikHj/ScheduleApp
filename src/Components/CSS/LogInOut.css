@@ -93,3 +93,10 @@
   color: #FFFFFF;
   margin: 0;
 }
+#logInOut__logIn{
+  width: 472px;
+  height: 47px;
+  margin-left: 679px;
+  text-align: center;
+  line-height: 47px;
+}

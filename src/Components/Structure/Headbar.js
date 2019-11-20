@@ -9,10 +9,9 @@ export let Headbar = () => {
     useEffect(() => {
         headName$.subscribe((headName) => {
             console.log(headName);
-            setAppName(headName$.value);
+            setAppName(headName);
         });
     }, []);
-    console.log('header');
     
     return (
         <>
