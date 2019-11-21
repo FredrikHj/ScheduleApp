@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import { FormAdd } from './FormAdd.js';
-import { updateLogedInGlobal, logedIn$, fullName$ , updateLocalstorage, localStorageObj$ } from '../GlobalProps.js';
+import { fullName$, updateLocalstorage, localStorageObj$ } from '../GlobalProps.js';
 
 import { axiosPost } from '../Data/Axios.js';
+import { localStorageObj } from '../Data/LocalStorageObj.js';
 import '../CSS/LogInOut.css';
 
 import { isArray } from 'util';
 
 export let LogInOut = (props) => {
-    let [ isLogedIn, setIsLogedIn ] = useState(false);
+    let [ logedInLocalV, updateLogedInLocalV ] = useState(Boolean);
     let [ inlogedFullUserName, setInlogedFullUserName ] = useState('');
 
     let [ savedLocalStorageObj, updateSavedLocalStorageObj] = useState({});
@@ -24,7 +24,7 @@ export let LogInOut = (props) => {
     
     useEffect(() => {
         fullName$.subscribe((fullName) => {
-            //console.log(fullName);
+            console.log(fullName);
             setInlogedFullUserName(fullName);
         });
         //The data in localstorage is converted to a normal object and save into a hooks useing later
@@ -38,17 +38,31 @@ export let LogInOut = (props) => {
         let userInformation = {};
         // Gets the element
         let targetBtnId = e.target.id; 
+        
+       
         if(targetBtnId === 'logIn') {
-            userInformation = {userName: userNameStr, userPassWord: userPwdStr}
             
             // Validate that the user is found as a valid user
+            userInformation = {userName: userNameStr, userPassWord: userPwdStr}
             axiosPost('userValidate', userInformation);
-            setIsLogedIn(true);
-            updateLogedInGlobal(true);
+            //setIsLogedIn(true);
+            //updateLogedInGlobal(true); 
+             let newLocalStorageObj = { 
+                logedInState: localStorageObj['logedInState'] = true,
+                fullName: localStorageObj['fullName'] = inlogedFullUserName
+            };
+            updateLocalstorage(newLocalStorageObj);
         }
         if(targetBtnId === 'logOout') {
-            setIsLogedIn(false);
-            updateLogedInGlobal(false);
+            //setIsLogedIn(false);
+            //updateLogedInGlobal(false);
+            let newLocalStorageObj = { 
+                logedInState: localStorageObj['logedInState'] = false,
+                fullName: localStorageObj['fullName']
+            };
+            console.log(newLocalStorageObj);
+            
+            updateLocalstorage(newLocalStorageObj);
         }
     }
 
@@ -62,9 +76,12 @@ export let LogInOut = (props) => {
     }
     console.log(savedLocalStorageObj);
     
+    let logedInStatus = () => {
+        return (!savedLocalStorageObj) ? logedInLocalV : savedLocalStorageObj.logedInState;
+    }
     return (
         <section id="headbar__logInOut">
-            {(savedLocalStorageObj.logedInState === false)
+            {(logedInStatus() === false)
                 ?
                     <>
                         <p id="logInOut__username">Användarnamn</p><input type="text" id="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder={ userPlaceholder }/>
@@ -73,14 +90,14 @@ export let LogInOut = (props) => {
                 :
                     <p id="logInOut__logIn">{`Välkommen in ${ savedLocalStorageObj.fullName }` }</p>
             }
-            {(savedLocalStorageObj.logedInState === false)
+            {(logedInStatus() === false)
                 ?
                     <section id="logInOut__btnContainer">
                         <input type="submit" className="btnContainer_submitBtn" onClick={ runLogInOut } id="logIn" value=""/>
                         <p className="btnContainer__headline" onClick={ runLogInOut } id="logIn">Logga In</p>
                     </section>
                 :
-                    <section id="logInOut__btnContainer" style={(savedLocalStorageObj.logedInState === true) ? {marginLeft: '-3px', marginTop: '-78px',} : null}>.
+                    <section id="logInOut__btnContainer" style={(logedInStatus() === true) ? {marginLeft: '-3px', marginTop: '-78px',} : null}>.
                         <input type="submit" className="btnContainer_submitBtn" onClick={ runLogInOut} id="logOout" value="" />
                         <p className="btnContainer__headline" onClick={ runLogInOut } id="logOout">Logga Ut</p>
                     </section>

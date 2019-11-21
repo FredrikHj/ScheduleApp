@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import { updateHeadName, logedIn$, fullName$ } from './Components/GlobalProps.js';
+import { updateHeadName, fullName$ } from './Components/GlobalProps.js';
 
 import { Headbar } from './Components/Structure/Headbar.js';
 import { SQLTable } from './Components/Structure/SQLTable.js';
@@ -19,15 +19,6 @@ let MainApp = () => {
   let [ inlogedFullUserName, setInlogedFullUserName ] = useState('');
   
   useEffect(() => {
-/*     let localStorageObj = {
-      logedInState: false,
-      fullName: ''
-    };   
-    window.localStorage.setItem('userData', JSON.stringify(localStorageObj));
- */    logedIn$.subscribe((logedIn) => {
-      console.log(logedIn);
-      setIsLogedIn(logedIn);
-    });
     fullName$.subscribe((fullName) => {
       console.log(fullName);
       setInlogedFullUserName(fullName);
