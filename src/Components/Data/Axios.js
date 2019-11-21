@@ -6,13 +6,10 @@ import { setTimeout } from 'timers';
 let savedSQLDataArr = [];
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
-
-console.log(process.env);
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
-//let backendURL = 'http://localhost:3001'; // Just test the backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getStr) => {
-
     console.log(backendURL + getStr);
     
     axios.get(backendURL + getStr).then(response => {
@@ -23,7 +20,6 @@ export let axiosGet = (getStr) => {
         /*  If incomming status of 200 = OK:
             Data i push into a arry that is holding the data until the webbbrowser is closed 
             */
-            console.log(incommingSQLRes);
         if (response.status === 200) {
             //savedSQLDataArr.push(incommingSQLRes);         
             updateSavedSQLData(incommingSQLRes);
@@ -48,7 +44,7 @@ export let axiosPost = (postType, bodyData) => {
     let sendToSqlBackend = {
         bodyData,
     };
-    console.log(sendToSqlBackend);
+    //console.log(sendToSqlBackend);
     if (postType === 'userValidate') type = 'UserValidate';
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') type = 'AddRecord';
@@ -56,18 +52,10 @@ export let axiosPost = (postType, bodyData) => {
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).
     then(response => {
-        console.log(response.data);
-        console.log(postType);
-
         if (postType === 'userValidate'){
-            let fullName = response.data;
-            console.log(fullName);
-            
+            let fullName = response.data;          
             updateFullName(fullName);
-        } 
-
-
-       //if (postType !== 'add') updateSQLDataArr(response.data[0]);
+        }
     }).
     catch(error => {
         //console.log(error.response);

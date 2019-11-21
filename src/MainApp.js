@@ -13,15 +13,18 @@ import { SearchBar } from './Components/Structure/SearchBar.js';
 import { LogedOut } from './LogedOut.js';
 import { LogedIn } from './LogedIn.js';
 
-
-
 let MainApp = () => {
   let [ appName, setAppName ] = useState('WorkshoppSchema');
   let [ isLogedIn, setIsLogedIn ] = useState(false);
   let [ inlogedFullUserName, setInlogedFullUserName ] = useState('');
   
   useEffect(() => {
-    logedIn$.subscribe((logedIn) => {
+/*     let localStorageObj = {
+      logedInState: false,
+      fullName: ''
+    };   
+    window.localStorage.setItem('userData', JSON.stringify(localStorageObj));
+ */    logedIn$.subscribe((logedIn) => {
       console.log(logedIn);
       setIsLogedIn(logedIn);
     });

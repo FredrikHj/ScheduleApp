@@ -24,19 +24,8 @@ export let SQLTable = () => {
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
             console.log(SQLDataArr);
             updateIncommingNewSQLData(SQLDataArr);
-/*             if (SQLDataArr.affectedRows){
-                updateIncommingNewSQLData(SQLDataArr[0]);
-            }
-            else {
-                updateIncommingNewSQLData(SQLDataArr[0]);
-            } */
         });
-/*         setTimeout(() => {
-            savedSQLData.push(incommingNewSQLData);
-        }, 2000);
- */ },[]); 
- console.log(incommingNewSQLData);
- 
+     },[]); 
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
