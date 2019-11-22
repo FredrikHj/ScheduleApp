@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSavedSQLData, updateFullName } from '../GlobalProps.js';
+import { updateSavedSQLData, updateReturningUserData } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let savedSQLDataArr = [];
@@ -40,6 +40,8 @@ export let axiosGet = (getStr) => {
     });
 }
 export let axiosPost = (postType, bodyData) => {  
+    console.log(bodyData);
+    
     let type = '';
     let sendToSqlBackend = {
         bodyData,
@@ -53,8 +55,10 @@ export let axiosPost = (postType, bodyData) => {
         , sendToSqlBackend ).
     then(response => {
         if (postType === 'userValidate'){
-            let fullName = response.data;          
-            updateFullName(fullName);
+            let returningUserData = response.data;      
+            console.log(returningUserData);
+                
+            updateReturningUserData(returningUserData);
         }
     }).
     catch(error => {

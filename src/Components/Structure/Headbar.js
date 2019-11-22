@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+// React Router - ES6 modules
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import { headName$ } from '../GlobalProps.js';
 import { LogInOut } from './LogInOut.js';
 import '../CSS/Headbar.css';
 
-export let Headbar = () => {
+export let Headbar = (props) => {
     let [ appName, setAppName ] = useState('');   
 
     useEffect(() => {
@@ -17,7 +19,10 @@ export let Headbar = () => {
         <>
             <header id="headbar__Container">
                 <p id="headbar__headLine">{ appName }</p>
-                <LogInOut/>
+                
+                <LogInOut
+                    logedIn={ props.logedIn }    
+                />
             </header>
         </>
     );
