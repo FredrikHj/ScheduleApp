@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import {logedInGlobal$, updateHeadName, returningUserData$ } from './Components/GlobalProps.js';
+import {logedIn$, updateHeadName, returningUserData$ } from './Components/GlobalProps.js';
 
 import { LogedOut } from './LogedOut.js';
 import { LogedIn } from './LogedIn.js';
@@ -12,19 +12,22 @@ let MainApp = () => {
   let [ appName, setAppName ] = useState('Årsklockan');
   let [ isLogedIn, setIsLogedIn ] = useState(false);
   let [ inlogedFullUserName, setInlogedFullUserName ] = useState('');
-  
+  let [ redirect ] = useState(true);
+
   useEffect(() => {
     returningUserData$.subscribe((returningUserData) => {
       console.log(returningUserData);
       setInlogedFullUserName(returningUserData);
     });
-    logedInGlobal$.subscribe((logedInGlobal) => {
-      console.log(logedInGlobal);
-      setIsLogedIn(logedInGlobal);
+    logedIn$.subscribe((logedIn) => {
+      console.log(logedIn);
+      setIsLogedIn(logedIn);
     });
     updateHeadName(appName);
+    if (redirect === true) return <Redirect to="/"/>;
   }, []);
   
+  console.log(window.location.href);
   
   return (
     <>
@@ -33,8 +36,8 @@ let MainApp = () => {
         <title>{(isLogedIn === false) ? `${appName} - Utloggad` : `${appName} - Inloggad`}</title>
       </Helmet>
       <Router>
-        <Route path="/" component={ LogedOut } />
-        <Route path="/Inloggad" component={ LogedIn } />
+        <Route exact path="/" component={ LogedOut } />
+        <Route exact path="/Inloggad" component={ LogedIn } />
       </Router>
 
     </>

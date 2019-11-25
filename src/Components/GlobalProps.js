@@ -1,7 +1,7 @@
 import {BehaviorSubject} from "rxjs";
 let inlogedUserFullName = '';
 let headName = '';
-let logedInGlobal = false;
+let logedIn = false;
 let returningUserData = '';
 let incommingSQLDataArr = [];
 let firstTime = true;
@@ -9,7 +9,7 @@ let firstTime = true;
 //===============================================
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
-export const logedInGlobal$ = new BehaviorSubject(logedInGlobal);
+export const logedIn$ = new BehaviorSubject(logedIn);
 export const returningUserData$ = new BehaviorSubject(returningUserData);
 export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
 
@@ -25,10 +25,10 @@ export function updateInlogedUserFullName(){
     console.log(getUserFullName);
     return getUserFullName;
 }
-export function updateLogedInGlobal(logedInGlobal){
-    console.log(logedInGlobal);
+export function updateLogedIn(logedIn){
+    console.log(logedIn);
     
-    if(logedInGlobal) logedInGlobal$.next(logedInGlobal);
+    if(logedIn) logedIn$.next(logedIn);
 }
 export function updateHeadName(headName){
     if(headName) headName$.next(headName);

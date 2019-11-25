@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, updateLocalstorage, inlogedUserFullName$, updateLogedInGlobal } from './Components/GlobalProps.js';
+import { headName$, updateLogedIn, inlogedUserFullName$, updateLogedInGlobal } from './Components/GlobalProps.js';
 import './Components/CSS/Headbar.css';
 import { log } from 'util';
 import { SQLTable } from './Components/Structure/SQLTable.js';
@@ -13,7 +13,6 @@ import { runLogInOut } from './Components/Data/LogInOut.js';
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
 export let LogedOut = () => {
-    let [ isLogedIn, setIsLogedIn ] = useState(false);
     let [ appName, setAppName ] = useState('');
 
     const [ userNameStr, updateUserNameStr ] = useState('');
@@ -24,8 +23,8 @@ export let LogedOut = () => {
             console.log(headName);
             setAppName(headName);
         });
-        updateLogedInGlobal(isLogedIn);
     }, []);
+    updateLogedIn(false);
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
         console.log(targetUserName);

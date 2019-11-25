@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { headName$ } from './Components/GlobalProps.js';
-
 
 //import { LogInOut } from './LogInOut.js';
 import './Components/CSS/Headbar.css';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import axios from 'axios';
-import {updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$, updateLogedInGlobal } from './Components/GlobalProps.js';
+import { headName$, updateLogedIn, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$ } from './Components/GlobalProps.js';
 
 
 import { log } from 'util';
@@ -18,12 +16,12 @@ import { SearchBar } from './Components/Structure/SearchBar.js';
 
 export let LogedIn = () => {
     let [ inlogedUser, updateInlogedUser ] = useState('');
-    let [ isLogedIn, setIsLogedIn ] = useState(true);
     let [ appName, setAppName ] = useState('');   
 
     let [ savedLocalStorageObj, updateSavedLocalStorageObj] = useState({});
 
     useEffect(() => {
+        updateLogedIn(true);
         headName$.subscribe((headName) => {
             console.log(headName);
             setAppName(headName);
@@ -32,10 +30,10 @@ export let LogedIn = () => {
             console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
         }); 
-        updateInlogedUserFullName();
+        setTimeout(() => {
+            updateInlogedUserFullName();
+        }, 1500);
     }, []);
-
-
     return (
         <>
             <header id="headbar__Container">
