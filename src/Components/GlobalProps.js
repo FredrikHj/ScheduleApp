@@ -4,9 +4,9 @@ let headName = '';
 let logedInGlobal = false;
 let returningUserData = '';
 let incommingSQLDataArr = [];
+let firstTime = true;
 
 //===============================================
-let firstTime = true;
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
 export const logedInGlobal$ = new BehaviorSubject(logedInGlobal);
@@ -19,14 +19,11 @@ export const localStorageObj$ = new BehaviorSubject('');
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
 export function updateInlogedUserFullName(){
-    if (firstTime === true) {
-        return;
-    }
     let getUserFullName = JSON.parse(window.localStorage.getItem("userData")).loginName;
+    inlogedUserFullName$.next(getUserFullName);
 
     console.log(getUserFullName);
-    
-    if(getUserFullName) inlogedUserFullName$.next(getUserFullName);
+    return getUserFullName;
 }
 export function updateLogedInGlobal(logedInGlobal){
     console.log(logedInGlobal);
@@ -47,11 +44,20 @@ export function updateReturningUserData(returningUserData){
     if(returningUserData) {
         returningUserData$.next(returningUserData);
     }
-    updateLocalstorage(returningUserData);
+    updateLocalstorage(true, returningUserData);
 }
-let updateLocalstorage = (saveIntoLocalStorage) =>{
-    updateInlogedUserFullName();
-    
-    localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));    let getCleanLocalStorrageObj = JSON.parse(window.localStorage.getItem("userData"));
-    localStorageObj$.next(getCleanLocalStorrageObj);
+export let updateLocalstorage = (run, saveIntoLocalStorage) =>{
+    if (run === true) {
+        localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
+        let getCleanLocalStorrageObj = JSON.parse(window.localStorage.getItem("userData"));
+        localStorageObj$.next(getCleanLocalStorrageObj);
+    }
+    if (run === false) {
+        let userEmtyData = {
+            userId: '',
+            loginStatus: null,
+            loginName: ''
+        }
+        updateLocalstorage(true, userEmtyData);
+    }
 }

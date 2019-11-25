@@ -86,10 +86,17 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
-#logInOut__btnContainer{
+#logInOut__btnOutContainer{
   position: absolute;
   left: 1172px;
   width: 181px;
+  height: 100%;
+}
+#logInOut__btnInContainer{
+  position: absolute;
+  left: 1168px;
+  width: 181px;
+  top: 0px;
   height: 100%;
 }
 .btnContainer_submitBtn{

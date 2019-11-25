@@ -3,10 +3,7 @@ import {Helmet} from "react-helmet";
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-
-import {updateInlogedUserFullName, logedInGlobal$, updateHeadName, returningUserData$ } from './Components/GlobalProps.js';
-
-import { Headbar } from './Components/Structure/Headbar.js';
+import {logedInGlobal$, updateHeadName, returningUserData$ } from './Components/GlobalProps.js';
 
 import { LogedOut } from './LogedOut.js';
 import { LogedIn } from './LogedIn.js';
@@ -17,7 +14,6 @@ let MainApp = () => {
   let [ inlogedFullUserName, setInlogedFullUserName ] = useState('');
   
   useEffect(() => {
-    updateInlogedUserFullName();
     returningUserData$.subscribe((returningUserData) => {
       console.log(returningUserData);
       setInlogedFullUserName(returningUserData);
@@ -37,7 +33,6 @@ let MainApp = () => {
         <title>{(isLogedIn === false) ? `${appName} - Utloggad` : `${appName} - Inloggad`}</title>
       </Helmet>
       <Router>
-        <Headbar/>
         <Route path="/" component={ LogedOut } />
         <Route path="/Inloggad" component={ LogedIn } />
       </Router>

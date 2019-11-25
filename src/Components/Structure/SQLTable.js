@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { incommingSQLDataArr$ } from '../GlobalProps.js';
-import { LogInOut } from './LogInOut.js';
+import { LogInOut } from '../Data/LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 
 import '../CSS/SQLTable.css';
@@ -22,7 +22,7 @@ export let SQLTable = () => {
             axiosGet('/SQLData');    
         }, 3000);
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            console.log(SQLDataArr);
+            //console.log(SQLDataArr);
             updateIncommingNewSQLData(SQLDataArr);
         });
      },[]); 
