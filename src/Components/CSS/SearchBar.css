@@ -1,4 +1,4 @@
-#searchBar__Container{
+#searchBar__searchContainer{
     position: relative;
     left: calc(50% - 468.5px);
     right: 0px;
@@ -10,5 +10,17 @@
     border-radius: 4px;
     width: 937px;
     height: 39px;
-
+}
+#searchContainer__searchBar{
+    position: relative;
+    float: right;
+    left: 250px;    
+    top: 0px;
+    bottom: 0px;
+}
+#searchContainer__input{
+    width: 81px;
+    height: 25px;
+    background: #707070;
+    border-radius: 4px;
 }

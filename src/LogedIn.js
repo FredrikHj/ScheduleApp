@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 //import { LogInOut } from './LogInOut.js';
 import './Components/CSS/Headbar.css';
@@ -32,22 +33,39 @@ export let LogedIn = () => {
         }); 
         setTimeout(() => {
             updateInlogedUserFullName();
-        }, 1500);
+        }, 1000);
     }, []);
     return (
         <>
-            <header id="headbar__Container">
-                <p id="headbar__headLine">{ appName }</p>
-                <section id="headbar__logInOut">
-                    <p id="logInOut__logIn">{`Välkommen in ${ inlogedUser }` }</p>           
-                    <section id="logInOut__btnInContainer">.
-                        <input type="submit" className="btnContainer_submitBtn" onClick={ runLogInOut} id="logOout" value="" />
-                        <Link to="/" className="btnContainer__headline" onClick={ runLogInOut } id="logIn">
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>{`${appName} - Inloggad`}</title>
+        </Helmet>
+        <header id="headbar__Container">
+            <p id="headbar__headLine">{ appName }</p>
+
+            <section id="headbar__logInOutBtn">
+                <p id="logInOut__logInUser">{`Välkommen in ${ inlogedUser }` }</p>       
+
+                <section id="logInOut__btnInContainer">
+
+                    <div  id="btnContainer__btnLogOut">
+                        <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
+                        <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
                             <p className="__headline" id="logOout">Logga Ut</p>
+                        </Link>   
+                    </div>
+
+                    <div id="btnContainer__btnAdd">
+                        <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="add" value=""/>
+                        <Link to="/Add" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="add">
+                            <p className="__headline" id='add'>Lägg Till</p>
                         </Link>
-                    </section>
-                 </section>
-            </header>
+                    </div>
+                </section>
+
+                </section>
+        </header>
             <SearchBar/>
             <SQLTable/>
         </>

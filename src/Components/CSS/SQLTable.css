@@ -27,6 +27,9 @@ thead, tbody tr{
   table-layout:fixed;
   color: #000000;
 }
+#tableSchedule__tBody td{
+  border: 1px solid lightgrey;/*  #AE0B05; */
+}
 #tableSchedule__body tr:nth-child(even){
   background: #FFFFFF;
   border: 1px solid #E5E5E5;

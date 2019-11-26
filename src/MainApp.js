@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {Helmet} from "react-helmet";
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
@@ -7,7 +6,7 @@ import {logedIn$, updateHeadName, returningUserData$ } from './Components/Global
 
 import { LogedOut } from './LogedOut.js';
 import { LogedIn } from './LogedIn.js';
-
+import { FormAdd } from './Components/Structure/FormAdd.js';
 let MainApp = () => {
   let [ appName, setAppName ] = useState('Årsklockan');
   let [ isLogedIn, setIsLogedIn ] = useState(false);
@@ -31,13 +30,10 @@ let MainApp = () => {
   
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{(isLogedIn === false) ? `${appName} - Utloggad` : `${appName} - Inloggad`}</title>
-      </Helmet>
       <Router>
         <Route exact path="/" component={ LogedOut } />
-        <Route exact path="/Inloggad" component={ LogedIn } />
+        <Route exact path="/LogIn" component={ LogedIn }/>
+        <Route path="/Add" component={ FormAdd }/>
       </Router>
 
     </>

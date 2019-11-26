@@ -1,0 +1,91 @@
+#formAdd__addContainer{
+/* Rectangle 1 */
+  position: relative;
+  width: 1024px;
+  height: 103px;
+  left: calc(50% - 512px);
+  top: 214px;
+  display: block;
+}
+#addContainer__body{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 19px;
+}
+#addContainer__Tbody{
+    margin-top: 2px;
+    display: block;
+    height: 66vh;
+    width: 99%;
+}
+  thead, tbody tr{
+    display: table;
+    width: 100%;
+    table-layout:fixed;
+    color: #000000;
+  }
+  #addContainer__body tr:nth-child(even){
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+  }
+  #addContainer__body th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #AE0B05;
+    border: 1px solid #612E08;
+    font-weight: normal;
+    margin-bottom: 50px;
+  }
+  
+  #addContainer__body thead {
+    width: 99%;
+  }
+  .tableCol1{
+    width: 4%;
+  }
+  .tableCol2{
+    width: 11%;
+  }
+  .tableCol3{
+    width: 11%;
+  }
+  .tableCol4{
+    width: 15%;
+  }
+  .tableCol9{
+    width: 15%;
+  }
+  .addSqlInput{
+    width: 100%;
+  }
+  .tableCol1AddForm{
+    width: 4%;
+  }
+  .tableCol2AddForm{
+    width: 9.2%;
+  }
+  .tableCol3AddForm{
+    width: 9.4%;
+  }
+  .tableCol4AddForm{
+    width: 14.9%;
+  }
+  .tableCol5AddForm{
+    width: 9.3%;
+  }
+  .tableCol6AddForm{
+    width: 9.3%;
+  }
+  .tableCol7AddForm{
+    width: 9.4%;
+  }
+  .tableCol8AddForm{
+    width: 9.3%;
+  }
+  .tableCol9AddForm{
+    width: 14.9%;
+  }

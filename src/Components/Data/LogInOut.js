@@ -36,4 +36,12 @@ export let runLogInOut = (e) => {
  
         return <Redirect to="/"/>;
     }
+    if(targetBtnId === 'add') {
+        //updateLocalstorage(false, {});
+
+    }
+    if(targetBtnId === 'cancelAdd') {
+        //updateLocalstorage(false, {});    
+
+    }
 }

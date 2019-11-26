@@ -86,19 +86,6 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
-#logInOut__btnOutContainer{
-  position: absolute;
-  left: 1172px;
-  width: 181px;
-  height: 100%;
-}
-#logInOut__btnInContainer{
-  position: absolute;
-  left: 1168px;
-  width: 181px;
-  top: 0px;
-  height: 100%;
-}
 .btnContainer_submitBtn{
   position: relative;
   right: 108px;
@@ -109,10 +96,56 @@
   background: #AE0B05;
   border-radius: 4px;
 }
-#logInOut__logIn{
+#logInOut__logInUser{
   width: 472px;
   height: 47px;
   margin-left: 679px;
   text-align: center;
   line-height: 47px;
+}
+#logInOut__btnInContainer{
+  position: absolute;
+  left: 1168px;
+  width: 181px;
+  top: 17px;
+  height: 80%;
+}
+#logInOut__btnOutContainer{
+  position: absolute;
+  left: 1168px;
+  width: 181px;
+  top: -12px;
+  height: 80%;
+}
+#btnContainer__btnLogOut{
+  position: relative;
+}
+
+#btnContainer__btnAdd{
+  position: relative; 
+  top: -65px;
+}
+.btnLogOut__input{
+  position: relative;
+  right: 108px;
+  left: 0;
+  width: 141px;
+  height: 39px;
+  background: #AE0B05;
+  border-radius: 4px;
+}
+.btnContainer__inputHeadline{
+  position: relative;
+  left: 18px;
+  right: 18px;
+  top: -29px;
+  width: 105px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 11px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
 }

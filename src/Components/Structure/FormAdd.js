@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { incommingSQLDataArr$, updateSavedSQLData } from '../GlobalProps.js';
+// React Router - ES6 modules
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import {Helmet} from "react-helmet";
+
+
+import { headName$, updateLogedIn, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$ } from '../GlobalProps.js';
+import '../CSS/Headbar.css';
+import '../CSS/FormAdd.css';
+import { runLogInOut } from '../Data/LogInOut.js';
+
+
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 
 export let FormAdd = (props) => {
+    let [ appName, setAppName ] = useState(''); 
+    let [ inlogedUser, updateInlogedUser ] = useState('');
+
     let [ addedData, updateAddedData ] = useState(false);
     let [ quantityOfSqlPosts, updateQuantityOfSqlPosts ] = useState(0);
     let [ incommingSQLDataCols, updateIncommingSQLDataCols ] = useState([]);
@@ -17,9 +30,17 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
-        incommingSQLDataArr$.subscribe((SQLDataArr) => {      
-            updateQuantityOfSqlPosts(SQLDataArr.length); 
+        headName$.subscribe((headName) => {
+            console.log(headName);
+            setAppName(headName);
         });
+        inlogedUserFullName$.subscribe((inlogedUserFullName) => {
+            console.log(inlogedUserFullName);
+            updateInlogedUser(inlogedUserFullName);
+        }); 
+        setTimeout(() => {
+            updateInlogedUserFullName();
+        }, 1000);
     }, []);
     let setStrsType = (e) => {
         let type = e.target;
@@ -60,29 +81,66 @@ console.log(incommingSQLDataCols);
             
         /* console.log(sqlBodyObj);
         updateSavedSQLData(sqlBodyObj); */
-        setTimeout(() => {
-            axiosGet('/SQLData/NewRecord');
-        }, 3000);
-        e.preventDefault();
+
     }
     
     return (
-        <form>
-            <table id="addSqlData" style={(props.addForm === true) ? {display: 'block'} : {display: 'none'}}>
-                <tbody>
-                    <tr>
-                        <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType }/></td>
-                        <td><input type="text" className="addSqlInput" data-type="month" onChange={ setStrsType }/></td>
-                        <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType }/></td>
-                        <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType }/></td>
-                        <td><input type="text" className="addSqlInput" data-type="concerned" onChange={ setStrsType }/></td>
-                        <td><input type="text" className="addSqlInput" data-type="type" onChange={ setStrsType }/></td>
-                        <td><input type="text" className="addSqlInput" data-type="place" onChange={ setStrsType }/></td>
-                        <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType }/></td>
-                        <td><input type="submit" className="button addFormBtn" onClick={ submitAddForm } value="Lägg till!"/></td>
+        <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{`${appName} - Lägg Till`}</title>
+            </Helmet>
+            <header id="headbar__Container">
+                <p id="headbar__headLine">{ appName }</p>
+
+                <section id="headbar__logInOutBtn">
+                    <p id="logInOut__logInUser">{`Välkommen in ${ inlogedUser }` }</p>       
+
+                    <section id="logInOut__btnInContainer">
+
+                        <div  id="btnContainer__btnLogOut">
+                            <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
+                            <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
+                                <p className="__headline" id="logOout">Logga Ut</p>
+                            </Link>   
+                        </div>
+
+                        <div id="btnContainer__btnAdd">
+                            <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
+                            <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
+                                <p className="__headline" id='cancelAdd'>Avbryt</p>
+                            </Link>
+                        </div>
+                    </section>
+
+                </section>
+            </header>
+            <section id="formAdd__addContainer">
+                <table id="addContainer__body">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th className="tableCol4">Akitvitet</th>
+                            <th>Status</th>
+                            <th>Berörda</th>
+                            <th>Typ</th>
+                            <th>Plats</th>
+                            <th className="tableCol9">Innehåll</th>
                     </tr>
-                </tbody>
-            </table>     
-        </form>        
+                    </thead>
+                    <tbody id="addContainer__Tbody">
+                        <tr>
+                            <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType }/></td>
+                            <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType }/></td>
+                            <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType }/></td>
+                            <td><input type="text" className="addSqlInput" data-type="concerned" onChange={ setStrsType }/></td>
+                            <td><input type="text" className="addSqlInput" data-type="type" onChange={ setStrsType }/></td>
+                            <td><input type="text" className="addSqlInput" data-type="place" onChange={ setStrsType }/></td>
+                            <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType }/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </>  
     );
 }
