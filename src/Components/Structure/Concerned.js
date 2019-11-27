@@ -5,7 +5,7 @@ export let Concerned = (props) => {
     let [ filtering ] = useState('concerned');
     return (
         <>
-            <p className="nav__headline">Berörda</p>            
+            <p className="navbtnHeadline">Berörda</p>            
             <section className="navButtonsConcerned">
                 {( props.getFilterStr(filtering).length !== 0)
                     ?

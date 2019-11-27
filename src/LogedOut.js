@@ -49,14 +49,14 @@ console.log(formInputObj);
                 <title>{`${appName} - Utloggad`}</title>
             </Helmet>
             <header id="headbar__Container">
-                <p id="headbar__headLine">{ appName }</p>
+                <p id="headbarbtnHeadline">{ appName }</p>
                 <section id="headbar__logInOut">
                     <p id="logInOut__username">Användarnamn</p><input type="text" id="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
                     <p id="logInOut__password">Lösenord</p><input type="text" id="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
                     <section id="logInOut__btnOutContainer">
                         <input type="submit" className="btnContainer_submitBtn" onClick={ runLogInOut } id="logIn" value=""/>
-                        <Link to="/LogIn" className="btnContainer__headline" onClick={ runLogInOut } id="logIn">
-                            <p className="__headline" id='logIn'>Logga In</p>
+                        <Link to="/LogIn" className="btnContainerbtnHeadline" onClick={ runLogInOut } id="logIn">
+                            <p className="btnHeadline" id='logIn'>Logga In</p>
                         </Link>
                     </section>
                 </section>

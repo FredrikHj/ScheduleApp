@@ -89,3 +89,26 @@
   .tableCol9AddForm{
     width: 14.9%;
   }
+  /* Added User Data ==================================== */
+.btnAddedSendContainer__sendBtn{
+  position: absolute;
+  left: 1214px;
+  right: 0px;
+  top: 234px;
+  width: 141px;
+  height: 39px;
+  background: #AE0B05;
+  border-radius: 4px;
+}
+.btnHeadline__sendIn{
+  position: relative;
+  width: 133px;
+  height: 32px;
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 7px;
+  color: white;
+}

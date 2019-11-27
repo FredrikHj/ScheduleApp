@@ -21,7 +21,6 @@ export let FormAdd = (props) => {
     let [ incommingSQLDataCols, updateIncommingSQLDataCols ] = useState([]);
 
     let [ dateStr, updateDateStr ] = useState('');
-    let [ monthStr, updateMonhthStr ] = useState('');
     let [ activityStr, updateActivityStr ] = useState('');
     let [ stateStr, updateStateStr ] = useState('');
     let [ concernedStr, updateConcernedStr ] = useState('');
@@ -48,7 +47,6 @@ export let FormAdd = (props) => {
         const {dataset} = type;
 
         if (dataset.type === 'date') updateDateStr(inputStr);
-        if (dataset.type === 'month') updateMonhthStr(inputStr);
         if (dataset.type === 'activity') updateActivityStr(inputStr);
         if (dataset.type === 'state') updateStateStr(inputStr);
         if (dataset.type === 'concerned') updateConcernedStr(inputStr);
@@ -59,11 +57,11 @@ export let FormAdd = (props) => {
 
 console.log(incommingSQLDataCols);
 
-    let submitAddForm = (e) => {
+    let sendInUserData = (e) => {
         updateAddedData(true);
         console.log(dateStr);
         // Created a body for the added data
-        let sqlBody = [0, dateStr, monthStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
+        let sqlBody = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
 /*         let sqlBodyObj = {
             activity: activityStr,
@@ -75,7 +73,10 @@ console.log(incommingSQLDataCols);
             state: stateStr,
             type: typeStr
         } */
-        axiosPost('add', sqlBody);
+
+        console.log(sqlBody);
+        
+        //axiosPost('add', sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody.splice(0, 1);
             
@@ -91,7 +92,7 @@ console.log(incommingSQLDataCols);
                 <title>{`${appName} - Lägg Till`}</title>
             </Helmet>
             <header id="headbar__Container">
-                <p id="headbar__headLine">{ appName }</p>
+                <p id="headbarbtnHeadline">{ appName }</p>
 
                 <section id="headbar__logInOutBtn">
                     <p id="logInOut__logInUser">{`Välkommen in ${ inlogedUser }` }</p>       
@@ -101,20 +102,24 @@ console.log(incommingSQLDataCols);
                         <div  id="btnContainer__btnLogOut">
                             <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
                             <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                                <p className="__headline" id="logOout">Logga Ut</p>
+                                <p className="btnHeadline" id="logOout">Logga Ut</p>
                             </Link>   
                         </div>
 
                         <div id="btnContainer__btnAdd">
                             <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
                             <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
-                                <p className="__headline" id='cancelAdd'>Avbryt</p>
+                                <p className="btnHeadline" id='cancelAdd'>Avbryt</p>
                             </Link>
                         </div>
                     </section>
 
                 </section>
             </header>
+            
+            <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
+                <p className="btnHeadline__sendIn" id='sendIn'>Skicka In</p>
+            </button> 
             <section id="formAdd__addContainer">
                 <table id="addContainer__body">
                     <thead>

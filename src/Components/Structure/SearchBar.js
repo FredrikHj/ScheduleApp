@@ -135,10 +135,13 @@ export let SearchBar = () => {
     }
    
     return(
-        <section id="searchBar__searchContainer">
-            <div id="searchContainer__searchBar">
-                <input type="submit" id="searchContainer__input" onClick={ runFilter} id="searchBar" value=""/>
-                <p className="__headline" id="searchBar">Sök</p>
+        <section className="searchBar__searchContainer">
+            <input type="text" className="searchContainer__searchBar" id="searchBar" placeholder="  Sök"/>
+            <div id="searchContainer__inputBox">
+                <button className="searchContainer__searchBtn" onClick={ runFilter} id="searchBtn">
+                    <Link to="/SearchResult" className="searchContainer__searchHeadline" onClick={ runFilter } id="searchBtn">Sök</Link>
+                </button>
+
             </div>
         </section>
     );

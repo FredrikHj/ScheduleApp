@@ -10,7 +10,7 @@ export let Months = (props) => {
     });
     return ( 
         <>
-            <p className="nav__headline" >Månader</p>            
+            <p className="navbtnHeadline" >Månader</p>            
             <section className="navButtonsMonth">
                 {( props.getFilterStr(filtering).length !== 0)
                     ?

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
+import Spinner from './Components/Data/Spinner.js';
+import './Components/CSS/Spinner.scss';
 
 //import { LogInOut } from './LogInOut.js';
 import './Components/CSS/Headbar.css';
@@ -35,6 +37,7 @@ export let LogedIn = () => {
             updateInlogedUserFullName();
         }, 1000);
     }, []);
+
     return (
         <>
         <Helmet>
@@ -42,29 +45,28 @@ export let LogedIn = () => {
             <title>{`${appName} - Inloggad`}</title>
         </Helmet>
         <header id="headbar__Container">
-            <p id="headbar__headLine">{ appName }</p>
+            <p id="headbarbtnHeadline">{ appName }</p>
 
             <section id="headbar__logInOutBtn">
-                <p id="logInOut__logInUser">{`Välkommen in ${ inlogedUser }` }</p>       
+                <p id="logInOut__logInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
 
                 <section id="logInOut__btnInContainer">
 
                     <div  id="btnContainer__btnLogOut">
                         <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
                         <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                            <p className="__headline" id="logOout">Logga Ut</p>
+                            <p className="btnHeadline" id="logOout">Logga Ut</p>
                         </Link>   
                     </div>
 
                     <div id="btnContainer__btnAdd">
                         <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="add" value=""/>
                         <Link to="/Add" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="add">
-                            <p className="__headline" id='add'>Lägg Till</p>
+                            <p className="btnHeadline" id='add'>Lägg Till</p>
                         </Link>
                     </div>
                 </section>
-
-                </section>
+            </section>
         </header>
             <SearchBar/>
             <SQLTable/>

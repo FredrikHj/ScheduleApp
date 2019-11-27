@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { incommingSQLDataArr$ } from '../GlobalProps.js';
+
+import Spinner from '../Data/Spinner.js';
 import { LogInOut } from '../Data/LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 
@@ -62,9 +64,7 @@ export let SQLTable = () => {
                                 </tr>
                             );
                         })
-                    :   <tr>
-                            <td><p>Datan hämntas.... </p></td>
-                        </tr>
+                    :   <tr><td><Spinner wait={ 'Datan hämntas' }/></td></tr>
                     }
                     <tr>
                     </tr>

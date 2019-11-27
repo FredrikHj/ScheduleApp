@@ -1,4 +1,4 @@
-.btnContainer__headline{
+.btnContainerbtnHeadline{
   position: relative;
   left: 18px;
   right: 18px;
@@ -13,7 +13,8 @@
   color: #FFFFFF;
   margin: 0;
 }
-.__headline{
+.btnHeadline{
+  position: relative;
   display: inline-block;
   width: 133px;
   height: 32px;
@@ -26,7 +27,6 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 32px;
-  position: relative;
   color: white;
 }
 #logInOut__username{
