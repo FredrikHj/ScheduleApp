@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
 
+import Spinner from '../Data/Spinner.js';
 
 import { headName$, updateLogedIn, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$ } from '../GlobalProps.js';
 import '../CSS/Headbar.css';
@@ -15,6 +16,7 @@ import { axiosPost, axiosGet } from '../Data/Axios.js';
 export let FormAdd = (props) => {
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
+    let [ incommingSQLData, updateIncommingSQLData ] = useState([]);
 
     let [ addedData, updateAddedData ] = useState(false);
     let [ quantityOfSqlPosts, updateQuantityOfSqlPosts ] = useState(0);
@@ -36,7 +38,8 @@ export let FormAdd = (props) => {
         inlogedUserFullName$.subscribe((inlogedUserFullName) => {
             console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
-        }); 
+        });
+        
         setTimeout(() => {
             updateInlogedUserFullName();
         }, 1000);
@@ -63,20 +66,9 @@ console.log(incommingSQLDataCols);
         // Created a body for the added data
         let sqlBody = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
-/*         let sqlBodyObj = {
-            activity: activityStr,
-            concerned: concernedStr,
-            content: contentStr,
-            date: dateStr,
-            month: monthStr,
-            place: placeStr,
-            state: stateStr,
-            type: typeStr
-        } */
-
         console.log(sqlBody);
         
-        //axiosPost('add', sqlBody);
+        axiosPost('add', sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody.splice(0, 1);
             
@@ -135,13 +127,33 @@ console.log(incommingSQLDataCols);
                     </thead>
                     <tbody id="addContainer__Tbody">
                         <tr>
-                            <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType }/></td>
-                            <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType }/></td>
-                            <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType }/></td>
-                            <td><input type="text" className="addSqlInput" data-type="concerned" onChange={ setStrsType }/></td>
-                            <td><input type="text" className="addSqlInput" data-type="type" onChange={ setStrsType }/></td>
-                            <td><input type="text" className="addSqlInput" data-type="place" onChange={ setStrsType }/></td>
-                            <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType }/></td>
+                            <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td><input type="text" className="addSqlInput" data-type="concerned" onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td><input type="text" className="addSqlInput" data-type="type" onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td><input type="text" className="addSqlInput" data-type="place" onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType } placeholder="  ..."/></td>
+                        </tr>
+                        <tr>
+                        {(incommingSQLData.length !== 0) 
+                        ?
+                        incommingSQLData.map((sqlDataObj, rowCounter) => {
+                            
+                            return(
+                                <tr key={ rowCounter }>
+                                    <td>{ sqlDataObj.date }</td>
+                                    <td className="tableCol4">{ sqlDataObj.activity }</td>
+                                    <td>{ sqlDataObj.state }</td>
+                                    <td>{ sqlDataObj.concerned }</td>
+                                    <td>{ sqlDataObj.type }</td>
+                                    <td>{ sqlDataObj.place }</td>
+                                    <td className="tableCol9">{ sqlDataObj.content }</td>
+                                </tr>
+                            );
+                        })
+                    :   <tr><td><Spinner wait={ 'Datan laddas' }/></td></tr>
+                    }
                         </tr>
                     </tbody>
                 </table>

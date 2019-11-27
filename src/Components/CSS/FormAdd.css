@@ -19,6 +19,7 @@
     display: block;
     height: 66vh;
     width: 99%;
+    margin-left: -1px;
 }
   thead, tbody tr{
     display: table;

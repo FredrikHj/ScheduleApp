@@ -64,7 +64,7 @@ export let SQLTable = () => {
                                 </tr>
                             );
                         })
-                    :   <tr><td><Spinner wait={ 'Datan hämntas' }/></td></tr>
+                    :   <tr><td><Spinner wait={ 'Datan laddas' }/></td></tr>
                     }
                     <tr>
                     </tr>

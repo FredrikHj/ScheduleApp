@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
-import Spinner from './Components/Data/Spinner.js';
 import './Components/CSS/Spinner.scss';
 
 //import { LogInOut } from './LogInOut.js';
