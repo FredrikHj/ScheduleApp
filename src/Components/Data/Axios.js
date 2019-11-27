@@ -6,8 +6,8 @@ import { setTimeout } from 'timers';
 let savedSQLDataArr = [];
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
-//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
-let backendURL = 'http://localhost:3001'; // Just test the backend 
+let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+//let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getStr) => {
     console.log(backendURL + getStr);
