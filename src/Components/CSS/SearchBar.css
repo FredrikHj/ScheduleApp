@@ -1,22 +1,13 @@
 .searchBar__searchContainer{
-    position: relative;
-    left: calc(50% - 468.5px);
-    right: 0px;
-    top: 137px;
-    bottom: 0px;
-    background: .FFFFFF;
-    border: 1px solid .E5E5E5;
+    margin-left: 43.5px;
+    margin-right: 0px;
+    margin-top: 37px;
+    margin-bottom: 0px;
     box-sizing: border-box;
     border-radius: 4px;
     width: 937px;
     height: 39px;
-}
-.searchContainer__inputBox{
-    position: relative;
-    float: right;
-    left: 120px;    
-    top: -15px;
-    bottom: 0px;
+    z-index: -1;
 }
 .searchContainer__searchBar{
     background: #FFFFFF;
@@ -25,30 +16,26 @@
     border-radius: 4px;
     width: 937px;
     height: 44px;
-
 } 
 .searchContainer__searchBtn{
-    position: absolute;
+    position: relative;
     right: 15px;
-    top: 8px;
-    bottom: 0px;
+    float: right;
+    top: -33px;
     width: 81px;
     height: 25px;
     background: #707070;
     border-radius: 4px;
 }
 .searchContainer__searchHeadline{
-    position: absolute;
-    left: 18px;
     width: 45px;
     height: 25px;
-    top: 0px;
-    bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    line-height: 25px;
     text-align: center;
     color: #FFFFFF;
     text-decoration: none;

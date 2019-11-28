@@ -10,10 +10,6 @@ import '../CSS/SQLTable.css';
 import axios from 'axios';
 import { log } from 'util';
 
-let auth = {
-    userName: '',
-    password: ''
-}
 export let SQLTable = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ addForm, setAddForm ] = useState(true);

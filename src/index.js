@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Components/CSS/Headbar.css';
+import './Components/CSS/Generall.css';
 
 import MainApp from './MainApp';
 import * as serviceWorker from './serviceWorker';

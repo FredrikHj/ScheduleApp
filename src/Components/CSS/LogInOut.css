@@ -1,66 +1,67 @@
-.btnContainerbtnHeadline{
-  position: relative;
-  left: 18px;
-  right: 18px;
-  top: 0px;
+.btnContainer__btnHeadline{
+  margin-left: 18px;
+  margin-right: 18px;
+  margin-top: 0px;
   width: 105px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 11px;
-  text-align: center;
-  color: #FFFFFF;
-  margin: 0;
 }
 .btnHeadline{
-  position: relative;
   display: inline-block;
+  position: relative;
   width: 133px;
   height: 32px;
   left: -14px;
-  top: -27px;
+  top: -50px;
   text-align: center;
   text-decoration: none;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 32px;
   color: white;
 }
-#logInOut__username{
-  /* Användarnamn */
-  position: absolute;
-  width: 221px;
-  height: 50px;
-  left: 688px;
-  top: 14px;
-  margin: 0;
+.headContainer__logInOut{
+  width: 706px;
+  height: 75px;
+  margin-left: 770px;
+  margin-top: -60px;
 }
-#logInOut__password{
-/* Lösenord */
-  position: absolute;
-  width: 221px;
-  height: 50px;
-  left: 932px;
-  top: 14px;
-
+.logInOut__usernameContainer{
+  margin-left: 10px;
+  margin-top: -14px;
+  margin-bottom: -25px;
+}
+.logInOut__passwordContainer{
+  margin-left: 256px;
+  margin-top: -69px;
+  margin-bottom: -25px;
+}
+.logInOut__inputLabelFormat{
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  margin: 0;
   color: #000000;
 }
-#username__input{
+.logInOut__username{
+  width: 221px;
+  height: 50px;
+  margin-left: 10px;
+  margin-bottom: -25px;
+}
+.logInOut__password{
+  width: 221px;
+  height: 50px;
+  margin-left: 10px;
+  margin-bottom: -25px;
+
+}
+.username__input{
   /* Rectangle 2 */
-  position: absolute;
   width: 228px;
   height: 29px;
-  left: 681px;
-  top: 36px;
+  margin-left: 0px;
+  margin-top: 0px;
 
   /* BG / Default List */
   background: #F5F5F5;
@@ -70,13 +71,12 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
-#password__input{
+.password__input{
   /* Rectangle 3 */
-  position: absolute;
   width: 228px;
   height: 29px;
-  left: 925px;
-  top: 36px;
+  margin-left: 0px;
+  margin-top: 0px;
 
   /* BG / Default List */
   background: #F5F5F5;
@@ -86,66 +86,58 @@
   box-sizing: border-box;
   border-radius: 4px;
 }
-.btnContainer_submitBtn{
-  position: relative;
-  right: 108px;
-  top: 29px;
-  left: 0;
+.btnContainer__submitBtn{
+  margin-right: 108px;
+  margin-top: 29px;
+  margin-left: 0;
   width: 141px;
   height: 39px;
   background: #AE0B05;
   border-radius: 4px;
 }
-#logInOut__logInUser{
+.logInOut__logedInUser{
   width: 472px;
   height: 47px;
-  margin-left: 679px;
+  margin-left: 0;
   text-align: center;
   line-height: 47px;
 }
-#logInOut__btnInContainer{
-  position: absolute;
-  left: 1168px;
+.logInOut__btnInContainer{
+  margin-left: 494px;
   width: 181px;
-  top: 17px;
-  height: 80%;
-}
-#logInOut__btnOutContainer{
-  position: absolute;
-  left: 1168px;
-  width: 181px;
-  top: -12px;
-  height: 80%;
-}
-#btnContainer__btnLogOut{
-  position: relative;
-}
+  margin-top: -62px;
 
-#btnContainer__btnAdd{
-  position: relative; 
-  top: -65px;
+}
+.logInOut__btnOutContainer{
+  width: 181px;
+  height: 80%;
+  margin-left: 499px;
+  margin-top: -67px;
+}
+.btnContainer__btnLogOut{
+  margin-bottom: -65px;
+
+}
+.btnContainer__btnAdd{
+
 }
 .btnLogOut__input{
-  position: relative;
   right: 108px;
-  left: 0;
+  margin-left: 0;
   width: 141px;
   height: 39px;
   background: #AE0B05;
   border-radius: 4px;
 }
 .btnContainer__inputHeadline{
-  position: relative;
-  left: 18px;
-  right: 18px;
-  top: -29px;
+  margin-left: 18px;
+  margin-right: 18px;
   width: 105px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 11px;
+  line-height: 20px;
   text-align: center;
-  color: #FFFFFF;
-  margin: 0;
+  color: black;
 }

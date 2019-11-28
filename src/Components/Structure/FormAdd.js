@@ -5,8 +5,7 @@ import {Helmet} from "react-helmet";
 
 import Spinner from '../Data/Spinner.js';
 
-import { headName$, updateLogedIn, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$ } from '../GlobalProps.js';
-import '../CSS/Headbar.css';
+import { headName$, incommingSQLDataArr$, updateInlogedUserFullName, inlogedUserFullName$ } from '../GlobalProps.js';
 import '../CSS/FormAdd.css';
 import { runLogInOut } from '../Data/LogInOut.js';
 
@@ -39,7 +38,10 @@ export let FormAdd = (props) => {
             console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
         });
-        
+        incommingSQLDataArr$.subscribe((SQLDataArr) => {
+            //console.log(SQLDataArr);
+            updateIncommingSQLData(SQLDataArr);
+        });        
         setTimeout(() => {
             updateInlogedUserFullName();
         }, 1000);
@@ -83,37 +85,38 @@ console.log(incommingSQLDataCols);
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Lägg Till`}</title>
             </Helmet>
-            <header id="headbar__Container">
-                <p id="headbarbtnHeadline">{ appName }</p>
+            <header>
+                <section className="headbar__headContainer">
+                    <p className="headContainer__headline">{ appName }</p>
+                    <section className="headContainer__logInOut">
 
-                <section id="headbar__logInOutBtn">
-                    <p id="logInOut__logInUser">{`Välkommen in ${ inlogedUser }` }</p>       
+                        <p className="logInOut__logedInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
 
-                    <section id="logInOut__btnInContainer">
+                        <section className="logInOut__btnInContainer">
 
-                        <div  id="btnContainer__btnLogOut">
-                            <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
-                            <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                                <p className="btnHeadline" id="logOout">Logga Ut</p>
-                            </Link>   
-                        </div>
+                            <div  className="btnContainer__btnLogOut">
+                                <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
+                                <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
+                                    <p className="btnHeadline" id="logOout">Logga Ut</p>
+                                </Link>   
+                            </div>
 
-                        <div id="btnContainer__btnAdd">
-                            <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
-                            <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
-                                <p className="btnHeadline" id='cancelAdd'>Avbryt</p>
-                            </Link>
-                        </div>
+                            <div className="btnContainer__btnAdd">
+                                <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
+                                <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
+                                    <p className="btnHeadline" id='cancelAdd'>Avbryt</p>
+                                </Link>
+                            </div>
+                        </section>
                     </section>
-
                 </section>
             </header>
             
             <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
                 <p className="btnHeadline__sendIn" id='sendIn'>Skicka In</p>
             </button> 
-            <section id="formAdd__addContainer">
-                <table id="addContainer__body">
+            <section className="formAdd__addContainer">
+                <table className="addContainer__body">
                     <thead>
                         <tr>
                             <th>Datum</th>
@@ -125,7 +128,7 @@ console.log(incommingSQLDataCols);
                             <th className="tableCol9">Innehåll</th>
                     </tr>
                     </thead>
-                    <tbody id="addContainer__Tbody">
+                    <tbody className="addContainer__Tbody">
                         <tr>
                             <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType } placeholder="  ..."/></td>
                             <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType } placeholder="  ..."/></td>

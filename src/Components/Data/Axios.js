@@ -6,8 +6,8 @@ import { setTimeout } from 'timers';
 let savedSQLDataArr = [];
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
-//let backendURL = 'http://localhost:3001'; // Just test the backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getStr) => {
     console.log(backendURL + getStr);
@@ -49,7 +49,13 @@ export let axiosPost = (postType, bodyData) => {
     //console.log(sendToSqlBackend);
     if (postType === 'userValidate') type = 'UserValidate';
     if (postType === 'filter') type = 'filter';
-    if (postType === 'add') type = 'AddRecord';
+    if (postType === 'add') {
+        type = 'AddRecord';
+
+        getUserId();
+
+
+    }
     axios.post(
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).
@@ -64,4 +70,10 @@ export let axiosPost = (postType, bodyData) => {
     catch(error => {
         //console.log(error.response);
     });
+}
+let getUserId = () => {
+    let getUserId = JSON.parse(window.localStorage.getItem("userData")).?;
+
+
+    return ;
 }

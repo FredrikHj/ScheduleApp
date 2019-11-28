@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
+import './Components/CSS/Generall.css';
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, updateLogedIn, inlogedUserFullName$, updateLogedInGlobal } from './Components/GlobalProps.js';
-import './Components/CSS/Headbar.css';
+import { headName$, updateLogedIn } from './Components/GlobalProps.js';
+
 import { log } from 'util';
 import { SQLTable } from './Components/Structure/SQLTable.js';
 import { SearchBar } from './Components/Structure/SearchBar.js';
@@ -48,21 +49,32 @@ console.log(formInputObj);
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Utloggad`}</title>
             </Helmet>
-            <header id="headbar__Container">
-                <p id="headbarbtnHeadline">{ appName }</p>
-                <section id="headbar__logInOut">
-                    <p id="logInOut__username">Användarnamn</p><input type="text" id="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
-                    <p id="logInOut__password">Lösenord</p><input type="text" id="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
-                    <section id="logInOut__btnOutContainer">
-                        <input type="submit" className="btnContainer_submitBtn" onClick={ runLogInOut } id="logIn" value=""/>
-                        <Link to="/LogIn" className="btnContainerbtnHeadline" onClick={ runLogInOut } id="logIn">
-                            <p className="btnHeadline" id='logIn'>Logga In</p>
-                        </Link>
+            <header>
+                <section className="headbar__headContainer">
+                    <p className="headContainer__headline">{ appName }</p>
+                    <section className="headContainer__logInOut">
+
+                        <section className="logInOut__usernameContainer">
+                            <p className="logInOut__username logInOut__inputLabelFormat">Användarnamn</p>
+                            <input type="text" className="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
+                        </section> 
+                        <section className="logInOut__passwordContainer">
+                            <p className="logInOut__password logInOut__inputLabelFormat">Lösenord</p>
+                            <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
+                        </section>  
+                        <section className="logInOut__btnOutContainer">
+                            <input type="submit" className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn" value=""/>
+                            <Link to="/LogIn" className="btnContainer__btnHeadline" onClick={ runLogInOut } id="logIn">
+                                <p className="btnHeadline" id='logIn'>Logga In</p>
+                            </Link>
+                        </section>
                     </section>
                 </section>
             </header>
-            <SearchBar/>
-            <SQLTable/>
+            <main className="body__contents">
+                <SearchBar/>
+                <SQLTable/>
+            </main>
         </>
     );
 }
