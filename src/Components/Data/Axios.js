@@ -9,10 +9,15 @@ let SQLFilterConcernedBtnsArr = [];
 //let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
-export let axiosGet = (getStr) => {
-    console.log(backendURL + getStr);
-    
-    axios.get(backendURL + getStr).then(response => {
+export let axiosGet = (getType) => {
+    console.log(backendURL + getType);
+    let type = '';
+    // Type of post method
+    if (getType === 'default') type = '/SQLData';
+    if (getType === 'userSpec') type = `/SQLData/${ 1 }`;
+        // Get the user inloged User and send into the backend for getting the correct user records 
+        getUserId();
+    axios.get(backendURL + type).then(response => {
         // Store the incommingg API data in a variables
         let incommingSQLRes = response.data[0];
 
@@ -39,6 +44,10 @@ export let axiosGet = (getStr) => {
         //console.log(error.response);
     });
 }
+let getUserId = () => {
+    let getUserId = JSON.parse(window.localStorage.getItem("userData")).userId;
+    return getUserId;
+}
 export let axiosPost = (postType, bodyData) => {  
     console.log(bodyData);
     
@@ -47,12 +56,12 @@ export let axiosPost = (postType, bodyData) => {
         bodyData,
     };
     //console.log(sendToSqlBackend);
+    // Type of post method
     if (postType === 'userValidate') type = 'UserValidate';
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') {
         type = 'AddRecord';
 
-        getUserId();
 
 
     }
@@ -70,10 +79,4 @@ export let axiosPost = (postType, bodyData) => {
     catch(error => {
         //console.log(error.response);
     });
-}
-let getUserId = () => {
-    let getUserId = JSON.parse(window.localStorage.getItem("userData")).?;
-
-
-    return ;
 }

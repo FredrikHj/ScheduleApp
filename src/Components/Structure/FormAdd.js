@@ -113,7 +113,7 @@ console.log(incommingSQLDataCols);
             </header>
             
             <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
-                <p className="btnHeadline__sendIn" id='sendIn'>Skicka In</p>
+                <p className="btnHeadline__sendIn" id='sendIn' onClick={ sendInUserData }>Skicka In</p>
             </button> 
             <section className="formAdd__addContainer">
                 <table className="addContainer__body">

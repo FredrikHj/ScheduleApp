@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { headName$, updateLocalstorage, inlogedUserFullName$, updateLogedInGlobal, logedInGlobal$, returningUserData$, localStorageObj$ } from '../GlobalProps.js';
+import { updateSavedSQLData, updateLocalstorage } from '../GlobalProps.js';
 import  MainApp from '../../MainApp.js';
 import { formInputObj } from '../../LogedOut.js';
 
@@ -28,17 +28,16 @@ export let runLogInOut = (e) => {
         // Validate that the user is found as a valid user
         userInformation = {userName: formInputObj.userNameStr, userPassWord: formInputObj.userPwdStr}
         console.log(userInformation);
-        
+
         axiosPost('userValidate', userInformation);
     }
     if(targetBtnId === 'logOout') {
         updateLocalstorage(false, {});
- 
+        
         return <Redirect to="/"/>;
     }
     if(targetBtnId === 'add') {
-        //updateLocalstorage(false, {});
-
+        // Emtying the data array when getting new user specific records
     }
     if(targetBtnId === 'cancelAdd') {
         //updateLocalstorage(false, {});    

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// React Router - ES6 modules
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import { incommingSQLDataArr$ } from '../GlobalProps.js';
 
 import Spinner from '../Data/Spinner.js';
@@ -12,13 +14,38 @@ import { log } from 'util';
 
 export let SQLTable = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-    let [ addForm, setAddForm ] = useState(true);
+    let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
 
+    let [ addForm, setAddForm ] = useState(true);
+    console.log(incommingNewSQLData);
+    
+    let countGetMethod = 1;
+    let axiosUntilGettingData = new Promise((success, error) => {       
+        if (countGetMethod === 1) {
+            success();
+            countGetMethod++;
+        }
+        if (countGetMethod === 2) {
+            setTimeout(() => {
+                updateErroLoadingSQLData(true)
+            }, 5000);
+        }
+        console.log(countGetMethod);
+        
+        //else error('Kunde inte ladda datan :(');
+    })
     useEffect(() => {
         // Run default SQL list
-        setTimeout(() => {
-            axiosGet('/SQLData');    
-        }, 3000);
+        axiosUntilGettingData.then((result) => {
+            axiosGet('default')
+        }).catch((result) =>{
+            updateErroLoadingSQLData(result);
+        })
+        
+        //setTimeout(() => {
+        //axiosUntilGettingData();
+          
+        //}, 3000);
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
             //console.log(SQLDataArr);
             updateIncommingNewSQLData(SQLDataArr);
@@ -60,13 +87,18 @@ export let SQLTable = () => {
                                 </tr>
                             );
                         })
-                    :   <tr><td><Spinner wait={ 'Datan laddas' }/></td></tr>
+                    :   
+                        <>
+                            <tr><td>
+                                {(erroLoadingSQLData !== true) 
+                                    ? <Spinner wait={'Data laddas'}/>
+                                    :   <section>{'Data laddades inte ---> Hjälp!'}</section>
+                                }
+                            </td></tr>
+                        </>
                     }
-                    <tr>
-                    </tr>
                 </tbody>
             </table>
         </section>
     );
-
 }

@@ -34,6 +34,8 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
+    console.log(incommingSQLDataArr);
+    
     if(incommingSQLDataArr) {
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
