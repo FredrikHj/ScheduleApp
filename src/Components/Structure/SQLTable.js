@@ -34,13 +34,16 @@ export let SQLTable = () => {
         
         //else error('Kunde inte ladda datan :(');
     })
-    useEffect(() => {
+    let axiosGettingSQLData = () => {
         // Run default SQL list
         axiosUntilGettingData.then((result) => {
             axiosGet('default')
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
+    }
+    useEffect(() => {
+        axiosGettingSQLData();
         
         //setTimeout(() => {
         //axiosUntilGettingData();
@@ -92,7 +95,7 @@ export let SQLTable = () => {
                             <tr><td>
                                 {(erroLoadingSQLData !== true) 
                                     ? <Spinner wait={'Data laddas'}/>
-                                    :   <section>{'Data laddades inte ---> Hjälp!'}</section>
+                                    :   <section>{`Data laddades inte ---> Hjälp!${ axiosGettingSQLData() }`}</section>
                                 }
                             </td></tr>
                         </>

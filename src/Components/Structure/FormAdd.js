@@ -110,12 +110,11 @@ console.log(incommingSQLDataCols);
                         </section>
                     </section>
                 </section>
-            </header>
-            
-            <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
-                <p className="btnHeadline__sendIn" id='sendIn' onClick={ sendInUserData }>Skicka In</p>
-            </button> 
+            </header> 
             <section className="formAdd__addContainer">
+                <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
+                    <p className="btnHeadline__sendIn" id='sendIn' onClick={ sendInUserData }>Skicka In</p>
+                </button> 
                 <table className="addContainer__body">
                     <thead>
                         <tr>
