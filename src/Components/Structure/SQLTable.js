@@ -20,21 +20,22 @@ export let SQLTable = () => {
     console.log(incommingNewSQLData);
     
     let countGetMethod = 1;
-    let axiosUntilGettingData = new Promise((success, error) => {       
-        if (countGetMethod === 1) {
-            success();
-            countGetMethod++;
-        }
-        if (countGetMethod === 2) {
-            setTimeout(() => {
-                updateErroLoadingSQLData(true)
-            }, 5000);
-        }
-        console.log(countGetMethod);
-        
-        //else error('Kunde inte ladda datan :(');
-    })
     let axiosGettingSQLData = () => {
+        let axiosUntilGettingData = new Promise((success, error) => {       
+            if (countGetMethod === 1) {
+                success();
+                countGetMethod++;
+            }
+            if (countGetMethod === 2) {
+                setTimeout(() => {
+                    updateErroLoadingSQLData(true)
+                }, 5000);
+            }
+            console.log(countGetMethod);
+            
+            //else error('Kunde inte ladda datan :(');
+        });
+
         // Run default SQL list
         axiosUntilGettingData.then((result) => {
             axiosGet('default')
