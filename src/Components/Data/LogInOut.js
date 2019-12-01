@@ -22,7 +22,7 @@ export let runLogInOut = (e) => {
     let targetBtnId = targetBtn.id; 
     let targetBtnValue = targetBtn;
     console.log(targetBtn);
-    
+    // Things happen according to whare I click
     if(targetBtnId === 'logIn') {
         
         // Validate that the user is found as a valid user
@@ -35,12 +35,5 @@ export let runLogInOut = (e) => {
         updateLocalstorage(false, {});
         
         return <Redirect to="/"/>;
-    }
-    if(targetBtnId === 'add') {
-        // Emtying the data array when getting new user specific records
-    }
-    if(targetBtnId === 'cancelAdd') {
-        //updateLocalstorage(false, {});    
-
     }
 }

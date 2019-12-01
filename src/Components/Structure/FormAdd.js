@@ -5,7 +5,7 @@ import {Helmet} from "react-helmet";
 
 import Spinner from '../Data/Spinner.js';
 
-import { headName$, incommingSQLDataArr$, updateInlogedUserFullName, inlogedUserFullName$ } from '../GlobalProps.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from '../GlobalProps.js';
 import '../CSS/FormAdd.css';
 import { runLogInOut } from '../Data/LogInOut.js';
 
@@ -30,6 +30,7 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
+        axiosGet('userSpec');
         headName$.subscribe((headName) => {
             console.log(headName);
             setAppName(headName);
@@ -38,14 +39,15 @@ export let FormAdd = (props) => {
             console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
         });
-        incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            //console.log(SQLDataArr);
-            updateIncommingSQLData(SQLDataArr);
-        });        
+        /*
+            Update the inloged User after the specific time i millisec...
+            Use the name afte a extra millisec...
+        */
         setTimeout(() => {
-            updateInlogedUserFullName();
+            updateInlogedUserFullName(); 
         }, 1000);
     }, []);
+    console.log(inlogedUser);  
     let setStrsType = (e) => {
         let type = e.target;
         let inputStr = type.value;            
