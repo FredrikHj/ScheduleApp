@@ -10,25 +10,28 @@ let SQLFilterConcernedBtnsArr = [];
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getType) => {
-    console.log(backendURL + getType);
     let type = '';
     // Type of post method
     if (getType === 'default') type = '/SQLData';
     if (getType === 'userSpec') type = `/SQLData/${ 1 }`;
+    console.log(type);
+    
         // Get the user inloged User and send into the backend for getting the correct user records 
-        getUserId();
+
     axios.get(backendURL + type).then(response => {
         // Store the incommingg API data in a variables
         let incommingSQLRes = response.data[0];
 
         console.log(response);
-        /*  If incomming status of 200 = OK:
-            Data i push into a arry that is holding the data until the webbbrowser is closed 
-            */
-        if (response.status === 200) {
-            //savedSQLDataArr.push(incommingSQLRes);         
-            updateSavedSQLData(incommingSQLRes);
-        }
+        /*  If incomming status of 200 = OK
+            Data i push into a arry too  GlobalProps
+            The array is holding the data until the webbbrowser is closed 
+          
+        Default get
+        */
+        if (response.status === 200 && getType === 'default') updateSavedSQLData(incommingSQLRes);
+        if (response.status === 200 && getType === 'userSpec') updateSavedSQLData(incommingSQLRes[0]);
+        
         /*  If incomming status of 201 = Created:
             Data i push into a arry that is holding the data until the webbbrowser is closed 
         */
