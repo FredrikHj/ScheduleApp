@@ -7,6 +7,8 @@ import {logedIn$, updateHeadName, returningUserData$ } from './Components/Global
 import { LogedOut } from './LogedOut.js';
 import { LogedIn } from './LogedIn.js';
 import { FormAdd } from './Components/Structure/FormAdd.js';
+import { UserReg } from './Components/Structure/RegUser.js';
+
 let MainApp = () => {
   let [ appName, setAppName ] = useState('Årsklockan');
   let [ isLogedIn, setIsLogedIn ] = useState(false);
@@ -34,6 +36,7 @@ let MainApp = () => {
         <Route exact path="/" component={ LogedOut } />
         <Route exact path="/LogIn" component={ LogedIn }/>
         <Route path="/Add" component={ FormAdd }/>
+        <Route path="/UserReg" component={ UserReg }/>
       </Router>
 
     </>

@@ -68,7 +68,10 @@ console.log(formInputObj);
                                 <p className="btnHeadline" id='logIn'>Logga In</p>
                             </Link>
                         </section>
-                    </section>
+                        <Link to="/UserReg" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
+                            <p className="logInOut__regLink">Registrera ny användare</p>
+                        </Link>   
+                    </section>  
                 </section>
             </header>
             <main className="body__contents">

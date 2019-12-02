@@ -6,8 +6,8 @@ import { setTimeout } from 'timers';
 let savedSQLDataArr = [];
 let SQLFilterMonthsBtnsArr = [];
 let SQLFilterConcernedBtnsArr = [];
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
-//let backendURL = 'http://localhost:3001'; // Just test the backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
+let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getType) => {
     let type = '';
@@ -30,7 +30,7 @@ export let axiosGet = (getType) => {
         Default get
         */
         if (response.status === 200 && getType === 'default') updateSavedSQLData(incommingSQLRes);
-        if (response.status === 200 && getType === 'userSpec') updateSavedSQLData(incommingSQLRes[0]);
+        if (response.status === 200 && getType === 'userSpec') updateSavedSQLData(response);
         
         /*  If incomming status of 201 = Created:
             Data i push into a arry that is holding the data until the webbbrowser is closed 
@@ -62,12 +62,9 @@ export let axiosPost = (postType, bodyData) => {
     // Type of post method
     if (postType === 'userValidate') type = 'UserValidate';
     if (postType === 'filter') type = 'filter';
-    if (postType === 'add') {
-        type = 'AddRecord';
-
-
-
-    }
+    if (postType === 'add') type = 'AddRecord';
+    if (postType === 'userReg') type = 'UserReg';
+    
     axios.post(
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).

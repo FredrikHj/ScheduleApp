@@ -5,7 +5,7 @@ import {Helmet} from "react-helmet";
 
 import Spinner from '../Data/Spinner.js';
 
-import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from '../GlobalProps.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../GlobalProps.js';
 import '../CSS/FormAdd.css';
 import { runLogInOut } from '../Data/LogInOut.js';
 
@@ -15,6 +15,7 @@ import { axiosPost, axiosGet } from '../Data/Axios.js';
 export let FormAdd = (props) => {
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
+    let [ incommingSQLDataResponse, updateIncommingSQLDataResponse ] = useState('');
     let [ incommingSQLData, updateIncommingSQLData ] = useState([]);
 
     let [ addedData, updateAddedData ] = useState(false);
@@ -39,6 +40,10 @@ export let FormAdd = (props) => {
             console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
         });
+        incommingSQLDataArr$.subscribe((incommingSQLDataArr) => {
+            console.log(incommingSQLDataArr);
+            if (incommingSQLDataArr.status === 200) updateIncommingSQLData(incommingSQLDataArr.data[0])
+        });
         /*
             Update the inloged User after the specific time i millisec...
             Use the name afte a extra millisec...
@@ -47,7 +52,7 @@ export let FormAdd = (props) => {
             updateInlogedUserFullName(); 
         }, 1000);
     }, []);
-    console.log(inlogedUser);  
+    console.log(incommingSQLData);  
     let setStrsType = (e) => {
         let type = e.target;
         let inputStr = type.value;            
@@ -140,24 +145,29 @@ console.log(incommingSQLDataCols);
                             <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType } placeholder="  ..."/></td>
                         </tr>
                         <tr>
-                        {(incommingSQLData.length !== 0) 
-                        ?
-                        incommingSQLData.map((sqlDataObj, rowCounter) => {
-                            
-                            return(
-                                <tr key={ rowCounter }>
-                                    <td>{ sqlDataObj.date }</td>
-                                    <td className="tableCol4">{ sqlDataObj.activity }</td>
-                                    <td>{ sqlDataObj.state }</td>
-                                    <td>{ sqlDataObj.concerned }</td>
-                                    <td>{ sqlDataObj.type }</td>
-                                    <td>{ sqlDataObj.place }</td>
-                                    <td className="tableCol9">{ sqlDataObj.content }</td>
-                                </tr>
-                            );
-                        })
-                    :   <tr><td><Spinner wait={ 'Datan laddas' }/></td></tr>
-                    }
+                         {(incommingSQLData.length !== 0) 
+                            ?
+                                incommingSQLData.map((sqlDataObj, rowCounter) => {
+                                    
+                                    return(
+                                        <tr key={ rowCounter }>
+                                            <td>{ sqlDataObj.date }</td>
+                                            <td className="tableCol4">{ sqlDataObj.activity }</td>
+                                            <td>{ sqlDataObj.state }</td>
+                                            <td>{ sqlDataObj.concerned }</td>
+                                            <td>{ sqlDataObj.type }</td>
+                                            <td>{ sqlDataObj.place }</td>
+                                            <td className="tableCol9">{ sqlDataObj.content }</td>
+                                        </tr>
+                                    );
+                                })
+                            :   <tr><td><Spinner wait={ 'Datan laddas' }/></td></tr>
+                        }
+                        </tr>
+                        <tr>
+                        <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
+                            Historik
+                        </Link>
                         </tr>
                     </tbody>
                 </table>

@@ -14,6 +14,7 @@ import { log } from 'util';
 
 export let SQLTable = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
 
     let [ addForm, setAddForm ] = useState(true);
@@ -51,8 +52,10 @@ export let SQLTable = () => {
           
         //}, 3000);
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            //console.log(SQLDataArr);
-            updateIncommingNewSQLData(SQLDataArr);
+            // IItcan handle the data an perform it task regardless the data infrastructure 
+            
+            if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
+            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
      },[]); 
     let runAdmin = (e) => {

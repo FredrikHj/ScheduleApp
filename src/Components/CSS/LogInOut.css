@@ -141,3 +141,8 @@
   text-align: center;
   color: black;
 }
+.logInOut__regLink{
+  margin-left: -20px;
+  margin-top: -10px;
+  font-size: 12px;
+}
