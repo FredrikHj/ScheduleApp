@@ -20,28 +20,28 @@ export let UserReg = (props) => {
     let [ userPwd, setUserPWD ] = useState('');
 
     useEffect(() => {
-        axiosGet('userSpec');
         headName$.subscribe((headName) => {
             console.log(headName);
             setAppName(headName);
         });
     }, []);
     let setStrsType = (e) => {
+        console.log('nyh');
+        
         let type = e.target;
         let inputStr = type.value;            
         const {dataset} = type;
-        console.log(dataset);
+        console.log(inputStr);
         
 
-        if (dataset.type === 'userFullName') setUserFullName(inputStr);
+        if (dataset.type === 'fullName') setUserFullName(inputStr);
         if (dataset.type === 'userName') setUserName(inputStr);
         if (dataset.type === 'userPwd') setUserPWD(inputStr);
-    }
+    };
 
      let sendUserReg = (e) => {
         // Created a body for the added data
         let sqlBody = {
-            id: countRegUser++,
             fullName: userFullName,
             userName: userName,
             userPassWord: userPwd
@@ -51,7 +51,7 @@ export let UserReg = (props) => {
         axiosPost('userReg', sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody.splice(0, 1);
-    }
+    };
     return (
         <>
             <Helmet>
@@ -88,15 +88,15 @@ export let UserReg = (props) => {
                 <form>
                     <div>
                         <label id="userFullName">Ditt Namn</label>
-                        <input type="text" id="userFullName" data-type="userFullName" onchange={ setStrsType }/>
+                        <input type="text" id="userFullName" data-type="fullName" onChange={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
                         <label id="userName">Användarnamn</label>
-                        <input type="text" id="userName" data-type="userName" onchange={ setStrsType }/>
+                        <input type="text" id="userName" data-type="userName" onChange={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
                         <label id="userPwd">Lösenord</label>
-                        <input type="text" id="userPwd" data-type="userPwd" onchange={ setStrsType }/>
+                        <input type="text" id="userPwd" data-type="userPwd" onChange    ={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
                         <input type="submit" className="regContainer__submitBtn" value="" onClick={ sendUserReg }/>
