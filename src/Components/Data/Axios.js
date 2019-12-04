@@ -68,18 +68,19 @@ export let axiosPost = (postType, bodyData) => {
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).
     then(response => {
+        console.log(response);
+        
         if (postType === 'userValidate'){
-
-            let returningUserData = response.data;    
-            let returningUserLogsMess = response.statusText;
-            let sendForDispalyingObj = { returningUserData, returningUserLogsMess };
-            console.log(sendForDispalyingObj);
-            
-            console.log(response);
+            // Incomming userdata. T
+            let logedInUserInfoObj = {
+                responsType: response.status,
+                logInMess: response.statusText, 
+                incommingUserData: response.data,
+            };
             //Send the incomming data for displaying the user login status
-            updateReturningUserData(sendForDispalyingObj);
+            updateReturningUserData(logedInUserInfoObj);
 
-            console.log(returningUserData);
+            console.log(logedInUserInfoObj);
         }
     }).
     catch(error => {

@@ -6,6 +6,7 @@ let incommingSQLDataArr = [];
 let gotoPage = '';
 
 //===============================================
+
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
 export const returningUserData$ = new BehaviorSubject(returningUserData);
@@ -18,12 +19,21 @@ export const localStorageObj$ = new BehaviorSubject('');
 /* The functions are triggered in another place and send in its data
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
-export function updateInlogedUserFullName(){
-    let getUserFullName = JSON.parse(window.localStorage.getItem("userData")).loginName;
-    inlogedUserFullName$.next(getUserFullName);
+export function getLogStatus(){
+    let getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
+    let getLogInMess = JSON.parse(window.localStorage.getItem("userData")).logInMess;
 
-    console.log(getUserFullName);
-    return getUserFullName;
+    let logInStatus = {
+        type: getStatusType,
+        mess: getLogInMess
+    };
+    console.log(logInStatus);
+    
+    return logInStatus;
+}
+export function updateInlogedUserFullName(){
+    inlogedUserFullName = JSON.parse(window.localStorage.getItem("userData")).incommingUserData.loginName;
+    inlogedUserFullName$.next(inlogedUserFullName);
 }
 export function updateHeadName(headName){
     if(headName) headName$.next(headName);
@@ -35,25 +45,28 @@ export function updateSavedSQLData(incommingSQLDataArr){
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }
-export function updateReturningUserData(sendForDispalyingObj){
-    console.log(sendForDispalyingObj);
+export function updateReturningUserData(logedInUserInfoObj){
+    console.log(logedInUserInfoObj);
     
-    if(returningUserData) {
-        returningUserData$.next(sendForDispalyingObj);
+    if(logedInUserInfoObj) {
+        returningUserData$.next(logedInUserInfoObj);
     }
-    updateLocalstorage(true, sendForDispalyingObj.returningUserData);
+    updateLocalstorage(true, logedInUserInfoObj);
 }
 export let updateLocalstorage = (run, saveIntoLocalStorage) =>{
     if (run === true) {
         localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
-        let getCleanLocalStorrageObj = JSON.parse(window.localStorage.getItem("userData"));
-        localStorageObj$.next(getCleanLocalStorrageObj);
+        /* let getCleanLocalStorrageObj = JSON.parse(window.localStorage.getItem("userData"));
+
+        localStorageObj$.next(getCleanLocalStorrageObj); */
     }
     if (run === false) {
         let userEmtyData = {
             userId: '',
             loginStatus: null,
-            loginName: ''
+            incommingUserData: {
+                loginName: ''
+            }
         }
         updateLocalstorage(true, userEmtyData);
     }

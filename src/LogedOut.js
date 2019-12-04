@@ -5,7 +5,7 @@ import './Components/CSS/Generall.css';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, returningUserData$ } from './Components/GlobalProps.js';
+import { headName$, returningUserData$, getLogStatus } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 import { SQLTable } from './Components/Structure/SQLTable.js';
@@ -17,8 +17,8 @@ import { runLogInOut } from './Components/Data/LogInOut.js';
 export let formInputObj = {};
 export let LogedOut = () => {
     let [ appName, setAppName ] = useState('');
-    let [ inlogStatus, setIinlogStatus ] = useState('');
-
+    let [ inlogMess, setInlogMess ] = useState('');
+    let [ inlogStatus, setInlogStatus ] = useState(0);
     const [ userNameStr, updateUserNameStr ] = useState('');
     const [ userPwdStr, updateUserPwdStr ] = useState('');
     
@@ -31,7 +31,9 @@ export let LogedOut = () => {
         });
         returningUserData$.subscribe((returningUserDispalyingObj) => {
             console.log(returningUserDispalyingObj);
-            setIinlogStatus(returningUserDispalyingObj.statusMess);
+            
+            setInlogStatus(returningUserDispalyingObj.responsType);
+            setInlogMess(returningUserDispalyingObj.logInMess);
         });
         
     }, []);
@@ -80,9 +82,13 @@ console.log(formInputObj);
                             </button>
                                 
                         </section>
-                        <Link to="/UserReg" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                            <p className="logInOut__regLink">Registrera ny användare</p>
-                        </Link>   
+                        <section>
+                                <p>{(inlogStatus === 203) ? inlogMess : null}</p>
+
+                            <Link to="/UserReg" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
+                                <p className="logInOut__regLink">Registrera ny användare</p>
+                            </Link>   
+                        </section>
                     </section>  
                 </section>
             </header>

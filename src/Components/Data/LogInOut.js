@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { updateSavedSQLData, updateLocalstorage, updateGotoPage } from '../GlobalProps.js';
+import { updateLocalstorage, updateGotoPage, getLogStatus } from '../GlobalProps.js';
 import { formInputObj } from '../../LogedOut.js';
 
 import { axiosPost } from './Axios.js';
@@ -24,13 +24,16 @@ export let runLogInOut = (e) => {
     // Things happen according to whare I click
     if(targetBtnId === 'logIn') {
         
-        // Validate that the user is found as a valid user
+        /* Validate that the user is found as a valid user
+            if user do not find it will not login and shows an error mess instead
+        */
         userInformation = {userName: formInputObj.userNameStr, userPassWord: formInputObj.userPwdStr}
         console.log(userInformation);
 
         axiosPost('userValidate', userInformation);
-        console.log(axiosPost('userValidate', userInformation));
-        updateGotoPage('LogIn');
+
+        if (getLogStatus().type === 200) updateGotoPage('LogIn');
+        if (getLogStatus().type === 203) return;
     }
     if(targetBtnId === 'logOout') {
         updateLocalstorage(false, {});

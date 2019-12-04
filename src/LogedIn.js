@@ -26,8 +26,7 @@ export let LogedIn = () => {
             console.log(headName);
             setAppName(headName);
         });
-        inlogedUserFullName$.subscribe((inlogedUserFullName) => {
-            console.log(inlogedUserFullName);
+        inlogedUserFullName$.subscribe((inlogedUserFullName) => {         
             updateInlogedUser(inlogedUserFullName);
         }); 
         setTimeout(() => {
