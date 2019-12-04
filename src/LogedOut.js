@@ -5,7 +5,7 @@ import './Components/CSS/Generall.css';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, updateLogedIn } from './Components/GlobalProps.js';
+import { headName$, returningUserData$ } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 import { SQLTable } from './Components/Structure/SQLTable.js';
@@ -17,17 +17,24 @@ import { runLogInOut } from './Components/Data/LogInOut.js';
 export let formInputObj = {};
 export let LogedOut = () => {
     let [ appName, setAppName ] = useState('');
+    let [ inlogStatus, setIinlogStatus ] = useState('');
 
     const [ userNameStr, updateUserNameStr ] = useState('');
     const [ userPwdStr, updateUserPwdStr ] = useState('');
     
     useEffect(() => {
+        console.log('ecsfv');
+        
         headName$.subscribe((headName) => {
             console.log(headName);
             setAppName(headName);
         });
+        returningUserData$.subscribe((returningUserDispalyingObj) => {
+            console.log(returningUserDispalyingObj);
+            setIinlogStatus(returningUserDispalyingObj.statusMess);
+        });
+        
     }, []);
-    updateLogedIn(false);
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
         console.log(targetUserName);
@@ -64,9 +71,14 @@ console.log(formInputObj);
                         </section>  
                         <section className="logInOut__btnOutContainer">
                             <input type="submit" className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn" value=""/>
-                            <Link to="/LogIn" className="btnContainer__btnHeadline" onClick={ runLogInOut } id="logIn">
-                                <p className="btnHeadline" id='logIn'>Logga In</p>
-                            </Link>
+                      {/*       <Link to="/LogIn" className="btnContainer__btnHeadline" onClick={ runLogInOut } id="logIn">
+                            </Link> */}
+                            <button onClick={ runLogInOut } id="logIn">
+                                <p className="btnHeadline" id='logIn'>
+                                    Logga In
+                                </p>
+                            </button>
+                                
                         </section>
                         <Link to="/UserReg" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
                             <p className="logInOut__regLink">Registrera ny användare</p>

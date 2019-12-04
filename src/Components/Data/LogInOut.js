@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { updateSavedSQLData, updateLocalstorage } from '../GlobalProps.js';
-import  MainApp from '../../MainApp.js';
+import { updateSavedSQLData, updateLocalstorage, updateGotoPage } from '../GlobalProps.js';
 import { formInputObj } from '../../LogedOut.js';
 
 import { axiosPost } from './Axios.js';
-import { localStorageObj } from './LocalStorageObj.js';
+
 import '../CSS/LogInOut.css';
 
 import { isArray } from 'util';
@@ -30,6 +29,8 @@ export let runLogInOut = (e) => {
         console.log(userInformation);
 
         axiosPost('userValidate', userInformation);
+        console.log(axiosPost('userValidate', userInformation));
+        updateGotoPage('LogIn');
     }
     if(targetBtnId === 'logOout') {
         updateLocalstorage(false, {});

@@ -9,7 +9,7 @@ import './Components/CSS/Generall.css';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import axios from 'axios';
-import { headName$, updateLogedIn, updateInlogedUserFullName, inlogedUserFullName$ } from './Components/GlobalProps.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 import { SQLTable } from './Components/Structure/SQLTable.js';
@@ -22,7 +22,6 @@ export let LogedIn = () => {
     let [ savedLocalStorageObj, updateSavedLocalStorageObj] = useState({});
 
     useEffect(() => {
-        updateLogedIn(true);
         headName$.subscribe((headName) => {
             console.log(headName);
             setAppName(headName);

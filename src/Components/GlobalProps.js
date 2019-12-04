@@ -1,17 +1,17 @@
 import {BehaviorSubject} from "rxjs";
-let inlogedUserFullName = '';
 let headName = '';
-let logedIn = false;
+let inlogedUserFullName = '';
 let returningUserData = '';
 let incommingSQLDataArr = [];
-let firstTime = true;
+let gotoPage = '';
 
 //===============================================
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
-export const logedIn$ = new BehaviorSubject(logedIn);
 export const returningUserData$ = new BehaviorSubject(returningUserData);
 export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
+
+export const gotoPage$ = new BehaviorSubject(gotoPage);
 
 export const localStorageObj$ = new BehaviorSubject('');
 
@@ -25,11 +25,6 @@ export function updateInlogedUserFullName(){
     console.log(getUserFullName);
     return getUserFullName;
 }
-export function updateLogedIn(logedIn){
-    console.log(logedIn);
-    
-    if(logedIn) logedIn$.next(logedIn);
-}
 export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
@@ -40,13 +35,13 @@ export function updateSavedSQLData(incommingSQLDataArr){
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }
-export function updateReturningUserData(returningUserData){
-    console.log(returningUserData);
+export function updateReturningUserData(sendForDispalyingObj){
+    console.log(sendForDispalyingObj);
     
     if(returningUserData) {
-        returningUserData$.next(returningUserData);
+        returningUserData$.next(sendForDispalyingObj);
     }
-    updateLocalstorage(true, returningUserData);
+    updateLocalstorage(true, sendForDispalyingObj.returningUserData);
 }
 export let updateLocalstorage = (run, saveIntoLocalStorage) =>{
     if (run === true) {
@@ -61,5 +56,12 @@ export let updateLocalstorage = (run, saveIntoLocalStorage) =>{
             loginName: ''
         }
         updateLocalstorage(true, userEmtyData);
+    }
+}
+export function updateGotoPage(gotoPage){
+    console.log(gotoPage);
+    
+    if(gotoPage) {
+        gotoPage$.next(gotoPage);
     }
 }

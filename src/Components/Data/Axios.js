@@ -52,8 +52,7 @@ let getUserId = () => {
     return getUserId;
 }
 export let axiosPost = (postType, bodyData) => {  
-    console.log(bodyData);
-    
+    console.log(postType);
     let type = '';
     let sendToSqlBackend = {
         bodyData,
@@ -70,10 +69,17 @@ export let axiosPost = (postType, bodyData) => {
         , sendToSqlBackend ).
     then(response => {
         if (postType === 'userValidate'){
-            let returningUserData = response.data;      
+
+            let returningUserData = response.data;    
+            let returningUserLogsMess = response.statusText;
+            let sendForDispalyingObj = { returningUserData, returningUserLogsMess };
+            console.log(sendForDispalyingObj);
+            
+            console.log(response);
+            //Send the incomming data for displaying the user login status
+            updateReturningUserData(sendForDispalyingObj);
+
             console.log(returningUserData);
-                
-            updateReturningUserData(returningUserData);
         }
     }).
     catch(error => {
