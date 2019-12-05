@@ -3,7 +3,6 @@
   "author": "Fredrik Hjärpe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://fredrikipnrtelia.mina-projekt.se:81/HBGWorksApp/build/index.html",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.0",

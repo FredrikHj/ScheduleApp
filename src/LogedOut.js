@@ -67,7 +67,7 @@ export let LogedOut = () => {
             return loginMess;
         } */
         
-    }
+    } 
         return (
             <>   
             <Helmet>

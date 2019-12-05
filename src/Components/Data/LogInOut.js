@@ -27,7 +27,7 @@ export let runLogInOut = (e) => {
             if user do not find it will not login and shows an error mess instead
         */
         userInformation = {userName: formInputObj.userNameStr, userPassWord: formInputObj.userPwdStr}
-        console.log(userInformation);
+        console.log(getLogStatus().type);
 
         axiosPost('userValidate', userInformation);
         // Check if you are able loggin according to the incomming data
@@ -35,7 +35,13 @@ export let runLogInOut = (e) => {
         if (getLogStatus().type === 203) return;
     }
     if(targetBtnId === 'logOout') {
-        updateLocalstorage(false, {});
+        updateLocalstorage({
+            responsType: null,
+            logInMess: null, 
+            incommingUserData: {
+                loginName: null
+            }
+        });
         
         return <Redirect to="/"/>;
     }
