@@ -2,7 +2,7 @@
   width: 1024px;
   height: 103px;
   margin-left: calc(50% - 512px);
-  top: -59px;
+  margin-top: 197px;
   display: block;
 }
 .addContainer__body{
@@ -91,9 +91,9 @@
   }
   /* Added User Data ==================================== */
 .btnAddedSendContainer__sendBtn{
-  margin-left: 1018px;
+  margin-left: 1074px;
   margin-right: 0px;
-  margin-top: 234px;
+  margin-top: 38px;
   width: 141px;
   height: 39px;
   background: #AE0B05;

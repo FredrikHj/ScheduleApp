@@ -56,9 +56,6 @@ export function updateReturningUserData(logedInUserInfoObj){
 export let updateLocalstorage = (run, saveIntoLocalStorage) =>{
     if (run === true) {
         localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
-        /* let getCleanLocalStorrageObj = JSON.parse(window.localStorage.getItem("userData"));
-
-        localStorageObj$.next(getCleanLocalStorrageObj); */
     }
     if (run === false) {
         let userEmtyData = {

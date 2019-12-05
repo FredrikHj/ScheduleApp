@@ -102,26 +102,26 @@ console.log(incommingSQLDataCols);
                         <section className="logInOut__btnInContainer">
 
                             <div  className="btnContainer__btnLogOut">
-                                <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
+{/*                                 <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
                                 <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
                                     <p className="btnHeadline" id="logOout">Logga Ut</p>
                                 </Link>   
-                            </div>
+ */}                            </div>
 
-                            <div className="btnContainer__btnAdd">
+                            <div className="btnContainer__btnAddCanceled">
                                 <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
                                 <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
-                                    <p className="btnHeadline" id='cancelAdd'>Avbryt</p>
+                                    <p className="btnHeadline__canceled" id='cancelAdd'>Avbryt</p>
                                 </Link>
                             </div>
                         </section>
                     </section>
                 </section>
-            </header> 
+            </header>
+            <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
+                <p className="btnHeadline__sendIn" id='sendIn' onClick={ sendInUserData }>Skicka In</p>
+            </button>  
             <section className="formAdd__addContainer">
-                <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
-                    <p className="btnHeadline__sendIn" id='sendIn' onClick={ sendInUserData }>Skicka In</p>
-                </button> 
                 <table className="addContainer__body">
                     <thead>
                         <tr>
@@ -163,11 +163,6 @@ console.log(incommingSQLDataCols);
                                 })
                             :   <tr><td><Spinner wait={ 'Datan laddas' }/></td></tr>
                         }
-                        </tr>
-                        <tr>
-                        <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
-                            Historik
-                        </Link>
                         </tr>
                     </tbody>
                 </table>

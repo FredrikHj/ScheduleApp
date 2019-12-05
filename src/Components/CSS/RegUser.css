@@ -31,3 +31,30 @@
     line-height: 7px;
     color: white;
 }
+.btnContainer__cancelReg{
+    margin-top: 20px;
+    margin-left: 1px;
+}
+.btnHeadline__cancelReg{
+    display: inline-block;
+    position: relative;
+    width: 133px;
+    height: 32px;
+    left: 7px;
+    top: -48px;
+    text-align: center;
+    text-decoration: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: white;
+}
+.btnLogOut__cancelReg{
+    margin-left: 4px;
+    width: 141px;
+    margin-top: 12px;
+    height: 39px;
+    background: #AE0B05;
+    border-radius: 4px;
+}

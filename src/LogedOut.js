@@ -12,6 +12,7 @@ import { SQLTable } from './Components/Structure/SQLTable.js';
 import { SearchBar } from './Components/Structure/SearchBar.js';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
+import { nfapply } from 'q';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
@@ -19,8 +20,8 @@ export let LogedOut = () => {
     let [ appName, setAppName ] = useState('');
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
-    const [ userNameStr, updateUserNameStr ] = useState('');
-    const [ userPwdStr, updateUserPwdStr ] = useState('');
+    const [ userNameStr, updateUserNameStr ] = useState(null);
+    const [ userPwdStr, updateUserPwdStr ] = useState(null);
     
     useEffect(() => {
         console.log('ecsfv');
@@ -31,12 +32,10 @@ export let LogedOut = () => {
         });
         returningUserData$.subscribe((returningUserDispalyingObj) => {
             console.log(returningUserDispalyingObj);
-            
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
-        
-    }, []);
+    }, [inlogMess]);
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
         console.log(targetUserName);
@@ -50,10 +49,27 @@ export let LogedOut = () => {
         updateUserPwdStr(targetUserPwd);
         formInputObj['userPwdStr'] = targetUserPwd;
     }
-console.log(formInputObj);
-
-    return (
-        <>   
+    let hideShowLoginMessPromise = () => {   
+        let loginMess = getLogStatus().mess;
+/*         let hideShowLoginMessPromise = () => {
+            
+            let hideShowMess = new Promise((showHide, error) => {       
+                showHide()
+            });
+            
+            loginMess = hideShowMess().then(() => {
+                setTimeout(() => {
+                    let loginMess= '';
+                    return loginMess;
+                }, 3000);
+                
+            })
+            return loginMess;
+        } */
+        
+    }
+        return (
+            <>   
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Utloggad`}</title>
@@ -72,20 +88,20 @@ console.log(formInputObj);
                             <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
                         </section>  
                         <section className="logInOut__btnOutContainer">
-                            <input type="submit" className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn" value=""/>
-                      {/*       <Link to="/LogIn" className="btnContainer__btnHeadline" onClick={ runLogInOut } id="logIn">
-                            </Link> */}
-                            <button onClick={ runLogInOut } id="logIn">
-                                <p className="btnHeadline" id='logIn'>
-                                    Logga In
-                                </p>
+                            <button className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn">
+                                <p className="btnHeadline" id='logIn'  onClick={ runLogInOut }>Logga In</p>
                             </button>
                                 
                         </section>
-                        <section>
-                                <p>{(inlogStatus === 203) ? inlogMess : null}</p>
-
-                            <Link to="/UserReg" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
+                        <section className="logInOut__userInfo">
+                            <p className="logInOut__loginErrorMess">
+                                {(inlogStatus === 203)
+                                    ? (userNameStr === null && userPwdStr === null ) 
+                                        ? inlogMess : null
+                                    : null
+                                }
+                            </p>
+                            <Link to="/UserReg" className="logInOut__regLink" onClick={ runLogInOut } id="logIn">
                                 <p className="logInOut__regLink">Registrera ny användare</p>
                             </Link>   
                         </section>

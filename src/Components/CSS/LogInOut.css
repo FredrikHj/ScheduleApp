@@ -9,8 +9,53 @@
   position: relative;
   width: 133px;
   height: 32px;
-  left: -14px;
+  left: -6px;
+  top: -9px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+.btnHeadline__logout{
+  display: inline-block;
+  position: relative;
+  width: 133px;
+  height: 32px;
+  left: 0px;
   top: -50px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+.btnHeadline__add{
+  display: inline-block;
+  position: relative;
+  width: 133px;
+  height: 32px;
+  left: -137px;
+  top: -14px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+.btnHeadline__canceled{
+  display: inline-block;
+  position: relative;
+  width: 133px;
+  height: 32px;
+  left: 7px;
+  top: -48px;
   text-align: center;
   text-decoration: none;
   font-family: Roboto;
@@ -115,11 +160,16 @@
   margin-top: -67px;
 }
 .btnContainer__btnLogOut{
-  margin-bottom: -65px;
-
+  margin-left: 5px;
+  margin-top: 32px;
+}
+.btnContainer__btnAddCanceled{
+  margin-left: 13px;
+  margin-top: 19px;
 }
 .btnContainer__btnAdd{
-
+  margin-left: -253px;
+  margin-top: 3px;
 }
 .btnLogOut__input{
   right: 108px;
@@ -129,10 +179,10 @@
   background: #AE0B05;
   border-radius: 4px;
 }
-.btnContainer__inputHeadline{
-  margin-left: 18px;
+.logInOut__regLink{
+  margin-left: 42px;
   margin-right: 18px;
-  width: 105px;
+  width: 150px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -140,9 +190,19 @@
   line-height: 20px;
   text-align: center;
   color: black;
-}
-.logInOut__regLink{
-  margin-left: -20px;
-  margin-top: -10px;
   font-size: 12px;
+}
+.logInOut__userInfo{
+  width: 377px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.logInOut__loginErrorMess{
+  margin-top: 14px;
+  margin-left: 18px;
+  width: 149px;
+  font-size: 13.5px;
+  color: #AE0B05;
+  font-weight: bold;
 }

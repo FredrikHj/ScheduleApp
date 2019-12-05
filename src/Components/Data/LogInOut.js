@@ -10,9 +10,8 @@ import '../CSS/LogInOut.css';
 
 import { isArray } from 'util';
 
-export let updatedUserNameStr = ''
-export let updatedUserPwdStr = '';
-
+/* export let updatedUserNameStr = ''
+export let updatedUserPwdStr = ''; */
 
 export let runLogInOut = (e) => {
     let userInformation = {};
@@ -31,7 +30,7 @@ export let runLogInOut = (e) => {
         console.log(userInformation);
 
         axiosPost('userValidate', userInformation);
-
+        // Check if you are able loggin according to the incomming data
         if (getLogStatus().type === 200) updateGotoPage('LogIn');
         if (getLogStatus().type === 203) return;
     }

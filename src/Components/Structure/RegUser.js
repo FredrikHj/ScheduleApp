@@ -66,18 +66,10 @@ export let UserReg = (props) => {
                         <p className="logInOut__logedInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
 
                         <section className="logInOut__btnInContainer">
-
-                            <div  className="btnContainer__btnLogOut">
-                                <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
-                                <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                                    <p className="btnHeadline" id="logOout">Logga Ut</p>
-                                </Link>   
-                            </div>
-
-                            <div className="btnContainer__btnAdd">
-                                <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
-                                <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
-                                    <p className="btnHeadline" id='cancelAdd'>Avbryt</p>
+                            <div className="btnContainer__cancelReg">
+                                <input type="submit" className="btnLogOut__cancelReg" onClick={ runLogInOut } id="cancelReg" value=""/>
+                                <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelReg">
+                                    <p className="btnHeadline__cancelReg" id='cancelReg'>Avbryt</p>
                                 </Link>
                             </div>
                         </section>

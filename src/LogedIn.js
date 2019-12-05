@@ -50,13 +50,13 @@ export let LogedIn = () => {
                             <div className="btnContainer__btnLogOut">
                                 <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
                                 <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                                    <p className="btnHeadline" id="logOout">Logga Ut</p>
+                                    <p className="btnHeadline__logout" id="logOout">Logga Ut</p>
                                 </Link>   
                             </div>
                             <div className="btnContainer__btnAdd">
                                 <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="add" value=""/>
                                 <Link to="/Add" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="add">
-                                    <p className="btnHeadline" id='add'>Lägg Till</p>
+                                    <p className="btnHeadline__add" id='add'>Lägg Till</p>
                                 </Link>
                             </div>
                         </section>
