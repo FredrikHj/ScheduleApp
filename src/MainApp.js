@@ -30,14 +30,15 @@ let MainApp = () => {
   }, [gotoPage$]);  
   return (
     <>
-      <Router>
+    gregv
+{/*       <Router>
         <Route exact path="/" component={ LogedOut } />
         <Route exact path="/LogIn" component={ LogedIn }/>
           {(gotoPage === 'LogIn') ? <Redirect to="/LogIn"/> : null}
         <Route path="/Add" component={ FormAdd }/>
         <Route path="/UserReg" component={ UserReg }/>
       </Router>
-
+ */}
     </>
   );
 } 
