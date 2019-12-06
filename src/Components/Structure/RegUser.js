@@ -7,11 +7,14 @@ import { headName$ } from '../GlobalProps.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { runLogInOut } from '../Data/LogInOut.js';
+import { runAppUrl } from '../Data/AppUrl.js';
+
 import '../CSS/RegUser.css';
 
 let countRegUser = 0;
 
 export let UserReg = (props) => {
+    let [ appUrl, setAppUrl ] = useState('');
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
 
@@ -20,6 +23,7 @@ export let UserReg = (props) => {
     let [ userPwd, setUserPWD ] = useState('');
 
     useEffect(() => {
+        setAppUrl(runAppUrl());
         headName$.subscribe((headName) => {
             console.log(headName);
             setAppName(headName);
@@ -68,7 +72,7 @@ export let UserReg = (props) => {
                         <section className="logInOut__btnInContainer">
                             <div className="btnContainer__cancelReg">
                                 <input type="submit" className="btnLogOut__cancelReg" onClick={ runLogInOut } id="cancelReg" value=""/>
-                                <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelReg">
+                                <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelReg">
                                     <p className="btnHeadline__cancelReg" id='cancelReg'>Avbryt</p>
                                 </Link>
                             </div>

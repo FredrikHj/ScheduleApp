@@ -8,11 +8,11 @@ import Spinner from '../Data/Spinner.js';
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../GlobalProps.js';
 import '../CSS/FormAdd.css';
 import { runLogInOut } from '../Data/LogInOut.js';
-
-
 import { axiosPost, axiosGet } from '../Data/Axios.js';
+import { runAppUrl } from '../Data/AppUrl.js';
 
 export let FormAdd = (props) => {
+    let [ appUrl, setAppUrl ] = useState('');
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
     let [ incommingSQLDataResponse, updateIncommingSQLDataResponse ] = useState('');
@@ -31,6 +31,7 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
+        setAppUrl(runAppUrl());
         axiosGet('userSpec');
         headName$.subscribe((headName) => {
             console.log(headName);
@@ -100,17 +101,9 @@ console.log(incommingSQLDataCols);
                         <p className="logInOut__logedInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
 
                         <section className="logInOut__btnInContainer">
-
-                            <div  className="btnContainer__btnLogOut">
-{/*                                 <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
-                                <Link to="/" className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                                    <p className="btnHeadline" id="logOout">Logga Ut</p>
-                                </Link>   
- */}                            </div>
-
                             <div className="btnContainer__btnAddCanceled">
                                 <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
-                                <Link to={"/LogIn" }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
+                                <Link to={`${ appUrl }/LogIn` }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
                                     <p className="btnHeadline__canceled" id='cancelAdd'>Avbryt</p>
                                 </Link>
                             </div>

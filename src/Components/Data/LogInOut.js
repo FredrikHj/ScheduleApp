@@ -7,6 +7,7 @@ import { formInputObj } from '../../LogedOut.js';
 import { axiosPost } from './Axios.js';
 
 import '../CSS/LogInOut.css';
+import { runAppUrl } from './AppUrl.js';
 
 import { isArray } from 'util';
 
@@ -27,7 +28,6 @@ export let runLogInOut = (e) => {
             if user do not find it will not login and shows an error mess instead
         */
         userInformation = {userName: formInputObj.userNameStr, userPassWord: formInputObj.userPwdStr}
-        console.log(getLogStatus().type);
 
         axiosPost('userValidate', userInformation);
         // Check if you are able loggin according to the incomming data
@@ -43,6 +43,6 @@ export let runLogInOut = (e) => {
             }
         });
         
-        return <Redirect to="/"/>;
+        return <Redirect to={ runAppUrl() }/>;
     }
 }

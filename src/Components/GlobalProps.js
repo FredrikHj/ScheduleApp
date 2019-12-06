@@ -20,16 +20,19 @@ export const localStorageObj$ = new BehaviorSubject('');
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
 export function getLogStatus(){
-    let getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
-    let getLogInMess = JSON.parse(window.localStorage.getItem("userData")).logInMess;
-
-    let logInStatus = {
-        type: getStatusType,
-        mess: getLogInMess
-    };
-    console.log(logInStatus);
-    
-    return logInStatus;
+    if (window.localStorage.length !== 0) {
+        
+        let getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
+        let getLogInMess = JSON.parse(window.localStorage.getItem("userData")).logInMess;
+        
+        let logInStatus = {
+            type: getStatusType,
+            mess: getLogInMess
+        };
+        console.log(logInStatus);
+        
+        return logInStatus;
+    }
 }
 export function updateInlogedUserFullName(){
     inlogedUserFullName = JSON.parse(window.localStorage.getItem("userData")).incommingUserData.loginName;

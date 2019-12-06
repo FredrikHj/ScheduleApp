@@ -12,11 +12,14 @@ import { SQLTable } from './Components/Structure/SQLTable.js';
 import { SearchBar } from './Components/Structure/SearchBar.js';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
+import { runAppUrl } from './Components/Data/AppUrl.js';
+
 import { nfapply } from 'q';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
 export let LogedOut = () => {
+    let [ appUrl, setAppUrl ] = useState('');
     let [ appName, setAppName ] = useState('');
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
@@ -24,6 +27,7 @@ export let LogedOut = () => {
     const [ userPwdStr, updateUserPwdStr ] = useState(null);
     
     useEffect(() => {
+        setAppUrl(runAppUrl());
         console.log('ecsfv');
         
         headName$.subscribe((headName) => {
@@ -69,7 +73,7 @@ export let LogedOut = () => {
         
     } 
         return (
-            <>   
+            <>  
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Utloggad`}</title>
@@ -101,7 +105,7 @@ export let LogedOut = () => {
                                     : null
                                 }
                             </p>
-                            <Link to="/UserReg" className="logInOut__regLink" onClick={ runLogInOut } id="logIn">
+                            <Link to={ `${ appUrl }UserReg` } className="logInOut__regLink" onClick={ runLogInOut } id="logIn">
                                 <p className="logInOut__regLink">Registrera ny användare</p>
                             </Link>   
                         </section>
