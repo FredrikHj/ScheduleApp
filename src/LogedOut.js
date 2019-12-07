@@ -8,8 +8,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import { headName$, returningUserData$, getLogStatus } from './Components/GlobalProps.js';
 
 import { log } from 'util';
-import { SQLTable } from './Components/Structure/SQLTable.js';
-import { SearchBar } from './Components/Structure/SearchBar.js';
+
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import { runAppUrl } from './Components/Data/AppUrl.js';
@@ -74,48 +73,37 @@ export let LogedOut = () => {
     } 
         return (
             <>  
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>{`${appName} - Utloggad`}</title>
-            </Helmet>
-            <header>
-                <section className="headbar__headContainer">
-                    <p className="headContainer__headline">{ appName }</p>
-                    <section className="headContainer__logInOut">
-
-                        <section className="logInOut__usernameContainer">
-                            <p className="logInOut__username logInOut__inputLabelFormat">Användarnamn</p>
-                            <input type="text" className="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
-                        </section> 
-                        <section className="logInOut__passwordContainer">
-                            <p className="logInOut__password logInOut__inputLabelFormat">Lösenord</p>
-                            <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
-                        </section>  
-                        <section className="logInOut__btnOutContainer">
-                            <button className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn">
-                                <p className="btnHeadline" id='logIn'  onClick={ runLogInOut }>Logga In</p>
-                            </button>
-                                
-                        </section>
-                        <section className="logInOut__userInfo">
-                            <p className="logInOut__loginErrorMess">
-                                {(inlogStatus === 203)
-                                    ? (userNameStr === null && userPwdStr === null ) 
-                                        ? inlogMess : null
-                                    : null
-                                }
-                            </p>
-                            <Link to={ `${ appUrl }UserReg` } className="logInOut__regLink" onClick={ runLogInOut } id="logIn">
-                                <p className="logInOut__regLink">Registrera ny användare</p>
-                            </Link>   
-                        </section>
-                    </section>  
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{`${appName} - Utloggad`}</title>
+                </Helmet>
+                <section className="logInOut__usernameContainer">
+                    <p className="logInOut__username logInOut__inputLabelFormat">Användarnamn</p>
+                    <input type="text" className="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
+                </section> 
+                <section className="logInOut__passwordContainer">
+                    <p className="logInOut__password logInOut__inputLabelFormat">Lösenord</p>
+                    <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
+                </section>  
+                <section className="logInOut__btnOutContainer">
+                    <button className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn">
+                        <p className="btnHeadline" id='logIn'  onClick={ runLogInOut }>Logga In</p>
+                    </button>
+                        
                 </section>
-            </header>
-            <main className="body__contents">
-                <SearchBar/>
-                <SQLTable/>
-            </main>
-        </>
+                <section className="logInOut__userInfo">
+                    <p className="logInOut__loginErrorMess">
+                        {(inlogStatus === 203)
+                            ? (userNameStr === null && userPwdStr === null ) 
+                                ? inlogMess : null
+                            : null
+                        }
+                    </p>
+                    <Link to={ `${ appUrl }UserReg` } className="logInOut__regLink" onClick={ runLogInOut } id="logIn">
+                        <p className="logInOut__regLink">Registrera ny användare</p>
+                    </Link>   
+                </section>
+            </>
+
     );
 }
