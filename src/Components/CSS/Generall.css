@@ -14,3 +14,8 @@ body {
   width: 1024px;
   margin-left: calc(50% - 512px);
 }
+.logInSpinnerMove{
+  position: relative;
+  top: -35px;
+  left: 300px;
+}

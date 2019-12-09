@@ -38,11 +38,13 @@ export let LogedOut = () => {
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
-    }, [inlogMess]);
+    }, [inlogStatus]);
+    console.log(inlogMess);
+    
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
         console.log(targetUserName);
-    
+        
         updateUserNameStr(targetUserName);
         formInputObj['userNameStr'] = targetUserName;
     }
@@ -54,7 +56,7 @@ export let LogedOut = () => {
     }
     let hideShowLoginMessPromise = () => {   
         let loginMess = getLogStatus().mess;
-/*         let hideShowLoginMessPromise = () => {
+        /*         let hideShowLoginMessPromise = () => {
             
             let hideShowMess = new Promise((showHide, error) => {       
                 showHide()
@@ -71,6 +73,7 @@ export let LogedOut = () => {
         } */
         
     } 
+    
         return (
             <>  
                 <Helmet>

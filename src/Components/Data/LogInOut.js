@@ -42,6 +42,8 @@ export let runLogInOut = (e) => {
                 loginName: null
             }
         });
+        updateGotoPage('LogOout');
+
         
         return <Redirect to={ runAppUrl() }/>;
     }

@@ -6,14 +6,6 @@ import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { incommingSQLDataArr$ } from '../GlobalProps.js';
 import '../CSS/SearchBar.css';
 
-let activeMonthsStrArr = [];
-let activeConcernedStrArr = [];
-
-let checkedMonthsArr = [];
-let checkedConcernedArr = [];
-
-let concernedArr = [];
-let monthsArr = [];
 
 let SQLStatementsObj = {};
 export let SearchBar = () => {

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import {Helmet} from "react-helmet";
 import './Components/CSS/Spinner.scss';
 import './Components/CSS/Generall.css';
+import Spinner from './Components/Data/Spinner.js';
 
 //import { LogInOut } from './LogInOut.js';
 
@@ -19,8 +20,6 @@ export let LogedIn = () => {
     let [ appUrl, setAppUrl ] = useState('');
     let [ inlogedUser, updateInlogedUser ] = useState('');
     let [ appName, setAppName ] = useState('');   
-
-    let [ savedLocalStorageObj, updateSavedLocalStorageObj] = useState({});
 
     useEffect(() => {
         setAppUrl(runAppUrl());
@@ -42,7 +41,14 @@ export let LogedIn = () => {
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Inloggad`}</title>
             </Helmet>
-            <p className="logInOut__logedInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
+
+            <p className="logInOut__logedInUser">
+                    {(inlogedUser === '') 
+                    ? <>
+                        Du loggas in ...
+                        <div className="logInSpinnerMove"> <Spinner/></div>
+                      </>
+                    : `Välkommen in ${ inlogedUser }`}</p>      
             <section className="logInOut__btnInContainer">
                 <div className="btnContainer__btnLogOut">
                     <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
@@ -57,6 +63,8 @@ export let LogedIn = () => {
                     </Link>
                 </div>
             </section>
+
+            {'addera maincontents här'}
         </>
     );
 

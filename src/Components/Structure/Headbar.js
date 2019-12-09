@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Helmet} from "react-helmet";
+
 import '../CSS/Headbar.css';
 
 // React Router - ES6 modules
@@ -48,10 +48,7 @@ export let Headbar = () => {
         return (
             <>  
                 {(gotoPage === 'LogIn') ? <Redirect to={`${appUrl}LogIn`}/> : null}
-            <Helmet>
-                <meta charSet="utf-8" />
-                <title>{`${appName} - Utloggad`}</title>
-            </Helmet>
+
             <header>
                 <section className="headbar__headContainer">
                     <p className="headContainer__headline">{ appName }</p>

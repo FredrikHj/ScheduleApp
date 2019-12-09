@@ -101,7 +101,7 @@ export let HeadContents = () => {
                             <>
                                 <tr><td>
                                     {(erroLoadingSQLData !== true) 
-                                        ? <Spinner wait={'Data laddas'}/>
+                                        ? <Spinner str={'Data laddas'}/>
                                         :   <section>{`Data laddades inte ---> Hjälp!${ axiosGettingSQLData() }`}</section>
                                     }
                                 </td></tr>
