@@ -5,6 +5,7 @@ import {Helmet} from "react-helmet";
 import './Components/CSS/Spinner.scss';
 import './Components/CSS/Generall.css';
 import Spinner from './Components/Data/Spinner.js';
+import { HeadContents } from './Components/Structure/HeadContents.js';
 
 //import { LogInOut } from './LogInOut.js';
 
@@ -63,8 +64,6 @@ export let LogedIn = () => {
                     </Link>
                 </div>
             </section>
-
-            {'addera maincontents här'}
         </>
     );
 
