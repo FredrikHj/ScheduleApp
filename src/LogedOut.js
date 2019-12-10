@@ -89,8 +89,8 @@ export let LogedOut = () => {
                     <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
                 </section>  
                 <section className="logInOut__btnOutContainer">
-                    <button className="btnContainer__submitBtn" onClick={ runLogInOut } id="logIn">
-                        <p className="btnHeadline" id='logIn'  onClick={ runLogInOut }>Logga In</p>
+                    <button className="btnContainer__submitBtn" onClick={ runLogInOut } id="LogIn">
+                        <p className="btnHeadline" id='LogIn'  onClick={ runLogInOut }>Logga In</p>
                     </button>
                         
                 </section>

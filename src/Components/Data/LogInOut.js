@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import { updateLocalstorage, updateGotoPage, getLogStatus } from '../GlobalProps.js';
 import { formInputObj } from '../../LogedOut.js';
-
 import { axiosPost } from './Axios.js';
 
 import '../CSS/LogInOut.css';
@@ -22,19 +21,28 @@ export let runLogInOut = (e) => {
     let targetBtnValue = targetBtn;
     console.log(targetBtn);
     // Things happen according to whare I click
-    if(targetBtnId === 'logIn') {
+    if(targetBtnId === 'LogIn') {
         
         /* Validate that the user is found as a valid user
             if user do not find it will not login and shows an error mess instead
         */
         userInformation = {userName: formInputObj.userNameStr, userPassWord: formInputObj.userPwdStr}
-
+        console.log(userInformation);
+        console.log(getLogStatus().type);
+        
         axiosPost('userValidate', userInformation);
+
+        // inkludera en promise så funktionen nedan väntar på att axios har data
         // Check if you are able loggin according to the incomming data
-        if (getLogStatus().type === 200) updateGotoPage('LogIn');
+        if (getLogStatus().type === 200){
+            console.log('klj');
+             
+            updateGotoPage(targetBtnId);
+            }
         if (getLogStatus().type === 203) return;
+        //formInputObj = {};
     }
-    if(targetBtnId === 'logOout') {
+    if(targetBtnId === 'LogOut') {
         updateLocalstorage({
             responsType: null,
             logInMess: null, 
@@ -42,7 +50,7 @@ export let runLogInOut = (e) => {
                 loginName: null
             }
         });
-        updateGotoPage('LogOout');
+        updateGotoPage('LogOut');
 
         
         return <Redirect to={ runAppUrl() }/>;

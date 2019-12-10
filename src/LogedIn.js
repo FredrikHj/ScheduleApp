@@ -52,9 +52,9 @@ export let LogedIn = () => {
                     : `Välkommen in ${ inlogedUser }`}</p>      
             <section className="logInOut__btnInContainer">
                 <div className="btnContainer__btnLogOut">
-                    <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="logOout" value="" />
-                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogInOut } id="logIn">
-                        <p className="btnHeadline__logout" id="logOout">Logga Ut</p>
+                    <input type="submit" className="btnLogOut__input" onClick={ runLogInOut} id="LogOutö" value="" />
+                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogInOut } id="LogOut">
+                        <p className="btnHeadline__logout" id="LogOut">Logga Ut</p>
                     </Link>   
                 </div>
                 <div className="btnContainer__btnAdd">
