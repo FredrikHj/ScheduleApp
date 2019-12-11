@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
 import './Components/CSS/Generall.css';
+import { axiosPost } from './Components/Data/Axios.js';
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, returningUserData$, getLogStatus } from './Components/GlobalProps.js';
+import { headName$, returningUserData$, getLogStatus, updateLocalstorage, updateGotoPage } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 
-
 import { runLogInOut } from './Components/Data/LogInOut.js';
+import { LogedIn } from './LogedIn.js';
 import { runAppUrl } from './Components/Data/AppUrl.js';
 
 import { nfapply } from 'q';
@@ -39,21 +40,51 @@ export let LogedOut = () => {
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
     }, [inlogStatus]);
-    console.log(inlogMess);
+    console.log(inlogStatus);
     
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
         console.log(targetUserName);
         
         updateUserNameStr(targetUserName);
-        formInputObj['userNameStr'] = targetUserName;
+        //formInputObj['userNameStr'] = targetUserName;
     }
     let onChangeUserPwd = (e) => {
         let targetUserPwd = e.target.value;
         console.log(targetUserPwd);
         updateUserPwdStr(targetUserPwd);
-        formInputObj['userPwdStr'] = targetUserPwd;
+        //formInputObj['userPwdStr'] = targetUserPwd;
     }
+    let runLogIn = (e) => {
+
+        let userInformation = {};
+        let targetBtn = e.target; 
+        // Gets the element
+        let targetBtnId = targetBtn.id; 
+
+        console.log(targetBtnId);
+        
+               /* Validate that the user is found as a valid user
+            if user do not find it will not login and shows an error mess instead
+        */
+        userInformation = {userName: userNameStr, userPassWord: userPwdStr}
+        console.log(userInformation);
+        
+        axiosPost('userValidate', userInformation);    
+        // Check if you are able loggin according to the incomming data
+        if (inlogStatus === 200){
+            console.log('klj');
+            localStorage.setItem('appData', JSON.stringify({gotoPage: targetBtnId}));
+
+            //updateLocalstorage(true, {gotoPage: targetBtnId});
+            //updateGotoPage(targetBtnId);
+            }
+        if (inlogStatus === 203) return;
+
+    }
+    //LogedIn.runLogInOut();
+    console.log(LogedIn);
+    
     let hideShowLoginMessPromise = () => {   
         let loginMess = getLogStatus().mess;
         /*         let hideShowLoginMessPromise = () => {
@@ -89,8 +120,8 @@ export let LogedOut = () => {
                     <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
                 </section>  
                 <section className="logInOut__btnOutContainer">
-                    <button className="btnContainer__submitBtn" onClick={ runLogInOut } id="LogIn">
-                        <p className="btnHeadline" id='LogIn'  onClick={ runLogInOut }>Logga In</p>
+                    <button className="btnContainer__submitBtn" onClick={ runLogIn } id="LogIn">
+                        <p className="btnHeadline" id='LogIn'  onClick={ runLogIn }>Logga In</p>
                     </button>
                         
                 </section>

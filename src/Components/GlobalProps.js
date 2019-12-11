@@ -20,6 +20,7 @@ export const localStorageObj$ = new BehaviorSubject('');
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
 export function getLogStatus(){
+    // Run if a data i saved into the localstorage else no run
     if (window.localStorage.length !== 0) {
         
         let getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
@@ -54,10 +55,12 @@ export function updateReturningUserData(logedInUserInfoObj){
     if(logedInUserInfoObj) {
         returningUserData$.next(logedInUserInfoObj);
     }
-    updateLocalstorage(logedInUserInfoObj);
+    updateLocalstorage(false, logedInUserInfoObj);
 }
-export let updateLocalstorage = (saveIntoLocalStorage) =>{
-    localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
+export let updateLocalstorage = (update, saveIntoLocalStorage) =>{
+    if(update === false) localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
+    //if(update === true) localStorage.setItem('appData', JSON.stringify(saveIntoLocalStorage));
+
 }
 export function updateGotoPage(gotoPage){
     console.log(gotoPage);
@@ -65,4 +68,5 @@ export function updateGotoPage(gotoPage){
     if(gotoPage) {
         gotoPage$.next(gotoPage);
     }
+    return gotoPage;
 }

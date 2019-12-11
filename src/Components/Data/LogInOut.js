@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { updateLocalstorage, updateGotoPage, getLogStatus } from '../GlobalProps.js';
+import { updateLocalstorage, updateGotoPage, returningUserData$, getLogStatus } from '../GlobalProps.js';
 import { formInputObj } from '../../LogedOut.js';
 import { axiosPost } from './Axios.js';
 
@@ -12,8 +12,10 @@ import { isArray } from 'util';
 
 /* export let updatedUserNameStr = ''
 export let updatedUserPwdStr = ''; */
+console.log(returningUserData$.value);
 
 export let runLogInOut = (e) => {
+
     let userInformation = {};
     let targetBtn = e.target; 
     // Gets the element
@@ -28,19 +30,31 @@ export let runLogInOut = (e) => {
         */
         userInformation = {userName: formInputObj.userNameStr, userPassWord: formInputObj.userPwdStr}
         console.log(userInformation);
-        console.log(getLogStatus().type);
         
         axiosPost('userValidate', userInformation);
 
         // inkludera en promise så funktionen nedan väntar på att axios har data
-        // Check if you are able loggin according to the incomming data
-        if (getLogStatus().type === 200){
-            console.log('klj');
-             
-            updateGotoPage(targetBtnId);
+        let promiseRunGotoPage = new Promise((run, error) => {
+            console.log('promise running :)');
+            console.log(getLogStatus.type);
+            
+            if (getLogStatus.type === 200) {
+                
+                run();
             }
-        if (getLogStatus().type === 203) return;
-        //formInputObj = {};
+        });
+
+        promiseRunGotoPage.then(() => {
+            // Check if you are able loggin according to the incomming data
+            if (getLogStatus().type === 200){
+                console.log('klj');
+                
+                updateGotoPage(targetBtnId);
+                }
+            if (getLogStatus().type === 203) return;
+            //formInputObj = {};
+        });
+
     }
     if(targetBtnId === 'LogOut') {
         updateLocalstorage({

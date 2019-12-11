@@ -40,7 +40,9 @@ export let Headbar = () => {
         gotoPage$.subscribe((gotoPage) => {
             console.log(gotoPage);
             updateGotoPage(gotoPage);
-          });
+        });
+        let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
+        updateGotoPage(getGotoPage);
         //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
 
 
