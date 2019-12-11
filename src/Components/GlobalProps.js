@@ -55,12 +55,10 @@ export function updateReturningUserData(logedInUserInfoObj){
     if(logedInUserInfoObj) {
         returningUserData$.next(logedInUserInfoObj);
     }
-    updateLocalstorage(false, logedInUserInfoObj);
+    updateLocalstorage(logedInUserInfoObj);
 }
-export let updateLocalstorage = (update, saveIntoLocalStorage) =>{
-    if(update === false) localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
-    //if(update === true) localStorage.setItem('appData', JSON.stringify(saveIntoLocalStorage));
-
+export let updateLocalstorage = (saveIntoLocalStorage) =>{
+    localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
 }
 export function updateGotoPage(gotoPage){
     console.log(gotoPage);

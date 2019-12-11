@@ -41,9 +41,9 @@ export let Headbar = () => {
             console.log(gotoPage);
             updateGotoPage(gotoPage);
         });
-        let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
+/*         let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
         updateGotoPage(getGotoPage);
-        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
+ */        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
 
 
     }, [inlogMess]);

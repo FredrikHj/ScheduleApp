@@ -57,14 +57,7 @@ export let runLogInOut = (e) => {
 
     }
     if(targetBtnId === 'LogOut') {
-        updateLocalstorage({
-            responsType: null,
-            logInMess: null, 
-            incommingUserData: {
-                loginName: null
-            }
-        });
-        updateGotoPage('LogOut');
+
 
         
         return <Redirect to={ runAppUrl() }/>;

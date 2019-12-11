@@ -6,7 +6,7 @@ import { axiosPost } from './Components/Data/Axios.js';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, returningUserData$, getLogStatus, updateLocalstorage, updateGotoPage } from './Components/GlobalProps.js';
+import { headName$, returningUserData$, getLogStatus } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 
@@ -15,6 +15,7 @@ import { LogedIn } from './LogedIn.js';
 import { runAppUrl } from './Components/Data/AppUrl.js';
 
 import { nfapply } from 'q';
+import { setTimeout } from 'timers';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
@@ -58,9 +59,8 @@ export let LogedOut = () => {
     let runLogIn = (e) => {
 
         let userInformation = {};
-        let targetBtn = e.target; 
         // Gets the element
-        let targetBtnId = targetBtn.id; 
+        let targetBtnId = e.target.id; 
 
         console.log(targetBtnId);
         
@@ -70,15 +70,7 @@ export let LogedOut = () => {
         userInformation = {userName: userNameStr, userPassWord: userPwdStr}
         console.log(userInformation);
         
-        axiosPost('userValidate', userInformation);    
-        // Check if you are able loggin according to the incomming data
-        if (inlogStatus === 200){
-            console.log('klj');
-            localStorage.setItem('appData', JSON.stringify({gotoPage: targetBtnId}));
-
-            //updateLocalstorage(true, {gotoPage: targetBtnId});
-            //updateGotoPage(targetBtnId);
-            }
+        axiosPost('userValidate', targetBtnId, userInformation);    
         if (inlogStatus === 203) return;
 
     }

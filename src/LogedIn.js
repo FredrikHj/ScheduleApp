@@ -6,13 +6,15 @@ import './Components/CSS/Spinner.scss';
 import './Components/CSS/Generall.css';
 import Spinner from './Components/Data/Spinner.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
+import { axiosPost } from './Components/Data/Axios.js';
+
 
 //import { LogInOut } from './LogInOut.js';
 
 //import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedOut } from './LogedOut.js';
 import axios from 'axios';
-import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from './Components/GlobalProps.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$, updateLocalstorage } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 
@@ -36,7 +38,18 @@ export let LogedIn = (props) => {
             updateInlogedUserFullName();
         }, 1000);
     }, []);
-
+    let runLogOut = (e) => {
+        // Gets the element
+        let targetBtnId = e.target.id;     
+        updateLocalstorage({
+            responsType: null,
+            logInMess: null, 
+            incommingUserData: {
+                loginName: null
+            }
+        });
+        axiosPost('', targetBtnId, '');
+    }
     return (
         <>
             <Helmet>
@@ -53,8 +66,8 @@ export let LogedIn = (props) => {
                     : `Välkommen in ${ inlogedUser }`}</p>      
             <section className="logInOut__btnInContainer">
                 <div className="btnContainer__btnLogOut">
-                    <input type="submit" className="btnLogOut__input" onClick={ LogedOut.runLogInOut} id="LogOutö" value="" />
-                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ LogedOut.runLogInOut } id="LogOut">
+                    <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="LogOutö" value="" />
+                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogOut } id="LogOut">
                         <p className="btnHeadline__logout" id="LogOut">Logga Ut</p>
                     </Link>   
                 </div>

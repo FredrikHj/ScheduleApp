@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSavedSQLData, updateReturningUserData } from '../GlobalProps.js';
+import { updateSavedSQLData, updateReturningUserData, updateGotoPage } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let savedSQLDataArr = [];
@@ -51,7 +51,7 @@ let getUserId = () => {
     let getUserId = JSON.parse(window.localStorage.getItem("userData")).userId;
     return getUserId;
 }
-export let axiosPost = (postType, bodyData) => {  
+export let axiosPost = (postType, login, bodyData) => {  
     console.log(postType);
     let type = '';
     let sendToSqlBackend = {
@@ -79,7 +79,7 @@ export let axiosPost = (postType, bodyData) => {
             };
             //Send the incomming data for displaying the user login status
             updateReturningUserData(logedInUserInfoObj);
-
+            updateGotoPage(login);
             console.log(logedInUserInfoObj);
         }
     }).
