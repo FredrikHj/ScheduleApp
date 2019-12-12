@@ -21,16 +21,19 @@ let MainApp = () => {
   },[]);
   console.log(getLogStatus());
   
+  console.log(getLogStatus().mess);
+  console.log(appUrl);
+  
   return (
     <>
       <Router>
         <Headbar/>
-
-        <Route exact path=
-          {(getLogStatus().mess === null || getLogStatus().mess === 'Användaren finns inte!' ) ? appUrl : `${appUrl}Login` } component={ HeadContents }/>    
+        <Route exact path={ appUrl } component={ HeadContents }/> 
+        <Route exact path={ `${appUrl}Login` } component={ HeadContents }/>   
         <Route exact path={ `${appUrl}Add` } component={ FormAdd }/>
         <Route path={ `${appUrl}UserReg` } component={ UserReg }/>
       </Router>
+      
     </>
   );
 } 

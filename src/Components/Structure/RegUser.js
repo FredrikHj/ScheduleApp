@@ -62,24 +62,14 @@ export let UserReg = (props) => {
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Registrera`}</title>
             </Helmet>
-            <header>
-                <section className="headbar__headContainer">
-                    <p className="headContainer__headline">{ appName }</p>
-                    <section className="headContainer__logInOut">
-
-                        <p className="logInOut__logedInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
-
-                        <section className="logInOut__btnInContainer">
-                            <div className="btnContainer__cancelReg">
-                                <input type="submit" className="btnLogOut__cancelReg" onClick={ runLogInOut } id="cancelReg" value=""/>
-                                <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelReg">
-                                    <p className="btnHeadline__cancelReg" id='cancelReg'>Avbryt</p>
-                                </Link>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </header> 
+            <section className="logInOut__btnRegContainer">
+                <div className="btnContainer__cancelReg">
+                    <input type="submit" className="btnLogOut__cancelReg" onClick={ runLogInOut } id="cancelReg" value=""/>
+                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelReg">
+                        <p className="btnHeadline__cancelReg" id='cancelReg'>Avbryt</p>
+                    </Link>
+                </div>
+            </section>
             <section className="regUser__regContainer">
                 <form>
                     <div>

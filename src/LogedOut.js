@@ -57,7 +57,7 @@ export let LogedOut = () => {
         //formInputObj['userPwdStr'] = targetUserPwd;
     }
     let runLogIn = (e) => {
-
+        
         let userInformation = {};
         // Gets the element
         let targetBtnId = e.target.id; 

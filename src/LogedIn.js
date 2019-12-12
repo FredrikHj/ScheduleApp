@@ -14,7 +14,7 @@ import { axiosPost } from './Components/Data/Axios.js';
 //import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedOut } from './LogedOut.js';
 import axios from 'axios';
-import { headName$, updateInlogedUserFullName, inlogedUserFullName$, updateLocalstorage } from './Components/GlobalProps.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$, updateLocalstorage, updateGotoPage } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 
@@ -39,6 +39,7 @@ export let LogedIn = (props) => {
         }, 1000);
     }, []);
     let runLogOut = (e) => {
+/*         updateGotoPage('');
         // Gets the element
         let targetBtnId = e.target.id;     
         updateLocalstorage({
@@ -47,8 +48,8 @@ export let LogedIn = (props) => {
             incommingUserData: {
                 loginName: null
             }
-        });
-        axiosPost('', targetBtnId, '');
+        }); */
+        //axiosPost('', targetBtnId, '');
     }
     return (
         <>
@@ -78,6 +79,7 @@ export let LogedIn = (props) => {
                     </Link>
                 </div>
             </section>
+            
         </>
     );
 

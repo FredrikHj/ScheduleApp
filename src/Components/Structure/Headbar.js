@@ -44,8 +44,6 @@ export let Headbar = () => {
 /*         let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
         updateGotoPage(getGotoPage);
  */        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
-
-
     }, [inlogMess]);
         return (
             <>  
@@ -57,8 +55,12 @@ export let Headbar = () => {
                     <section className="headContainer__userLogInOut">
                         <Route exact path={`${ appUrl }`} component={ LogedOut } />
                         <Route exact path={`${ appUrl }Login`} component={ LogedIn } />
-                    </section>  
+                    </section> 
+                    {/* <Link to={ `${ appUrl }/HelpContact`} className="askMarkLink"> */}
+                        <i class="material-icons askMarkMove">contact_support</i>
+                    {/* </Link> */}
                 </section>
+                    {/* <img src="../Data/Img/baseline_contact_support_blacBigg.png" alt="Hjälp och kontakt"/>*/}                
             </header>
         </>
     );
