@@ -39,7 +39,7 @@ export let LogedIn = (props) => {
         }, 1000);
     }, []);
     let runLogOut = (e) => {
-/*         updateGotoPage('');
+        updateGotoPage('');
         // Gets the element
         let targetBtnId = e.target.id;     
         updateLocalstorage({
@@ -48,7 +48,7 @@ export let LogedIn = (props) => {
             incommingUserData: {
                 loginName: null
             }
-        }); */
+        });
         //axiosPost('', targetBtnId, '');
     }
     return (

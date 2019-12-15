@@ -6,7 +6,7 @@ import { axiosPost } from './Components/Data/Axios.js';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, returningUserData$, getLogStatus } from './Components/GlobalProps.js';
+import { headName$, returningUserData$, getLogStatus, updateGotoPage } from './Components/GlobalProps.js';
 
 import { log } from 'util';
 
@@ -69,7 +69,7 @@ export let LogedOut = () => {
         */
         userInformation = {userName: userNameStr, userPassWord: userPwdStr}
         console.log(userInformation);
-        
+        //updateGotoPage(login);
         axiosPost('userValidate', targetBtnId, userInformation);    
         if (inlogStatus === 203) return;
 

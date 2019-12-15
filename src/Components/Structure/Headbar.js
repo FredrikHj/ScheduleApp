@@ -11,7 +11,7 @@ import { log } from 'util';
 import { LogedOut } from '../../LogedOut.js';
 import { LogedIn } from '../../LogedIn.js';
 
-import { runLogInOut } from '../Data/LogInOut.js';
+//import { runLogInOut } from '../Data/LogInOut.js';
 import { runAppUrl } from '../Data/AppUrl.js';
 
 import { nfapply } from 'q';
@@ -23,9 +23,11 @@ export let Headbar = () => {
     let [ appName ] = useState('Årsklockan');
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
-    let [ gotoPage, updateGotoPage ] = useState('LogedOut');
+    let [ gotoIntoPage, updateGotoIntoPage ] = useState('');
     
     useEffect(() => {
+        console.log('Headbar inne');
+        
         setAppUrl(runAppUrl());
 /* 
         headName$.subscribe((headName) => {
@@ -39,15 +41,15 @@ export let Headbar = () => {
         });
         gotoPage$.subscribe((gotoPage) => {
             console.log(gotoPage);
-            updateGotoPage(gotoPage);
+            updateGotoIntoPage(gotoPage);
         });
 /*         let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
         updateGotoPage(getGotoPage);
  */        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
-    }, [inlogMess]);
+    });
         return (
             <>  
-                {(gotoPage === 'LogIn') ? <Redirect to={`${appUrl}LogIn`}/> : null}
+                {(gotoIntoPage === 'LogIn') ? <Redirect to={`${appUrl}LogIn`}/> : null}
 
             <header>
                 <section className="headbar__headContainer">

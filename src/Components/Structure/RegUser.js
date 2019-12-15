@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 import { headName$ } from '../GlobalProps.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { runLogInOut } from '../Data/LogInOut.js';
+//import { runLogInOut } from '../Data/LogInOut.js';
 import { runAppUrl } from '../Data/AppUrl.js';
 
 import '../CSS/RegUser.css';
@@ -64,8 +64,8 @@ export let UserReg = (props) => {
             </Helmet>
             <section className="logInOut__btnRegContainer">
                 <div className="btnContainer__cancelReg">
-                    <input type="submit" className="btnLogOut__cancelReg" onClick={ runLogInOut } id="cancelReg" value=""/>
-                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelReg">
+                    <input type="submit" className="btnLogOut__cancelReg" onClick={ '' } id="cancelReg" value=""/>
+                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ '' } id="cancelReg">
                         <p className="btnHeadline__cancelReg" id='cancelReg'>Avbryt</p>
                     </Link>
                 </div>

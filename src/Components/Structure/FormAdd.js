@@ -7,7 +7,7 @@ import Spinner from '../Data/Spinner.js';
 
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../GlobalProps.js';
 import '../CSS/FormAdd.css';
-import { runLogInOut } from '../Data/LogInOut.js';
+//import { runLogInOut } from '../Data/LogInOut.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { runAppUrl } from '../Data/AppUrl.js';
 
@@ -102,8 +102,8 @@ console.log(incommingSQLDataCols);
 
                         <section className="logInOut__btnInContainer">
                             <div className="btnContainer__btnAddCanceled">
-                                <input type="submit" className="btnLogOut__input" onClick={ runLogInOut } id="cancelAdd" value=""/>
-                                <Link to={`${ appUrl }/LogIn` }className="btnContainer__inputHeadline" onClick={ runLogInOut } id="cancelAdd">
+                                <input type="submit" className="btnLogOut__input" onClick={ '' } id="cancelAdd" value=""/>
+                                <Link to={`${ appUrl }/LogIn` }className="btnContainer__inputHeadline" onClick={ '' } id="cancelAdd">
                                     <p className="btnHeadline__canceled" id='cancelAdd'>Avbryt</p>
                                 </Link>
                             </div>

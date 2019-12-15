@@ -77,8 +77,11 @@ export let axiosPost = (postType, login, bodyData) => {
                 logInMess: response.statusText, 
                 incommingUserData: response.data,
             };
+            console.log(logedInUserInfoObj);
+            console.log(login);
+            
             //Send the incomming data for displaying the user login status
-            updateReturningUserData(logedInUserInfoObj);
+            //updateReturningUserData(logedInUserInfoObj);
             updateGotoPage(login);
             console.log(logedInUserInfoObj);
         }
