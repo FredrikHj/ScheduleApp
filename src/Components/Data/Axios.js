@@ -14,7 +14,7 @@ export let axiosGet = (getType) => {
     // Type of post method
     if (getType === 'default') type = '/SQLData';
     if (getType === 'userSpec') type = `/SQLData/${ 1 }`;
-    console.log(type);
+    //console.log(type);
     
         // Get the user inloged User and send into the backend for getting the correct user records 
 
@@ -22,7 +22,7 @@ export let axiosGet = (getType) => {
         // Store the incommingg API data in a variables
         let incommingSQLRes = response.data[0];
 
-        console.log(response);
+        //console.log(response);
         /*  If incomming status of 200 = OK
             Data i push into a arry too  GlobalProps
             The array is holding the data until the webbbrowser is closed 
@@ -44,7 +44,7 @@ export let axiosGet = (getType) => {
         }
     }).
     catch(error => {
-        //console.log(error.response);
+        ////console.log(error.response);
     });
 }
 let getUserId = () => {
@@ -52,12 +52,12 @@ let getUserId = () => {
     return getUserId;
 }
 export let axiosPost = (postType, login, bodyData) => {  
-    console.log(postType);
+    //console.log(postType);
     let type = '';
     let sendToSqlBackend = {
         bodyData,
     };
-    //console.log(sendToSqlBackend);
+    ////console.log(sendToSqlBackend);
     // Type of post method
     if (postType === 'userValidate') type = 'UserValidate';
     if (postType === 'filter') type = 'filter';
@@ -77,16 +77,17 @@ export let axiosPost = (postType, login, bodyData) => {
                 logInMess: response.statusText, 
                 incommingUserData: response.data,
             };
-            console.log(logedInUserInfoObj);
-            console.log(login);
+            //console.log(logedInUserInfoObj);
+            //console.log(login);
             
             //Send the incomming data for displaying the user login status
-            //updateReturningUserData(logedInUserInfoObj);
-            updateGotoPage(login);
-            console.log(logedInUserInfoObj);
+            updateReturningUserData(logedInUserInfoObj);
+
+            if (response.type === 201) updateGotoPage(login);
+            //console.log(logedInUserInfoObj);
         }
     }).
     catch(error => {
-        //console.log(error.response);
+        ////console.log(error.response);
     });
 }

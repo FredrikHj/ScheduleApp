@@ -30,7 +30,7 @@ export function getLogStatus(){
             type: getStatusType,
             mess: getLogInMess
         };
-        console.log(logInStatus);
+        //console.log(logInStatus);
         
         return logInStatus;
     }
@@ -43,14 +43,14 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
-    console.log(incommingSQLDataArr);
+    //console.log(incommingSQLDataArr);
     
     if(incommingSQLDataArr) {
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }
 export function updateReturningUserData(logedInUserInfoObj){
-    console.log(logedInUserInfoObj);
+    //console.log(logedInUserInfoObj);
     
     if(logedInUserInfoObj) {
         returningUserData$.next(logedInUserInfoObj);
@@ -61,7 +61,7 @@ export let updateLocalstorage = (saveIntoLocalStorage) =>{
     localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
 }
 export function updateGotoPage(gotoPage){
-    console.log(gotoPage);
+    //console.log(gotoPage);
     
     if(gotoPage) {
         gotoPage$.next(gotoPage);

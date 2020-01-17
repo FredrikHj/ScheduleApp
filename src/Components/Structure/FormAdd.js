@@ -34,15 +34,15 @@ export let FormAdd = (props) => {
         setAppUrl(runAppUrl());
         axiosGet('userSpec');
         headName$.subscribe((headName) => {
-            console.log(headName);
+            //console.log(headName);
             setAppName(headName);
         });
         inlogedUserFullName$.subscribe((inlogedUserFullName) => {
-            console.log(inlogedUserFullName);
+            //console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
         });
         incommingSQLDataArr$.subscribe((incommingSQLDataArr) => {
-            console.log(incommingSQLDataArr);
+            //console.log(incommingSQLDataArr);
             if (incommingSQLDataArr.status === 200) updateIncommingSQLData(incommingSQLDataArr.data[0])
         });
         /*
@@ -53,7 +53,7 @@ export let FormAdd = (props) => {
             updateInlogedUserFullName(); 
         }, 1000);
     }, []);
-    console.log(incommingSQLData);  
+    //console.log(incommingSQLData);  
     let setStrsType = (e) => {
         let type = e.target;
         let inputStr = type.value;            
@@ -68,21 +68,21 @@ export let FormAdd = (props) => {
         if (dataset.type === 'content') updateContentStr(inputStr);
     }
 
-console.log(incommingSQLDataCols);
+//console.log(incommingSQLDataCols);
 
     let sendInUserData = (e) => {
         updateAddedData(true);
-        console.log(dateStr);
+        //console.log(dateStr);
         // Created a body for the added data
         let sqlBody = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
-        console.log(sqlBody);
+        //console.log(sqlBody);
         
         axiosPost('add', sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody.splice(0, 1);
             
-        /* console.log(sqlBodyObj);
+        /* //console.log(sqlBodyObj);
         updateSavedSQLData(sqlBodyObj); */
 
     }

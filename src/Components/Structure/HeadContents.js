@@ -19,7 +19,7 @@ export let HeadContents = () => {
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
 
     let [ addForm, setAddForm ] = useState(true);
-    console.log(incommingNewSQLData);
+    //console.log(incommingNewSQLData);
     
     let countGetMethod = 1;
     let axiosGettingSQLData = () => {
@@ -33,7 +33,7 @@ export let HeadContents = () => {
                     updateErroLoadingSQLData(true)
                 }, 5000);
             }
-            console.log(countGetMethod);
+            //console.log(countGetMethod);
             
             //else error('Kunde inte ladda datan :(');
         });

@@ -25,17 +25,17 @@ export let UserReg = (props) => {
     useEffect(() => {
         setAppUrl(runAppUrl());
         headName$.subscribe((headName) => {
-            console.log(headName);
+            //console.log(headName);
             setAppName(headName);
         });
     }, []);
     let setStrsType = (e) => {
-        console.log('nyh');
+        //console.log('nyh');
         
         let type = e.target;
         let inputStr = type.value;            
         const {dataset} = type;
-        console.log(inputStr);
+        //console.log(inputStr);
         
 
         if (dataset.type === 'fullName') setUserFullName(inputStr);
@@ -44,15 +44,16 @@ export let UserReg = (props) => {
     };
 
      let sendUserReg = (e) => {
+        let targetBtnId = e.target.id; 
         // Created a body for the added data
         let sqlBody = {
             fullName: userFullName,
             userName: userName,
             userPassWord: userPwd
         }
-        console.log(sqlBody);
+        //console.log(sqlBody);
         
-        axiosPost('userReg', sqlBody);
+        axiosPost('userReg', 'targetBtnId', sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody.splice(0, 1);
     };
@@ -64,9 +65,9 @@ export let UserReg = (props) => {
             </Helmet>
             <section className="logInOut__btnRegContainer">
                 <div className="btnContainer__cancelReg">
-                    <input type="submit" className="btnLogOut__cancelReg" onClick={ '' } id="cancelReg" value=""/>
-                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ '' } id="cancelReg">
-                        <p className="btnHeadline__cancelReg" id='cancelReg'>Avbryt</p>
+                    <input type="submit" className="btnLogOut__cancelReg" value=""/>
+                    <Link to={ appUrl } className="btnContainer__inputHeadline">
+                        <p className="btnHeadline__cancelReg">Avbryt</p>
                     </Link>
                 </div>
             </section>
@@ -82,11 +83,13 @@ export let UserReg = (props) => {
                     </div>
                     <div>
                         <label id="userPwd">Lösenord</label>
-                        <input type="text" id="userPwd" data-type="userPwd" onChange    ={ setStrsType } placeholder="  ..."/>
+                        <input type="text" id="userPwd" data-type="userPwd" onChange={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
-                        <input type="submit" className="regContainer__submitBtn" value="" onClick={ sendUserReg }/>
-                        <p className="regContainer__headline" id='regBtn' onClick={ sendUserReg }>Registrera</p>
+                        <input type="submit" className="regContainer__submitBtn" value="" onClick={ sendUserReg } id="LogIn"/>
+                        <Link to={ appUrl } className="btnContainer__inputHeadline">
+                            <p className="regContainer__headline" onClick={ sendUserReg } id="LogIn">Registrera</p>
+                        </Link>
                     </div>
                 </form>
             </section>

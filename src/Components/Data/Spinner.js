@@ -6,6 +6,5 @@ export let Spinner = (props) => {
             <div className="spinner spinner-dark"></div>
         </>
     );
-
 }
 export default Spinner;

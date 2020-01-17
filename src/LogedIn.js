@@ -28,7 +28,7 @@ export let LogedIn = (props) => {
     useEffect(() => {
         setAppUrl(runAppUrl());
         headName$.subscribe((headName) => {
-            console.log(headName);
+            //console.log(headName);
             setAppName(headName);
         });
         inlogedUserFullName$.subscribe((inlogedUserFullName) => {         
@@ -39,7 +39,7 @@ export let LogedIn = (props) => {
         }, 1000);
     }, []);
     let runLogOut = (e) => {
-        updateGotoPage('');
+        updateGotoPage('LogOut');
         // Gets the element
         let targetBtnId = e.target.id;     
         updateLocalstorage({
@@ -59,15 +59,17 @@ export let LogedIn = (props) => {
             </Helmet>
 
             <p className="logInOut__logedInUser">
-                    {(inlogedUser === '') 
-                    ? <>
-                        Du loggas in ...
-                        <div className="logInSpinnerMove"> <Spinner/></div>
-                      </>
-                    : `Välkommen in ${ inlogedUser }`}</p>      
+                {(inlogedUser === '' ) 
+                ? <>
+                    Du loggas in ...
+                    <div className="logInSpinnerMove"> <Spinner/></div>
+                    </>
+                : `Välkommen in ${ inlogedUser }`
+                }
+            </p>      
             <section className="logInOut__btnInContainer">
                 <div className="btnContainer__btnLogOut">
-                    <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="LogOutö" value="" />
+                    <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="LogOut" value="" />
                     <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogOut } id="LogOut">
                         <p className="btnHeadline__logout" id="LogOut">Logga Ut</p>
                     </Link>   

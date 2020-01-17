@@ -29,30 +29,30 @@ export let LogedOut = () => {
     
     useEffect(() => {
         setAppUrl(runAppUrl());
-        console.log('ecsfv');
+        //console.log('ecsfv');
         
         headName$.subscribe((headName) => {
-            console.log(headName);
+            //console.log(headName);
             setAppName(headName);
         });
         returningUserData$.subscribe((returningUserDispalyingObj) => {
-            console.log(returningUserDispalyingObj);
+            //console.log(returningUserDispalyingObj);
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
     }, [inlogStatus]);
-    console.log(inlogStatus);
+    //console.log(inlogStatus);
     
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
-        console.log(targetUserName);
+        //console.log(targetUserName);
         
         updateUserNameStr(targetUserName);
         //formInputObj['userNameStr'] = targetUserName;
     }
     let onChangeUserPwd = (e) => {
         let targetUserPwd = e.target.value;
-        console.log(targetUserPwd);
+        //console.log(targetUserPwd);
         updateUserPwdStr(targetUserPwd);
         //formInputObj['userPwdStr'] = targetUserPwd;
     }
@@ -62,20 +62,20 @@ export let LogedOut = () => {
         // Gets the element
         let targetBtnId = e.target.id; 
 
-        console.log(targetBtnId);
+        //console.log(targetBtnId);
         
                /* Validate that the user is found as a valid user
             if user do not find it will not login and shows an error mess instead
         */
         userInformation = {userName: userNameStr, userPassWord: userPwdStr}
-        console.log(userInformation);
+        //console.log(userInformation);
         //updateGotoPage(login);
         axiosPost('userValidate', targetBtnId, userInformation);    
         if (inlogStatus === 203) return;
 
     }
     //LogedIn.runLogInOut();
-    console.log(LogedIn);
+    //console.log(LogedIn);
     
     let hideShowLoginMessPromise = () => {   
         let loginMess = getLogStatus().mess;

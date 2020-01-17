@@ -19,10 +19,10 @@ let MainApp = () => {
     setAppUrl(runAppUrl());
 
   },[]);
-  console.log(getLogStatus());
+  //console.log(getLogStatus());
   
-  console.log(getLogStatus().mess);
-  console.log(appUrl);
+  //console.log(getLogStatus().mess);
+  //console.log(appUrl);
   
   return (
     <>

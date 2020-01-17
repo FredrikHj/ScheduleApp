@@ -29,34 +29,31 @@ export let Headbar = () => {
         console.log('Headbar inne');
         
         setAppUrl(runAppUrl());
-/* 
-        headName$.subscribe((headName) => {
-            console.log(headName);
-            setAppName(headName);
-        }); */
         returningUserData$.subscribe((returningUserDispalyingObj) => {
-            console.log(returningUserDispalyingObj);
+            //console.log(returningUserDispalyingObj);
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
         gotoPage$.subscribe((gotoPage) => {
-            console.log(gotoPage);
+            //console.log(gotoPage);
             updateGotoIntoPage(gotoPage);
         });
 /*         let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
         updateGotoPage(getGotoPage);
  */        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
-    });
+    }, [gotoPage$.value]);
+    console.log(gotoPage$.value);
+    
         return (
             <>  
-                {(gotoIntoPage === 'LogIn') ? <Redirect to={`${appUrl}LogIn`}/> : null}
 
             <header>
                 <section className="headbar__headContainer">
                     <p className="headContainer__headline">{ appName }</p>
                     <section className="headContainer__userLogInOut">
                         <Route exact path={`${ appUrl }`} component={ LogedOut } />
-                        <Route exact path={`${ appUrl }Login`} component={ LogedIn } />
+                        <Route exact path={`${appUrl}Login`} component={ LogedIn } />
+                            {(gotoIntoPage === 'LogIn') ? <Redirect to={`${appUrl}LogIn`}/> : null}
                     </section> 
                     {/* <Link to={ `${ appUrl }/HelpContact`} className="askMarkLink"> */}
                         <i class="material-icons askMarkMove">contact_support</i>
