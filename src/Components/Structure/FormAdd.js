@@ -9,7 +9,7 @@ import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQ
 import '../CSS/FormAdd.css';
 //import { runLogInOut } from '../Data/LogInOut.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { runAppUrl } from '../Data/AppUrl.js';
+import { runAppExtUrls } from '../Data/runAppUrls.js';
 
 export let FormAdd = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
@@ -31,7 +31,7 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
-        setAppUrl(runAppUrl());
+        setAppUrl(runAppExtUrls());
         axiosGet('userSpec');
         headName$.subscribe((headName) => {
             //console.log(headName);

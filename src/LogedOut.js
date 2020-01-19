@@ -6,13 +6,13 @@ import { axiosPost } from './Components/Data/Axios.js';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, returningUserData$, getLogStatus, updateGotoPage } from './Components/GlobalProps.js';
+import { headName$, returningUserData$, getLogStatus, updateGotoPage, updateSavedSQLData} from './Components/GlobalProps.js';
 
 import { log } from 'util';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedIn } from './LogedIn.js';
-import { runAppUrl } from './Components/Data/AppUrl.js';
+import { runAppExtUrls } from './Components/Data/runAppUrls.js';
 
 import { nfapply } from 'q';
 import { setTimeout } from 'timers';
@@ -28,7 +28,7 @@ export let LogedOut = () => {
     const [ userPwdStr, updateUserPwdStr ] = useState(null);
     
     useEffect(() => {
-        setAppUrl(runAppUrl());
+        setAppUrl(runAppExtUrls());
         //console.log('ecsfv');
         
         headName$.subscribe((headName) => {
@@ -61,10 +61,8 @@ export let LogedOut = () => {
         let userInformation = {};
         // Gets the element
         let targetBtnId = e.target.id; 
-
-        //console.log(targetBtnId);
-        
-               /* Validate that the user is found as a valid user
+  
+        /* Validate that the user is found as a valid user
             if user do not find it will not login and shows an error mess instead
         */
         userInformation = {userName: userNameStr, userPassWord: userPwdStr}
@@ -72,7 +70,6 @@ export let LogedOut = () => {
         //updateGotoPage(login);
         axiosPost('userValidate', targetBtnId, userInformation);    
         if (inlogStatus === 203) return;
-
     }
     //LogedIn.runLogInOut();
     //console.log(LogedIn);
@@ -112,8 +109,8 @@ export let LogedOut = () => {
                     <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
                 </section>  
                 <section className="logInOut__btnOutContainer">
-                    <button className="btnContainer__submitBtn" onClick={ runLogIn } id="LogIn">
-                        <p className="btnHeadline" id='LogIn'  onClick={ runLogIn }>Logga In</p>
+                    <button className="btnContainer__submitBtn" onClick={ runLogIn } id="Login">
+                        <p className="btnHeadline" id='Login'  onClick={ runLogIn }>Logga In</p>
                     </button>
                         
                 </section>

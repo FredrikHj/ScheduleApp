@@ -43,25 +43,25 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
-    //console.log(incommingSQLDataArr);
+    console.log(incommingSQLDataArr.length);
     
     if(incommingSQLDataArr) {
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }
-export function updateReturningUserData(logedInUserInfoObj){
-    //console.log(logedInUserInfoObj);
+export function updateReturningUserData(incommingObj){
+    console.log(incommingObj);
     
-    if(logedInUserInfoObj) {
-        returningUserData$.next(logedInUserInfoObj);
+    if(incommingObj) {
+        returningUserData$.next(incommingObj);
     }
-    updateLocalstorage(logedInUserInfoObj);
+    updateLocalstorage(incommingObj);
 }
 export let updateLocalstorage = (saveIntoLocalStorage) =>{
     localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
 }
 export function updateGotoPage(gotoPage){
-    //console.log(gotoPage);
+    console.log(gotoPage);
     
     if(gotoPage) {
         gotoPage$.next(gotoPage);

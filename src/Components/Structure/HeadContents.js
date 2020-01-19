@@ -7,7 +7,7 @@ import Spinner from '../Data/Spinner.js';
 import { LogInOut } from '../Data/LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
-
+import { runAppIntUrls } from '../Data/runAppUrls.js';
 import '../CSS/SQLTable.css';
 
 import axios from 'axios';
@@ -15,7 +15,6 @@ import { log } from 'util';
 
 export let HeadContents = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
 
     let [ addForm, setAddForm ] = useState(true);
@@ -23,6 +22,7 @@ export let HeadContents = () => {
     
     let countGetMethod = 1;
     let axiosGettingSQLData = () => {
+        console.log('run');
         let axiosUntilGettingData = new Promise((success, error) => {       
             if (countGetMethod === 1) {
                 success();
@@ -31,7 +31,7 @@ export let HeadContents = () => {
             if (countGetMethod === 2) {
                 setTimeout(() => {
                     updateErroLoadingSQLData(true)
-                }, 5000);
+                }, 1000);
             }
             //console.log(countGetMethod);
             
@@ -40,7 +40,10 @@ export let HeadContents = () => {
 
         // Run default SQL list
         axiosUntilGettingData.then((result) => {
-            axiosGet('default')
+            let getRedirected = runAppIntUrls().pathname;
+            if (getRedirected === '/') axiosGet('default');
+            if (getRedirected === '/Login') axiosGet('userSpec');
+
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
@@ -53,7 +56,7 @@ export let HeadContents = () => {
           
         //}, 3000);
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            // IItcan handle the data an perform it task regardless the data infrastructure 
+            // It can handle the data an perform its task regardless the data infrastructure 
             
             if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
             if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
@@ -102,7 +105,7 @@ export let HeadContents = () => {
                                 <tr><td>
                                     {(erroLoadingSQLData !== true) 
                                         ? <Spinner str={'Data laddas'}/>
-                                        :   <section>{`Data laddades inte ---> Hjälp!${ axiosGettingSQLData() }`}</section>
+                                        : <section>Datan laddades inte ---> Hjälp!</section>
                                     }
                                 </td></tr>
                             </>

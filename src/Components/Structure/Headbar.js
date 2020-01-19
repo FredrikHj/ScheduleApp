@@ -12,7 +12,7 @@ import { LogedOut } from '../../LogedOut.js';
 import { LogedIn } from '../../LogedIn.js';
 
 //import { runLogInOut } from '../Data/LogInOut.js';
-import { runAppUrl } from '../Data/AppUrl.js';
+import { runAppExtUrls } from '../Data/runAppUrls.js';
 
 import { nfapply } from 'q';
 
@@ -28,7 +28,7 @@ export let Headbar = () => {
     useEffect(() => {
         console.log('Headbar inne');
         
-        setAppUrl(runAppUrl());
+        setAppUrl(runAppExtUrls());
         returningUserData$.subscribe((returningUserDispalyingObj) => {
             //console.log(returningUserDispalyingObj);
             setInlogStatus(returningUserDispalyingObj.responsType);

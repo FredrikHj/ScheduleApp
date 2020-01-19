@@ -7,7 +7,7 @@ import { headName$ } from '../GlobalProps.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 //import { runLogInOut } from '../Data/LogInOut.js';
-import { runAppUrl } from '../Data/AppUrl.js';
+import { runAppExtUrls } from '../Data/runAppUrls.js';
 
 import '../CSS/RegUser.css';
 
@@ -23,7 +23,7 @@ export let UserReg = (props) => {
     let [ userPwd, setUserPWD ] = useState('');
 
     useEffect(() => {
-        setAppUrl(runAppUrl());
+        setAppUrl(runAppExtUrls());
         headName$.subscribe((headName) => {
             //console.log(headName);
             setAppName(headName);

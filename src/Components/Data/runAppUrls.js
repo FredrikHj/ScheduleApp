@@ -1,6 +1,8 @@
-export let runAppUrl = () => {
+export let runAppExtUrls = () => {
   let localPubUrl = '';
   let appUrl = window.location;
+  console.log(appUrl);
+  
   ////console.log(appUrl.pathname.split('/')[1]);
   
   // Check if ther is any components that can be reuse
@@ -13,4 +15,8 @@ export let runAppUrl = () => {
   //console.log(localPubUrl);
   
   return localPubUrl;
+}
+export let runAppIntUrls = () => {
+  let appUrl = window.location;  
+  return appUrl;
 }

@@ -6,7 +6,7 @@ import { formInputObj } from '../../LogedOut.js';
 import { axiosPost } from './Axios.js';
 
 import '../CSS/LogInOut.css';
-import { runAppUrl } from './AppUrl.js';
+import { runAppExtUrls } from './runAppUrls.js';
 
 import { isArray } from 'util';
 
@@ -60,6 +60,6 @@ export let runLogInOut = (e) => {
 
 
         
-        return <Redirect to={ runAppUrl() }/>;
+        return <Redirect to={ runAppExtUrls() }/>;
     }
 }
