@@ -1,15 +1,22 @@
 {
   "files": {
-    "main.css": "/ScheduleApp/static/css/main.c2b642f6.chunk.css",
-    "main.js": "/ScheduleApp/static/js/main.613a404f.chunk.js",
-    "main.js.map": "/ScheduleApp/static/js/main.613a404f.chunk.js.map",
-    "runtime-main.js": "/ScheduleApp/static/js/runtime-main.768edfcb.js",
-    "runtime-main.js.map": "/ScheduleApp/static/js/runtime-main.768edfcb.js.map",
-    "static/js/2.5d5f8e1e.chunk.js": "/ScheduleApp/static/js/2.5d5f8e1e.chunk.js",
-    "static/js/2.5d5f8e1e.chunk.js.map": "/ScheduleApp/static/js/2.5d5f8e1e.chunk.js.map",
+    "main.css": "/ScheduleApp/static/css/main.112d8122.chunk.css",
+    "main.js": "/ScheduleApp/static/js/main.e54dd66a.chunk.js",
+    "main.js.map": "/ScheduleApp/static/js/main.e54dd66a.chunk.js.map",
+    "runtime-main.js": "/ScheduleApp/static/js/runtime-main.02ff3cb5.js",
+    "runtime-main.js.map": "/ScheduleApp/static/js/runtime-main.02ff3cb5.js.map",
+    "static/js/2.b0f95274.chunk.js": "/ScheduleApp/static/js/2.b0f95274.chunk.js",
+    "static/js/2.b0f95274.chunk.js.map": "/ScheduleApp/static/js/2.b0f95274.chunk.js.map",
     "index.html": "/ScheduleApp/index.html",
-    "precache-manifest.509c32b767140e1fca0740bf908bc3c6.js": "/ScheduleApp/precache-manifest.509c32b767140e1fca0740bf908bc3c6.js",
+    "precache-manifest.f17138d4c470af68504f2f5c0d5c1b8c.js": "/ScheduleApp/precache-manifest.f17138d4c470af68504f2f5c0d5c1b8c.js",
     "service-worker.js": "/ScheduleApp/service-worker.js",
-    "static/css/main.c2b642f6.chunk.css.map": "/ScheduleApp/static/css/main.c2b642f6.chunk.css.map"
-  }
+    "static/css/main.112d8122.chunk.css.map": "/ScheduleApp/static/css/main.112d8122.chunk.css.map",
+    "static/js/2.b0f95274.chunk.js.LICENSE": "/ScheduleApp/static/js/2.b0f95274.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.02ff3cb5.js",
+    "static/js/2.b0f95274.chunk.js",
+    "static/css/main.112d8122.chunk.css",
+    "static/js/main.e54dd66a.chunk.js"
+  ]
 }
