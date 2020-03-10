@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSavedSQLData, updateReturningUserData, updateGotoPage } from '../GlobalProps.js';
+import { updateSavedSQLData, updateUserData, updateGotoPage } from '../GlobalProps.js';
 import { setTimeout } from 'timers';
 
 let savedSQLDataArr = [];
@@ -59,7 +59,7 @@ export let axiosPost = (postType, login, bodyData) => {
     };
     ////console.log(sendToSqlBackend);
     // Type of post method
-    if (postType === 'userValidate') type = 'UserValidate';
+    if (postType === 'Login') type = 'Login';
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') type = 'AddRecord';
     if (postType === 'userReg') type = 'UserReg';
@@ -68,21 +68,21 @@ export let axiosPost = (postType, login, bodyData) => {
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).
     then(response => {
-        console.log(response);
-        
-        if (postType === 'userValidate'){
+    console.log("axiosPost -> response", response);        
+        if (postType === 'Login'){
             // Incomming userdata. T
             
             let logedInUserInfoObj = {
                 responsType: response.status,
                 logInMess: response.statusText, 
-                incommingUserData: response.data,
+                token: response.data,
+                //getTokenData(response.data),
             };
-            console.log(logedInUserInfoObj);
+            console.log("axiosPost -> logedInUserInfoObj", logedInUserInfoObj.tokenData)
             //console.log(login);
             
             //Send the incomming data for displaying the user login status
-            updateReturningUserData(logedInUserInfoObj);
+            updateUserData(logedInUserInfoObj);
 
             if (response.status === 200) updateGotoPage(login);
             //console.log(logedInUserInfoObj);

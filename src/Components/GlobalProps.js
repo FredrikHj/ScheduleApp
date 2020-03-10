@@ -1,7 +1,9 @@
 import {BehaviorSubject} from "rxjs";
+let jwt = require('jsonwebtoken');
+
 let headName = '';
 let inlogedUserFullName = '';
-let returningUserData = '';
+let userData = '';
 let incommingSQLDataArr = [];
 let gotoPage = '';
 
@@ -9,7 +11,7 @@ let gotoPage = '';
 
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
-export const returningUserData$ = new BehaviorSubject(returningUserData);
+export const userData$ = new BehaviorSubject(userData);
 export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
 
 export const gotoPage$ = new BehaviorSubject(gotoPage);
@@ -19,6 +21,24 @@ export const localStorageObj$ = new BehaviorSubject('');
 /* The functions are triggered in another place and send in its data
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
+export function updateUserData(incommingObj){
+    console.log("updateReturningUserData -> incommingObj", incommingObj)
+    let tokenData = getTokenData(incommingObj.token);
+    console.log("updateReturningUserData -> tokenData", tokenData)
+    if(tokenData) {
+        userData$.next(tokenData);
+    }
+    updateLocalstorage(tokenData);
+}
+let getTokenData = (token) => {
+    let tokenData = jwt.verify( token, 'inlogSecretKey', (error, token) => token);
+    console.log("getTokenData -> getToken", tokenData);
+    return tokenData;
+}
+export let updateLocalstorage = (saveIntoLocalStorage) =>{
+    localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
+}
+
 export function getLogStatus(){
     // Run if a data i saved into the localstorage else no run
     if (window.localStorage.length !== 0) {
@@ -36,7 +56,7 @@ export function getLogStatus(){
     }
 }
 export function updateInlogedUserFullName(){
-    inlogedUserFullName = JSON.parse(window.localStorage.getItem("userData")).incommingUserData.loginName;
+    //inlogedUserFullName = JSON.parse(window.localStorage.getItem("userData")).incommingUserData.tokenData.loginName;
     inlogedUserFullName$.next(inlogedUserFullName);
 }
 export function updateHeadName(headName){
@@ -49,17 +69,6 @@ export function updateSavedSQLData(incommingSQLDataArr){
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }
-export function updateReturningUserData(incommingObj){
-    console.log(incommingObj);
-    
-    if(incommingObj) {
-        returningUserData$.next(incommingObj);
-    }
-    updateLocalstorage(incommingObj);
-}
-export let updateLocalstorage = (saveIntoLocalStorage) =>{
-    localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
-}
 export function updateGotoPage(gotoPage){
     console.log(gotoPage);
     
@@ -68,3 +77,4 @@ export function updateGotoPage(gotoPage){
     }
     return gotoPage;
 }
+
