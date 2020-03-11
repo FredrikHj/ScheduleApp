@@ -68,7 +68,7 @@ export let LogedOut = () => {
         userInformation = {userName: userNameStr, userPassWord: userPwdStr}
         //console.log(userInformation);
         //updateGotoPage(login);
-        axiosPost('userValidate', targetBtnId, userInformation);    
+        axiosPost('Login', targetBtnId, userInformation);    
         if (inlogStatus === 203) return;
     }
     //LogedIn.runLogInOut();
