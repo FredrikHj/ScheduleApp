@@ -5,13 +5,12 @@ import '../CSS/Headbar.css';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { updateUserData$, gotoPage$, getLogStatus } from '../GlobalProps.js';
+import { userData$, gotoPage$, getLogStatus } from '../Storage.js';
 
 import { log } from 'util';
 import { LogedOut } from '../../LogedOut.js';
 import { LogedIn } from '../../LogedIn.js';
 
-//import { runLogInOut } from '../Data/LogInOut.js';
 import { runAppExtUrls } from '../Data/runAppUrls.js';
 
 import { nfapply } from 'q';
@@ -29,7 +28,7 @@ export let Headbar = () => {
         console.log('Headbar inne');
         
         setAppUrl(runAppExtUrls());
-        updateUserData$.subscribe((userDispalyingObj) => {
+        userData$.subscribe((userDispalyingObj) => {
             //console.log(returningUserDispalyingObj);
             setInlogStatus(userDispalyingObj.responsType);
             setInlogMess(userDispalyingObj.logInMess);

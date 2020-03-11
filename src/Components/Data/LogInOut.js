@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { updateLocalstorage, updateGotoPage, returningUserData$, getLogStatus } from '../GlobalProps.js';
+import { updateGotoPage, userData$, getLogStatus } from '../Storage.js';
 import { formInputObj } from '../../LogedOut.js';
 import { axiosPost } from './Axios.js';
 
@@ -12,7 +12,7 @@ import { isArray } from 'util';
 
 /* export let updatedUserNameStr = ''
 export let updatedUserPwdStr = ''; */
-console.log(returningUserData$.value);
+console.log(userData$.value);
 
 export let runLogInOut = (e) => {
 

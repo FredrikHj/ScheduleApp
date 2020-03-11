@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { incommingSQLDataArr$ } from '../GlobalProps.js';
+import { incommingSQLDataArr$ } from '../Storage.js';
 
 import Spinner from '../Data/Spinner.js';
-import { LogInOut } from '../Data/LogInOut.js';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
 import { runAppIntUrls } from '../Data/runAppUrls.js';
@@ -15,15 +14,16 @@ import { log } from 'util';
 
 export let HeadContents = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+    console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
 
     let [ addForm, setAddForm ] = useState(true);
     //console.log(incommingNewSQLData);
-    
+    let ifSQLData;
     let countGetMethod = 1;
-    let axiosGettingSQLData = () => {
+    let getSQLData = () => {
         console.log('run');
-        let axiosUntilGettingData = new Promise((success, error) => {       
+        let axiosUntilGettingData = new Promise((success, error) => {
             if (countGetMethod === 1) {
                 success();
                 countGetMethod++;
@@ -49,12 +49,8 @@ export let HeadContents = () => {
         })
     }
     useEffect(() => {
-        axiosGettingSQLData();
+        getSQLData();
         
-        //setTimeout(() => {
-        //axiosUntilGettingData();
-          
-        //}, 3000);
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
             // It can handle the data an perform its task regardless the data infrastructure 
             
@@ -67,6 +63,7 @@ export let HeadContents = () => {
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
+
     return (
         <main className="body__contents">
             <SearchBar/>
@@ -103,10 +100,7 @@ export let HeadContents = () => {
                         :   
                             <>
                                 <tr><td>
-                                    {(erroLoadingSQLData !== true) 
-                                        ? <Spinner str={'Data laddas'}/>
-                                        : <section>Datan laddades inte ---> Hjälp!</section>
-                                    }
+                                    <Spinner str={'Data laddas'}/>
                                 </td></tr>
                             </>
                         }

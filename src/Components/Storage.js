@@ -1,6 +1,7 @@
 import {BehaviorSubject} from "rxjs";
-let jwt = require('jsonwebtoken');
 
+import {getTokenData} from './CommonFunctions';
+import {getLocalStorageData} from './Data/LocalStorage';
 let headName = '';
 let inlogedUserFullName = '';
 let userData = '';
@@ -16,28 +17,25 @@ export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
 
 export const gotoPage$ = new BehaviorSubject(gotoPage);
 
-export const localStorageObj$ = new BehaviorSubject('');
+export const LocalStorage$ = new BehaviorSubject('');
 
 /* The functions are triggered in another place and send in its data
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
-export function updateUserData(incommingObj){
-    console.log("updateReturningUserData -> incommingObj", incommingObj)
-    let tokenData = getTokenData(incommingObj.token);
-    console.log("updateReturningUserData -> tokenData", tokenData)
-    if(tokenData) {
-        userData$.next(tokenData);
+export function updateUserData(loginData){
+    console.log("updateReturningUserData -> incommingObj", loginData)
+    updateLocalstorage(loginData);
+    if(loginData) {
+        userData$.next(loginData);
     }
-    updateLocalstorage(tokenData);
 }
-let getTokenData = (token) => {
-    let tokenData = jwt.verify( token, 'inlogSecretKey', (error, token) => token);
-    console.log("getTokenData -> getToken", tokenData);
-    return tokenData;
+export let updateLocalstorage = (saveLoginData) =>{
+    console.log("updateLocalstorage -> saveIntoLocalStorage", saveLoginData)
+    localStorage.setItem('loginData', JSON.stringify(saveLoginData));
 }
-export let updateLocalstorage = (saveIntoLocalStorage) =>{
-    localStorage.setItem('userData', JSON.stringify(saveIntoLocalStorage));
-}
+
+
+
 
 export function getLogStatus(){
     // Run if a data i saved into the localstorage else no run
@@ -56,8 +54,7 @@ export function getLogStatus(){
     }
 }
 export function updateInlogedUserFullName(){
-    //inlogedUserFullName = JSON.parse(window.localStorage.getItem("userData")).incommingUserData.tokenData.loginName;
-    inlogedUserFullName$.next(inlogedUserFullName);
+    if (updateInlogedUserFullName) inlogedUserFullName$.next(getTokenData(getLocalStorageData('token'), 'fullName'));
 }
 export function updateHeadName(headName){
     if(headName) headName$.next(headName);

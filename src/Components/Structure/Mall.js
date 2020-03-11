@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { headName$ } from '../GlobalProps.js';
+import { headName$ } from '../Storage.js';
 //import { ??? } from './Components/Structure/???.js';
 
 export let Header = () => {

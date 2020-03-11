@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { headName$ } from '../GlobalProps.js';
+import { headName$ } from '../Storage.js';
 
 export let Information = () => {
     //let [ appName, setAppName ] = useState('');   

@@ -3,10 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
 
-import { headName$ } from '../GlobalProps.js';
+import { headName$ } from '../Storage.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-//import { runLogInOut } from '../Data/LogInOut.js';
 import { runAppExtUrls } from '../Data/runAppUrls.js';
 
 import '../CSS/RegUser.css';

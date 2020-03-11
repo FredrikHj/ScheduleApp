@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { updateHeadName, getLogStatus, gotoPage$ } from './Components/GlobalProps.js';
+import { updateHeadName, getLogStatus, gotoPage$ } from './Components/Storage.js';
 
 import { Headbar } from './Components/Structure/Headbar.js';
 import { FormAdd } from './Components/Structure/FormAdd.js';

@@ -5,9 +5,8 @@ import {Helmet} from "react-helmet";
 
 import Spinner from '../Data/Spinner.js';
 
-import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../GlobalProps.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../Storage.js';
 import '../CSS/FormAdd.css';
-//import { runLogInOut } from '../Data/LogInOut.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { runAppExtUrls } from './runAppUrls.js/index.js.js';
 

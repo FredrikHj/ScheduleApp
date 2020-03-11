@@ -6,7 +6,7 @@ import { axiosPost } from './Components/Data/Axios.js';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, returningUserData$, getLogStatus, updateGotoPage, updateSavedSQLData} from './Components/GlobalProps.js';
+import { headName$, userData$, getLogStatus, updateGotoPage, updateSavedSQLData} from './Components/Storage.js';
 
 import { log } from 'util';
 
@@ -35,7 +35,7 @@ export let LogedOut = () => {
             //console.log(headName);
             setAppName(headName);
         });
-        returningUserData$.subscribe((returningUserDispalyingObj) => {
+        userData$.subscribe((returningUserDispalyingObj) => {
             //console.log(returningUserDispalyingObj);
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);

@@ -8,13 +8,9 @@ import Spinner from './Components/Data/Spinner.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
 import { axiosPost } from './Components/Data/Axios.js';
 
-
-//import { LogInOut } from './LogInOut.js';
-
-//import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedOut } from './LogedOut.js';
 import axios from 'axios';
-import { headName$, updateInlogedUserFullName, inlogedUserFullName$, updateLocalstorage, updateGotoPage } from './Components/GlobalProps.js';
+import { headName$, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$, updateGotoPage } from './Components/Storage.js';
 
 import { log } from 'util';
 
@@ -39,16 +35,11 @@ export let LogedIn = (props) => {
         }, 1000);
     }, []);
     let runLogOut = (e) => {
-        updateGotoPage('LogOut');
         // Gets the element
         let targetBtnId = e.target.id;     
-        updateLocalstorage({
-            responsType: null,
-            logInMess: null, 
-            incommingUserData: {
-                loginName: null
-            }
-        });
+        updateGotoPage(targetBtnId);
+
+        updateLocalstorage(window.localStorage.clear('loginData'));
         //axiosPost('', targetBtnId, '');
     }
     return (

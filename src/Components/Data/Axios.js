@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { updateSavedSQLData, updateUserData, updateGotoPage } from '../GlobalProps.js';
+import { updateSavedSQLData, updateUserData, updateGotoPage } from '../Storage.js';
 import { setTimeout } from 'timers';
 
 let savedSQLDataArr = [];
@@ -17,6 +17,7 @@ export let axiosGet = (getType) => {
     // Get the user inloged User and send into the backend for getting the correct user records 
     
     axios.get(backendURL + type).then(response => {
+    console.log("axiosGet -> response", response)
         let incommingSQLRes = []
         /* Store the incomming API data in a variables - 
         Note that the data structure deppending on the conditions
@@ -25,7 +26,7 @@ export let axiosGet = (getType) => {
         if (response.status === 200 && getType === 'userSpec') incommingSQLRes = response.data;
          //console.log(incommingSQLRes);
         /*  If incomming status of 200 = OK
-            Data i push into a arry too  GlobalProps
+            Data i push into a arry too  Storage
             The array is holding the data until the webbbrowser is closed 
           
         Default get
