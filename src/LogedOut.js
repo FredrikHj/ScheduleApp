@@ -12,7 +12,7 @@ import { log } from 'util';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedIn } from './LogedIn.js';
-import { runAppExtUrls } from './Components/Data/runAppUrls.js';
+import { runAppUrls } from './Components/Data/runAppUrls.js';
 
 import { nfapply } from 'q';
 import { setTimeout } from 'timers';
@@ -28,7 +28,7 @@ export let LogedOut = () => {
     const [ userPwdStr, updateUserPwdStr ] = useState(null);
     
     useEffect(() => {
-        setAppUrl(runAppExtUrls());
+        setAppUrl(runAppUrls());
         //console.log('ecsfv');
         
         headName$.subscribe((headName) => {

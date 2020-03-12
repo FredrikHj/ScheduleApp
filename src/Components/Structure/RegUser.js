@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 import { headName$ } from '../Storage.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { runAppExtUrls } from '../Data/runAppUrls.js';
+import { runAppUrls } from '../Data/runAppUrls.js';
 
 import '../CSS/RegUser.css';
 
@@ -22,7 +22,7 @@ export let UserReg = (props) => {
     let [ userPwd, setUserPWD ] = useState('');
 
     useEffect(() => {
-        setAppUrl(runAppExtUrls());
+        setAppUrl(runAppUrls());
         headName$.subscribe((headName) => {
             //console.log(headName);
             setAppName(headName);

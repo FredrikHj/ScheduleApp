@@ -11,7 +11,7 @@ import { log } from 'util';
 import { LogedOut } from '../../LogedOut.js';
 import { LogedIn } from '../../LogedIn.js';
 
-import { runAppExtUrls } from '../Data/runAppUrls.js';
+import { runAppUrls } from '../Data/runAppUrls.js';
 
 import { nfapply } from 'q';
 
@@ -27,7 +27,7 @@ export let Headbar = () => {
     useEffect(() => {
         console.log('Headbar inne');
         
-        setAppUrl(runAppExtUrls());
+        setAppUrl(runAppUrls());
         userData$.subscribe((userDispalyingObj) => {
             //console.log(returningUserDispalyingObj);
             setInlogStatus(userDispalyingObj.responsType);

@@ -8,7 +8,7 @@ import Spinner from '../Data/Spinner.js';
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../Storage.js';
 import '../CSS/FormAdd.css';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { runAppExtUrls } from '../Data/runAppUrls.js';
+import { runAppUrls } from '../Data/runAppUrls.js';
 
 export let FormAdd = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
@@ -30,7 +30,7 @@ export let FormAdd = (props) => {
     let [ contentStr, updateContentStr ] = useState('');
 
     useEffect(() => {
-        setAppUrl(runAppExtUrls());
+        setAppUrl(runAppUrls());
         axiosGet('userSpec');
         headName$.subscribe((headName) => {
             //console.log(headName);

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import { incommingSQLDataArr$ } from '../Storage.js';
+import {getLocalStorageData} from '../Data/LocalStorage';
 
 import Spinner from '../Data/Spinner.js';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
-import { runAppIntUrls } from '../Data/runAppUrls.js';
+import { runAppUrls } from '../Data/runAppUrls.js';
 import '../CSS/SQLTable.css';
 
 import axios from 'axios';
@@ -16,6 +17,7 @@ export let HeadContents = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
+    const appUrl = runAppUrls();
 
     let [ addForm, setAddForm ] = useState(true);
     //console.log(incommingNewSQLData);
@@ -40,10 +42,9 @@ export let HeadContents = () => {
 
         // Run default SQL list
         axiosUntilGettingData.then((result) => {
-            let getRedirected = runAppIntUrls().pathname;
-            if (getRedirected === '/') axiosGet('default');
-            if (getRedirected === '/Login') axiosGet('userSpec');
-
+            if (appUrl === '/') axiosGet('default');
+            if (appUrl === '/Login') axiosGet('userSpec', getLocalStorageData('token'));
+            
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
@@ -52,18 +53,20 @@ export let HeadContents = () => {
         getSQLData();
         
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
+            console.log("HeadContents -> SQLDataArr", SQLDataArr)
             // It can handle the data an perform its task regardless the data infrastructure 
             
             if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
             if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
-     },[]); 
+    },[]); 
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
-
+    console.log("getSQLData -> getRedirected", appUrl)
+    
     return (
         <main className="body__contents">
             <SearchBar/>
@@ -100,7 +103,7 @@ export let HeadContents = () => {
                         :   
                             <>
                                 <tr><td>
-                                    <Spinner str={'Data laddas'}/>
+                                    <Spinner str={'Tabellen laddas'}/>
                                 </td></tr>
                             </>
                         }

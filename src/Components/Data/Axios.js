@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { updateSavedSQLData, updateUserData, updateGotoPage } from '../Storage.js';
 import { setTimeout } from 'timers';
@@ -7,16 +6,18 @@ let savedSQLDataArr = [];
 //let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
-export let axiosGet = (getType) => {
-    let type = '';
+export let axiosGet = (getType, tokenStr) => {
+    console.log("axiosGet -> tokenStr", tokenStr)
+    let params = '';
+
     // Type of post method
-    if (getType === 'default') type = '/SQLData';
-    if (getType === 'userSpec') type = `/SQLData/${ 'fredde' }`;
-    console.log(type);
+    if (getType === 'default') params = '/SQLData';
+    if (getType === 'userSpec') params = `/SQLData/${ 'fredde' }/${tokenStr}`;
+    
     
     // Get the user inloged User and send into the backend for getting the correct user records 
     
-    axios.get(backendURL + type).then(response => {
+    axios.get(backendURL + params).then(response => {
     console.log("axiosGet -> response", response)
         let incommingSQLRes = []
         /* Store the incomming API data in a variables - 

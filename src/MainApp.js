@@ -7,7 +7,7 @@ import { updateHeadName, getLogStatus, gotoPage$ } from './Components/Storage.js
 import { Headbar } from './Components/Structure/Headbar.js';
 import { FormAdd } from './Components/Structure/FormAdd.js';
 import { UserReg } from './Components/Structure/RegUser.js';
-import { runAppExtUrls } from './Components/Data/runAppUrls.js';
+import { runAppUrls } from './Components/Data/runAppUrls.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
 import { lastOfType } from 'glamor';
 updateHeadName('Årsklockan');
@@ -20,7 +20,7 @@ let MainApp = () => {
     gotoPage$.subscribe((gotoPage) => {
       updateRedirectToPage(gotoPage);
     });
-    setAppUrl(runAppExtUrls());
+    setAppUrl(runAppUrls());
     
   },[]);
   //console.log(getLogStatus());

@@ -14,7 +14,7 @@ import { headName$, updateInlogedUserFullName, updateLocalstorage, inlogedUserFu
 
 import { log } from 'util';
 
-import { runAppExtUrls } from './Components/Data/runAppUrls.js';
+import { runAppUrls } from './Components/Data/runAppUrls.js';
 
 export let LogedIn = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
@@ -22,7 +22,7 @@ export let LogedIn = (props) => {
     let [ appName, setAppName ] = useState('');   
 
     useEffect(() => {
-        setAppUrl(runAppExtUrls());
+        setAppUrl(runAppUrls());
         headName$.subscribe((headName) => {
             //console.log(headName);
             setAppName(headName);

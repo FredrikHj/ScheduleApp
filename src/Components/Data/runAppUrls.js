@@ -1,7 +1,7 @@
-export let runAppExtUrls = () => {
+export let runAppUrls = () => {
   let localPubUrl = '';
   let appUrl = window.location;
-  console.log("runAppExtUrls -> appUrl", appUrl.pathname)
+  console.log("runAppUrls -> appUrl", appUrl.pathname)
 
   
   ////console.log(appUrl.pathname.split('/')[1]);
@@ -16,9 +16,4 @@ export let runAppExtUrls = () => {
   //console.log(localPubUrl);
   
   return localPubUrl;
-}
-export let runAppIntUrls = () => {
-  let appUrl = window.location;  
-  console.log("runAppIntUrls -> appUrl", appUrl.pathname)
-  return appUrl;
 }

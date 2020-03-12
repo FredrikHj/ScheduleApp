@@ -3,7 +3,7 @@ import '../CSS/Spinner.scss';
 export let Spinner = (props) => {
     return(
         <>
-            <div className="spinner spinner-dark"></div>
+            { props.str } <span className="spinner spinner-dark"></span>
         </>
     );
 }
