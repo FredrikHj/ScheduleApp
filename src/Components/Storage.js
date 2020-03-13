@@ -64,6 +64,7 @@ export function updateSavedSQLData(incommingSQLDataArr){
     }
 }
 export function updateGotoPage(gotoPage){
+console.log("updateGotoPage -> gotoPage", gotoPage)
     
     if(gotoPage) {
         gotoPage$.next(gotoPage);

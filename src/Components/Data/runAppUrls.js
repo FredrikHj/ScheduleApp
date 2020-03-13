@@ -1,6 +1,7 @@
 export let runAppUrls = () => {
   let localPubUrl = '';
   let appUrl = window.location;
+  console.log("runAppUrls -> appUrl", appUrl)
   
   ////console.log(appUrl.pathname.split('/')[1]);
   

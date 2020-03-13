@@ -34,32 +34,31 @@ export let Headbar = () => {
             setInlogMess(userDispalyingObj.logInMess);
         });
         gotoPage$.subscribe((gotoPage) => {
-            //console.log(gotoPage);
+            console.log(gotoPage);
             updateGotoIntoPage(gotoPage);
         });
 /*         let getGotoPage = JSON.parse(window.localStorage.getItem("appData")).responsType;
         updateGotoPage(getGotoPage);
  */        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
-    }, [gotoPage$.value]);
+    }, [gotoIntoPage]);
+    console.log("Headbar -> gotoIntoPage", gotoIntoPage)
     console.log(gotoPage$.value);
-    
         return (
-            <>  
-
-            <header>
-                <section className="headbar__headContainer">
-                    <p className="headContainer__headline">{ appName }</p>
-                    <section className="headContainer__userLogInOut">
-                        <Route exact path={`${ appUrl }`} component={ LogedOut } />
-                        <Route exact path={`${appUrl}Login`} component={ LogedIn } />
-                            {(gotoIntoPage === 'LogIn') ? <Redirect to={`${appUrl}LogIn`}/> : null}
-                    </section> 
-                    {/* <Link to={ `${ appUrl }/HelpContact`} className="askMarkLink"> */}
-                        <i class="material-icons askMarkMove">contact_support</i>
-                    {/* </Link> */}
-                </section>
-                    {/* <img src="../Data/Img/baseline_contact_support_blacBigg.png" alt="Hjälp och kontakt"/>*/}                
-            </header>
-        </>
+            <>
+                <header>
+                    <section className="headbar__headContainer">
+                        <p className="headContainer__headline">{ appName }</p>
+                        <section className="headContainer__userLogInOut">
+                            <Route exact path={`${ appUrl }`} component={ LogedOut } />
+                            <Route exact path={`${appUrl}Login`} component={ LogedIn } />
+                                {(gotoIntoPage === 'Login') ? <Redirect to={`${appUrl}Login`}/> : null}
+                        </section> 
+                        {/* <Link to={ `${ appUrl }/HelpContact`} className="askMarkLink"> */}
+                            <i class="material-icons askMarkMove">contact_support</i>
+                        {/* </Link> */}
+                    </section>
+                        {/* <img src="../Data/Img/baseline_contact_support_blacBigg.png" alt="Hjälp och kontakt"/>*/}                
+                </header>
+            </>
     );
 }

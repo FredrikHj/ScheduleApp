@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { updateSavedSQLData, updateUserData, updateGotoPage } from '../Storage.js';
 import { setTimeout } from 'timers';
+import { log } from 'util';
 
 let savedSQLDataArr = [];
 //let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getType, tokenStr) => {
+    console.log("axiosGet -> tokenStr", tokenStr)
     let params = '';
 
     // Type of post method
@@ -67,28 +69,25 @@ export let axiosPost = (postType, login, bodyData) => {
     
     axios.post(
         `${backendURL}/SQLData/${ type }`
-        , sendToSqlBackend ).
-    then(response => {
-    console.log("axiosPost -> response", response)
-        if (postType === 'Login'){
-            // Incomming userdata. T
-            
-            let logedInUserInfoObj = {
-                responsType: response.status,
-                logInMess: response.statusText, 
-                token: response.data,
-                //getTokenData(response.data),
-            };
-            //;
-            
-            //Send the incomming data for displaying the user login status
-            updateUserData(logedInUserInfoObj);
+        , sendToSqlBackend ).then(response => {
+            console.log("axiosPost -> response", response)
+            if (postType === 'Login'){
+                // Incomming userdata. T
+                
+                let logedInUserInfoObj = {
+                    responsType: response.status,
+                    logInMess: response.statusText, 
+                    token: response.data,
+                    //getTokenData(response.data),
+                };
+                //;
+                
+                //Send the incomming data for displaying the user login status
+                updateUserData(logedInUserInfoObj);
 
-            if (response.status === 200) updateGotoPage(login);
-            //;
-        }
-    }).
-    catch(error => {
-        ////;
-    });
+                if (response.status === 200) updateGotoPage(login);
+            }
+        }).catch(error => {
+            ////;
+        });
 }
