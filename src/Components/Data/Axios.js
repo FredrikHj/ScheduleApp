@@ -7,7 +7,6 @@ let savedSQLDataArr = [];
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
 export let axiosGet = (getType, tokenStr) => {
-    console.log("axiosGet -> tokenStr", tokenStr)
     let params = '';
 
     // Type of post method
@@ -25,7 +24,7 @@ export let axiosGet = (getType, tokenStr) => {
         */
         if (response.status === 200 && getType === 'default') incommingSQLRes = response.data[0];
         if (response.status === 200 && getType === 'userSpec') incommingSQLRes = response.data;
-         //console.log(incommingSQLRes);
+         //;
         /*  If incomming status of 200 = OK
             Data i push into a arry too  Storage
             The array is holding the data until the webbbrowser is closed 
@@ -46,7 +45,7 @@ export let axiosGet = (getType, tokenStr) => {
         }
     }).
     catch(error => {
-        ////console.log(error.response);
+        ////;
     });
 }
 let getUserId = () => {
@@ -54,12 +53,12 @@ let getUserId = () => {
     return getUserId;
 }
 export let axiosPost = (postType, login, bodyData) => {  
-    //console.log(postType);
+    //;
     let type = '';
     let sendToSqlBackend = {
         bodyData,
     };
-    ////console.log(sendToSqlBackend);
+    ////;
     // Type of post method
     if (postType === 'Login') type = 'Login';
     if (postType === 'filter') type = 'filter';
@@ -70,7 +69,7 @@ export let axiosPost = (postType, login, bodyData) => {
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).
     then(response => {
-    console.log("axiosPost -> response", response);        
+    console.log("axiosPost -> response", response)
         if (postType === 'Login'){
             // Incomming userdata. T
             
@@ -80,17 +79,16 @@ export let axiosPost = (postType, login, bodyData) => {
                 token: response.data,
                 //getTokenData(response.data),
             };
-            console.log("axiosPost -> logedInUserInfoObj", logedInUserInfoObj.tokenData)
-            //console.log(login);
+            //;
             
             //Send the incomming data for displaying the user login status
             updateUserData(logedInUserInfoObj);
 
             if (response.status === 200) updateGotoPage(login);
-            //console.log(logedInUserInfoObj);
+            //;
         }
     }).
     catch(error => {
-        ////console.log(error.response);
+        ////;
     });
 }

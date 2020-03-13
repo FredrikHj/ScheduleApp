@@ -15,16 +15,16 @@ import { log } from 'util';
 
 export let HeadContents = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-    console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     const appUrl = runAppUrls();
 
     let [ addForm, setAddForm ] = useState(true);
-    //console.log(incommingNewSQLData);
+    //;
     let ifSQLData;
     let countGetMethod = 1;
     let getSQLData = () => {
-        console.log('run');
+
+        
         let axiosUntilGettingData = new Promise((success, error) => {
             if (countGetMethod === 1) {
                 success();
@@ -35,16 +35,20 @@ export let HeadContents = () => {
                     updateErroLoadingSQLData(true)
                 }, 1000);
             }
-            //console.log(countGetMethod);
+            //;
             
             //else error('Kunde inte ladda datan :(');
         });
 
         // Run default SQL list
         axiosUntilGettingData.then((result) => {
-            if (appUrl === '/') axiosGet('default');
-            if (appUrl === '/Login') axiosGet('userSpec', getLocalStorageData('token'));
+            console.log("getSQLData -> appUrl", appUrl)
             
+            if (appUrl === '/') axiosGet('default');
+            if (appUrl === '/Login') {
+                console.log("getSQLData -> getLocalStorageData('token')", getLocalStorageData('token'))
+                axiosGet('userSpec', getLocalStorageData('token'));
+            }
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
@@ -53,7 +57,6 @@ export let HeadContents = () => {
         getSQLData();
         
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            console.log("HeadContents -> SQLDataArr", SQLDataArr)
             // It can handle the data an perform its task regardless the data infrastructure 
             
             if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
@@ -65,7 +68,6 @@ export let HeadContents = () => {
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
-    console.log("getSQLData -> getRedirected", appUrl)
     
     return (
         <main className="body__contents">

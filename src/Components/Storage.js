@@ -23,14 +23,12 @@ export const LocalStorage$ = new BehaviorSubject('');
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
 export function updateUserData(loginData){
-    console.log("updateReturningUserData -> incommingObj", loginData)
     updateLocalstorage(loginData);
     if(loginData) {
         userData$.next(loginData);
     }
 }
 export let updateLocalstorage = (saveLoginData) =>{
-    console.log("updateLocalstorage -> saveIntoLocalStorage", saveLoginData)
     localStorage.setItem('loginData', JSON.stringify(saveLoginData));
 }
 
@@ -48,7 +46,7 @@ export function getLogStatus(){
             type: getStatusType,
             mess: getLogInMess
         };
-        //console.log(logInStatus);
+        //;
         
         return logInStatus;
     }
@@ -60,14 +58,12 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
-    console.log(incommingSQLDataArr.length);
     
     if(incommingSQLDataArr) {
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }
 export function updateGotoPage(gotoPage){
-    console.log(gotoPage);
     
     if(gotoPage) {
         gotoPage$.next(gotoPage);
