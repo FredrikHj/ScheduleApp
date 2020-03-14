@@ -11,7 +11,7 @@ import { log } from 'util';
 import { LogedOut } from '../../LogedOut.js';
 import { LogedIn } from '../../LogedIn.js';
 
-import { runAppUrls } from '../Data/runAppUrls.js';
+import { localPubAppUrls } from '../Data/runAppUrls.js';
 
 import { nfapply } from 'q';
 
@@ -27,7 +27,7 @@ export let Headbar = () => {
     useEffect(() => {
         console.log('Headbar inne');
         
-        setAppUrl(runAppUrls());
+        setAppUrl(localPubAppUrls());
         userData$.subscribe((userDispalyingObj) => {
             //console.log(returningUserDispalyingObj);
             setInlogStatus(userDispalyingObj.responsType);
@@ -41,8 +41,9 @@ export let Headbar = () => {
         updateGotoPage(getGotoPage);
  */        //if (gotoPage === 'LogedOut') return <Redirect to={`${ appUrl }LogedOut`} />;
     }, [gotoIntoPage]);
+    console.log("Headbar -> appUrl", appUrl)
     console.log("Headbar -> gotoIntoPage", gotoIntoPage)
-    console.log(gotoPage$.value);
+
         return (
             <>
                 <header>
@@ -51,7 +52,7 @@ export let Headbar = () => {
                         <section className="headContainer__userLogInOut">
                             <Route exact path={`${ appUrl }`} component={ LogedOut } />
                             <Route exact path={`${appUrl}Login`} component={ LogedIn } />
-                                {(gotoIntoPage === 'Login') ? <Redirect to={`${appUrl}Login`}/> : null}
+                                {(gotoIntoPage === 'login') ? <Redirect to={`${appUrl}Login`}/> : null}
                         </section> 
                         {/* <Link to={ `${ appUrl }/HelpContact`} className="askMarkLink"> */}
                             <i class="material-icons askMarkMove">contact_support</i>

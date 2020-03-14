@@ -7,7 +7,7 @@ import { updateHeadName, getLogStatus, gotoPage$ } from './Components/Storage.js
 import { Headbar } from './Components/Structure/Headbar.js';
 import { FormAdd } from './Components/Structure/FormAdd.js';
 import { UserReg } from './Components/Structure/RegUser.js';
-import { runAppUrls } from './Components/Data/runAppUrls.js';
+import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
 import { lastOfType } from 'glamor';
 updateHeadName('Årsklockan');
@@ -20,7 +20,7 @@ let MainApp = () => {
     gotoPage$.subscribe((gotoPage) => {
       updateRedirectToPage(gotoPage);
     });
-    setAppUrl(runAppUrls());
+    setAppUrl(localPubAppUrls());
     
   },[]);
   //console.log(getLogStatus());
@@ -32,9 +32,9 @@ let MainApp = () => {
     <>
       <Router>
         <Headbar/>
-        <Route exact path={ appUrl } component={ HeadContents }/> 
         {redirectToPage === 'Login' && <Redirect to='/Login' />}
-          <Route exact path={ `${appUrl}Login` } component={ HeadContents }/>   
+        <Route exact path={ appUrl } component={ HeadContents }/> 
+        <Route exact path={ `${appUrl}Login` } component={ HeadContents }/>   
         <Route exact path={ `${appUrl}Add` } component={ FormAdd }/>
         <Route path={ `${appUrl}UserReg` } component={ UserReg }/>
       </Router>

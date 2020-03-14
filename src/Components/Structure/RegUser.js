@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 import { headName$ } from '../Storage.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { runAppUrls } from '../Data/runAppUrls.js';
+import { localPubAppUrls } from '../Data/runAppUrls.js';
 
 import '../CSS/RegUser.css';
 
@@ -22,7 +22,7 @@ export let UserReg = (props) => {
     let [ userPwd, setUserPWD ] = useState('');
 
     useEffect(() => {
-        setAppUrl(runAppUrls());
+        setAppUrl(localPubAppUrls());
         headName$.subscribe((headName) => {
             //console.log(headName);
             setAppName(headName);
@@ -85,9 +85,9 @@ export let UserReg = (props) => {
                         <input type="text" id="userPwd" data-type="userPwd" onChange={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
-                        <input type="submit" className="regContainer__submitBtn" value="" onClick={ sendUserReg } id="LogIn"/>
+                        <input type="submit" className="regContainer__submitBtn" value="" onClick={ sendUserReg } id="login"/>
                         <Link to={ appUrl } className="btnContainer__inputHeadline">
-                            <p className="regContainer__headline" onClick={ sendUserReg } id="LogIn">Registrera</p>
+                            <p className="regContainer__headline" onClick={ sendUserReg } id="Login">Registrera</p>
                         </Link>
                     </div>
                 </form>

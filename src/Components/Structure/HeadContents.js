@@ -7,7 +7,7 @@ import {getLocalStorageData} from '../Data/LocalStorage';
 import Spinner from '../Data/Spinner.js';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
-import { runAppUrls } from '../Data/runAppUrls.js';
+import { correctRoutes } from '../Data/runAppUrls.js';
 import '../CSS/SQLTable.css';
 
 import axios from 'axios';
@@ -16,12 +16,27 @@ import { log } from 'util';
 export let HeadContents = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
-    const appUrl = runAppUrls();
+    let [ routes, updateRoutes ] = useState('');
+
+
+    //const appUrl = 
 
     let [ addForm, setAddForm ] = useState(true);
     //;
     let ifSQLData;
     let countGetMethod = 1;
+    
+    useEffect(() => {
+        updateRoutes(correctRoutes());
+        getSQLData();
+        
+        incommingSQLDataArr$.subscribe((SQLDataArr) => {
+            // It can handle the data an perform its task regardless the data infrastructure 
+            
+            if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
+            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
+        });
+    },[routes]); 
     let getSQLData = () => {
 
         
@@ -41,28 +56,14 @@ export let HeadContents = () => {
         });
 
         // Run default SQL list
-        axiosUntilGettingData.then((result) => {
-            console.log("getSQLData -> appUrl", appUrl)
-            
-            if (appUrl === '/') axiosGet('default');
-            if (appUrl === '/Login') {
-                console.log("getSQLData -> getLocalStorageData('token')", getLocalStorageData('token'))
-                axiosGet('userSpec', getLocalStorageData('token'));
-            }
+        axiosUntilGettingData.then((result) => {            
+            if (routes === '/') axiosGet('default', '');
+            if (routes === '/Login' && getLocalStorageData('token')) axiosGet('userSpec', getLocalStorageData('token'));
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
     }
-    useEffect(() => {
-        getSQLData();
-        
-        incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            // It can handle the data an perform its task regardless the data infrastructure 
-            
-            if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
-            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
-        });
-    },[]); 
+  
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);

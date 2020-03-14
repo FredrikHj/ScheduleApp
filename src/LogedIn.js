@@ -14,7 +14,7 @@ import { headName$, updateInlogedUserFullName, updateLocalstorage, inlogedUserFu
 
 import { log } from 'util';
 
-import { runAppUrls } from './Components/Data/runAppUrls.js';
+import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 
 export let LogedIn = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
@@ -22,7 +22,7 @@ export let LogedIn = (props) => {
     let [ appName, setAppName ] = useState('');   
 
     useEffect(() => {
-        setAppUrl(runAppUrls());
+        setAppUrl(localPubAppUrls());
         headName$.subscribe((headName) => {
             //console.log(headName);
             setAppName(headName);
@@ -52,7 +52,7 @@ export let LogedIn = (props) => {
             <p className="logInOut__logedInUser">
                 {(inlogedUser === '' ) 
                 ? <>
-                    Du loggas in ...
+                    Du Authentiseras ...
                     <div className="logInSpinnerMove"> <Spinner/></div>
                     </>
                 : `Välkommen in ${ inlogedUser }`
@@ -60,9 +60,9 @@ export let LogedIn = (props) => {
             </p>      
             <section className="logInOut__btnInContainer">
                 <div className="btnContainer__btnLogOut">
-                    <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="LogOut" value="" />
-                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogOut } id="LogOut">
-                        <p className="btnHeadline__logout" id="LogOut">Logga Ut</p>
+                    <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="Logout" value="" />
+                    <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogOut } id="Logout">
+                        <p className="btnHeadline__logout" id="Logout">Logga Ut</p>
                     </Link>   
                 </div>
                 <div className="btnContainer__btnAdd">

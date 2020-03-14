@@ -13,12 +13,12 @@ export let axiosGet = (getType, tokenStr) => {
 
     // Type of post method
     if (getType === 'default') params = '/SQLData';
-    if (getType === 'userSpec') params = `/SQLData/${ 'fredde' }/${tokenStr}`;
+    if (getType === 'userSpec') params = `/SQLData/${ 'fredde' }`;
     
     
     // Get the user inloged User and send into the backend for getting the correct user records 
     
-    axios.get(backendURL + params).then(response => {
+    axios.get(backendURL + params , {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
     console.log("axiosGet -> response", response)
         let incommingSQLRes = []
         /* Store the incomming API data in a variables - 

@@ -12,7 +12,7 @@ import { log } from 'util';
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedIn } from './LogedIn.js';
-import { runAppUrls } from './Components/Data/runAppUrls.js';
+import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 
 import { nfapply } from 'q';
 import { setTimeout } from 'timers';
@@ -28,7 +28,7 @@ export let LogedOut = () => {
     const [ userPwdStr, updateUserPwdStr ] = useState(null);
     
     useEffect(() => {
-        setAppUrl(runAppUrls());
+        setAppUrl(localPubAppUrls());
         //console.log('ecsfv');
         
         headName$.subscribe((headName) => {
@@ -109,8 +109,8 @@ export let LogedOut = () => {
                     <input type="text" className="password__input" onChange={ onChangeUserPwd } value={ userPwdStr } placeholder="..."/> 
                 </section>  
                 <section className="logInOut__btnOutContainer">
-                    <button className="btnContainer__submitBtn" onClick={ runLogIn } id="Login">
-                        <p className="btnHeadline" id='Login'  onClick={ runLogIn }>Logga In</p>
+                    <button className="btnContainer__submitBtn" onClick={ runLogIn } id="login">
+                        <p className="btnHeadline" id='login'  onClick={ runLogIn }>Logga In</p>
                     </button>
                         
                 </section>
@@ -122,7 +122,7 @@ export let LogedOut = () => {
                             : null
                         }
                     </p>
-                    <Link to={ `${ appUrl }UserReg` } className="logInOut__regLink" onClick={ runLogInOut } id="logIn">
+                    <Link to={ `${ appUrl }UserReg` } className="logInOut__regLink" onClick={ runLogInOut } id="login">
                         <p className="logInOut__regLink">Registrera ny användare</p>
                     </Link>   
                 </section>
