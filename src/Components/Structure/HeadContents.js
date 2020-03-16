@@ -17,10 +17,10 @@ export let HeadContents = () => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     let [ routes, updateRoutes ] = useState('');
-
-
+    
+    
     //const appUrl = 
-
+    
     let [ addForm, setAddForm ] = useState(true);
     //;
     let ifSQLData;
@@ -38,7 +38,7 @@ export let HeadContents = () => {
         });
     },[routes]); 
     let getSQLData = () => {
-
+        
         
         let axiosUntilGettingData = new Promise((success, error) => {
             if (countGetMethod === 1) {
@@ -54,7 +54,7 @@ export let HeadContents = () => {
             
             //else error('Kunde inte ladda datan :(');
         });
-
+        
         // Run default SQL list
         axiosUntilGettingData.then((result) => {            
             if (routes === '/') axiosGet('default', '');
@@ -63,13 +63,14 @@ export let HeadContents = () => {
             updateErroLoadingSQLData(result);
         })
     }
-  
+    
     let runAdmin = (e) => {
         let targetBtn = e.target.dataset.admin;
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
     
+    console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
     return (
         <main className="body__contents">
             <SearchBar/>

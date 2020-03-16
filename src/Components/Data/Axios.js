@@ -4,6 +4,7 @@ import { setTimeout } from 'timers';
 import { log } from 'util';
 
 let savedSQLDataArr = [];
+
 //let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployat by Heroku 
 let backendURL = 'http://localhost:3001'; // Just test the backend 
 
@@ -17,8 +18,8 @@ export let axiosGet = (getType, tokenStr) => {
     
     
     // Get the user inloged User and send into the backend for getting the correct user records 
-    
-    axios.get(backendURL + params , {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
+     
+    axios.get(backendURL + params, {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
     console.log("axiosGet -> response", response)
         let incommingSQLRes = []
         /* Store the incomming API data in a variables - 
