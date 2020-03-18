@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import { userData$, gotoPage$, getLogStatus } from '../Storage.js';
 
 import { log } from 'util';
-import { LogedOut } from '../../LogedOut.js';
+import { LogedOut } from '../../MainPage.js';
 import { LogedIn } from '../../LogedIn.js';
 
 import { localPubAppUrls } from '../Data/runAppUrls.js';

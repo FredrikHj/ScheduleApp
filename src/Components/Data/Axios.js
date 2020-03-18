@@ -10,23 +10,23 @@ let backendURL = 'http://localhost:3001'; // Just test the backend
 
 export let axiosGet = (getType, tokenStr) => {
     console.log("axiosGet -> tokenStr", tokenStr)
-    let params = '';
+    let routes = '';
 
     // Type of post method
-    if (getType === 'default') params = '/SQLData';
-    if (getType === 'userSpec') params = `/SQLData/${ 'fredde' }`;
+    if (getType === 'default') routes = '/SQLData';
+    if (getType === 'userSpec') routes = `/SQLData/${ 'fredde' }`;
     
     
     // Get the user inloged User and send into the backend for getting the correct user records 
      
-    axios.get(backendURL + params, {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
+    axios.get(backendURL + routes, {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
     console.log("axiosGet -> response", response)
         let incommingSQLRes = []
         /* Store the incomming API data in a variables - 
         Note that the data structure deppending on the conditions
         */
         if (response.status === 200 && getType === 'default') incommingSQLRes = response.data[0];
-        if (response.status === 200 && getType === 'userSpec') incommingSQLRes = response.data;
+        if (response.status === 200 && getType === 'userSpec') incommingSQLRes = response.data[0];
          //;
         /*  If incomming status of 200 = OK
             Data i push into a arry too  Storage

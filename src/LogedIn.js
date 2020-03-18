@@ -8,7 +8,7 @@ import Spinner from './Components/Data/Spinner.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
 import { axiosPost } from './Components/Data/Axios.js';
 
-import { LogedOut } from './LogedOut.js';
+import { LogedOut } from './MainPage.js';
 import axios from 'axios';
 import { headName$, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$, updateGotoPage } from './Components/Storage.js';
 
