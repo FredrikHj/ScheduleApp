@@ -55,7 +55,8 @@ let getUserId = () => {
     let getUserId = JSON.parse(window.localStorage.getItem("userData")).userId;
     return getUserId;
 }
-export let axiosPost = (postType, login, bodyData) => {  
+export let axiosPost = (postType, bodyData) => {  
+    console.log("axiosPost -> postType", postType)
     //;
     let type = '';
     let sendToSqlBackend = {
@@ -63,7 +64,7 @@ export let axiosPost = (postType, login, bodyData) => {
     };
     ////;
     // Type of post method
-    if (postType === 'Login') type = 'Login';
+    if (postType === 'Auth') type = 'Auth';
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') type = 'AddRecord';
     if (postType === 'userReg') type = 'UserReg';
@@ -72,7 +73,7 @@ export let axiosPost = (postType, login, bodyData) => {
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).then(response => {
             console.log("axiosPost -> response", response)
-            if (postType === 'Login'){
+            if (postType === 'Auth'){
                 // Incomming userdata. T
                 
                 let logedInUserInfoObj = {
@@ -86,7 +87,7 @@ export let axiosPost = (postType, login, bodyData) => {
                 //Send the incomming data for displaying the user login status
                 updateUserData(logedInUserInfoObj);
 
-                if (response.status === 200) updateGotoPage(login);
+                if (response.status === 200) updateGotoPage(postType);
             }
         }).catch(error => {
             ////;

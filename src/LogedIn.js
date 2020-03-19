@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import {Helmet} from "react-helmet";
 import './Components/CSS/Spinner.scss';
 import './Components/CSS/Generall.css';
-import Spinner from './Components/Data/Spinner.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
 import { axiosPost } from './Components/Data/Axios.js';
 
-import { LogedOut } from './MainPage.js';
+import { MainPage } from './MainPage.js';
 import axios from 'axios';
 import { headName$, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$, updateGotoPage } from './Components/Storage.js';
 
@@ -50,13 +49,13 @@ export let LogedIn = (props) => {
             </Helmet>
 
             <p className="logInOut__logedInUser">
-                {(inlogedUser === '' ) 
+{/*                 {(inlogedUser === '' ) 
                 ? <>
                     Du Authentiseras ...
                     <div className="logInSpinnerMove"> <Spinner/></div>
                     </>
                 : `Välkommen in ${ inlogedUser }`
-                }
+                } */}
             </p>      
             <section className="logInOut__btnInContainer">
                 <div className="btnContainer__btnLogOut">
@@ -66,8 +65,8 @@ export let LogedIn = (props) => {
                     </Link>   
                 </div>
                 <div className="btnContainer__btnAdd">
-                    <input type="submit" className="btnLogOut__input" onClick={ LogedOut.runLogInOut } id="add" value=""/>
-                    <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ LogedOut.runLogInOut } id="add">
+                    <input type="submit" className="btnLogOut__input" onClick={ MainPage.runLogInOut } id="add" value=""/>
+                    <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ MainPage.runLogInOut } id="add">
                         <p className="btnHeadline__add" id='add'>Lägg Till</p>
                     </Link>
                 </div>
