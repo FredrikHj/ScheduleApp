@@ -9,6 +9,7 @@ import { FormAdd } from './Components/Structure/FormAdd.js';
 import { UserReg } from './Components/Structure/RegUser.js';
 import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 import { HeadContents } from './Components/Structure/HeadContents.js';
+import {LogedIn} from './LogedIn';
 import { MainPage } from './MainPage.js';
 import { Auth } from './Components/Data/Authorization';
 
@@ -17,6 +18,7 @@ updateHeadName('Årsklockan');
 let MainApp = () => {
   let [ appUrl, setAppUrl ] = useState('');
   let [ redirectToPage, updateRedirectToPage ] = useState('');
+  console.log("MainApp -> redirectToPage", redirectToPage)
 
   useEffect(() => {
     gotoPage$.subscribe((gotoPage) => {
@@ -24,22 +26,21 @@ let MainApp = () => {
     });
     setAppUrl(localPubAppUrls());
     
-  },[]);
-  //console.log(getLogStatus());
+  },[redirectToPage]);
+
+  console.log("MainApp -> appUrl", redirectToPage)
+  console.log("MainApp -> appUrl", appUrl)
   
-  //console.log(getLogStatus().mess);
-  //console.log(appUrl);
-  
-  console.log("MainApp -> redirectToPage", redirectToPage)
   return (
     <>
       <Router>
-        
-        {redirectToPage === 'Login' && <Redirect to='/Login' />}
-
+          {redirectToPage === 'Auth' && <Redirect to='/Auth' />}  
+          {redirectToPage === 'Login' && <Redirect to='/Login' />} 
         <Route exact path={ appUrl } component={ MainPage } />
-        <Route exact path={ `${appUrl}Login`} component={ HeadContents }/>   
+        <Route exact path={ `${appUrl}Auth`} component={ Auth }/>   
+        <Route exact path={ `${appUrl}Login`} component={ LogedIn }/>  
         <Route exact path={ `${appUrl}Add`} component={ FormAdd }/>
+
         <Route path={ `${appUrl}UserReg`}  component={ UserReg }/>
       </Router>
       

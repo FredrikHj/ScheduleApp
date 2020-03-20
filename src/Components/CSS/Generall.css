@@ -16,10 +16,10 @@ body {
 }
 .logInSpinnerMove{
   position: relative;
-  top: -35px;
+  top: -40px;
   left: 300px;
 }
 .askMarkMove{
+  float: right;
   margin-top: -7px;
-  margin-left: 1422px;
 }

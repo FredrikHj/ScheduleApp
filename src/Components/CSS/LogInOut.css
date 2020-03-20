@@ -137,10 +137,11 @@
 }
 .logInOut__logedInUser{
   width: 472px;
-  height: 47px;
+  height: 0;
   margin-left: 0;
+  margin-bottom: 50px;  
+
   text-align: center;
-  line-height: 47px;
 }
 .logInOut__btnInContainer{
   margin-left: 494px;

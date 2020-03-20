@@ -29,7 +29,7 @@ export let HeadContents = () => {
     useEffect(() => {
         updateRoutes(correctRoutes());
         getSQLData();
-        
+
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
             // It can handle the data an perform its task regardless the data infrastructure 
             
@@ -70,7 +70,6 @@ export let HeadContents = () => {
         if (targetBtn === 'logOut') setAddForm(false);
     }
     
-    console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
     return (
         <main className="body__contents">
             <SearchBar/>

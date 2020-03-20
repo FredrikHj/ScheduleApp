@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
 import './Components/CSS/Generall.css';
-
+import { LoginForm } from './Components/Data/LoginForm'
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
-import { headName$, userData$, getLogStatus} from './Components/Storage.js';
-import { Headbar } from './Components/Structure/Headbar.js';
+import { headName$, userData$, getLogStatus, updateGotoPage} from './Components/Storage.js';
+import {axiosGet, axiosPost } from './Components/Data/Axios';
+
 
 import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedIn } from './LogedIn.js';
 import { localPubAppUrls } from './Components/Data/runAppUrls.js';
-import { log } from 'util';
-import { nfapply } from 'q';
-import { setTimeout } from 'timers';
+
 import { HeadContents } from './Components/Structure/HeadContents';
+import { Headbar } from './Components/Structure/Headbar.js';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
@@ -23,7 +23,8 @@ export let MainPage = () => {
     let [ appName, setAppName ] = useState('');
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
-
+    const [ userNameStr, updateUserNameStr ] = useState('');
+    const [ userPwdStr, updateUserPwdStr ] = useState('');
     let [ redirectToPage, updateRedirectToPage ] = useState('Auth');
 
     useEffect(() => {
@@ -39,10 +40,38 @@ export let MainPage = () => {
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
         
-    }, [redirectToPage, inlogStatus]);
+    }, []);
     //console.log(inlogStatus);
-    
+    let onChangeUserName = (e) => {
+        let targetUserName = e.target.value;
+        //;
+        
+        updateUserNameStr(targetUserName);
+        //formInputObj['userNameStr'] = targetUserName;
+    }
+    let onChangeUserPwd = (e) => {
+        let targetUserPwd = e.target.value;
+        //;
+        updateUserPwdStr(targetUserPwd);
+        //formInputObj['userPwdStr'] = targetUserPwd;
+    }
+    let runAuth = (e) => {
+        let userInformation = {};
+        // Gets the element
+        let targetBtnId = e.target.id; 
+  
+        /* Authorization with a token as response backValidate that the user is found as a valid user
+            if user do not find it will not login and shows an error mess instead
+        */
+        userInformation = {userName: userNameStr, userPassWord: userPwdStr}
+        
+        axiosPost(targetBtnId, userInformation);    
+        updateGotoPage(targetBtnId);
+        //if (inlogStatus === 203) return; 
+    }
+    let runReg = () =>{
 
+    }
 
     //LogedIn.runLogInOut();
     //console.log(LogedIn);
@@ -73,7 +102,20 @@ export let MainPage = () => {
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Utloggad`}</title>
             </Helmet>
-            <Headbar/>
+            <Headbar
+                appStatus={ 
+                    <LoginForm
+                        appUrl={appUrl}
+                        onChangeUserName={onChangeUserName}
+                        userNameStr={userNameStr}
+                        onChangeUserPwd={onChangeUserPwd}
+                        userPwdStr={userPwdStr}
+                        runAuth={runAuth}
+                        runReg={runReg}
+                        inlogStatus={inlogStatus}
+                        inlogMess={inlogMess}
+                />}    
+            />
             <HeadContents/>
         </>
 

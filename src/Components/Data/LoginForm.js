@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-export let LoginForm = (props) => {
+// React Router - ES6 modules
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
+export let LoginForm = (props) => {
+    const {appUrl, onChangeUserName, onChangeUserPwd, userNameStr, userPwdStr, runAuth, runReg, inlogStatus, inlogMess} = props;
     return(
-        <>
-            <section className="headContainer__userLogInOut">
+        <section className="headContainer__userLogInOut">
                 <section className="logInOut__usernameContainer">
                 <p className="logInOut__username logInOut__inputLabelFormat">Användarnamn</p>
                 <input type="text" className="username__input" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
@@ -15,8 +17,7 @@ export let LoginForm = (props) => {
             <section className="logInOut__btnOutContainer">
                 <button className="btnContainer__submitBtn" id="Auth" onClick={ runAuth }>
                     <p className="btnHeadline" id='Auth' onClick={ runAuth }>Logga In</p>
-                </button>
-                    
+                </button> 
             </section>
             <section className="logInOut__userInfo">
                 <p className="logInOut__loginErrorMess">
@@ -30,6 +31,6 @@ export let LoginForm = (props) => {
                     <p className="logInOut__regLink">Registrera ny användare</p>
                 </Link>   
             </section>
-        </>
+        </section>
     );
 }
