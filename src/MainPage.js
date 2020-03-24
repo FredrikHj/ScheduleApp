@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
-import './Components/CSS/Generall.css';
+import { routeName } from './Components/Data/RouteNames';
+
 import { LoginForm } from './Components/Data/LoginForm'
+import { HeadbarBtn } from './Components/Structure/HeadbarBtn';
+
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
@@ -13,8 +16,9 @@ import { runLogInOut } from './Components/Data/LogInOut.js';
 import { LogedIn } from './LogedIn.js';
 import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 
-import { HeadContents } from './Components/Structure/HeadContents';
 import { Headbar } from './Components/Structure/Headbar.js';
+import { HeadContents } from './Components/Structure/HeadContents';
+import { RegUser } from './Components/Structure/RegUser';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
@@ -39,6 +43,8 @@ export let MainPage = () => {
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
+        if(redirectToPage === '/') return <Redirect to='/' />
+        if(redirectToPage === 'RegUser') return <Redirect to='/Auth' />
         
     }, []);
     //console.log(inlogStatus);
@@ -114,9 +120,17 @@ export let MainPage = () => {
                         runReg={runReg}
                         inlogStatus={inlogStatus}
                         inlogMess={inlogMess}
-                />}    
+                    />
+                }
             />
-            <HeadContents/>
+{/*             <HeadbarBtn
+                btnName={ 'Logga In' }
+                id={ 'Auth' }
+                onClick={ runAuth }
+            /> */}
+            <Route exact path={appUrl} component={ HeadContents }/>
+            <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
+
         </>
 
     );

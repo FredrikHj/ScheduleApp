@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { HeadbarStyle } from './Components/Style/MainStyle';
+import { LogedInStyle } from './Components/Style/LogedInStyle';
+import { GenerallyStyle } from './Components/Style/MainStyle'
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
-import './Components/CSS/Spinner.scss';
-import './Components/CSS/Generall.css';
+import './Components/Style/Spinner.scss';
+
 import { HeadContents } from './Components/Structure/HeadContents';
 import { axiosPost } from './Components/Data/Axios';
 import { Headbar } from './Components/Structure/Headbar';
@@ -51,33 +54,41 @@ export let LogedIn = (props) => {
             </Helmet>
             <Headbar
                 appStatus={
-                    <section className="headContainer__userLogInOut" >
-                        <p className="logInOut__logedInUser">
-                        {(inlogedUser === '' ) 
-                            ? <>
-                                Välkommen in ...
-                                <div className="logInSpinnerMove"> <Spinner/></div>
-                              </>
-                            : `Välkommen in ${ inlogedUser }`
+                    <HeadbarStyle.statusContainer style={{marginTop: '-22px'}}>
+
+                        <LogedInStyle.logedInUser>
+                            {(inlogedUser === '' ) 
+                                ? <>
+                                    Välkommen in ...
+                                    <GenerallyStyle.logInSpinnerMove> <Spinner/></GenerallyStyle.logInSpinnerMove>
+                                </>
+                                : `Välkommen in ${ inlogedUser }`
                             }
-                        </p>      
+                        </LogedInStyle.logedInUser>      
                         <section className="logInOut__btnInContainer">
+
                             <div className="btnContainer__btnLogOut">
                                 <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="Logout" value="" />
                                 <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogOut } id="Logout">
                                     <p className="btnHeadline__logout" id="Logout">Logga Ut</p>
                                 </Link>   
                             </div>
+
+                        </section>
                             <div className="btnContainer__btnAdd">
                                 <input type="submit" className="btnLogOut__input" onClick={ MainPage.runLogInOut } id="add" value=""/>
                                 <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ MainPage.runLogInOut } id="add">
                                     <p className="btnHeadline__add" id='add'>Lägg Till</p>
                                 </Link>
                             </div>
-                        </section>
-                    </section>
+                    </HeadbarStyle.statusContainer>
                 }
             />
+{/*             <HeadbarBtn
+                btnName={ 'Logga Ut' }
+                id={ 'Logout' }
+                onClick={ runLogOut }
+            /> */}
             <HeadContents/>
         </>
     );

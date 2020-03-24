@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 import Spinner from '../Data/Spinner.js';
 
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQLDataArr$ } from '../Storage.js';
-import '../CSS/FormAdd.css';
+import '../Style/FormAdd.css';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
 

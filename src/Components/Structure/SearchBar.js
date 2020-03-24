@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { incommingSQLDataArr$ } from '../Storage.js';
-import '../CSS/SearchBar.css';
+import '../Style/SearchBar.css';
 
 
 let SQLStatementsObj = {};

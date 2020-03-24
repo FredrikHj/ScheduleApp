@@ -1,0 +1,92 @@
+.btnContainer__btnHeadline{
+  margin-left: 18px;
+  margin-right: 18px;
+  margin-top: 0px;
+  width: 105px;
+}
+.btnHeadline__logout{
+  display: inline-block;
+  position: relative;
+  width: 133px;
+  height: 32px;
+  left: 0px;
+  top: -50px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+.btnHeadline__add{
+  display: inline-block;
+  position: relative;
+  width: 133px;
+  height: 32px;
+  left: -137px;
+  top: -14px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+.btnHeadline__canceled{
+  display: inline-block;
+  position: relative;
+  width: 133px;
+  height: 32px;
+  left: 7px;
+  top: -48px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
+}
+.btnContainer__submitBtn{
+  margin-right: 108px;
+  margin-top: 29px;
+  margin-left: 0;
+  width: 141px;
+  height: 39px;
+  background: #AE0B05;
+  border-radius: 4px;
+}
+.logInOut__logedInUser{
+  width: 472px;
+  height: 0;
+  margin-left: 0;
+  margin-bottom: 50px;  
+  text-align: center;
+}
+.logInOut__btnInContainer{
+  margin-left: 494px;
+  width: 181px;
+  margin-top: -62px;
+}
+  .btnContainer__btnLogOut{
+  margin-left: 5px;
+  margin-top: 32px;
+}
+.btnContainer__btnAddCanceled{
+  margin-left: 13px;
+  margin-top: 19px;
+}
+.btnContainer__btnAdd{
+  margin-left: -253px;
+  margin-top: 3px;
+}
+.btnLogOut__input{
+  right: 108px;
+  margin-left: 0;
+  width: 141px;
+  height: 39px;
+  background: #AE0B05;
+  border-radius: 4px;
+}

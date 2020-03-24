@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../CSS/Headbar.css';
+import { GenerallyStyle, HeadbarStyle } from '../Style/MainStyle';
+
 import { axiosPost } from '../Data/Axios.js';
 
 // React Router - ES6 modules
@@ -43,13 +44,16 @@ export let Headbar = (props) => {
 
     return (
         <>
-            <header>
-                <section className="headbar__headContainer">
-                    <p className="headContainer__headline">{ appName }</p>
+            <HeadbarStyle.header>
+                <HeadbarStyle.headContainer>
+                    <HeadbarStyle.headline>{ appName }</HeadbarStyle.headline>
                     {appStatus}
-                    <i className="material-icons askMarkMove">contact_support</i>
-                </section> 
-            </header>
+                </HeadbarStyle.headContainer> 
+                    
+                    
+                    
+                    {/* <GenerallyStyle.askMarkMove><i className="material-icons">contact_support</i></GenerallyStyle.askMarkMove> */}
+            </HeadbarStyle.header>
         </>
     );
 }

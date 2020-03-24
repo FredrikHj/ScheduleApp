@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {GenerallyStyle } from '../Style/MainStyle'
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import { incommingSQLDataArr$ } from '../Storage.js';
@@ -8,7 +9,7 @@ import Spinner from '../Data/Spinner.js';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
 import { correctRoutes } from '../Data/runAppUrls.js';
-import '../CSS/SQLTable.css';
+import '../Style/SQLTable.css';
 
 import axios from 'axios';
 import { log } from 'util';
@@ -71,7 +72,7 @@ export let HeadContents = () => {
     }
     
     return (
-        <main className="body__contents">
+        <GenerallyStyle.body__contents>
             <SearchBar/>
             <section id="container__tableSchedule">
                 <table id="tableSchedule__body">
@@ -113,6 +114,6 @@ export let HeadContents = () => {
                     </tbody>
                 </table>
             </section>
-        </main>
+        </GenerallyStyle.body__contents>
     );
 }

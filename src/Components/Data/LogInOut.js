@@ -5,7 +5,7 @@ import { updateGotoPage, userData$, getLogStatus } from '../Storage.js';
 import { formInputObj } from '../../MainPage.js';
 import { axiosPost } from './Axios.js';
 
-import '../CSS/LogInOut.css';
+import '../Style/LogInOut.css';
 import { localPubAppUrls } from './runAppUrls.js';
 
 import { isArray } from 'util';

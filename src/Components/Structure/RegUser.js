@@ -8,11 +8,11 @@ import { headName$ } from '../Storage.js';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
 
-import '../CSS/RegUser.css';
+import '../Style/RegUser.css';
 
 let countRegUser = 0;
 
-export let UserReg = (props) => {
+export let RegUser = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');

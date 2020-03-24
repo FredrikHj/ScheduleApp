@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { GenerallyStyle, HeadbarStyle } from '../Style/MainStyle';
+
 import {Helmet} from "react-helmet";
 import { headName$, gotoPage$, updateGotoPage } from '../Storage.js';
 import Spinner from './Spinner.js';
@@ -28,7 +30,8 @@ export let Auth = () => {
         setTimeout(() => {
             updateGotoPage('Login');
         }, 1500)
-}
+    }
+    console.log("Auth -> token", token)
 
     return (
         <>
@@ -38,22 +41,13 @@ export let Auth = () => {
             </Helmet>
 
             <Headbar
-                appStatus={
-                    <section className="headContainer__userLogInOut" style={{marginTop: '-10px'}}>
-                        <p>
-                            {(token)
-                                ?   
-                                    <>
-                                        Du loggas in ... 
-                                        <div className="logInSpinnerMove"> {<Spinner/>}</div>
-                                        {runLogin()}
-                                    </>
-                                : null
-                            }
-                        </p>
-                    </section>
-                }
-                />
+               /*  appStatus={
+                    <HeadbarStyle.statusContainer style={{marginTop: '100px'}}>
+                        Du loggas in ...
+                        <GenerallyStyle.logInSpinnerMov> {<Spinner/>}</GenerallyStyle.logInSpinnerMov>
+                    </HeadbarStyle.statusContainer>
+                }*/
+                /> 
             <HeadContents/>
         </>
     );

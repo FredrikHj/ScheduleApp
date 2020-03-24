@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../CSS/Spinner.scss';
+import '../Style/Spinner.scss';
 export let Spinner = (props) => {
     return(
         <>
