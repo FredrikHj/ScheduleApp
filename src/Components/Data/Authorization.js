@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { GenerallyStyle, HeadbarStyle } from '../Style/MainStyle';
+import { GenerallyStyle } from '../Style/MainStyle';
+import { AuthStyle } from '../Style/AuthStyle';
 
 import {Helmet} from "react-helmet";
 import { headName$, gotoPage$, updateGotoPage } from '../Storage.js';
@@ -13,23 +14,23 @@ import {axiosGet, axiosPost } from './Axios';
 import { getLocalStorageData } from './LocalStorage';
 export let Auth = () => {
     const [ appName, setAppName ] = useState('');  
-    const [ redirectToPage, updateRedirectToPage ] = useState('');
+    //const [ redirectToPage, updateRedirectToPage ] = useState('');
     const [ token, updateToken ] = useState('');
     
     useEffect(() => {
-        updateToken(getLocalStorageData('token'));
-        gotoPage$.subscribe((gotoPage) => {
+        //updateToken(getLocalStorageData('token'));
+        /* gotoPage$.subscribe((gotoPage) => {
             updateRedirectToPage(gotoPage);
-        });
+        }); */
         
-    }, [token]);
+    }, []);
     console.log("Auth -> token", token);
     console.log(token !== ' ');
     
     let runLogin = () => {
         setTimeout(() => {
             updateGotoPage('Login');
-        }, 1500)
+        }, 500)
     }
     console.log("Auth -> token", token)
 
@@ -41,12 +42,13 @@ export let Auth = () => {
             </Helmet>
 
             <Headbar
-               /*  appStatus={
-                    <HeadbarStyle.statusContainer style={{marginTop: '100px'}}>
+                appStatus={
+                    <AuthStyle.statusContainer>
                         Du loggas in ...
-                        <GenerallyStyle.logInSpinnerMov> {<Spinner/>}</GenerallyStyle.logInSpinnerMov>
-                    </HeadbarStyle.statusContainer>
-                }*/
+                        <Spinner/>
+                        {runLogin()}
+                    </AuthStyle.statusContainer>
+                }
                 /> 
             <HeadContents/>
         </>

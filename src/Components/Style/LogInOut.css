@@ -5,19 +5,7 @@
   width: 105px;
 }
 .btnHeadline__logout{
-  display: inline-block;
-  position: relative;
-  width: 133px;
-  height: 32px;
-  left: 0px;
-  top: -50px;
-  text-align: center;
-  text-decoration: none;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  color: white;
+
 }
 .btnHeadline__add{
   display: inline-block;
@@ -83,10 +71,5 @@
   margin-top: 3px;
 }
 .btnLogOut__input{
-  right: 108px;
-  margin-left: 0;
-  width: 141px;
-  height: 39px;
-  background: #AE0B05;
-  border-radius: 4px;
+
 }

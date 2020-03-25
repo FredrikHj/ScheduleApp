@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
-// ============================== GenerallyStyle ==============================
+// ============================== LoginForm ==============================
 export let LoginFormStyle = {
+  statusContainer: styled.section`
+    width: 706px;
+    height: 75px;
+    margin-left: 770px;
+    margin-top: -67px;
+`,
   usernameContainer: styled.section`
     margin-left: 10px;
     margin-top: 30px;
@@ -42,7 +48,7 @@ export let LoginFormStyle = {
   `,
   btnSubmitContainer: styled.button`
     margin-right: 108px;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-left: 0;
     width: 141px;
     height: 39px;

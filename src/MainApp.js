@@ -29,6 +29,7 @@ let MainApp = () => {
   },[redirectToPage]);
   console.log("MainApp -> appUrl", appUrl)
   console.log("MainApp -> redirectToPage", redirectToPage)
+  console.log("MainApp -> appUrl + routeName.login", appUrl + routeName.login)
 
   return (
       <Router>

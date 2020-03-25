@@ -7,11 +7,6 @@ export let GenerallyStyle = {
     width: 1024px;
     margin-left: calc(50% - 512px);
   `,
-  logInSpinnerMove: styled.section`
-    position: relative;
-    top: -40px;
-    left: 300px;
-  `,
   askMarkMove: styled.section`
     float: right;
     margin-top: -7px;
@@ -41,11 +36,5 @@ export let HeadbarStyle = {
     font-size: 24px;
     line-height: 80px;
     color: #AE0B05;
-  `,
-  statusContainer: styled.section`
-    width: 706px;
-    height: 75px;
-    margin-left: 770px;
-    margin-top: -67px;
   `,
 }

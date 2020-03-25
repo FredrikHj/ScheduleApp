@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 export let LoginForm = (props) => {
     const {appUrl, onChangeUserName, onChangeUserPwd, userNameStr, userPwdStr, runAuth, runReg, inlogStatus, inlogMess} = props;
     return(
-        <HeadbarStyle.statusContainer>
+        <LoginFormStyle.statusContainer>
             <LoginFormStyle.usernameContainer>
                 <LoginFormStyle.labelFormatUsernamePassword>Användarnamn</LoginFormStyle.labelFormatUsernamePassword>
                 <LoginFormStyle.inputFormatUsernamePassword type="text" onChange={ onChangeUserName } value={ userNameStr } placeholder="..."/>
@@ -39,6 +39,6 @@ export let LoginForm = (props) => {
                     </Link>
                 </LoginFormStyle.regLink>
             </LoginFormStyle.userInfoContainer>
-        </HeadbarStyle.statusContainer>
+        </LoginFormStyle.statusContainer>
     );
 }

@@ -52,36 +52,35 @@ export let LogedIn = (props) => {
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Inloggad`}</title>
             </Helmet>
+
+{/*             Du loggas in ...
+                        <GenerallyStyle.logInSpinnerMove> {<Spinner/>}</GenerallyStyle.logInSpinnerMove>
+                        {runLogin()} */}
             <Headbar
                 appStatus={
-                    <HeadbarStyle.statusContainer style={{marginTop: '-22px'}}>
-
-                        <LogedInStyle.logedInUser>
+                    <>
+                        <LogedInStyle.statusContainer>
                             {(inlogedUser === '' ) 
                                 ? <>
-                                    Välkommen in ...
-                                    <GenerallyStyle.logInSpinnerMove> <Spinner/></GenerallyStyle.logInSpinnerMove>
-                                </>
+                                        Välkommen in ... <Spinner/>
+                                    </>
                                 : `Välkommen in ${ inlogedUser }`
                             }
-                        </LogedInStyle.logedInUser>      
-                        <section className="logInOut__btnInContainer">
+                            
+                        </LogedInStyle.statusContainer>
+                        <LogedInStyle.btnLogoutContainer>
+                            <LogedInStyle.btnSubmitContainer id="Logout" onClick={ runLogOut }>
+                                <LogedInStyle.btnHeadline id='Logout' onClick={ runLogOut }>Logga Ut</LogedInStyle.btnHeadline>
+                            </LogedInStyle.btnSubmitContainer> 
+                        </LogedInStyle.btnLogoutContainer>
 
-                            <div className="btnContainer__btnLogOut">
-                                <input type="submit" className="btnLogOut__input" onClick={ runLogOut } id="Logout" value="" />
-                                <Link to={ appUrl } className="btnContainer__inputHeadline" onClick={ runLogOut } id="Logout">
-                                    <p className="btnHeadline__logout" id="Logout">Logga Ut</p>
-                                </Link>   
-                            </div>
-
-                        </section>
-                            <div className="btnContainer__btnAdd">
-                                <input type="submit" className="btnLogOut__input" onClick={ MainPage.runLogInOut } id="add" value=""/>
-                                <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ MainPage.runLogInOut } id="add">
-                                    <p className="btnHeadline__add" id='add'>Lägg Till</p>
-                                </Link>
-                            </div>
-                    </HeadbarStyle.statusContainer>
+                                <div className="btnContainer__btnAdd">
+                                    <input type="submit" className="btnLogOut__input" onClick={ MainPage.runLogInOut } id="add" value=""/>
+                                    <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ MainPage.runLogInOut } id="add">
+                                        <p className="btnHeadline__add" id='add'>Lägg Till</p>
+                                    </Link>
+                                </div>
+                        </>
                 }
             />
 {/*             <HeadbarBtn
