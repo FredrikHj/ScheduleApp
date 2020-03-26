@@ -4,7 +4,7 @@ export let localPubAppUrls = () => {
   
   // Check if in local or pub mode 
   if (appUrlHostname === 'localhost') correctDomain = '/';
-  if (appUrlHostname === 'fredrikhj.github.io') correctDomain = '/ScheduleApp';
+  if (appUrlHostname === 'fredrikhj.github.io') correctDomain = '/ScheduleApp/';
  
   return correctDomain;
 }
