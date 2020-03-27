@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ScheduleApp/static/css/main.90f25918.chunk.css",
-    "main.js": "/ScheduleApp/static/js/main.ddcdf8ac.chunk.js",
-    "main.js.map": "/ScheduleApp/static/js/main.ddcdf8ac.chunk.js.map",
+    "main.js": "/ScheduleApp/static/js/main.d10cdf7d.chunk.js",
+    "main.js.map": "/ScheduleApp/static/js/main.d10cdf7d.chunk.js.map",
     "runtime-main.js": "/ScheduleApp/static/js/runtime-main.02ff3cb5.js",
     "runtime-main.js.map": "/ScheduleApp/static/js/runtime-main.02ff3cb5.js.map",
     "static/js/2.f24d3cf1.chunk.js": "/ScheduleApp/static/js/2.f24d3cf1.chunk.js",
     "static/js/2.f24d3cf1.chunk.js.map": "/ScheduleApp/static/js/2.f24d3cf1.chunk.js.map",
     "index.html": "/ScheduleApp/index.html",
-    "precache-manifest.958f7f2350753880129644842f1c6632.js": "/ScheduleApp/precache-manifest.958f7f2350753880129644842f1c6632.js",
+    "precache-manifest.cf04bbb98c0aa94eb8855b58ed9058f8.js": "/ScheduleApp/precache-manifest.cf04bbb98c0aa94eb8855b58ed9058f8.js",
     "service-worker.js": "/ScheduleApp/service-worker.js",
     "static/css/main.90f25918.chunk.css.map": "/ScheduleApp/static/css/main.90f25918.chunk.css.map",
     "static/js/2.f24d3cf1.chunk.js.LICENSE": "/ScheduleApp/static/js/2.f24d3cf1.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.02ff3cb5.js",
     "static/js/2.f24d3cf1.chunk.js",
     "static/css/main.90f25918.chunk.css",
-    "static/js/main.ddcdf8ac.chunk.js"
+    "static/js/main.d10cdf7d.chunk.js"
   ]
 }
