@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0366a7d58d892255b4dc61dbc0cad37e",
+    "revision": "f4bca1d0b81d6828d92dde86704a7a84",
     "url": "/ScheduleApp/index.html"
   },
   {
-    "revision": "c42a3a0d87968b42870d",
+    "revision": "88850ad8fac9749b9ae3",
     "url": "/ScheduleApp/static/css/main.90f25918.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ScheduleApp/static/js/2.f24d3cf1.chunk.js.LICENSE"
   },
   {
-    "revision": "c42a3a0d87968b42870d",
-    "url": "/ScheduleApp/static/js/main.f5516f35.chunk.js"
+    "revision": "88850ad8fac9749b9ae3",
+    "url": "/ScheduleApp/static/js/main.08be5dd9.chunk.js"
   },
   {
     "revision": "2e8c77fc6903606ef989",
