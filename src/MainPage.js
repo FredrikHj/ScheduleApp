@@ -123,11 +123,6 @@ export let MainPage = () => {
                     />
                 }
             />
-{/*             <HeadbarBtn
-                btnName={ 'Logga In' }
-                id={ 'Auth' }
-                onClick={ runAuth }
-            /> */}
             <Route exact path={appUrl} component={ HeadContents }/>
             <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
 

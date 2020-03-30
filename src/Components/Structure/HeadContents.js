@@ -4,17 +4,19 @@ import {GenerallyStyle } from '../Style/MainStyle'
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import { incommingSQLDataArr$ } from '../Storage.js';
 import {getLocalStorageData} from '../Data/LocalStorage';
+import { SubmitBtn } from '../Data/SubmitBtn';
 
-import Spinner from '../Data/Spinner.js';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
 import { correctRoutes } from '../Data/runAppUrls.js';
+import { TableContents } from './TableContents';
 import '../Style/SQLTable.css';
 
 import axios from 'axios';
 import { log } from 'util';
+import styled from 'styled-components';
 
-export let HeadContents = () => {
+export let HeadContents = (props) => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     let [ routes, updateRoutes ] = useState('');
@@ -26,6 +28,8 @@ export let HeadContents = () => {
     //;
     let ifSQLData;
     let countGetMethod = 1;
+    const {addRecordsBtn} = props;
+    console.log(addRecordsBtn);
     
     useEffect(() => {
         updateRoutes(correctRoutes());
@@ -56,10 +60,11 @@ export let HeadContents = () => {
             //else error('Kunde inte ladda datan :(');
         });
         
+        console.log("getSQLData -> routes", routes)
         // Run default SQL list
         axiosUntilGettingData.then((result) => {            
-            if (routes === '/') axiosGet('default', '');
-            if (routes === '/Login' && getLocalStorageData('token')) axiosGet('userSpec', getLocalStorageData('token'));
+            if(routes === '/' || routes === '/ScheduleApp/') axiosGet('default', '');
+            if (routes === '/Login' || routes === '/ScheduleApp/Login') axiosGet('userSpec', getLocalStorageData('token'));
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
@@ -70,48 +75,15 @@ export let HeadContents = () => {
         if (targetBtn === 'logIn') setAddForm(true);
         if (targetBtn === 'logOut') setAddForm(false);
     }
-    
+    console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
+
     return (
         <GenerallyStyle.body__contents>
             <SearchBar/>
             <section id="container__tableSchedule">
                 <table id="tableSchedule__body">
-                    <thead>
-                        <tr>
-                            <th>Datum</th>
-                            <th className="tableCol4">Akitvitet</th>
-                            <th>Status</th>
-                            <th>Berörda</th>
-                            <th>Typ</th>
-                            <th>Plats</th>
-                            <th className="tableCol9">Innehåll</th>
-                    </tr>
-                    </thead>
-                    <tbody id="tableSchedule__tBody">
-                        {(incommingNewSQLData.length !== 0) 
-                            ?
-                            incommingNewSQLData.map((sqlDataObj, rowCounter) => {
-                                
-                                return(
-                                    <tr key={ rowCounter }>
-                                        <td>{ sqlDataObj.date }</td>
-                                        <td className="tableCol4">{ sqlDataObj.activity }</td>
-                                        <td>{ sqlDataObj.state }</td>
-                                        <td>{ sqlDataObj.concerned }</td>
-                                        <td>{ sqlDataObj.type }</td>
-                                        <td>{ sqlDataObj.place }</td>
-                                        <td className="tableCol9">{ sqlDataObj.content }</td>
-                                    </tr>
-                                );
-                            })
-                        :   
-                            <>
-                                <tr><td>
-                                    <Spinner str={'Tabellen laddas'}/>
-                                </td></tr>
-                            </>
-                        }
-                    </tbody>
+                <TableContents
+                    incommingNewSQLData={ incommingNewSQLData }/>
                 </table>
             </section>
         </GenerallyStyle.body__contents>

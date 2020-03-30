@@ -4,9 +4,7 @@ import styled from 'styled-components';
 export let AuthStyle = {
   statusContainer: styled.section`
     width: 400px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: flex; nd;
     margin-left: 820px;
     margin-top: -8px;
   `,

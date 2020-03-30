@@ -11,6 +11,8 @@ import { HeadContents } from './Components/Structure/HeadContents';
 import { axiosPost } from './Components/Data/Axios';
 import { Headbar } from './Components/Structure/Headbar';
 import Spinner from './Components/Data/Spinner';
+import { SubmitBtn } from './Components/Data/SubmitBtn';
+import { specificBtnStyleLogout, specificBtnStyleAddRecords } from './Components/Style/SpecificStyleBtn';
 
 import { MainPage } from './MainPage.js';
 import axios from 'axios';
@@ -46,16 +48,17 @@ export let LogedIn = (props) => {
         updateLocalstorage(window.localStorage.clear('loginData'));
         //axiosPost('', targetBtnId, '');
     }
+    let runAddRecord = (e) => {
+        // Gets the element
+        let targetBtnId = e.target.id;     
+        updateGotoPage(targetBtnId);
+    }
     return (
         <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Inloggad`}</title>
             </Helmet>
-
-{/*             Du loggas in ...
-                        <GenerallyStyle.logInSpinnerMove> {<Spinner/>}</GenerallyStyle.logInSpinnerMove>
-                        {runLogin()} */}
             <Headbar
                 appStatus={
                     <>
@@ -66,29 +69,31 @@ export let LogedIn = (props) => {
                                     </>
                                 : `Välkommen in ${ inlogedUser }`
                             }
-                            
                         </LogedInStyle.statusContainer>
-                        <LogedInStyle.btnLogoutContainer>
-                            <LogedInStyle.btnSubmitContainer id="Logout" onClick={ runLogOut }>
-                                <LogedInStyle.btnHeadline id='Logout' onClick={ runLogOut }>Logga Ut</LogedInStyle.btnHeadline>
-                            </LogedInStyle.btnSubmitContainer> 
-                        </LogedInStyle.btnLogoutContainer>
-
-                                <div className="btnContainer__btnAdd">
-                                    <input type="submit" className="btnLogOut__input" onClick={ MainPage.runLogInOut } id="add" value=""/>
-                                    <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ MainPage.runLogInOut } id="add">
-                                        <p className="btnHeadline__add" id='add'>Lägg Till</p>
-                                    </Link>
-                                </div>
-                        </>
+                        <LogedInStyle.btnSubmitLogoutInTopUp>
+                            <SubmitBtn
+                                style={ specificBtnStyleLogout }
+                                name={ 'Logga Ut' }
+                                onClick={ runLogOut }
+                                id={ 'Logout' }
+                            />
+                        </LogedInStyle.btnSubmitLogoutInTopUp> 
+                        <SubmitBtn
+                            style={ specificBtnStyleAddRecords }
+                            name={ 'Lägga Till' }
+                            onClick={ runLogOut }
+                            id={ 'Logout' }
+                        />
+                    </>
                 }
-            />
-{/*             <HeadbarBtn
-                btnName={ 'Logga Ut' }
-                id={ 'Logout' }
-                onClick={ runLogOut }
-            /> */}
+            />                 
             <HeadContents/>
         </>
     );
 }
+/* <div className="btnContainer__btnAdd">
+    <input type="submit" className="btnLogOut__input" onClick={ MainPage.runLogInOut } id="add" value=""/>
+    <Link to={ `${ appUrl }/Add`} className="btnContainer__inputHeadline" onClick={ MainPage.runLogInOut } id="add">
+        <p className="btnHeadline__add" id='add'>Lägg Till</p>
+    </Link>
+</div> */

@@ -1,16 +1,19 @@
 export let localPubAppUrls = () => {
   let correctDomain = '';
-  let appUrlHostname = window.location.hostname;
+
+  let domainHostname = window.location.hostname;
+  let appUrlHostname = window.location.hash.split('')[1];
+  console.log("localPubAppUrls -> appUrlDomain", domainHostname)
+  console.log("localPubAppUrl -> appUrlHostname", appUrlHostname);
   
   // Check if in local or pub mode 
-  if (appUrlHostname === 'localhost') correctDomain = '/';
-  if (appUrlHostname === 'fredrikhj.github.io') correctDomain = '/ScheduleApp/';
+  if (domainHostname === 'localhost' || domainHostname === 'fredrikhj.github.io') correctDomain = '/'; 
  
   return correctDomain;
 }
 export let correctRoutes = () => {
   let correctRouteName = '';
-  let appUrlHostname = window.location.hostname;
+  //let appUrlHostname = window.location.hostname;
   let routeName = window.location.pathname;
   console.log("runAppUrls -> appUrl", routeName)
 
@@ -22,8 +25,8 @@ export let correctRoutes = () => {
   //if(appUrl.pathname.split('/')[1] === 'LogIn') localPubUrl = appUrl.pathname.split('/')[1];
   
   // Check if in dev or pub mode´; 
-  if (appUrlHostname === 'localhost') correctRouteName = routeName;
+/*   if (appUrlHostname === 'localhost') correctRouteName = routeName;
   if (appUrlHostname === 'fredrikhj.github.io') correctRouteName = `/ScheduleApp${routeName}`;
- 
-  return correctRouteName;
+ */ 
+  return routeName;
 }

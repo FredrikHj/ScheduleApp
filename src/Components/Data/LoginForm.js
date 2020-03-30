@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { HeadbarStyle } from '../Style/MainStyle';
 import { LoginFormStyle } from '../Style/LoginFormStyle';
 import { routeName } from '../Data/RouteNames';
+import { SubmitBtn } from '../Data/SubmitBtn';
+import { specificBtnLStyleLogin } from '../Style/SpecificStyleBtn';
 
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { from } from 'rxjs';
 
 export let LoginForm = (props) => {
     const {appUrl, onChangeUserName, onChangeUserPwd, userNameStr, userPwdStr, runAuth, runReg, inlogStatus, inlogMess} = props;
+
     return(
         <LoginFormStyle.statusContainer>
             <LoginFormStyle.usernameContainer>
@@ -20,9 +24,12 @@ export let LoginForm = (props) => {
             </LoginFormStyle.passwordContainer>  
 
             <LoginFormStyle.btnLoginContainer>
-                <LoginFormStyle.btnSubmitContainer id="Auth" onClick={ runAuth }>
-                    <LoginFormStyle.btnHeadline id='Auth' onClick={ runAuth }>Logga In</LoginFormStyle.btnHeadline>
-                </LoginFormStyle.btnSubmitContainer> 
+                <SubmitBtn
+                    style={ specificBtnLStyleLogin }
+                    name={ 'Logga In' }
+                    onClick={ runAuth }
+                    id={ 'Auth' }
+                />
             </LoginFormStyle.btnLoginContainer>
             
             <LoginFormStyle.userInfoContainer>

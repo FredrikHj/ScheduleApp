@@ -9,6 +9,7 @@ import { headName$, updateInlogedUserFullName, inlogedUserFullName$, incommingSQ
 import '../Style/FormAdd.css';
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
+import { TableContents } from './TableContents';
 
 export let FormAdd = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
@@ -115,17 +116,7 @@ export let FormAdd = (props) => {
             </button>  
             <section className="formAdd__addContainer">
                 <table className="addContainer__body">
-                    <thead>
-                        <tr>
-                            <th>Datum</th>
-                            <th className="tableCol4">Akitvitet</th>
-                            <th>Status</th>
-                            <th>Berörda</th>
-                            <th>Typ</th>
-                            <th>Plats</th>
-                            <th className="tableCol9">Innehåll</th>
-                    </tr>
-                    </thead>
+                    <TableContents/>
                     <tbody className="addContainer__Tbody">
                         <tr>
                             <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType } placeholder="  ..."/></td>

@@ -5,12 +5,12 @@ import { log } from 'util';
 
 let savedSQLDataArr = [];
 
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Deployad by Heroku 
-//let backendURL = 'http://localhost:3001'; // Just test the backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Heroku Backend
+let backendURL = 'http://localhost:3001'; // Local Backend 
 
 export let axiosGet = (getType, tokenStr) => {
-    console.log("axiosGet -> tokenStr", tokenStr)
-    let routes = '';
+    console.log("axiosGet -> getType", getType)
+        let routes = '';
 
     // Type of post method
     if (getType === 'default') routes = '/SQLData';
