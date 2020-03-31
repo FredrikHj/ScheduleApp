@@ -9,18 +9,20 @@ import { SubmitBtn } from '../Data/SubmitBtn';
 import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
 import { correctRoutes } from '../Data/runAppUrls.js';
-import { TableContents } from './TableContents';
+import { TableHead } from './TableHead';
+import { AddRecords } from './FormAdd';
+import { SQLTable } from './SQLTable';
 import '../Style/SQLTable.css';
 
 import axios from 'axios';
 import { log } from 'util';
 import styled from 'styled-components';
 
-export let HeadContents = (props) => {
+export let HeadTable = (props) => {
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     let [ routes, updateRoutes ] = useState('');
-    
+    const { tableHead, tableBody } = props;
     
     //const appUrl = 
     
@@ -82,8 +84,14 @@ export let HeadContents = (props) => {
             <SearchBar/>
             <section id="container__tableSchedule">
                 <table id="tableSchedule__body">
-                <TableContents
-                    incommingNewSQLData={ incommingNewSQLData }/>
+                <TableHead/>
+                    {(props.addRecords !== true)
+                        ? <SQLTable
+                            incommingNewSQLData={ incommingNewSQLData }
+                          />
+                        : <AddRecords/>
+                    }
+                
                 </table>
             </section>
         </GenerallyStyle.body__contents>

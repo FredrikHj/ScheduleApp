@@ -56,7 +56,7 @@ let getUserId = () => {
     return getUserId;
 }
 export let axiosPost = (postType, bodyData) => {  
-    console.log("axiosPost -> postType", postType)
+    console.log("axiosPost -> bodyData", bodyData)
     //;
     let type = '';
     let sendToSqlBackend = {

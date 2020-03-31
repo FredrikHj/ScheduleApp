@@ -17,7 +17,7 @@ import { LogedIn } from './LogedIn.js';
 import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 
 import { Headbar } from './Components/Structure/Headbar.js';
-import { HeadContents } from './Components/Structure/HeadContents';
+import { HeadTable } from './Components/Structure/HeadTable';
 import { RegUser } from './Components/Structure/RegUser';
 
 // Sending over formData for RunLogInOut
@@ -65,6 +65,7 @@ export let MainPage = () => {
         let userInformation = {};
         // Gets the element
         let targetBtnId = e.target.id; 
+        console.log("runAuth -> targetBtnId", targetBtnId)
   
         /* Authorization with a token as response backValidate that the user is found as a valid user
             if user do not find it will not login and shows an error mess instead
@@ -77,32 +78,8 @@ export let MainPage = () => {
     }
     let runReg = () =>{
 
-    }
-
-    //LogedIn.runLogInOut();
-    //console.log(LogedIn);
-    
-    let hideShowLoginMessPromise = () => {   
-        let loginMess = getLogStatus().mess;
-        /*         let hideShowLoginMessPromise = () => {
-            
-            let hideShowMess = new Promise((showHide, error) => {       
-                showHide()
-            });
-            
-            loginMess = hideShowMess().then(() => {
-                setTimeout(() => {
-                    let loginMess= '';
-                    return loginMess;
-                }, 3000);
-                
-            })
-            return loginMess;
-        } */
-        
-    } 
-    
-        return (
+    }    
+    return (
         <>  
             <Helmet>
                 <meta charSet="utf-8" />
@@ -123,7 +100,7 @@ export let MainPage = () => {
                     />
                 }
             />
-            <Route exact path={appUrl} component={ HeadContents }/>
+            <Route exact path={appUrl} component={ HeadTable }/>
             <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
 
         </>

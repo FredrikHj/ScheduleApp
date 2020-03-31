@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import {Helmet} from "react-helmet";
 import './Components/Style/Spinner.scss';
 
-import { HeadContents } from './Components/Structure/HeadContents';
+import { HeadTable } from './Components/Structure/HeadTable';
 import { axiosPost } from './Components/Data/Axios';
 import { Headbar } from './Components/Structure/Headbar';
 import Spinner from './Components/Data/Spinner';
@@ -25,9 +25,13 @@ import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 export let LogedIn = (props) => {
     let [ appUrl, setAppUrl ] = useState('');
     let [ inlogedUser, updateInlogedUser ] = useState('');
-    let [ appName, setAppName ] = useState('');   
+    let [ appName, setAppName ] = useState('');
+    let [ addRecords, seAddRecords ] = useState(false);   
 
     useEffect(() => {
+        setTimeout(() => {
+            updateInlogedUserFullName();
+        }, 1000);
         setAppUrl(localPubAppUrls());
         headName$.subscribe((headName) => {
             //console.log(headName);
@@ -36,22 +40,20 @@ export let LogedIn = (props) => {
         inlogedUserFullName$.subscribe((inlogedUserFullName) => {         
             updateInlogedUser(inlogedUserFullName);
         }); 
-        setTimeout(() => {
-            updateInlogedUserFullName();
-        }, 1000);
     }, []);
     let runLogOut = (e) => {
         // Gets the element
         let targetBtnId = e.target.id;     
+        console.log("runLogOut -> targetBtnId", targetBtnId)
         updateGotoPage(targetBtnId);
 
-        updateLocalstorage(window.localStorage.clear('loginData'));
+        updateLocalstorage(window.localStorage.clear());
         //axiosPost('', targetBtnId, '');
     }
     let runAddRecord = (e) => {
         // Gets the element
         let targetBtnId = e.target.id;     
-        updateGotoPage(targetBtnId);
+        seAddRecords(true);
     }
     return (
         <>
@@ -75,19 +77,31 @@ export let LogedIn = (props) => {
                                 style={ specificBtnStyleLogout }
                                 name={ 'Logga Ut' }
                                 onClick={ runLogOut }
-                                id={ 'Logout' }
+                                id={ '/' }
                             />
                         </LogedInStyle.btnSubmitLogoutInTopUp> 
-                        <SubmitBtn
-                            style={ specificBtnStyleAddRecords }
-                            name={ 'Lägga Till' }
-                            onClick={ runLogOut }
-                            id={ 'Logout' }
-                        />
+                        {(addRecords !== true)
+                            ?   <SubmitBtn
+                                    style={ specificBtnStyleAddRecords }
+                                    name={ 'Lägga Till' }
+                                    onClick={ runAddRecord }
+                                    id={ 'AddRecords' }
+                                />
+                            :   <SubmitBtn
+                                    style={ specificBtnStyleAddRecords }
+                                    name={ 'Återgå' }
+                                    onClick={ runAddRecord }
+                                    id={ 'Return' }
+                                />
+                        }
+
                     </>
                 }
-            />                 
-            <HeadContents/>
+            />
+
+            <HeadTable
+                addRecords={ addRecords }
+            />
         </>
     );
 }
