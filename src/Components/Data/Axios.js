@@ -5,8 +5,8 @@ import { log } from 'util';
 
 let savedSQLDataArr = [];
 
-let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Heroku Backend
-//let backendURL = 'http://localhost:3001'; // Local Backend 
+//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Heroku Backend
+let backendURL = 'http://localhost:3001'; // Local Backend 
 
 export let axiosGet = (getType, tokenStr) => {
     console.log("axiosGet -> getType", getType)
