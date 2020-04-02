@@ -37,7 +37,7 @@ export let AddRecords = (props) => {
             //console.log(headName);
             setAppName(headName);
         });
-        inlogedUserFullName$.subscribe((inlogedUserFullName) => {
+/*        inlogedUserFullName$.subscribe((inlogedUserFullName) => {
             //console.log(inlogedUserFullName);
             updateInlogedUser(inlogedUserFullName);
         });
@@ -48,11 +48,11 @@ export let AddRecords = (props) => {
         /*
             Update the inloged User after the specific time i millisec...
             Use the name afte a extra millisec...
-        */
+        
         setTimeout(() => {
             updateInlogedUserFullName(); 
-        }, 1000);
-    }, []);
+        }, 1000); */
+     }, []);
     //console.log(incommingSQLData);  
     let setStrsType = (e) => {
         let type = e.target;
@@ -70,7 +70,7 @@ export let AddRecords = (props) => {
 
 //console.log(incommingSQLDataCols);
 
-    let sendInUserData = (e) => {
+/*     let sendInUserData = (e) => {
         updateAddedData(true);
         //console.log(dateStr);
         // Created a body for the added data
@@ -83,9 +83,9 @@ export let AddRecords = (props) => {
             //sqlBody.splice(0, 1);
             
         /* //console.log(sqlBodyObj);
-        updateSavedSQLData(sqlBodyObj); */
+        updateSavedSQLData(sqlBodyObj);
 
-    }
+    } */
     
     return (
         <>
@@ -93,24 +93,19 @@ export let AddRecords = (props) => {
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Lägg Till`}</title>
             </Helmet>
-            <header>
-                <section className="headbar__headContainer">
-                    <p className="headContainer__headline">{ appName }</p>
-                    <section className="headContainer__logInOut">
 
-                        <p className="logInOut__logedInUser">{`Välkommen in ${(inlogedUser === '') ? '...' : inlogedUser }` }</p>       
-
-                        <section className="logInOut__btnInContainer">
-                            <div className="btnContainer__btnAddCanceled">
-                                <input type="submit" className="btnLogOut__input" onClick={ '' } id="cancelAdd" value=""/>
-                                <Link to={`${ appUrl }/LogIn` }className="btnContainer__inputHeadline" onClick={ '' } id="cancelAdd">
-                                    <p className="btnHeadline__canceled" id='cancelAdd'>Avbryt</p>
-                                </Link>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </header>
+            <tbody id="tableSchedule__tBody">
+                <tr>
+                    <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType } placeholder="  ..."/></td>
+                    <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType } placeholder="  ..."/></td>
+                    <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType } placeholder="  ..."/></td>
+                    <td><input type="text" className="addSqlInput" data-type="concerned" onChange={ setStrsType } placeholder="  ..."/></td>
+                    <td><input type="text" className="addSqlInput" data-type="type" onChange={ setStrsType } placeholder="  ..."/></td>
+                    <td><input type="text" className="addSqlInput" data-type="place" onChange={ setStrsType } placeholder="  ..."/></td>
+                    <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType } placeholder="  ..."/></td>
+                </tr>
+            </tbody>
+            {/* 
             <button className="btnAddedSendContainer__sendBtn" onClick={ sendInUserData } id="sendIn">
                 <p className="btnHeadline__sendIn" id='sendIn' onClick={ sendInUserData }>Skicka In</p>
             </button>  
@@ -118,15 +113,7 @@ export let AddRecords = (props) => {
                 <table className="addContainer__body">
                     <SQLTable/>
                     <tbody className="addContainer__Tbody">
-                        <tr>
-                            <td><input type="text" className="addSqlInput" data-type="date" onChange={ setStrsType } placeholder="  ..."/></td>
-                            <td className="tableCol4"><input type="text" className="addSqlInput" data-type="activity" onChange={ setStrsType } placeholder="  ..."/></td>
-                            <td><input type="text" className="addSqlInput" data-type="state" onChange={ setStrsType } placeholder="  ..."/></td>
-                            <td><input type="text" className="addSqlInput" data-type="concerned" onChange={ setStrsType } placeholder="  ..."/></td>
-                            <td><input type="text" className="addSqlInput" data-type="type" onChange={ setStrsType } placeholder="  ..."/></td>
-                            <td><input type="text" className="addSqlInput" data-type="place" onChange={ setStrsType } placeholder="  ..."/></td>
-                            <td className="tableCol9"><input type="text" className="addSqlInput" data-type="content" onChange={ setStrsType } placeholder="  ..."/></td>
-                        </tr>
+                       
                         <tr>
                          {(incommingSQLData.length !== 0) 
                             ?
@@ -149,7 +136,7 @@ export let AddRecords = (props) => {
                         </tr>
                     </tbody>
                 </table>
-            </section>
+            </section> */}
         </>  
     );
 }
