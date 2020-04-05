@@ -13,7 +13,7 @@ import '../Style/RegUser.css';
 let countRegUser = 0;
 
 export let RegUser = (props) => {
-    let [ appUrl, setAppUrl ] = useState('');
+    let [ appUrl, setAppUrl ] = useState('/');
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
 
@@ -22,7 +22,7 @@ export let RegUser = (props) => {
     let [ userPwd, setUserPWD ] = useState('');
 
     useEffect(() => {
-        setAppUrl(localPubAppUrls());
+        
         headName$.subscribe((headName) => {
             //console.log(headName);
             setAppName(headName);

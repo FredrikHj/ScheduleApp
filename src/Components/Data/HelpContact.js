@@ -11,7 +11,7 @@ import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { runAppUrls } from './runAppUrls.js/index.js.js';
 
 export let FormAdd = (props) => {
-    let [ appUrl, setAppUrl ] = useState('');
+    let [ appUrl, setAppUrl ] = useState('/');
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
     let [ incommingSQLDataResponse, updateIncommingSQLDataResponse ] = useState('');

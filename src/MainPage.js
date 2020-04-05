@@ -23,7 +23,7 @@ import { RegUser } from './Components/Structure/RegUser';
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
 export let MainPage = () => {
-    let [ appUrl, setAppUrl ] = useState('');
+    let [ appUrl, setAppUrl ] = useState('/');
     let [ appName, setAppName ] = useState('');
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
@@ -31,8 +31,7 @@ export let MainPage = () => {
     const [ userPwdStr, updateUserPwdStr ] = useState('');
     let [ redirectToPage, updateRedirectToPage ] = useState('Auth');
 
-    useEffect(() => {
-        setAppUrl(localPubAppUrls());
+    useEffect(() => {   
         //console.log('ecsfv');
         headName$.subscribe((headName) => {
             //console.log(headName);
@@ -100,6 +99,7 @@ export let MainPage = () => {
                     />
                 }
             />
+            
             <Route exact path={appUrl} component={ HeadTable }/>
             <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
 

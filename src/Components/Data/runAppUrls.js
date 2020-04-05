@@ -13,7 +13,6 @@ export let localPubAppUrls = () => {
 }
 export let correctRoutes = () => {
   let correctRouteName = '';
-  //let appUrlHostname = window.location.hostname;
   let routeName = window.location.pathname;
   console.log("runAppUrls -> appUrl", routeName)
 

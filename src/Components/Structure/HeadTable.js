@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {GenerallyStyle } from '../Style/MainStyle'
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { incommingSQLDataArr$ } from '../Storage.js';
+import { incommingSQLDataArr$, gotoPage$ } from '../Storage.js';
 import {getLocalStorageData} from '../Data/LocalStorage';
 import { SubmitBtn } from '../Data/SubmitBtn';
 
@@ -10,21 +10,23 @@ import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
 import { correctRoutes } from '../Data/runAppUrls.js';
 import { TableHead } from './TableHead';
-import { AddRecords } from './FormAdd';
 import { SQLTable } from './SQLTable';
 import '../Style/SQLTable.css';
 
 import axios from 'axios';
 import { log } from 'util';
 import styled from 'styled-components';
+import { routeName } from '../Data/RouteNames';
+import { localPubAppUrls } from '../Data/runAppUrls.js';
 
 export let HeadTable = (props) => {
+    let [ appUrl, setAppUrl ] = useState('/');
+    let [ redirectToPage, updateRedirectToPage ] = useState('');
+
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     let [ routes, updateRoutes ] = useState('');
     const { tableHead, tableBody } = props;
-    
-    //const appUrl = 
     
     let [ addForm, setAddForm ] = useState(true);
     //;
@@ -34,9 +36,13 @@ export let HeadTable = (props) => {
     console.log(addRecordsBtn);
     
     useEffect(() => {
+        setAppUrl(localPubAppUrls());
         updateRoutes(correctRoutes());
         getSQLData();
-
+        gotoPage$.subscribe((gotoPage) => {
+        console.log("HeadTable -> gotoPage", gotoPage)
+            updateRedirectToPage(gotoPage);
+        });
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
             // It can handle the data an perform its task regardless the data infrastructure 
             
@@ -84,14 +90,11 @@ export let HeadTable = (props) => {
             <SearchBar/>
             <section id="container__tableSchedule">
                 <table id="tableSchedule__body">
-                <TableHead/>
-                    {(props.addRecords !== true)
-                        ? <SQLTable
-                            incommingNewSQLData={ incommingNewSQLData }
-                          />
-                        : <AddRecords/>
-                    }
-                
+                    <TableHead/>
+                    <SQLTable
+                        incommingNewSQLData={ incommingNewSQLData }
+                    />
+                    
                 </table>
             </section>
         </GenerallyStyle.body__contents>

@@ -20,16 +20,14 @@ import { nfapply } from 'q';
 export let formInputObj = {};
 export let Headbar = (props) => {
     const { appStatus } = props;
-    let [ appUrl, setAppUrl ] = useState('');
+    let [ appUrl, setAppUrl ] = useState('/');
     let [ appName ] = useState('Årsklockan');
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
     let [ gotoIntoPage, updateGotoIntoPage ] = useState('');
 
     useEffect(() => {
-        setAppUrl(localPubAppUrls());
         userData$.subscribe((userDispalyingObj) => {
-            
             setInlogStatus(userDispalyingObj.responsType);
             setInlogMess(userDispalyingObj.logInMess);
         });

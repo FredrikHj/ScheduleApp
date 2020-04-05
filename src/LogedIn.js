@@ -1,60 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { HeadbarStyle } from './Components/Style/MainStyle';
-import { LogedInStyle } from './Components/Style/LogedInStyle';
 import { GenerallyStyle } from './Components/Style/MainStyle'
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
 import './Components/Style/Spinner.scss';
+import { routeName } from './Components/Data/RouteNames';
 
 import { HeadTable } from './Components/Structure/HeadTable';
 import { axiosPost } from './Components/Data/Axios';
 import { Headbar } from './Components/Structure/Headbar';
-import Spinner from './Components/Data/Spinner';
-import { SubmitBtn } from './Components/Data/SubmitBtn';
-import { specificBtnStyleLogout, specificBtnStyleAddRecords } from './Components/Style/SpecificStyleBtn';
+import { LogedInStatus } from './Components/Structure/LogedInStatus';
 
 import { MainPage } from './MainPage.js';
 import axios from 'axios';
-import { headName$, updateInlogedUserFullName, updateLocalstorage, inlogedUserFullName$, updateGotoPage } from './Components/Storage.js';
+import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from './Components/Storage.js';
+import { runLogOut, runAddRecord } from './Components/Data/CommonFunction';
 
 import { log } from 'util';
 
 import { localPubAppUrls } from './Components/Data/runAppUrls.js';
 
-export let LogedIn = (props) => {
-    let [ appUrl, setAppUrl ] = useState('');
+export let LogedIn = () => {
+    let [ appUrl, setAppUrl ] = useState('/');
     let [ inlogedUser, updateInlogedUser ] = useState('');
     let [ appName, setAppName ] = useState('');
-    let [ addRecords, seAddRecords ] = useState(false);   
+      let [ redirectToPage, updateRedirectToPage ] = useState('');
 
     useEffect(() => {
-        setTimeout(() => {
+        //setTimeout(() => {
             updateInlogedUserFullName();
-        }, 1000);
-        setAppUrl(localPubAppUrls());
+        //}, 1000);
         headName$.subscribe((headName) => {
-            //console.log(headName);
+            console.log(headName);
             setAppName(headName);
         });
         inlogedUserFullName$.subscribe((inlogedUserFullName) => {         
             updateInlogedUser(inlogedUserFullName);
         }); 
     }, []);
-    let runLogOut = (e) => {
-        // Gets the element
-        let targetBtnId = e.target.id;     
-        console.log("runLogOut -> targetBtnId", targetBtnId)
-        updateGotoPage(targetBtnId);
+ 
 
-        updateLocalstorage(window.localStorage.clear());
-        //axiosPost('', targetBtnId, '');
-    }
-    let runAddRecord = (e) => {
-        // Gets the element
-        let targetBtnId = e.target.id;     
-        seAddRecords(true);
-    }
     return (
         <>
             <Helmet>
@@ -62,46 +48,15 @@ export let LogedIn = (props) => {
                 <title>{`${appName} - Inloggad`}</title>
             </Helmet>
             <Headbar
-                appStatus={
-                    <>
-                        <LogedInStyle.statusContainer>
-                            {(inlogedUser === '' ) 
-                                ? <>
-                                        Välkommen in ... <Spinner/>
-                                    </>
-                                : `Välkommen in ${ inlogedUser }`
-                            }
-                        </LogedInStyle.statusContainer>
-                        <LogedInStyle.btnSubmitLogoutInTopUp>
-                            <SubmitBtn
-                                style={ specificBtnStyleLogout }
-                                name={ 'Logga Ut' }
-                                onClick={ runLogOut }
-                                id={ '/' }
-                            />
-                        </LogedInStyle.btnSubmitLogoutInTopUp> 
-                        {(addRecords !== true)
-                            ?   <SubmitBtn
-                                    style={ specificBtnStyleAddRecords }
-                                    name={ 'Lägga Till' }
-                                    onClick={ runAddRecord }
-                                    id={ 'AddRecords' }
-                                />
-                            :   <SubmitBtn
-                                    style={ specificBtnStyleAddRecords }
-                                    name={ 'Återgå' }
-                                    onClick={ runAddRecord }
-                                    id={ 'Return' }
-                                />
-                        }
-
-                    </>
+                appStatus={ 
+                    <LogedInStatus
+                        inlogedUser={ inlogedUser }
+                        functionLogOut={ runLogOut }
+                        functionAdd={ runAddRecord }
+                    />
                 }
             />
-
-            <HeadTable
-                addRecords={ addRecords }
-            />
+            <Route exact path={appUrl + routeName.login } component={ HeadTable }/>
         </>
     );
 }

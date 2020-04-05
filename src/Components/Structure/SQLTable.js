@@ -8,7 +8,7 @@ export let SQLTable = (props) => {
                 {(props.incommingNewSQLData.length !== 0) 
                     ?
                     props.incommingNewSQLData.map((sqlDataObj, rowCounter) => {
-                        
+                         
                         return(
                             <tr key={ rowCounter }>
                                 <td>{ sqlDataObj.date }</td>
