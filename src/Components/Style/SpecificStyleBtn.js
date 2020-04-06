@@ -23,7 +23,7 @@ export const specificBtnStyleLogout = {
         top: '-10px',
     }
 }
-export const specificBtnStyleAddRecords = {
+export const specificBtnStyleGotTo = {
     btn: {
         marginLeft: '1060px',
         marginTop: '73px',

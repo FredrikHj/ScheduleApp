@@ -15,3 +15,9 @@ export let runAddRecord = (e) => {
     
     updateGotoPage(targetBtnId);
 }
+export let runReturnFromAddRecord = (e) => {
+    // Gets the element
+    let targetBtnId = e.target.id;     
+    
+    updateGotoPage(targetBtnId);
+}

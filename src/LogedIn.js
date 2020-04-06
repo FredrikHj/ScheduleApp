@@ -6,11 +6,13 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import {Helmet} from "react-helmet";
 import './Components/Style/Spinner.scss';
 import { routeName } from './Components/Data/RouteNames';
+import { specificBtnStyleGotTo } from './Components/Style/SpecificStyleBtn';
 
 import { HeadTable } from './Components/Structure/HeadTable';
 import { axiosPost } from './Components/Data/Axios';
 import { Headbar } from './Components/Structure/Headbar';
 import { LogedInStatus } from './Components/Structure/LogedInStatus';
+import { SubmitBtn } from './Components/Data/SubmitBtn';
 
 import { MainPage } from './MainPage.js';
 import axios from 'axios';
@@ -52,7 +54,14 @@ export let LogedIn = () => {
                     <LogedInStatus
                         inlogedUser={ inlogedUser }
                         functionLogOut={ runLogOut }
-                        functionAdd={ runAddRecord }
+                        sumbitBtnGotTo= {
+                            <SubmitBtn
+                                style={ specificBtnStyleGotTo }
+                                name={ 'Lägga Till' }
+                                onClick={ runAddRecord }
+                                id={ 'AddForm' }
+                            />
+                        }
                     />
                 }
             />

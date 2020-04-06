@@ -8,17 +8,21 @@ import { Headbar } from './Headbar';
 import { LogedInStatus } from '../Structure/LogedInStatus';
 
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from '../Storage.js';
-import { runLogOut, runAddRecord } from '../Data/CommonFunction';
+import { runLogOut, runReturnFromAddRecord, runAddRow, runSendToSQL } from '../Data/CommonFunction';
 
 import '../Style/FormAdd.css';
-import { axiosPost, axiosGet } from '../Data/Axios.js';
-import { localPubAppUrls } from '../Data/runAppUrls.js';
-import { SQLTable } from './SQLTable';
+import {GenerallyStyle } from '../Style/MainStyle'
+import { TableHead } from './TableHead';
+import { tableHeadline } from '../Data/TableHeadline';
+
+import { axiosPost } from '../Data/Axios.js';
+import { SubmitBtn } from '../Data/SubmitBtn';
+import { specificBtnStyleGotTo } from '../Style/SpecificStyleBtn';
 
 export let AddForm = (props) => {
-
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
+
     let [ dateStr, updateDateStr ] = useState('');
     let [ activityStr, updateActivityStr ] = useState('');
     let [ stateStr, updateStateStr ] = useState('');
@@ -27,50 +31,61 @@ export let AddForm = (props) => {
     let [ placeStr, updatePlaceStr ] = useState('');
     let [ contentStr, updateContentStr ] = useState('');
 
+    let [ addedCellData, updateAddedCellData ] = useState([]);
+    let [ addedRecordData, updateAddedRecordData ] = useState([]);
+    let [ addedRecords, updateAddedRecords ] = useState([]);
     useEffect(() => {
         updateInlogedUserFullName(); 
-            headName$.subscribe((headName) => {
-             //console.log(headName);
-                setAppName(headName);
-            });
-            inlogedUserFullName$.subscribe((inlogedUserFullName) => {         
-                updateInlogedUser(inlogedUserFullName);
-            }); 
-     }, []);
+        headName$.subscribe((headName) => {
+            //console.log(headName);
+            setAppName(headName);
+        });
+        inlogedUserFullName$.subscribe((inlogedUserFullName) => {         
+            updateInlogedUser(inlogedUserFullName);
+        });
+        createRecordsBody();
+     }, [addedRecordData]);
+    const createRecordsBody = () => {
+        const pushToAddedRecordData = [...addedRecordData ];
+        for (let index = 0; index < tableHeadline.length; index++) pushToAddedRecordData.push(tableHeadline[index]);
+        console.log("createRecordsBody -> pushToAddedRecordData", pushToAddedRecordData)
+        if (addedRecordData.length === 0) updateAddedRecordData(pushToAddedRecordData);
+    }
+    
     //console.log(incommingSQLData);  
     let setStrsType = (e) => {
         let type = e.target;
         let inputStr = type.value;            
+        console.log("setStrsType -> inputStr", inputStr)
         
         const {dataset} = type;
-
-        if (dataset.type === 'date') updateDateStr(inputStr);
-        if (dataset.type === 'activity') updateActivityStr(inputStr);
-        if (dataset.type === 'state') updateStateStr(inputStr);
-        if (dataset.type === 'concerned') updateConcernedStr(inputStr);
-        if (dataset.type === 'type') updateTypeStr(inputStr);
-        if (dataset.type === 'place') updatePlaceStr(inputStr);
-        if (dataset.type === 'content') updateContentStr(inputStr);
+        
+        for (let index = 0; index < tableHeadline.length; index++) {
+            if (dataset.type === tableHeadline[index]) addedRecordData[dataset.typenr] = inputStr;
+        }
     }
-
-//console.log(incommingSQLDataCols);
-
-/*     let sendInUserData = (e) => {
-        updateAddedData(true);
+    const addCellData = (cellData) => {
+        let pushToAddCellData = [...addCellData];
+        
+    }
+    let runAddRow = (e) => {
+        // Gets the element
+        let targetBtnId = e.target.id;     
+        console.log("setStrsType -> addedRecordData", addedRecordData);
+        let addedRecord = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
+        runSendToSQL(addedRecordData);
+    }
+    let runSendToSQL = (sqlBody) => {        
+        axiosPost('add', sqlBody);
+    }  
+    let sendInUserData = (e) => {
+        //updateAddedData(true);
         //console.log(dateStr);
         // Created a body for the added data
-        let sqlBody = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
         
         //console.log(sqlBody);
         
-        axiosPost('add', sqlBody);
-            // Save the body into the table for showing it exckluding the first item
-            //sqlBody.splice(0, 1);
-            
-        /* //console.log(sqlBodyObj);
-        updateSavedSQLData(sqlBodyObj);
-
-    } */
+    }
     
     return (
         <>
@@ -83,11 +98,80 @@ export let AddForm = (props) => {
                     <LogedInStatus
                         inlogedUser={ inlogedUser }
                         functionLogOut={ runLogOut }
-                        functionAdd={ runAddRecord }
+                        sumbitBtnGotTo= {
+                            <SubmitBtn
+                                style={ specificBtnStyleGotTo }
+                                name={ 'Återgå' }
+                                onClick={ runReturnFromAddRecord }
+                                id={ 'Login' }
+                            />
+                        }
                     />
                 }
             />
-        fdvf
+            <GenerallyStyle.body__contents>
+                <section id="container__tableSchedule">
+                    <table id="tableSchedule__body">
+                        <TableHead/>
+                        <tbody className="addContainer__Tbody">
+                            <tr>
+                                {
+                                    tableHeadline.map((item, index) => {
+                                        
+                                        return(
+                                            <td key={ index }><input type="text" className="addSqlInput" data-type={ item } data-typenr={ index } onChange={ setStrsType } placeholder="  ..."/></td>
+                                        );
+                                    })
+                                }                          
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SubmitBtn
+                                        style={ '' }
+                                        name={ '+' }
+                                        onClick={ runAddRow }
+                                        id={ 'moreRecords' }
+                                    />
+                                    
+                                    <SubmitBtn
+                                        style={ '' }
+                                        name={ 'Skicka In' }
+                                        onClick={ runSendToSQL }
+                                        id={ 'sendIn' }
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                            
+                                <td colSpan="7">
+                                    Tillagda aktiviteter
+                                </td>
+                                    
+                                {
+                                    addedRecords.map((item, index) => {
+                                    
+                                        return(
+                                            <tr key={ index }>
+                                                {
+                                                    addedCellData.map((item, index) => {
+                                                        addCellData(item);
+
+                                                        return(
+                                                            <td key={ index }>{ item }</td>
+                                                        );
+                                                    })
+                                                }
+                                            </tr>
+                                        );
+                                    })
+                                }                 
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+  
+                </section>
+            </GenerallyStyle.body__contents>
         </>  
     );
 }

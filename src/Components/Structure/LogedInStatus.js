@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { LogedInStyle } from '../Style/LogedInStyle';
-import { specificBtnStyleLogout, specificBtnStyleAddRecords } from '../Style/SpecificStyleBtn';
+import { specificBtnStyleLogout } from '../Style/SpecificStyleBtn';
 import Spinner from '../Data/Spinner';
 import { SubmitBtn } from '../Data/SubmitBtn';
 
 export let LogedInStatus = (props) => {
-    const { inlogedUser, functionLogOut, functionAdd } = props;
+    const { inlogedUser, functionLogOut, sumbitBtnGotTo } = props;
     return(
         <>
             <LogedInStyle.statusContainer>
@@ -25,12 +25,7 @@ export let LogedInStatus = (props) => {
                     />
             </LogedInStyle.btnSubmitLogoutInTopUp> 
         
-            <SubmitBtn
-                style={ specificBtnStyleAddRecords }
-                name={ 'Lägga Till' }
-                onClick={ functionAdd }
-                id={ 'AddForm' }
-                />
+            { sumbitBtnGotTo }
     {/*                         <SubmitBtn
                 style={ specificBtnStyleAddRecords }
                 name={ 'Återgå' }

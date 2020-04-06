@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../Style/SQLTable.css';
+import { tableHeadline } from '../Data/TableHeadline';
 export let TableHead = () => {
     return(
         <thead>
             <tr>
-                <th>Datum</th>
-                <th className="tableCol4">Akitvitet</th>
-                <th>Status</th>
-                <th>Berörda</th>
-                <th>Typ</th>
-                <th>Plats</th>
-                <th className="tableCol9">Innehåll</th>
+                {
+                    tableHeadline.map((item, index) => {
+                        return(
+                            <th key={ index }>{ item } </th> 
+                        );
+                    })
+                }
             </tr>
         </thead>
     );
