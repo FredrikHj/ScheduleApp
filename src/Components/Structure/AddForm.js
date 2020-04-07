@@ -9,6 +9,7 @@ import { LogedInStatus } from '../Structure/LogedInStatus';
 
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from '../Storage.js';
 import { runLogOut, runReturnFromAddRecord, runAddRow, runSendToSQL } from '../Data/CommonFunction';
+import { ListAddedRecords } from '../Data/ListAddedRecords';
 
 import '../Style/FormAdd.css';
 import {GenerallyStyle } from '../Style/MainStyle'
@@ -22,14 +23,6 @@ import { specificBtnStyleGotTo } from '../Style/SpecificStyleBtn';
 export let AddForm = (props) => {
     let [ appName, setAppName ] = useState(''); 
     let [ inlogedUser, updateInlogedUser ] = useState('');
-
-    let [ dateStr, updateDateStr ] = useState('');
-    let [ activityStr, updateActivityStr ] = useState('');
-    let [ stateStr, updateStateStr ] = useState('');
-    let [ concernedStr, updateConcernedStr ] = useState('');
-    let [ typeStr, updateTypeStr ] = useState('');
-    let [ placeStr, updatePlaceStr ] = useState('');
-    let [ contentStr, updateContentStr ] = useState('');
 
     let [ addedCellData, updateAddedCellData ] = useState([]);
     let [ addedRecordData, updateAddedRecordData ] = useState([]);
@@ -47,7 +40,10 @@ export let AddForm = (props) => {
      }, [addedRecordData]);
     const createRecordsBody = () => {
         const pushToAddedRecordData = [...addedRecordData ];
-        for (let index = 0; index < tableHeadline.length; index++) pushToAddedRecordData.push(tableHeadline[index]);
+        for (let index = 0; index < tableHeadline.length; index++) {
+            pushToAddedRecordData.push(tableHeadline[index]);
+            pushToAddedRecordData[index] = '';
+        }
         console.log("createRecordsBody -> pushToAddedRecordData", pushToAddedRecordData)
         if (addedRecordData.length === 0) updateAddedRecordData(pushToAddedRecordData);
     }
@@ -59,21 +55,25 @@ export let AddForm = (props) => {
         console.log("setStrsType -> inputStr", inputStr)
         
         const {dataset} = type;
+    
+        for (let index = 0; index < tableHeadline.length; index++) if (dataset.type === tableHeadline[index]) addedRecordData[dataset.typenr] = inputStr;
+        console.log("setStrsType -> addedRecordData", addedRecordData)
         
-        for (let index = 0; index < tableHeadline.length; index++) {
-            if (dataset.type === tableHeadline[index]) addedRecordData[dataset.typenr] = inputStr;
-        }
     }
     const addCellData = (cellData) => {
         let pushToAddCellData = [...addCellData];
         
     }
     let runAddRow = (e) => {
+        const pushToAddedRecords = [...addedRecords];
+
         // Gets the element
         let targetBtnId = e.target.id;     
         console.log("setStrsType -> addedRecordData", addedRecordData);
-        let addedRecord = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
-        runSendToSQL(addedRecordData);
+        //let addedRecord = [0, dateStr, activityStr, stateStr, concernedStr, typeStr, placeStr, contentStr];
+        pushToAddedRecords.push(addedRecordData);
+        updateAddedRecords(pushToAddedRecords);
+        //runSendToSQL(addedRecord);
     }
     let runSendToSQL = (sqlBody) => {        
         axiosPost('add', sqlBody);
@@ -132,7 +132,6 @@ export let AddForm = (props) => {
                                         onClick={ runAddRow }
                                         id={ 'moreRecords' }
                                     />
-                                    
                                     <SubmitBtn
                                         style={ '' }
                                         name={ 'Skicka In' }
@@ -142,34 +141,15 @@ export let AddForm = (props) => {
                                 </td>
                             </tr>
                             <tr>
-                            
                                 <td colSpan="7">
                                     Tillagda aktiviteter
+                                    <ListAddedRecords
+                                        addedRecords={ addedRecords }
+                                    />
                                 </td>
-                                    
-                                {
-                                    addedRecords.map((item, index) => {
-                                    
-                                        return(
-                                            <tr key={ index }>
-                                                {
-                                                    addedCellData.map((item, index) => {
-                                                        addCellData(item);
-
-                                                        return(
-                                                            <td key={ index }>{ item }</td>
-                                                        );
-                                                    })
-                                                }
-                                            </tr>
-                                        );
-                                    })
-                                }                 
                             </tr>
                         </tbody>
-                        
                     </table>
-  
                 </section>
             </GenerallyStyle.body__contents>
         </>  
