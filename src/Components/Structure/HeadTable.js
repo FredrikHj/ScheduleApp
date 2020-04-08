@@ -10,7 +10,7 @@ import { axiosGet } from '../Data/Axios.js';
 import { SearchBar } from './SearchBar.js';
 import { correctRoutes } from '../Data/runAppUrls.js';
 import { TableHead } from './TableHead';
-import { SQLTable } from './SQLTable';
+import { ListSQLData } from './ListSQLData';
 import '../Style/SQLTable.css';
 
 import axios from 'axios';
@@ -18,6 +18,7 @@ import { log } from 'util';
 import styled from 'styled-components';
 import { routeName } from '../Data/RouteNames';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
+import { ListAddForm } from '../Structure/ListAddForm';
 
 export let HeadTable = (props) => {
     let [ appUrl, setAppUrl ] = useState('/');
@@ -71,8 +72,8 @@ export let HeadTable = (props) => {
         console.log("getSQLData -> routes", routes)
         // Run default SQL list
         axiosUntilGettingData.then((result) => {            
-            if(routes === '/' || routes === '/ScheduleApp/') axiosGet('default', '');
-            if (routes === '/Login' || routes === '/ScheduleApp/Login') axiosGet('userSpec', getLocalStorageData('token'));
+            if(routes === '/') axiosGet('default', '');
+            if (routes === '/Inloggad') axiosGet('userSpec', getLocalStorageData('token'));
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
@@ -91,9 +92,16 @@ export let HeadTable = (props) => {
             <section id="container__tableSchedule">
                 <table id="tableSchedule__body">
                     <TableHead/>
-                    <SQLTable
-                        incommingNewSQLData={ incommingNewSQLData }
-                    />
+                    <tbody id="tableSchedule__tBody">
+                    {redirectToPage === routeName.login && <Redirect to={ `/${ routeName.login }`} />} 
+                    <Route path={ '/Add' } component={ ListAddForm }/>
+
+                        <ListSQLData
+                            incommingNewSQLData={ incommingNewSQLData }
+                        />
+
+                    </tbody>
+
                     
                 </table>
             </section>

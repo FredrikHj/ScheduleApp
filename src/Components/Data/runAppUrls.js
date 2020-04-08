@@ -13,7 +13,7 @@ export let localPubAppUrls = () => {
 }
 export let correctRoutes = () => {
   let correctRouteName = '';
-  let routeName = window.location.pathname;
+  let routeName = window.location.hash.split('#')[1];
   console.log("runAppUrls -> appUrl", routeName)
 
 

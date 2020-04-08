@@ -59,13 +59,14 @@ export let LogedIn = () => {
                                 style={ specificBtnStyleGotTo }
                                 name={ 'Lägga Till' }
                                 onClick={ runAddRecord }
-                                id={ 'AddForm' }
+                                id={ 'Add' }
                             />
                         }
                     />
                 }
             />
-            <Route exact path={appUrl + routeName.login } component={ HeadTable }/>
+            <HeadTable/>
+            {/* <Route exact path={appUrl + routeName.login } component={ HeadTable }/> */}
         </>
     );
 }

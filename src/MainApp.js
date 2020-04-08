@@ -8,11 +8,11 @@ import {
 import { updateHeadName, getLogStatus, gotoPage$ } from './Components/Storage.js';
 
 import { localPubAppUrls } from './Components/Data/runAppUrls.js';
-import { SQLTable } from './Components/Structure/SQLTable.js';
+import { SQLTable } from './Components/Structure/ListSQLData.js';
 import { LogedIn } from './LogedIn';
 import { MainPage } from './MainPage.js';
 import { Auth } from './Components/Data/Authorization';
-import { AddForm } from './Components/Structure/AddForm';
+import { AddRecords } from './Components/Structure/AddRecords';
 
 updateHeadName('Årsklockan');
 
@@ -41,8 +41,8 @@ let MainApp = () => {
       <Route exact path={ appUrl + routeName.auth } component={ Auth }/>   
       <Route exact path={ appUrl + routeName.login } component={ LogedIn }/>  
 
-      {redirectToPage === routeName.addRecords && <Redirect to={ '/AddForm' } />}
-      <Route path={ '/AddForm' } component={ AddForm }/>
+      {redirectToPage === routeName.addRecords && <Redirect to={ '/Add' } />}
+      <Route path={ '/Add' } component={ AddRecords }/>
     </HashRouter>
   );
 }

@@ -1,7 +1,7 @@
 export const routeName = {
     mainPage: '/',
-    userReg: 'UserReg',
+    userReg: 'Registrera',
     auth: 'Auth',
-    login: 'Login',
-    addRecords: 'AddForm',
+    login: 'Inloggad',
+    addRecords: 'Add',
   };

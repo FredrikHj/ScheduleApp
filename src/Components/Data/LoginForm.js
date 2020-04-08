@@ -41,7 +41,7 @@ export let LoginForm = (props) => {
                     }
                 </LoginFormStyle.userErrorMess>
                 <LoginFormStyle.regLink>
-                    <Link to={ appUrl + routeName.userReg } onClick={ runReg } id="reg">
+                    <Link to={ appUrl + routeName.userReg } onClick={ runReg } id="Registrera">
                         Registrera ny användare
                     </Link>
                 </LoginFormStyle.regLink>

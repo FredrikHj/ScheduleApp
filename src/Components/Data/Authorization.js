@@ -23,7 +23,7 @@ export let Auth = () => {
     }, []);
     let runLogin = () => {
         setTimeout(() => {
-            updateGotoPage('Login');
+            updateGotoPage('Inloggad');
         }, 500)
     }
     return (

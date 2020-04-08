@@ -26,12 +26,6 @@ export let LogedInStatus = (props) => {
             </LogedInStyle.btnSubmitLogoutInTopUp> 
         
             { sumbitBtnGotTo }
-    {/*                         <SubmitBtn
-                style={ specificBtnStyleAddRecords }
-                name={ 'Återgå' }
-                onClick={ runAddRecord }
-                id={ 'Return' }
-            /> */}
         </>
     );
 }
