@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from '../Data/Spinner.js';
+import { incommingSQLDataArr$ } from '../Storage';
 
 export let ListSQLData = (props) => {
+    let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+
+    useEffect(() =>{
+        incommingSQLDataArr$.subscribe((SQLDataArr) => {
+            console.log('fewf');
+            
+        console.log("ListSQLData -> SQLDataArr", SQLDataArr)
+            // It can handle the data an perform its task regardless the data infrastructure 
+            
+            if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
+            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
+        });
+    })
     return(
         <>
-            {(props.incommingNewSQLData.length !== 0) 
+            {(incommingNewSQLData.length !== 0) 
                 ?
-                props.incommingNewSQLData.map((sqlDataObj, rowCounter) => {
+                incommingNewSQLData.map((sqlDataObj, rowCounter) => {
                     return(
                         <tr key={ rowCounter }>
                             <td>{ sqlDataObj.date }</td>

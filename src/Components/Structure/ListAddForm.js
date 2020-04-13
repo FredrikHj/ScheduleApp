@@ -2,18 +2,44 @@ import React, { useState, useEffect } from 'react';
 import { tableHeadline } from '../Data/TableHeadline';
 import { SubmitBtn } from '../Data/SubmitBtn';
 import { axiosPost } from '../Data/Axios.js';
-
-import { runReturnFromAddRecord, runAddRow, runSendToSQL } from '../Data/CommonFunction';
+import { CellDropDownList } from '../Data/CellDropDownList';
+import { incommingSQLDataArr$ } from '../Storage';
 
 export let ListAddForm = (props) => {
+    let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+    let [ structuredSQLDataArr, updateStructuredSQLDataArr ] = useState([]);
     let [ addedCellData, updateAddedCellData ] = useState([]);
     let [ addedRecordData, updateAddedRecordData ] = useState([]);
     let [ addedRecords, updateAddedRecords ] = useState([]);
 
     useEffect(() => {
+        incommingSQLDataArr$.subscribe((SQLDataArr) => {
+        console.log("ListAddForm -> SQLDataArr", SQLDataArr)
+            // It can handle the data an perform its task regardless the data infrastructure 
+            if (SQLDataArr) structureSQLData(SQLDataArr);
+            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
+        });
         createRecordsBody();
      }, [addedRecordData]);
+     
+    const structureSQLData = (SQLData) => {
+        const pushToStructuredSQLDataArr = [...structuredSQLDataArr];
+        
+        console.log("structureSQLData -> SQLData", SQLData);
+        /* Loop through the SQLData and get into each of the index´s object finding the keys 
+        representing the X pc of column of SQL data. If finding same col in same key it will be skipped. */
+        for (let index = 0; index < SQLData.length; index++) {
+            pushToStructuredSQLDataArr.push(index);
+            for (const key in SQLData[index]) {
+               console.log("structureSQLData -> pushToStructuredSQLDataArr", pushToStructuredSQLDataArr[index])
+               pushToStructuredSQLDataArr[index].push('refda');
+            }
+            console.log("structureSQLData -> SQLData[index]", SQLData[index])
+            
+        }
 
+
+    }
     const createRecordsBody = () => {
         const pushToAddedRecordData = [...addedRecordData ];
         for (let index = 0; index < tableHeadline.length; index++) {
@@ -67,9 +93,13 @@ export let ListAddForm = (props) => {
             <tr>
                 {
                     tableHeadline.map((item, index) => {
-                        
                         return(
-                            <td key={ index }><input type="text" className="addSqlInput" data-type={ item } data-typenr={ index } onChange={ setStrsType } placeholder="  ..."/></td>
+                            <td key={ index }>
+                                <input type="text" className="addSqlInput" data-type={ item } data-typenr={ index } onChange={ setStrsType } placeholder="  ..."/>
+{/*                                 <CellDropDownList
+
+                                /> */}
+                            </td>
                         );
                     })
                 }                          
@@ -82,12 +112,12 @@ export let ListAddForm = (props) => {
                         onClick={ runAddRow }
                         id={ 'moreRecords' }
                     />
-                    <SubmitBtn
+{/*                     <SubmitBtn
                         style={ '' }
                         name={ 'Skicka In' }
                         onClick={ runSendToSQL }
                         id={ 'sendIn' }
-                    />
+                    /> */}
                 </td>
             </tr>
             <tr>

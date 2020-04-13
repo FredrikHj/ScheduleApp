@@ -21,12 +21,12 @@ export let axiosGet = (getType, tokenStr) => {
      
     axios.get(backendURL + routes, {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
     console.log("axiosGet -> response", response)
-        let incommingSQLRes = []
+        let incommingSQLResArr = []
         /* Store the incomming API data in a variables - 
         Note that the data structure deppending on the conditions
         */
-        if (response.status === 200 && getType === 'default') incommingSQLRes = response.data[0];
-        if (response.status === 200 && getType === 'userSpec') incommingSQLRes = response.data[0];
+        if (response.status === 200 && getType === 'default') incommingSQLResArr = response.data[0];
+        if (response.status === 200 && getType === 'userSpec') incommingSQLResArr = response.data[0];
          //;
         /*  If incomming status of 200 = OK
             Data i push into a arry too  Storage
@@ -34,14 +34,14 @@ export let axiosGet = (getType, tokenStr) => {
           
         Default get
         */
-          updateSavedSQLData(incommingSQLRes);
+          updateSavedSQLData(incommingSQLResArr);
         
         /*  If incomming status of 201 = Created:
             Data i push into a arry that is holding the data until the webbbrowser is closed 
         */
         if (response.status === 201) {
             
-            savedSQLDataArr[0].push(incommingSQLRes[0][0]);
+            savedSQLDataArr[0].push(incommingSQLResArr[0][0]);
             updateSavedSQLData[0](savedSQLDataArr);
         }
         else{

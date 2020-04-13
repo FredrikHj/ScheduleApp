@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {GenerallyStyle } from '../Style/MainStyle'
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-import { incommingSQLDataArr$, gotoPage$ } from '../Storage.js';
+import { incommingSQLDataArr$, gotoPage$ } from '../Storage';
 import {getLocalStorageData} from '../Data/LocalStorage';
 import { SubmitBtn } from '../Data/SubmitBtn';
 
-import { axiosGet } from '../Data/Axios.js';
-import { SearchBar } from './SearchBar.js';
-import { correctRoutes } from '../Data/runAppUrls.js';
+import { axiosGet } from '../Data/Axios';
+import { SearchBar } from './SearchBar';
+import { correctRoutes } from '../Data/runAppUrls';
 import { TableHead } from './TableHead';
 import { ListSQLData } from './ListSQLData';
 import '../Style/SQLTable.css';
@@ -30,8 +30,7 @@ export let HeadTable = (props) => {
     const { tableHead, tableBody } = props;
     
     let [ addForm, setAddForm ] = useState(true);
-    //;
-    let ifSQLData;
+
     let countGetMethod = 1;
     const {addRecordsBtn} = props;
     console.log(addRecordsBtn);
@@ -73,7 +72,7 @@ export let HeadTable = (props) => {
         // Run default SQL list
         axiosUntilGettingData.then((result) => {            
             if(routes === '/') axiosGet('default', '');
-            if (routes === '/Inloggad') axiosGet('userSpec', getLocalStorageData('token'));
+            if (routes !== '/') axiosGet('userSpec', getLocalStorageData('token'));
         }).catch((result) =>{
             updateErroLoadingSQLData(result);
         })
@@ -88,21 +87,15 @@ export let HeadTable = (props) => {
 
     return (
         <GenerallyStyle.body__contents>
-            <SearchBar/>
+            {redirectToPage !== routeName.addRecords && <SearchBar/>} 
             <section id="container__tableSchedule">
                 <table id="tableSchedule__body">
                     <TableHead/>
                     <tbody id="tableSchedule__tBody">
-                    {redirectToPage === routeName.login && <Redirect to={ `/${ routeName.login }`} />} 
-                    <Route path={ '/Add' } component={ ListAddForm }/>
-
-                        <ListSQLData
-                            incommingNewSQLData={ incommingNewSQLData }
-                        />
-
-                    </tbody>
-
-                    
+                        {redirectToPage === routeName.addRecords && <Redirect to={ `/${ routeName.addRecords }`} />} 
+                        <Route path={ '/Add' } component={ ListAddForm }/>
+                        <ListSQLData/>
+                    </tbody>                    
                 </table>
             </section>
         </GenerallyStyle.body__contents>
