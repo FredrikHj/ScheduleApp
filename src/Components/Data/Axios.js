@@ -21,6 +21,7 @@ export let axiosGet = (getType, tokenStr) => {
      
     axios.get(backendURL + routes, {headers: {Authorization: `bearer ${tokenStr}`}}).then(response => {
     console.log("axiosGet -> response", response)
+        updateSavedSQLData([]);
         let incommingSQLResArr = []
         /* Store the incomming API data in a variables - 
         Note that the data structure deppending on the conditions

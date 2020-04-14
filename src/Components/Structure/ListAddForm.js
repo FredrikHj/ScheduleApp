@@ -32,7 +32,7 @@ export let ListAddForm = (props) => {
             pushToStructuredSQLDataArr.push(index);
             for (const key in SQLData[index]) {
                console.log("structureSQLData -> pushToStructuredSQLDataArr", pushToStructuredSQLDataArr[index])
-               pushToStructuredSQLDataArr[index].push('refda');
+               //pushToStructuredSQLDataArr[index].push('refda');
             }
             console.log("structureSQLData -> SQLData[index]", SQLData[index])
             
