@@ -20,25 +20,38 @@ export let ListAddForm = (props) => {
             if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
         createRecordsBody();
-     }, [addedRecordData]);
+     }, []);
      
     const structureSQLData = (SQLData) => {
         const pushToStructuredSQLDataArr = [...structuredSQLDataArr];
         
         console.log("structureSQLData -> SQLData", SQLData);
-        /* Loop through the SQLData and get into each of the index´s object finding the keys 
-        representing the X pc of column of SQL data. If finding same col in same key it will be skipped. */
-        for (let index = 0; index < SQLData.length; index++) {
-            pushToStructuredSQLDataArr.push(index);
+        /* Loop through the SQLData´s index = 0 and get into the object finding the keys 
+        representing the X pc of column of SQL data. X pc index in the arr will representing the x pc of db col */
+        for (const key in SQLData[0]) pushToStructuredSQLDataArr.push([]);
+
+        for (let index = 0; index < pushToStructuredSQLDataArr.length; index++) {
             for (const key in SQLData[index]) {
-               console.log("structureSQLData -> pushToStructuredSQLDataArr", pushToStructuredSQLDataArr[index])
-               //pushToStructuredSQLDataArr[index].push('refda');
-            }
-            console.log("structureSQLData -> SQLData[index]", SQLData[index])
-            
+                console.log("structureSQLData -> SQLData[index]", SQLData[index][key])
+
+
+                    pushToStructuredSQLDataArr[index].push(SQLData[index][key]);
+                    
+                
+
+            }      
         }
 
+        
+    
+        console.log("structureSQLData -> pushToStructuredSQLDataArr", pushToStructuredSQLDataArr);
+            
+        
+        /* If finding same col in same key it will be skipped. */
 
+            //pushToStructuredSQLDataArr[index] ='refda';
+        
+        
     }
     const createRecordsBody = () => {
         const pushToAddedRecordData = [...addedRecordData ];
@@ -96,9 +109,9 @@ export let ListAddForm = (props) => {
                         return(
                             <td key={ index }>
                                 <input type="text" className="addSqlInput" data-type={ item } data-typenr={ index } onChange={ setStrsType } placeholder="  ..."/>
-{/*                                 <CellDropDownList
-
-                                /> */}
+                                <CellDropDownList
+                                    options={ [] }
+                                />
                             </td>
                         );
                     })
