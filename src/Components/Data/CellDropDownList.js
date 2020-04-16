@@ -4,17 +4,19 @@ export let CellDropDownList = (props) => {
     useEffect(() => {
 
     }, [])
+    console.log(props.options);
+    
     return(
         <>
             <select>
-               {
-                    props.options.map((item, index) => {
+                {(props.options !== false) 
+                    ? props.options.map((item, index) => {
                         return(
                             <option key={ index }>{ item }</option>
                         );
-                    })
-                }
-                <option></option>
+                     })
+                    : null
+                } 
             </select>
         </>
     );
