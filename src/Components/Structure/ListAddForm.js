@@ -3,27 +3,29 @@ import { tableHeadline } from '../Data/TableHeadline';
 import { SubmitBtn } from '../Data/SubmitBtn';
 import { axiosPost } from '../Data/Axios.js';
 import { CellDropDownList } from '../Data/CellDropDownList';
-import { incommingSQLDataArr$ } from '../Storage';
+import { optionColListArr$ } from '../Storage';
 
 export let ListAddForm = (props) => {
-    let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+    //let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ structuredSQLDataArr, updateStructuredSQLDataArr ] = useState([]);
     let [ addedCellData, updateAddedCellData ] = useState([]);
     let [ addedRecordData, updateAddedRecordData ] = useState([]);
     let [ addedRecords, updateAddedRecords ] = useState([]);
 
     useEffect(() => {
-        incommingSQLDataArr$.subscribe((SQLDataArr) => {
-        console.log("ListAddForm -> SQLDataArr", SQLDataArr)
+        optionColListArr$.subscribe((SQLColListArr) => {
+        console.log("ListAddForm -> SQLDataArr", SQLColListArr)
             // It can handle the data an perform its task regardless the data infrastructure 
             
-            if (SQLDataArr) if(structuredSQLDataArr.length === 0) updateStructuredSQLDataArr(structureSQLData(SQLDataArr));
-            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
+            if (SQLColListArr) if(structuredSQLDataArr.length === 0) updateStructuredSQLDataArr(SQLColListArr);
+            //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
         //createRecordsBody();
-     }, [structuredSQLDataArr]);
+     }, [
+         //structuredSQLDataArr
+    ]);
      
-    const structureSQLData = (SQLData) => {
+    /* const structureSQLData = (SQLData) => {
         const pushToStructuredSQLDataArr = [...structuredSQLDataArr];
         const structuredObjToArr = [];
 
@@ -34,12 +36,12 @@ export let ListAddForm = (props) => {
         // In SQLData the structure are like a tabel there every index starting at 0 are handle the key value pair from the SQL Tabel as a object 
         for (let outerIndex = 0; outerIndex < SQLData.length; outerIndex++) {
             /* From every SQL tabels object I taking the value´s and collect it in structuredObjToArr. 
-            structuredObjToArr has the same structure as SQLData accept from that the every index are handle just the values.*/
+            structuredObjToArr has the same structure as SQLData accept from that the every index are handle just the values.
             structuredObjToArr.push(Object.values(SQLData[outerIndex]));
             for (let innerIndex = 0; innerIndex < pushToStructuredSQLDataArr.length; innerIndex++)
                 /* From structuredObjToArr I placing every other index value´s into pushToStructuredSQLDataArr in opposite order.
                 The structure of pushToStructuredSQLDataArr are every body index are representing the SQLData´s columns.
-                I needing the pushToStructuredSQLDataArr in mapping the CellDropDownList component. */
+                I needing the pushToStructuredSQLDataArr in mapping the CellDropDownList component.
                pushToStructuredSQLDataArr[innerIndex].push(structuredObjToArr[outerIndex][innerIndex]);
         }
         pushToStructuredSQLDataArr.shift()
@@ -47,12 +49,10 @@ export let ListAddForm = (props) => {
         console.log("structureSQLData -> pushToStructuredSQLDataArr", pushToStructuredSQLDataArr);
 
         
-        /* If finding same col in same key it will be skipped. */
+        /* If finding same col in same key it will be skipped.
 
         return pushToStructuredSQLDataArr;
-        
-        
-    }
+    } */
     let setStrsType = (e) => {
         let type = e.target;
         let inputStr = type.value;            

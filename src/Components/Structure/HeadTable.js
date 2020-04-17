@@ -20,68 +20,15 @@ import { routeName } from '../Data/RouteNames';
 import { ListAddForm } from '../Structure/ListAddForm';
 
 export let HeadTable = (props) => {
-    let [ appUrl, setAppUrl ] = useState('/');
     let [ redirectToPage, updateRedirectToPage ] = useState('');
-
-    let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-    let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
-    //let [ routes, updateRoutes ] = useState('');
     const { tableHead, tableBody } = props;
-    
-    let [ addForm, setAddForm ] = useState(true);
-
-    let countGetMethod = 1;
-    const {addRecordsBtn} = props;
-    console.log(addRecordsBtn);
-    
+    const {addRecordsBtn} = props;    
     useEffect(() => {
-        /* setAppUrl(localPubAppUrls());
-        updateRoutes(correctRoutes()); */
-        getSQLData();
         gotoPage$.subscribe((gotoPage) => {
             console.log("HeadTable -> gotoPage", gotoPage)
             updateRedirectToPage(gotoPage);
         });
-/*         incommingSQLDataArr$.subscribe((SQLDataArr) => {
-            // It can handle the data an perform its task regardless the data infrastructure 
-            
-            if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
-            if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
-        }); */
     },[]); 
-    let getSQLData = () => {
-        
-        
-/*         let axiosUntilGettingData = new Promise((success, error) => {
-            if (countGetMethod === 1) {
-                success();
-                countGetMethod++;
-            }
-            if (countGetMethod === 2) {
-                setTimeout(() => {
-                    updateErroLoadingSQLData(true)
-                }, 1000);
-            }
-            
-            //else error('Kunde inte ladda datan :(');
-        }); */
-        
-        // Run default SQL list
-/*         axiosUntilGettingData.then((result) => {            
-            if(routes === '/') axiosGet('default', '');
-            if(routes === '/Inloggad' || routes === '/Add') axiosGet('userSpec', getLocalStorageData('token'));
-        }).catch((result) =>{
-            updateErroLoadingSQLData(result);
-        }) */
-    }
-    
-    let runAdmin = (e) => {
-        let targetBtn = e.target.dataset.admin;
-        if (targetBtn === 'logIn') setAddForm(true);
-        if (targetBtn === 'logOut') setAddForm(false);
-    }
-    console.log("HeadContents -> incommingNewSQLData", incommingNewSQLData)
-
     return (
         <GenerallyStyle.body__contents>
             {redirectToPage !== routeName.addRecords && <SearchBar/>} 

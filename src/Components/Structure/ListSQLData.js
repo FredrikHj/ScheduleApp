@@ -23,8 +23,6 @@ export let ListSQLData = (props) => {
         updateRoutes(correctRoutes());
     },[routes])
     let getSQLData = () => {
-        
-        
         let axiosUntilGettingData = new Promise((success, error) => {
             if (countGetMethod === 1) {
                 success();
@@ -47,8 +45,6 @@ export let ListSQLData = (props) => {
             updateErroLoadingSQLData(result);
         })
     }
-        
-    console.log("getSQLData -> routes", routes)
     return(
         <>
             {(incommingNewSQLData.length !== 0) 

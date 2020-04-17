@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { updateSavedSQLData, updateUserData, updateGotoPage } from '../Storage.js';
+import { updateSavedSQLData, updateOptionColList, updateUserData, updateGotoPage } from '../Storage.js';
 import { setTimeout } from 'timers';
 import { log } from 'util';
 
@@ -27,7 +27,10 @@ export let axiosGet = (getType, tokenStr) => {
         Note that the data structure deppending on the conditions
         */
         if (response.status === 200 && getType === 'default') incommingSQLResArr = response.data[0];
-        if (response.status === 200 && getType === 'userSpec') incommingSQLResArr = response.data[0];
+        if (response.status === 200 && getType === 'userSpec') {
+            incommingSQLResArr = response.data.SQLData[0];
+            updateOptionColList(response.data.structuringCols)
+        }
          //;
         /*  If incomming status of 200 = OK
             Data i push into a arry too  Storage

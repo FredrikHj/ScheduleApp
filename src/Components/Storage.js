@@ -2,11 +2,12 @@ import {BehaviorSubject} from "rxjs";
 
 import {getTokenData} from './CommonFunctions';
 import {getLocalStorageData} from './Data/LocalStorage';
-let headName = '';
-let inlogedUserFullName = '';
-let userData = '';
-let incommingSQLDataArr = [];
-let gotoPage = '';
+const inlogedUserFullName = '';
+const incommingSQLDataArr = [];
+const optionColListArr = [];
+const headName = '';
+const userData = '';
+const gotoPage = '';
 
 //===============================================
 
@@ -14,6 +15,7 @@ export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
 export const userData$ = new BehaviorSubject(userData);
 export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
+export const optionColListArr$ = new BehaviorSubject(optionColListArr);
 
 export const gotoPage$ = new BehaviorSubject(gotoPage);
 
@@ -28,21 +30,17 @@ export function updateUserData(loginData){
         userData$.next(loginData);
     }
 }
-export let updateLocalstorage = (saveLoginData) =>{
+export const updateLocalstorage = (saveLoginData) =>{
     localStorage.setItem('loginData', JSON.stringify(saveLoginData));
 }
-
-
-
-
 export function getLogStatus(){
     // Run if a data i saved into the localstorage else no run
     if (window.localStorage.length !== 0) {
         
-        let getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
-        let getLogInMess = JSON.parse(window.localStorage.getItem("userData")).logInMess;
+        const getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
+        const getLogInMess = JSON.parse(window.localStorage.getItem("userData")).logInMess;
         
-        let logInStatus = {
+        const logInStatus = {
             type: getStatusType,
             mess: getLogInMess
         };
@@ -58,9 +56,13 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
-    
     if(incommingSQLDataArr) {
         incommingSQLDataArr$.next(incommingSQLDataArr);
+    }
+}
+export function updateOptionColList(optionColListArr){
+    if(optionColListArr) {
+        optionColListArr$.next(optionColListArr);
     }
 }
 export function updateGotoPage(gotoPage){
