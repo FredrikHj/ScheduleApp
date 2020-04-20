@@ -65,6 +65,7 @@ export let LogedIn = () => {
                     />
                 }
             />
+            
             <HeadTable/>
             {/* <Route exact path={appUrl + routeName.login } component={ HeadTable }/> */}
         </>

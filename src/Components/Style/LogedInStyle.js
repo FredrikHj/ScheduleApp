@@ -22,3 +22,13 @@ export let LogedInStyle = {
     margin-top: -10px;
   `,
 }
+// ============================== UserSpecificStyle ==============================
+export const UserInputForm = {
+  width: "100%",
+}
+export let UserInputSelect = {
+  container: styled.section`
+    margin-left: 0;
+    margin-top: 0;
+  `,
+}

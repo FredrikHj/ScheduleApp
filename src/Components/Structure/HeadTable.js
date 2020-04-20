@@ -36,8 +36,8 @@ export let HeadTable = (props) => {
                 <table id="tableSchedule__body">
                     <TableHead/>
                     <tbody id="tableSchedule__tBody">
-                        {redirectToPage === routeName.addRecords && <Redirect to={ `/${ routeName.addRecords }`} />} 
-                        <Route path={ '/Add' } component={ ListAddForm }/>
+                        {redirectToPage === routeName.addRecords && <Redirect to={ `/${ routeName.addRecords }`} />}
+                            <Route path={ '/Add' } component={ ListAddForm }/>
                         <ListSQLData/>
                     </tbody>                    
                 </table>

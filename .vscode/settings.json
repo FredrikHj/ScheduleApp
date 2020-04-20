@@ -1,6 +1,6 @@
 {
-    "workbench.preferredHighContrastColorTheme": "Kimbie Dark",
-    "workbench.preferredDarkColorTheme": "Kimbie Dark",
-    "workbench.preferredLightColorTheme": "Kimbie Dark",
-    "workbench.colorTheme": "Afterglow"
+    "workbench.preferredHighContrastColorTheme": "Visual Studio Dark",
+    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+    "workbench.preferredLightColorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Visual Studio Dark"
 }
