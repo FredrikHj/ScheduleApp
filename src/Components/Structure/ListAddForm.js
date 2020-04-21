@@ -8,31 +8,37 @@ import { optionColListArr$ } from '../Storage';
 export let ListAddForm = (props) => {
     //let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ structuredSQLDataArr, updateStructuredSQLDataArr ] = useState([]);
-    let [ addedCellData, updateAddedCellData ] = useState([]);
+    //let [ addedCellData, updateAddedCellData ] = useState([]);
     let [ addedRecordData, updateAddedRecordData ] = useState([]);
     let [ addedRecords, updateAddedRecords ] = useState([]);
 
     useEffect(() => {
         optionColListArr$.subscribe((SQLColListArr) => {
-        console.log("ListAddForm -> SQLDataArr", SQLColListArr)
             // It can handle the data an perform its task regardless the data infrastructure 
             
             if (SQLColListArr) if(structuredSQLDataArr.length === 0) updateStructuredSQLDataArr(SQLColListArr);
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
         //createRecordsBody();
-     }, []);
+     }, [addedRecordData]);
      
     let setStrsType = (e) => {
+        const puschToAddedRecordData = [...addedRecordData];
         let type = e.target;
         let inputStr = type.value;            
         console.log("setStrsType -> inputStr", inputStr)
         
         const {dataset} = type;
     
-        for (let index = 0; index < tableHeadline.length; index++) if (dataset.type === tableHeadline[index]) addedRecordData[dataset.typenr] = inputStr;
-        console.log("setStrsType -> addedRecordData", addedRecordData)
+        for (let index = 0; index < tableHeadline.length; index++) if (dataset.type === tableHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
+        updateAddedRecordData(puschToAddedRecordData);
         
+    }
+    console.log("setStrsType -> addedRecordData", addedRecordData)
+    const chooseSelectOption = (e) => {
+        const getChoosedSelectOption = e.target.value;
+        
+        console.log("chooseSelectOption -> getChoosedSelectOption", getChoosedSelectOption)
     }
     const addCellData = (cellData) => {
         let pushToAddCellData = [...addCellData];
@@ -68,16 +74,19 @@ export let ListAddForm = (props) => {
         <>
             <tr>
                 {
-                    tableHeadline.map((item, index) => {
+                    tableHeadline.map((item, cellIndex) => {
                         return(
-                            <td key={ index }>
+                            <td key={ cellIndex }>
                                 <CellInput 
                                     dataType={ item }
-                                    dataTypenr={ index }
-                                    onChange={ setStrsType }
+                                    cellIndex={ cellIndex }
+                                    inputOnChange={ setStrsType }
+                                    sOOnClick={ chooseSelectOption }
+                                    cellStr={ addedRecordData[cellIndex] }
                                     placeholder={ "  ..." }
-                                    options={ structuredSQLDataArr[index] !== undefined && structuredSQLDataArr[index] }
-                                />
+                                    options={ structuredSQLDataArr[cellIndex] !== undefined && structuredSQLDataArr[cellIndex] }
+
+                               />
                             </td>
                         );
                     })

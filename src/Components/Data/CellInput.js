@@ -5,23 +5,23 @@ export let CellInput = (props) => {
 
     }, [])
     console.log(props.options);
-const { dataType, dataTypen, onChange, placeholder } = props;
+const { dataType, cellIndex, inputOnChange, sOOnClick, cellStr, placeholder } = props;
     return(
         <>
             <input 
                 type="text"
                 style={ UserInputForm.UserInputForm }
                 data-type={ dataType } 
-                data-typenr={ dataTypen }
-                onChange={ onChange } 
+                data-typenr={ cellIndex }
+                onChange={ inputOnChange } 
                 placeholder={ placeholder }
             />
             <UserInputSelect.container>
-                <select>
+                <select key={ cellIndex } onChange={ sOOnClick }>
                     {(props.options !== false) 
-                        ? props.options.map((item, index) => {
+                        ? props.options.map((item, optionIndex) => {
                             return(
-                                <option key={ index }>{ item }</option>
+                                <option key={ optionIndex } id={ optionIndex } value={ item }>{ item }</option>
                             );
                         })
                         : null
