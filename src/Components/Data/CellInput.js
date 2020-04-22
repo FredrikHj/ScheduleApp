@@ -18,6 +18,7 @@ const { dataType, cellIndex, inputOnChange, sOOnClick, cellStr, placeholder } = 
             />
             <UserInputSelect.container>
                 <select key={ cellIndex } onChange={ sOOnClick }>
+                    <option>Välj</option>
                     {(props.options !== false) 
                         ? props.options.map((item, optionIndex) => {
                             return(
