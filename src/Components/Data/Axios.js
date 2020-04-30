@@ -1,18 +1,17 @@
 import axios from 'axios';
-import { updateSavedSQLData, updateOptionColList, updateUserData, updateGotoPage } from '../Storage.js';
+import { updateSiteLoga, updateSavedSQLData, updateOptionColList, updateUserData, updateGotoPage } from '../Storage.js';
+import { backendURL } from './BackendURLPath';
 import { setTimeout } from 'timers';
 import { log } from 'util';
 
 let savedSQLDataArr = [];
-
-//let backendURL = 'https://hbgworks-poc-event-schedule.herokuapp.com'; // Heroku Backend
-let backendURL = 'http://localhost:3001'; // Local Backend 
 
 export let axiosGet = (getType, tokenStr) => {
     console.log("axiosGet -> getType", getType)
         let routes = '';
 
     // Type of post method
+    if (getType === 'getLoga') routes = '/SiteLoga';
     if (getType === 'default') routes = '/SQLData';
     if (getType === 'userSpec') routes = `/SQLData/${ 'fredde' }`;
     
@@ -26,19 +25,14 @@ export let axiosGet = (getType, tokenStr) => {
         /* Store the incomming API data in a variables - 
         Note that the data structure deppending on the conditions
         */
-        if (response.status === 200 && getType === 'default') incommingSQLResArr = response.data[0];
+        if (response.status === 200 && getType === 'getLoga') updateSiteLoga(response.data);
+        if (response.status === 200 && getType === 'default') storageData(response.data[0]);
         if (response.status === 200 && getType === 'userSpec') {
-            incommingSQLResArr = response.data.SQLData[0];
+            storageData(response.data.SQLData[0]);
             updateOptionColList(response.data.structuringCols)
         }
-         //;
-        /*  If incomming status of 200 = OK
-            Data i push into a arry too  Storage
-            The array is holding the data until the webbbrowser is closed 
+         
           
-        Default get
-        */
-          updateSavedSQLData(incommingSQLResArr);
         
         /*  If incomming status of 201 = Created:
             Data i push into a arry that is holding the data until the webbbrowser is closed 
@@ -54,6 +48,9 @@ export let axiosGet = (getType, tokenStr) => {
     catch(error => {
         ////;
     });
+}
+const storageData = (saveData) => {
+    updateSavedSQLData(saveData);
 }
 let getUserId = () => {
     let getUserId = JSON.parse(window.localStorage.getItem("userData")).userId;

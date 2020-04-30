@@ -4,6 +4,7 @@ import {getTokenData} from './CommonFunctions';
 import {getLocalStorageData} from './Data/LocalStorage';
 const inlogedUserFullName = '';
 const incommingSQLDataArr = [];
+const incommingSiteLoga = '';
 const optionColListArr = [];
 const headName = '';
 const userData = '';
@@ -14,6 +15,7 @@ const gotoPage = '';
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
 export const headName$ = new BehaviorSubject(headName);
 export const userData$ = new BehaviorSubject(userData);
+export const incommingSiteLoga$ = new BehaviorSubject(incommingSiteLoga);
 export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
 export const optionColListArr$ = new BehaviorSubject(optionColListArr);
 
@@ -55,8 +57,15 @@ export function updateInlogedUserFullName(){
 export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
+export function updateSiteLoga(incommingSiteLoga){
+    if(incommingSiteLoga) {
+        console.log("updateSiteLoga -> incommingSiteLoga", incommingSiteLoga)
+        incommingSiteLoga$.next(incommingSiteLoga);
+    }
+}
 export function updateSavedSQLData(incommingSQLDataArr){
     if(incommingSQLDataArr) {
+        console.log("updateSavedSQLData -> incommingSQLDataArr", incommingSQLDataArr)
         incommingSQLDataArr$.next(incommingSQLDataArr);
     }
 }

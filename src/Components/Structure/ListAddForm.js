@@ -75,6 +75,7 @@ export let ListAddForm = (props) => {
         
     }
     const handlerDateCol = (e) => {
+    console.log("handlerDateCol -> e", e)
 
     }
     const mappCols = (itemIndex) => {
@@ -102,6 +103,8 @@ export let ListAddForm = (props) => {
                                             <Calendar
                                                 onChange={ handlerDateCol }
                                                 value={ '' }
+                                                calendarType="ISO 8601"
+                                                locale="sv-SV"
                                             />
                                         </>
                                     
