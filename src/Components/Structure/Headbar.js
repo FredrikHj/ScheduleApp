@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GenerallyStyle, HeadbarStyle } from '../Style/MainStyle';
+import { GenerallyStyle, HeadbarStyle, logaImage } from '../Style/MainStyle';
 
 import { backendURL } from '../Data/BackendURLPath';
 import { axiosGet } from '../Data/Axios.js';
@@ -8,14 +8,10 @@ import { axiosGet } from '../Data/Axios.js';
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
 import { userData$, gotoPage$, incommingSiteLoga$ } from '../Storage.js';
-import { Auth } from '../Data/Authorization';
-import { log } from 'util';
 
 import { LogedIn } from '../../LogedIn.js';
 
 import { localPubAppUrls } from '../Data/runAppUrls.js';
-
-import { nfapply } from 'q';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
@@ -56,15 +52,12 @@ export let Headbar = (props) => {
         <>
             <HeadbarStyle.header>
                 <HeadbarStyle.headContainer>
-                    <HeadbarStyle.headline>
-                        <img src={ inBackendURL + siteLoga } alt="waef"/>
-                        { appName }
-                        </HeadbarStyle.headline>
+                    <HeadbarStyle.siteLogaContainer>
+                        <img src={ inBackendURL + siteLoga } style={ logaImage } alt="waef"/>
+                        <HeadbarStyle.headline>{ appName }</HeadbarStyle.headline>
+                    </HeadbarStyle.siteLogaContainer>
                     {appStatus}
-                </HeadbarStyle.headContainer> 
-                    
-                    
-                    
+                </HeadbarStyle.headContainer>                     
                     {/* <GenerallyStyle.askMarkMove><i className="material-icons">contact_support</i></GenerallyStyle.askMarkMove> */}
             </HeadbarStyle.header>
         </>

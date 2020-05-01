@@ -39,7 +39,7 @@ export let LoginFormStyle = {
     width: 706px;
     height: 75px;
     margin-left: 770px;
-    margin-top: -67px;
+    margin-top: 0;
 `,
   usernameContainer: styled.section`
     margin-left: 10px;

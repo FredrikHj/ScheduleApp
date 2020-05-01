@@ -9,32 +9,45 @@ export let GenerallyStyle = {
   `,
   askMarkMove: styled.section`
     float: right;
-    margin-top: -7px;
+   /* margin-top: -7px; */
   `,
 }
 // ============================== Headbar ==============================
 export let HeadbarStyle = {
   header: styled.section`
-    width: 100%;
     background-color: white;
-    margin: -39px 0px 0px -5px;
+    /* margin: 0px 0px 0px -5px; */
     `,
   headContainer: styled.section`
-    width: 1400px;
-    height: 103px;
-    margin-left: calc(50% - 700px);
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
     background: #FFFFFF;
   `,
+  siteLogaContainer: styled.section`
+    width: 500px;
+    height: 103px;
+  `,
   headline: styled.section`
-    width: 221px;
-    height: 50px;
-    margin-left: 32px;
-    margin-top: 46px;
+    display: flex;
+    align-items: flex-end;
+    width: 500px;
+    height: 18px;
+    margin-left: 45px;
+    margin-top: -3px;
     font-family: Roboto;
     font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 80px;
-    color: #AE0B05;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #3D3D3D;
   `,
+}
+export const logaImage = {
+    width: '190px',
+    marginLeft: '-4px',
+    marginTop: '40px',
+    marginBottom: '0',
 }
