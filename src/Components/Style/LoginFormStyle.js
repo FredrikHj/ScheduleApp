@@ -35,21 +35,18 @@ export let HeadbarStyle = {
   }
 // ============================== LoginForm ==============================
 export let LoginFormStyle = {
-  statusContainer: styled.section`
-    width: 706px;
-    height: 75px;
-    margin-left: 770px;
-    margin-top: 0;
-`,
+  headContainer: styled.section`
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 45px;
+    margin-top: -8px;
+  `,
   usernameContainer: styled.section`
-    margin-left: 10px;
-    margin-top: 30px;
-    margin-bottom: -25px;
+    margin-left: 70px;
   `,
   passwordContainer: styled.section`
-    margin-left: 256px;
-    margin-top: -69px;
-    margin-bottom: -25px;
+    margin-left: 8px;
     `,
   labelFormatUsernamePassword: styled.p`
     width: 221px;
@@ -64,7 +61,7 @@ export let LoginFormStyle = {
     color: #000000;
     `,
   inputFormatUsernamePassword: styled.input`
-    width: 228px;
+    width: 232px;
     height: 29px;
     margin-left: 0px;
     margin-top: 0px;
@@ -76,8 +73,9 @@ export let LoginFormStyle = {
   btnLoginContainer: styled.section`
     width: 181px;
     height: 80%;
-    margin-left: 499px;
-    margin-top: -55px;
+    margin-left: 8px;
+    margin-top: 2px;
+
   `,
   userInfoContainer: styled.section`
     width: 377px;
@@ -92,18 +90,5 @@ export let LoginFormStyle = {
     font-size: 13.5px;
     color: #AE0B05;
     font-weight: bold;
-  `,
-  regLink: styled.section`
-    margin-right: -50px;
-    margin-top: 10px;
-    width: 200px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: center;
-    color: black;
-    font-size: 12px;
   `,
 }

@@ -13,20 +13,34 @@ export let GenerallyStyle = {
   `,
 }
 // ============================== Headbar ==============================
+const headerWidth = 1400;
+const headContainerCenterPoss = headerWidth/2;
+export const logaImage = {
+    width: '210px',
+    marginLeft: '-4px',
+    marginTop: '40px',
+    marginBottom: '0',
+}
+
 export let HeadbarStyle = {
   header: styled.section`
     background-color: white;
-    /* margin: 0px 0px 0px -5px; */
-    `,
+    width: 100%;
+  `,
   headContainer: styled.section`
     display: flex;
     flex-direction: row;
-    width: 1000px;
+    width: ${headerWidth}px;
+    margin-left: calc(50% - ${headContainerCenterPoss}px);
     background: #FFFFFF;
   `,
+  appStatusContainer: styled.section`
+    width: 62%;
+  `,
   siteLogaContainer: styled.section`
-    width: 500px;
-    height: 103px;
+    margin-top: -23px;
+    margin-left: 25px;
+    width: 38%;
   `,
   headline: styled.section`
     display: flex;
@@ -34,7 +48,7 @@ export let HeadbarStyle = {
     width: 500px;
     height: 18px;
     margin-left: 45px;
-    margin-top: -3px;
+    margin-top: -18px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 900;
@@ -44,10 +58,4 @@ export let HeadbarStyle = {
     text-transform: uppercase;
     color: #3D3D3D;
   `,
-}
-export const logaImage = {
-    width: '190px',
-    marginLeft: '-4px',
-    marginTop: '40px',
-    marginBottom: '0',
 }

@@ -56,7 +56,9 @@ export let Headbar = (props) => {
                         <img src={ inBackendURL + siteLoga } style={ logaImage } alt="waef"/>
                         <HeadbarStyle.headline>{ appName }</HeadbarStyle.headline>
                     </HeadbarStyle.siteLogaContainer>
-                    {appStatus}
+                    <HeadbarStyle.appStatusContainer>
+                        {appStatus}
+                    </HeadbarStyle.appStatusContainer>
                 </HeadbarStyle.headContainer>                     
                     {/* <GenerallyStyle.askMarkMove><i className="material-icons">contact_support</i></GenerallyStyle.askMarkMove> */}
             </HeadbarStyle.header>

@@ -54,17 +54,15 @@ export let LogedIn = () => {
                     <LogedInStatus
                         inlogedUser={ inlogedUser }
                         functionLogOut={ runLogOut }
-                        sumbitBtnGotTo= {
-                            <SubmitBtn
-                                style={ specificBtnStyleGotTo }
-                                name={ 'Lägga Till' }
-                                onClick={ runAddRecord }
-                                id={ 'Add' }
-                            />
-                        }
                     />
                 }
             />
+                    <SubmitBtn
+                        style={ specificBtnStyleGotTo }
+                        name={ 'Lägga Till' }
+                        onClick={ runAddRecord }
+                        id={ 'Add' }
+                    />
             
             <HeadTable/>
             {/* <Route exact path={appUrl + routeName.login } component={ HeadTable }/> */}

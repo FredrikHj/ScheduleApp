@@ -5,8 +5,8 @@ export let AuthStyle = {
   statusContainer: styled.section`
     width: 400px;
     display: flex;
-    margin-left: 820px;
-    margin-top: -8px;
+    margin-left: 490px;
+    margin-top: 40px;
   `,
 logInSpinnerMove: styled.section`
     margin-left: 3px;

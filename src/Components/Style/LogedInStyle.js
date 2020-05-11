@@ -3,23 +3,29 @@ import { CommonBtnStyle } from './CommonStyle';
 
 // ============================== Already logedIn ==============================
 export let LogedInStyle = {
-  statusContainer: styled.section`
-    width: 400px;
+  headContainer:styled.section`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-left: 820px;
-    margin-top: -8px;
+    width: 60%;
+    margin-left: 40%;
+    height: 0;
+    padding-top: 40px;
   `,
-  logedInUser: styled.section`
-    border: 1px solid red;
-    width: 400px;
-    display: flex;
-    flex-direction: row;
-    margin-left: 51px;
-    `,
-  btnSubmitLogoutInTopUp: styled.section`
-    margin-top: -10px;
+  userHelp: styled.section`
+    margin-left: -5px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+  `,
+  inlogedUser: styled.section`
+    width: 300px;
+    margin-left: 50px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
   `,
 }
 // ============================== UserSpecificStyle ==============================

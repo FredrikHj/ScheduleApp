@@ -42,7 +42,7 @@ export let axiosGet = (getType, tokenStr) => {
             savedSQLDataArr[0].push(incommingSQLResArr[0][0]);
             updateSavedSQLData[0](savedSQLDataArr);
         }
-        else{
+         else{
         }
     }).
     catch(error => {
