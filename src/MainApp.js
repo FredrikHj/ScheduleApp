@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { routeName } from './Components/Data/RouteNames';
 
 // React Router - ES6 modules
-import { 
-  // BrowserRouter as Router, 
-  HashRouter, Route, Redirect, Link } from "react-router-dom";
-import { updateHeadName, getLogStatus, gotoPage$ } from './Components/Storage.js';
+import { HashRouter, Route, Redirect } from "react-router-dom";
+import { updateHeadName, gotoPage$ } from './Components/Storage.js';
 
-import { localPubAppUrls } from './Components/Data/runAppUrls.js';
-import { SQLTable } from './Components/Structure/ListSQLData.js';
 import { LogedIn } from './LogedIn';
 import { MainPage } from './MainPage.js';
 import { Auth } from './Components/Data/Authorization';
-import { AddRecords } from './Components/Structure/AddRecords';
 
 updateHeadName('Årsklockan');
 
@@ -40,9 +35,6 @@ let MainApp = () => {
       <Route exact path={ appUrl } component={ MainPage } />
       <Route exact path={ appUrl + routeName.auth } component={ Auth }/>   
       <Route exact path={ appUrl + routeName.login } component={ LogedIn }/>  
-
-      {redirectToPage === routeName.addRecords && <Redirect to={ '/Add' } />}
-      <Route path={ '/Add' } component={ AddRecords }/>
     </HashRouter>
   );
 }

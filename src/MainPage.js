@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import {Helmet} from "react-helmet";
-import { routeName } from './Components/Data/RouteNames';
-
-import { LoginForm } from './Components/Data/LoginForm'
-import { HeadbarBtn } from './Components/Structure/HeadbarBtn';
 
 // React Router - ES6 modules
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { headName$, userData$, updateGotoPage} from './Components/Storage.js';
 
-import { headName$, userData$, getLogStatus, updateGotoPage} from './Components/Storage.js';
-import {axiosGet, axiosPost } from './Components/Data/Axios';
+import {Helmet} from "react-helmet";
 
-
-import { runLogInOut } from './Components/Data/LogInOut.js';
-import { LogedIn } from './LogedIn.js';
-import { localPubAppUrls } from './Components/Data/runAppUrls.js';
+import { routeName } from './Components/Data/RouteNames';
+import { LoginForm } from './Components/Data/LoginForm'
+import {axiosPost } from './Components/Data/Axios';
 
 import { Headbar } from './Components/Structure/Headbar.js';
-import { HeadTable } from './Components/Structure/HeadTable';
+import { MainContents } from './Components/Structure/MainContents';
 import { RegUser } from './Components/Structure/RegUser';
 
 // Sending over formData for RunLogInOut
@@ -99,11 +93,8 @@ export let MainPage = () => {
                     />
                 }
             />
-            
-            <Route exact path={appUrl} component={ HeadTable }/>
+            <Route exact path={appUrl} component={ MainContents }/>
             <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
-
         </>
-
     );
 }

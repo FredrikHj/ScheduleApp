@@ -30,13 +30,25 @@ export const specificBtnStyleLogout = {
         color: 'black',
     }
 }
-export const specificBtnStyleGotTo = {
+export const specificBtnStyleAddRow = {
     btn: {
-
+        width: '83px',
+        height: '30px',
+        marginLeft: '300px',
+        marginTop: '93px',
+        marginBottom: '-88px',
+        border: 'none',
+        boxShadow: 'none',
+        background:'none',
     },
     text: {
-        marginLeft: '0',
-        marginTop: '5px',
+        fontFamily: 'Roboto',
+        fontStyle: 'normal',
+        fontWeight: '900',
+        fontSize: '12px',
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
+        color: 'black',
     }
 }
 

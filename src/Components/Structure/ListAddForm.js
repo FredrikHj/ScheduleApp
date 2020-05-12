@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
+import { AddSQLDataStyle, SQLTableStyle } from'../Style/SQLTableStyle';
+
 import { tableHeadline } from '../Data/TableHeadline';
-import { SubmitBtn } from '../Data/SubmitBtn';
 import { axiosPost } from '../Data/Axios';
 import { CellInput } from '../Data/CellInput';
 import { optionColListArr$ } from '../Storage';
@@ -23,10 +25,11 @@ export let ListAddForm = (props) => {
     }, [addedRecordData]);
     const createAddedRecordDataArr = () => {
         const puschToAddedRecordData = [...addedRecordData];
-        structuredSQLDataArr.filter((item, index) => {
+/*         structuredSQLDataArr.filter((item, index) => {
             if(index === 0) puschToAddedRecordData.push('20YY-MM-DD');
             else puschToAddedRecordData.push('');
-        });
+        }); */
+        puschToAddedRecordData.push('');
         if (addedRecordData.length === 0) updateAddedRecordData(puschToAddedRecordData);
     }    
     console.log("ListAddForm -> structuredSQLDataArr", structuredSQLDataArr)
@@ -93,19 +96,15 @@ export let ListAddForm = (props) => {
                                     ? 
                                         <>      
                                             <input 
-                                                /* type="text"
-                                                style={ UserInputForm.UserInputForm }
-                                                data-type={ dataType } 
-                                                data-typenr={ cellIndex }
-                                                onChange={ inputOnChange } */ 
                                                 value={ addedRecordData[cellIndex] }
                                             />
-                                            <Calendar
+                                           <AddSQLDataStyle.addDate> 20yy-mm-dd </AddSQLDataStyle.addDate>
+{/*                                             <Calendar
                                                 onChange={ handlerDateCol }
                                                 value={ '' }
                                                 calendarType="ISO 8601"
                                                 locale="sv-SV"
-                                            />
+                                            /> */}
                                         </>
                                     
                                    
@@ -127,12 +126,7 @@ export let ListAddForm = (props) => {
             </tr>
             <tr>
                 <td>
-                    <SubmitBtn
-                        style={ '' }
-                        name={ '+' }
-                        onClick={ runAddRow }
-                        id={ 'moreRecords' }
-                    />
+
 {/*                     <SubmitBtn
                         style={ '' }
                         name={ 'Skicka In' }
@@ -146,6 +140,7 @@ export let ListAddForm = (props) => {
                     Dina Aktiviteter
                 </td>
             </tr>
+
         </>          
     );
 }

@@ -1,16 +1,11 @@
 /* SQL Table ----------- */
-#container__tableSchedule{
-  position: absolute;
-  width: 1024px;
-  top: 214px;
-  display: block;
-}
 #tableSchedule__body{
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   font-family: Roboto;
   font-size: 16px;
   line-height: 19px;
+  margin-top: 32px;
 }
 #tableSchedule__tBody{
   margin-top: 2px;
@@ -44,49 +39,4 @@ thead, tbody tr{
 }
 #tableSchedule__body thead {
   width: 99%;
-}
-.tableCol1{
-  width: 4%;
-}
-.tableCol2{
-  width: 11%;
-}
-.tableCol3{
-  width: 11%;
-}
-.tableCol4{
-  width: 15%;
-}
-.tableCol9{
-  width: 15%;
-}
-.addSqlInput{
-  width: 100%;
-}
-.tableCol1AddForm{
-  width: 4%;
-}
-.tableCol2AddForm{
-  width: 9.2%;
-}
-.tableCol3AddForm{
-  width: 9.4%;
-}
-.tableCol4AddForm{
-  width: 14.9%;
-}
-.tableCol5AddForm{
-  width: 9.3%;
-}
-.tableCol6AddForm{
-  width: 9.3%;
-}
-.tableCol7AddForm{
-  width: 9.4%;
-}
-.tableCol8AddForm{
-  width: 9.3%;
-}
-.tableCol9AddForm{
-  width: 14.9%;
 }

@@ -6,7 +6,7 @@ import {Helmet} from "react-helmet";
 import { headName$, gotoPage$, updateGotoPage } from '../Storage.js';
 import Spinner from './Spinner.js';
 import { Headbar } from '../Structure/Headbar.js';
-import { HeadTable } from '../Structure/HeadTable';
+import { MainContents } from '../Structure/MainContents';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
@@ -41,8 +41,7 @@ export let Auth = () => {
                         {runLogin()}
                     </AuthStyle.statusContainer>
                 }
-                /> 
-            <HeadTable/>
+            /> 
         </>
     );
 }
