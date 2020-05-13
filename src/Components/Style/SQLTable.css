@@ -1,5 +1,5 @@
 /* SQL Table ----------- */
-#tableSchedule__body{
+#table1_body{
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   font-family: Roboto;
@@ -7,7 +7,7 @@
   line-height: 19px;
   margin-top: 32px;
 }
-#tableSchedule__tBody{
+#table1_tbody{
   margin-top: 2px;
   display: block;
   height: 60vh;
@@ -20,14 +20,14 @@ thead, tbody tr{
   table-layout:fixed;
   color: #000000;
 }
-#tableSchedule__tBody td{
-  border: 1px solid lightgrey;/*  #AE0B05; */
+#table1_tbody td{
+  border: 1px solid lightgrey;
 }
-#tableSchedule__body tr:nth-child(even){
+#table1_body tr{
   background: #FFFFFF;
   border: 1px solid #E5E5E5;
 }
-#tableSchedule__body th {
+#table1_body th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
@@ -37,6 +37,6 @@ thead, tbody tr{
   font-weight: normal;
   margin-bottom: 50px;
 }
-#tableSchedule__body thead {
+#table1_body thead {
   width: 99%;
 }

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
 import { AddSQLDataStyle, SQLTableStyle } from'../Style/SQLTableStyle';
 
 import { tableHeadline } from '../Data/TableHeadline';
 import { axiosPost } from '../Data/Axios';
 import { CellInput } from '../Data/CellInput';
 import { optionColListArr$ } from '../Storage';
-import Calendar from 'react-calendar';
 
 export let ListAddForm = (props) => {
     //let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
@@ -84,63 +82,48 @@ export let ListAddForm = (props) => {
     const mappCols = (itemIndex) => {
         let saveToColsArr = [];
     }
-    console.log("ListAddForm -> structuredSQLDataArr", structuredSQLDataArr)
+    console.log("ListAddForm -> structuredSQLDataArr", tableHeadline)
     return(
         <>
             <tr>
                 {
                     tableHeadline.map((item, cellIndex) => {
+                    console.log("ListAddForm -> cellIndex", cellIndex)
+
                         return(
                             <td key={ cellIndex }>
-                                {(cellIndex === 0)
-                                    ? 
+                               {(cellIndex === 0) 
+                                    ?
                                         <>      
                                             <input 
                                                 value={ addedRecordData[cellIndex] }
                                             />
                                            <AddSQLDataStyle.addDate> 20yy-mm-dd </AddSQLDataStyle.addDate>
-{/*                                             <Calendar
-                                                onChange={ handlerDateCol }
-                                                value={ '' }
-                                                calendarType="ISO 8601"
-                                                locale="sv-SV"
-                                            /> */}
-                                        </>
-                                    
-                                   
-                                    : <CellInput 
-                                        dataType={ item }
-                                        cellIndex={ cellIndex }
-                                        inputOnChange={ setStrsType }
-                                        sOOnClick={ choosenSelectOption }
-                                        cellStr={ addedRecordData[cellIndex] }
-                                        valueStr={ addedRecordData[cellIndex] }
-                                        options={ structuredSQLDataArr[cellIndex] !== undefined && structuredSQLDataArr[cellIndex] }
-
-                                     />
+                                        </> : null                                    
+                                }
+                                {(cellIndex > 0)                   
+                                    ?   <CellInput 
+                                            dataType={ item }
+                                            cellIndex={ cellIndex }
+                                            inputOnChange={ setStrsType }
+                                            sOOnClick={ choosenSelectOption }
+                                            cellStr={ addedRecordData[cellIndex] }
+                                            valueStr={ addedRecordData[cellIndex] }
+                                            options={ structuredSQLDataArr[cellIndex] !== undefined && structuredSQLDataArr[cellIndex] }
+                                    />
+                                    : null
                                }
                             </td>
                         );
                     })
                 }                          
             </tr>
-            <tr>
-                <td>
 
-{/*                     <SubmitBtn
-                        style={ '' }
-                        name={ 'Skicka In' }
-                        onClick={ runSendToSQL }
-                        id={ 'sendIn' }
-                    /> */}
-                </td>
-            </tr>
             <tr>
                 <td>
                     Dina Aktiviteter
                 </td>
             </tr>
-
         </>          
     );
 }

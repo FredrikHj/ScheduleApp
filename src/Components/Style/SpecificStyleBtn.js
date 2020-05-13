@@ -1,4 +1,5 @@
 import { withTheme } from "styled-components"
+import { bindCallback } from "rxjs"
 
 export const specificBtnLStyleLogin = {
     btn: {
@@ -34,9 +35,8 @@ export const specificBtnStyleAddRow = {
     btn: {
         width: '83px',
         height: '30px',
-        marginLeft: '300px',
-        marginTop: '93px',
-        marginBottom: '-88px',
+        marginLeft: '0',
+        marginTop: '46px',
         border: 'none',
         boxShadow: 'none',
         background:'none',
@@ -51,7 +51,23 @@ export const specificBtnStyleAddRow = {
         color: 'black',
     }
 }
+export const specificBtnStyleRemoveRecord = {
+    btnContainer: {
 
+    },
+    btn: {
+        width: '77px',
+        height: '34px',
+        marginTop: '0',
+        marginBottom: '-12px',
+        border: 'none',
+        boxShadow: 'none',
+        background:'none',
+    },
+    text: {
+        color: 'black',
+    }
+}
 export const regLink = {
     width: '150px',
     height: '21px',

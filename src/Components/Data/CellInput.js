@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { UserInputForm, UserInputSelect } from '../Style/LogedInStyle'
+import { UserInputForm, UserInputSelect } from '../Style/LogedInStyle';
+import { selectContainers } from '../Style/SQLTableStyle';
+
 export let CellInput = (props) => {
     const { dataType, cellIndex, inputOnChange, sOOnClick, valueStr } = props;
     return(
         <>
             <input 
                 type="text"
-                style={ UserInputForm.UserInputForm }
+                style={ UserInputForm }
                 data-type={ dataType } 
                 data-typenr={ cellIndex }
                 onChange={ inputOnChange } 
                 value={ valueStr }
             />
             <UserInputSelect.container>
-                <select key={ cellIndex } onChange={ sOOnClick }>
+                <select key={ cellIndex } style={ selectContainers } onChange={ sOOnClick }>
                     <option>Välj</option>
                     {(props.options !== false) 
                         ? props.options.map((item, optionIndex) => {

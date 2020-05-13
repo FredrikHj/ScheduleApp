@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+
 import Spinner from '../Data/Spinner.js';
 import { correctRoutes } from '../Data/runAppUrls';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
 import { incommingSQLDataArr$ } from '../Storage';
 import { axiosGet } from '../Data/Axios';
 import { getLocalStorageData } from '../Data/LocalStorage';
+import { SubmitBtn } from '../Data/SubmitBtn';
+import { specificBtnStyleRemoveRecord } from '../Style/SpecificStyleBtn';
+import { tableHeadline } from '../Data/TableHeadline';
+
 export let ListSQLData = (props) => {
     let [ appUrl, setAppUrl ] = useState('/');
     let [ routes, updateRoutes ] = useState('');
@@ -49,24 +54,26 @@ export let ListSQLData = (props) => {
         <>
             {(incommingNewSQLData.length !== 0) 
                 ?
-                incommingNewSQLData.map((sqlDataObj, rowCounter) => {
+                incommingNewSQLData.map((item, index) => {
                     return(
-                        <tr key={ rowCounter }>
-                            <td>{ sqlDataObj.date }</td>
-                            <td className="tableCol4">{ sqlDataObj.activity }</td>
-                            <td>{ sqlDataObj.state }</td>
-                            <td>{ sqlDataObj.concerned }</td>
-                            <td>{ sqlDataObj.type }</td>
-                            <td>{ sqlDataObj.place }</td>
-                            <td className="tableCol9">{ sqlDataObj.content }</td>
+                        <tr key={ index }>
+                            <td>{ item.date }</td>
+                            <td>{ item.activity }</td>
+                            <td>{ item.state }</td>
+                            <td>{ item.concerned }</td>
+                            <td>{ item.type }</td>
+                            <td>{ item.place }</td>
+                            <td>{ item.content }</td>
                         </tr>
                     );
                 })
             :   
                 <>
-                    <tr><td>
-                        <Spinner str={'Tabellen laddas'}/>
-                    </td></tr>
+                    <tr>
+                        <td>
+                            <Spinner str={'Tabellen laddas'}/>
+                        </td>
+                    </tr>
                 </>
             }
         </>

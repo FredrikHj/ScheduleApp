@@ -3,11 +3,6 @@ import styled from 'styled-components';
 // ============================== GenerallyStyle ==============================
 const commonColorBlue =  'rgb(68, 68, 223)';
 export let GenerallyStyle = {
-  body__contents: styled.section`
-    width: 1024px;
-    margin-left: calc(50% - 512px);
-
-  `,
   askMarkMove: styled.section`
     float: right;
    /* margin-top: -7px; */
@@ -25,7 +20,6 @@ export const logaImage = {
 
 export let HeadbarStyle = {
   header: styled.section`
-    border: 1px solid red;
     background-color: white;
     width: 100%;
   `,

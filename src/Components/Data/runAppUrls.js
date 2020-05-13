@@ -1,3 +1,4 @@
+// Handles the domain public dev or online pulished
 export let localPubAppUrls = () => {
   let correctDomain = '';
 
@@ -11,21 +12,10 @@ export let localPubAppUrls = () => {
  
   return correctDomain;
 }
+// Handles correct read of the url = /?????
 export let correctRoutes = () => {
   let correctRouteName = '';
   let routeName = window.location.hash.split('#')[1];
   console.log("runAppUrls -> appUrl", routeName)
-
-
-  
-  ////console.log(appUrl.pathname.split('/')[1]);
-  
-  // Check if ther is any components that can be reuse
-  //if(appUrl.pathname.split('/')[1] === 'LogIn') localPubUrl = appUrl.pathname.split('/')[1];
-  
-  // Check if in dev or pub mode´; 
-/*   if (appUrlHostname === 'localhost') correctRouteName = routeName;
-  if (appUrlHostname === 'fredrikhj.github.io') correctRouteName = `/ScheduleApp${routeName}`;
- */ 
   return routeName;
 }

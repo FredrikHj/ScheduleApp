@@ -14,13 +14,30 @@ export let SQLTableStyle = {
         width: 80%;
     `,
     searchBar: styled.section`
-        margin-left: 267px;
-        margin-top: 82px;
-        width: 861px;
+        margin-left: calc(50% - 470px);
+        margin-top: 81px;
+        width: 862px;
     `,
     // Table  content ----------------------
-
-
+    body__contents: styled.section`
+        width: 1024px;
+        margin-left: calc(50% - 512px);
+        display: flex;
+        flex-direction: row;
+    `,
+    sideTool: styled.section`
+        border: 1px solid red;
+        margin-left: 10px;
+        margin-top: 32px;
+    `,
+    sideToolRow1:styled.section`
+        border: 1px solid red;
+        margin-top: 0;
+    `,
+    sideToolRow2: styled.section`
+        border: 1px solid red;
+        margin-top: 30px;
+    `  ,
 }
 // ============================== Add Data ==============================
 export let AddSQLDataStyle = {
@@ -30,8 +47,7 @@ export let AddSQLDataStyle = {
         color: red;
         font-weight: bold;
     `,
-    btnAdd:  styled.section`
-        margin-left: 900px;
-        margin-top: 1px;
-    `,
+}
+export const selectContainers = {
+    width: '100%',
 }
