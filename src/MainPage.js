@@ -69,8 +69,9 @@ export let MainPage = () => {
         updateGotoPage(targetBtnId);
         //if (inlogStatus === 203) return; 
     }
-    let runReg = () =>{
-
+    let runReg = (e) =>{
+        console.log(e);
+        
     }    
     return (
         <>  

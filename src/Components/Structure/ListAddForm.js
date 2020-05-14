@@ -106,7 +106,7 @@ export let ListAddForm = (props) => {
                                             dataType={ item }
                                             cellIndex={ cellIndex }
                                             inputOnChange={ setStrsType }
-                                            sOOnClick={ choosenSelectOption }
+                                            sOonClick={ choosenSelectOption }
                                             cellStr={ addedRecordData[cellIndex] }
                                             valueStr={ addedRecordData[cellIndex] }
                                             options={ structuredSQLDataArr[cellIndex] !== undefined && structuredSQLDataArr[cellIndex] }

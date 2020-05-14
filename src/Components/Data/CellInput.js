@@ -3,7 +3,7 @@ import { UserInputForm, UserInputSelect } from '../Style/LogedInStyle';
 import { selectContainers } from '../Style/SQLTableStyle';
 
 export let CellInput = (props) => {
-    const { dataType, cellIndex, inputOnChange, sOOnClick, valueStr } = props;
+    const { dataType, cellIndex, inputOnChange, sOonClick, valueStr } = props;
     return(
         <>
             <input 
@@ -15,7 +15,7 @@ export let CellInput = (props) => {
                 value={ valueStr }
             />
             <UserInputSelect.container>
-                <select key={ cellIndex } style={ selectContainers } onChange={ sOOnClick }>
+                <select key={ cellIndex } style={ selectContainers } onChange={ sOonClick }>
                     <option>Välj</option>
                     {(props.options !== false) 
                         ? props.options.map((item, optionIndex) => {

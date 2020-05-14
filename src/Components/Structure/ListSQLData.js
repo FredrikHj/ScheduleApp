@@ -6,9 +6,6 @@ import { localPubAppUrls } from '../Data/runAppUrls.js';
 import { incommingSQLDataArr$ } from '../Storage';
 import { axiosGet } from '../Data/Axios';
 import { getLocalStorageData } from '../Data/LocalStorage';
-import { SubmitBtn } from '../Data/SubmitBtn';
-import { specificBtnStyleRemoveRecord } from '../Style/SpecificStyleBtn';
-import { tableHeadline } from '../Data/TableHeadline';
 
 export let ListSQLData = (props) => {
     let [ appUrl, setAppUrl ] = useState('/');
@@ -59,7 +56,6 @@ export let ListSQLData = (props) => {
                         <tr key={ index }>
                             <td>{ item.date }</td>
                             <td>{ item.activity }</td>
-                            <td>{ item.state }</td>
                             <td>{ item.concerned }</td>
                             <td>{ item.type }</td>
                             <td>{ item.place }</td>

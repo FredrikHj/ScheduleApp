@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 import { runAddRecord } from '../Data/CommonFunction';
 import {GenerallyStyle } from '../Style/MainStyle'
 import { SQLTableStyle } from '../Style/SQLTableStyle';
-import { specificBtnStyleGotTo } from '../Style/SpecificStyleBtn';
+import { specificStyleGotTo } from '../Style/SpecificStyle';
 import '../Style/SQLTable.css';
 import { AddSQLDataStyle } from '../Style/SQLTableStyle';
 import { correctRoutes } from '../Data/runAppUrls';
 import { SubmitBtn } from '../Data/SubmitBtn';
-import { specificBtnStyleAddRow, specificBtnStyleRemoveRecord } from '../Style/SpecificStyleBtn';
+import { specificStyleAddRow, specificStyleRemoveRecord } from '../Style/SpecificStyle';
 import { incommingSQLDataArr$ } from '../Storage';
 
 import { TableHead } from './TableHead';
@@ -39,7 +39,13 @@ export let MainContents = (props) => {
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
     },[ redirectToPage ]);
-    console.log("MainContents -> redirectToPage", typeof correctRoutes())
+    console.log("MainContents -> redirectToPage", typeof correctRoutes());
+    const runAddRow  = (e) => {
+
+    }
+    const runRemove  = (e) => {
+
+    }
     return (
         <> 
             <SQLTableStyle.container>
@@ -60,9 +66,9 @@ export let MainContents = (props) => {
                         <SQLTableStyle.sideTool style={(correctRoutes() === `/${ routeName.login }` ) ? {display: 'block'} : {display: 'none'}}>
                             <SQLTableStyle.sideToolRow1>
                                 <SubmitBtn
-                                    style={ specificBtnStyleAddRow }
+                                    style={ specificStyleAddRow }
                                     name={ 'Lägg Till' }
-                                    onClick={ 'runAddRow' }
+                                    onClickFunction={ runAddRow }
                                     id={ 'moreRecords' }
                                 />
                             </SQLTableStyle.sideToolRow1>
@@ -70,10 +76,10 @@ export let MainContents = (props) => {
                                 {
                                     incommingNewSQLData.map((item, index) => {
                                         return(
-                                            <SubmitBtn
-                                                style={ specificBtnStyleRemoveRecord }
+                                            <SubmitBtn key={ index }
+                                                style={ specificStyleRemoveRecord }
                                                 name={ 'TA BORT' }
-                                                onClick={ 'runRemove' }
+                                                onClickFunction={ runRemove }
                                                 id={ 'runRemoveRecord' }
                                             />
                                         );

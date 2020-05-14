@@ -20,8 +20,8 @@ export let SQLTableStyle = {
     `,
     // Table  content ----------------------
     body__contents: styled.section`
-        width: 1024px;
-        margin-left: calc(50% - 512px);
+        width: 920px;
+        margin-left: calc(50% - 450px);
         display: flex;
         flex-direction: row;
     `,

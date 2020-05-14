@@ -39,33 +39,47 @@ export let LoginFormStyle = {
     width: 400px;
     display: flex;
     flex-direction: row;
-    margin-left: 45px;
+    margin-left: -54px;
     margin-top: -8px;
   `,
-  usernameContainer: styled.section`
+  formContainer: styled.section`
+    width: 600px;
+    display: flex;
+    flex-direction: row;
     margin-left: 70px;
+    margin-top: 22px;
+    padding-top: 23px;
+  `,
+  usernameContainer: styled.section`
+    position: relative;
+
   `,
   passwordContainer: styled.section`
+    position: relative;
     margin-left: 8px;
-    `,
-  labelFormatUsernamePassword: styled.p`
-    width: 221px;
+  `,
+  labelFormNoFocus: styled.label`
+    position: absolute;
     height: 50px;
     margin-left: 10px;
     margin-bottom: -25px;
     font-family: Roboto;
-    font-style: normal;
+    font-style: 500;
     font-weight: normal;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 150%;
+    letter-spacing: 0.005em;
     color: #000000;
-    `,
-  inputFormatUsernamePassword: styled.input`
+    background-color: none;
+    
+  `,
+  inputForm: styled.input`
+      border: 1px solid red;
     width: 232px;
     height: 29px;
     margin-left: 0px;
-    margin-top: 0px;
-    background: #F5F5F5;
+    margin-top: -32px;
+    background: none; /*   background: #F5F5F5; */
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 4px;
@@ -75,7 +89,6 @@ export let LoginFormStyle = {
     height: 80%;
     margin-left: 8px;
     margin-top: 2px;
-
   `,
   userInfoContainer: styled.section`
     width: 377px;

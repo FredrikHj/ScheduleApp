@@ -4,8 +4,6 @@ import { GenerallyStyle, HeadbarStyle, logaImage } from '../Style/MainStyle';
 import { backendURL } from '../Data/BackendURLPath';
 import { axiosGet } from '../Data/Axios.js';
 
-// React Router - ES6 modules
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
 import { userData$, gotoPage$, incommingSiteLoga$ } from '../Storage.js';
 
@@ -60,7 +58,6 @@ export let Headbar = (props) => {
                         {appStatus}
                     </HeadbarStyle.appStatusContainer>
                 </HeadbarStyle.headContainer>                     
-                    {/* <GenerallyStyle.askMarkMove><i className="material-icons">contact_support</i></GenerallyStyle.askMarkMove> */}
             </HeadbarStyle.header>
         </>
     );

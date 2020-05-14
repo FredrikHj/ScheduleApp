@@ -7,13 +7,13 @@ export let LogedInStyle = {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 60%;
-    margin-left: 40%;
+    width: 52%;
+    margin-left: 41.5%;
     height: 0;
     padding-top: 40px;
   `,
   userHelp: styled.section`
-    margin-left: -5px;
+    margin-left: -50px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -21,7 +21,7 @@ export let LogedInStyle = {
   `,
   inlogedUser: styled.section`
     width: 300px;
-    margin-left: 50px;
+    margin-left: 30px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;

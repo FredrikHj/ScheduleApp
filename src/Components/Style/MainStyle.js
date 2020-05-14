@@ -5,7 +5,6 @@ const commonColorBlue =  'rgb(68, 68, 223)';
 export let GenerallyStyle = {
   askMarkMove: styled.section`
     float: right;
-   /* margin-top: -7px; */
   `,
 }
 // ============================== Headbar ==============================
@@ -13,7 +12,6 @@ const headerWidth = 1400;
 const headContainerCenterPoss = headerWidth/2;
 export const logaImage = {
     width: '210px',
-    marginLeft: '-4px',
     marginTop: '40px',
     marginBottom: '0',
 }
@@ -30,13 +28,13 @@ export let HeadbarStyle = {
     margin-left: calc(50% - ${headContainerCenterPoss}px);
     background: #FFFFFF;
   `,
-  appStatusContainer: styled.section`
-    width: 62%;
-  `,
   siteLogaContainer: styled.section`
     margin-top: -23px;
-    margin-left: 25px;
-    width: 38%;
+    margin-left: 90px;
+    width: 36%;
+  `,
+  appStatusContainer: styled.section`
+    width: 62%;
   `,
   headline: styled.section`
     display: flex;

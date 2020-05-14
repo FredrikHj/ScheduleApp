@@ -1,7 +1,7 @@
 import { withTheme } from "styled-components"
 import { bindCallback } from "rxjs"
 
-export const specificBtnLStyleLogin = {
+export const specificStyleLogin = {
     btn: {
         width: '83px',
         height: '30px',
@@ -14,11 +14,26 @@ export const specificBtnLStyleLogin = {
         marginTop: '-3px',
     }
 }
-export const specificBtnStyleLogout = {
+
+export const labelFormFocused = {
+    position:'absolute',
+    height: '50px',
+    marginLeft: '10px',
+    marginBottom: -'25px',
+    marginTop: '-25px',
+    fontFamily: 'Roboto',
+    fontStyle: '500',
+    fontWeight: 'normal',
+    fontSize: '12px',
+    lineHeight: '132%',
+    letterSpacing: '0.005em',
+    color: '#000000',
+}
+export const specificStyleLogout = {
     btn: {
         border: 'none',
         width: '135px',
-        marginLeft: '-20px',
+        marginLeft: '-25px',
         marginTop: '-8px',
         boxShadow: 'none',
         background:'none',
@@ -31,7 +46,7 @@ export const specificBtnStyleLogout = {
         color: 'black',
     }
 }
-export const specificBtnStyleAddRow = {
+export const specificStyleAddRow = {
     btn: {
         width: '83px',
         height: '30px',
@@ -51,7 +66,7 @@ export const specificBtnStyleAddRow = {
         color: 'black',
     }
 }
-export const specificBtnStyleRemoveRecord = {
+export const specificStyleRemoveRecord = {
     btnContainer: {
 
     },
@@ -71,7 +86,7 @@ export const specificBtnStyleRemoveRecord = {
 export const regLink = {
     width: '150px',
     height: '21px',
-    marginLeft: '40px',
+    marginLeft: '39px',
     marginTop: '44px',
     fontFamily: 'Roboto',
     fontStyle: 'normal',

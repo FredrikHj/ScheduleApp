@@ -1,3 +1,3 @@
 export const tableHeadline = [
-    'Datum', 'Akitvitet', 'Status', 'Berörda', 'Typ', 'Plats', 'Innehåll',
+    'Datum', 'Akitvitet', 'Berörda', 'Typ', 'Plats', 'Innehåll',
 ];

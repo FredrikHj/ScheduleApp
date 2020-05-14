@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { LogedInStyle } from '../Style/LogedInStyle';
-import { specificBtnStyleLogout } from '../Style/SpecificStyleBtn';
+import { specificStyleLogout } from '../Style/SpecificStyle';
 import Spinner from '../Data/Spinner';
 import { SubmitBtn } from '../Data/SubmitBtn';
 
 export let LogedInStatus = (props) => {
-    const { inlogedUser, functionLogOut, sumbitBtnGotTo } = props;
+    const { inlogedUser, functionLogOut } = props;
     return(
         <LogedInStyle.headContainer>
             <LogedInStyle.userHelp>
@@ -19,15 +19,12 @@ export let LogedInStatus = (props) => {
                     : `Välkommen in ${ inlogedUser }`
                 }
             </LogedInStyle.inlogedUser>
-
-                
                 <SubmitBtn
-                    style={ specificBtnStyleLogout }
+                    style={ specificStyleLogout }
                     name={ 'Logga Ut' }
-                    onClick={ functionLogOut }
+                    onClickFunction={ functionLogOut }
                     id={ '/' }
                 /> 
-
         </LogedInStyle.headContainer>
     );
 }
