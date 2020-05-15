@@ -2,19 +2,23 @@ import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
+import '../Style/RegUser.css';
+import { specificStyleNewUserSend, specificStyleCancellUserReg } from '../Style/SpecificStyle';
+import { RegStyle } from '../Style/RegStyle';
 
 import { headName$ } from '../Storage.js';
 
 import { axiosPost, axiosGet } from '../Data/Axios.js';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
+import { Headbar } from './Headbar.js';
+import { SubmitBtn } from '../Data/SubmitBtn';
 
-import '../Style/RegUser.css';
 
 let countRegUser = 0;
 
 export let RegUser = (props) => {
-    let [ appUrl, setAppUrl ] = useState('/');
     let [ appName, setAppName ] = useState(''); 
+    let [ appUrl, setAppUrl ] = useState('/');
     let [ inlogedUser, updateInlogedUser ] = useState('');
 
     let [ userFullName, setUserFullName ] = useState('');
@@ -56,20 +60,33 @@ export let RegUser = (props) => {
             // Save the body into the table for showing it exckluding the first item
             //sqlBody.splice(0, 1);
     };
+    let runSendNewUser = (e) => {
+
+    }
+    let runCancell = (e) => {
+
+    }
     return (
         <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{`${appName} - Registrera`}</title>
             </Helmet>
-            <section className="logInOut__btnRegContainer">
-                <div className="btnContainer__cancelReg">
-                    <input type="submit" className="btnLogOut__cancelReg" value=""/>
-                    <Link to={ appUrl } className="btnContainer__inputHeadline">
-                        <p className="btnHeadline__cancelReg">Avbryt</p>
-                    </Link>
-                </div>
-            </section>
+            <Headbar
+                appStatus={ 
+                    <RegStyle.headContainer>
+                        <RegStyle.regStatus>{ 'Regstatus' }</RegStyle.regStatus>
+                        <SubmitBtn
+                            style={ specificStyleCancellUserReg }
+                            name={ 'Avbryt' }
+                            onClickFunction={ runCancell }
+                            id={ 'Auth' }
+                            type="buttom"
+                        />
+                    </RegStyle.headContainer>
+                    
+                }
+            />
             <section className="regUser__regContainer">
                 <form>
                     <div>
@@ -85,10 +102,14 @@ export let RegUser = (props) => {
                         <input type="text" id="userPwd" data-type="userPwd" onChange={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
-                        <input type="submit" className="regContainer__submitBtn" value="" onClick={ sendUserReg } id="login"/>
-                        <Link to={ appUrl } className="btnContainer__inputHeadline">
-                            <p className="regContainer__headline" onClick={ sendUserReg } id="Login">Registrera</p>
-                        </Link>
+
+                    <SubmitBtn
+                        style={ specificStyleNewUserSend }
+                        name={ 'Registrera' }
+                        onClickFunction={ runSendNewUser }
+                        id={ 'userReg' }
+                        type="buttom"
+                    />
                     </div>
                 </form>
             </section>

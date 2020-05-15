@@ -1,6 +1,3 @@
-import { withTheme } from "styled-components"
-import { bindCallback } from "rxjs"
-
 export const specificStyleLogin = {
     btn: {
         width: '83px',
@@ -83,18 +80,47 @@ export const specificStyleRemoveRecord = {
         color: 'black',
     }
 }
-export const regLink = {
-    width: '150px',
-    height: '21px',
-    marginLeft: '39px',
-    marginTop: '44px',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '18px',
-    textDecoration: 'none',
-    color: '#3D3D3D',
-    flex: 'none',
-    order: '0',
-    alignself: 'flex-start',
+export const specificStyleUserReg = {
+    btn: {
+        width: '150px',
+        height: '21px',
+        marginLeft: '15px',
+        marginTop: '39px',
+        marginBottom: '-12px',
+        border: 'none',
+        boxShadow: 'none',
+        background:'none',
+    },
+    text: {
+        color: 'black',
+        fontSize: '18px',
+    }
+}
+export const specificStyleNewUserSend = {
+    btn: {
+        width: '141px',
+        height: '40px',
+        marginLeft: '10px',
+        marginTop: '-10px',
+        marginBottom: '-12px',
+    },
+    text: {
+        fontSize: '18px',
+    }
+}
+export const specificStyleCancellUserReg = {
+    btn: {
+        width: '150px',
+        height: '21px',
+        marginLeft: '22px',
+        marginTop: '6.5px',
+        marginBottom: '-12px',
+        border: 'none',
+        boxShadow: 'none',
+        background:'none',
+    },
+    text: {
+        color: 'black',
+        fontSize: '18px',
+    }
 }

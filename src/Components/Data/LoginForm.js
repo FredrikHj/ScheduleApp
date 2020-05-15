@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { LoginFormStyle } from '../Style/LoginFormStyle';
 import { SubmitBtn } from '../Data/SubmitBtn';
-import { specificStyleLogin, labelFormFocused, regLink } from '../Style/SpecificStyle';
+import { specificStyleLogin, labelFormFocused, specificStyleUserReg } from '../Style/SpecificStyle';
 
 import { routeName } from './RouteNames';
 export let LoginForm = (props) => {
@@ -34,15 +34,21 @@ export let LoginForm = (props) => {
                 </LoginFormStyle.passwordContainer>  
             </LoginFormStyle.formContainer>
                 <LoginFormStyle.btnLoginContainer>
-                    <SubmitBtn
-                        style={ specificStyleLogin }
-                        name={ 'Logga In' }
-                        onClickFunction={ runAuth }
-                        id={ 'Auth' }
-                        type="buttom"
-                    />
-                </LoginFormStyle.btnLoginContainer>
-                <Link to={ appUrl + routeName.userReg } style={ regLink }>Ny Användare</Link>            
+                <SubmitBtn
+                    style={ specificStyleLogin }
+                    name={ 'Logga In' }
+                    onClickFunction={ runAuth }
+                    id={ 'Auth' }
+                    type="buttom"
+                />
+            </LoginFormStyle.btnLoginContainer>
+            <SubmitBtn
+                    style={ specificStyleUserReg }
+                    name={ 'Ny Användare' }
+                    onClickFunction={ runReg }
+                    id={ 'Registrera' }
+                    type="buttom"
+            />
             <LoginFormStyle.userInfoContainer>
                 <LoginFormStyle.userErrorMess>
                     {(inlogStatus === 203)

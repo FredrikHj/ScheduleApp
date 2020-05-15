@@ -12,7 +12,6 @@ import {axiosPost } from './Components/Data/Axios';
 
 import { Headbar } from './Components/Structure/Headbar.js';
 import { MainContents } from './Components/Structure/MainContents';
-import { RegUser } from './Components/Structure/RegUser';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
@@ -36,10 +35,10 @@ export let MainPage = () => {
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
-        if(redirectToPage === '/') return <Redirect to='/' />
-        if(redirectToPage === 'RegUser') return <Redirect to='/Auth' />
+        //if(redirectToPage ===  routeName.mainPage) return <Redirect to='/' />
+        if(redirectToPage === routeName.userReg) return <Redirect to={ `${ routeName.userReg }` } />
         
-    }, []);
+    }, [ redirectToPage ]);
     //console.log(inlogStatus);
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
@@ -70,9 +69,14 @@ export let MainPage = () => {
         //if (inlogStatus === 203) return; 
     }
     let runReg = (e) =>{
-        console.log(e);
+        // Gets the element
+        let targetBtnId = e.target.id; 
+        console.log("runReg -> targetBtnId", targetBtnId)
+        updateGotoPage(targetBtnId);
         
     }    
+    console.log("MainPage -> redirectToPage", redirectToPage)
+    console.log("MainPage -> appUrl + routeName.userReg", appUrl + routeName.userReg)
     return (
         <>  
             <Helmet>
@@ -94,8 +98,8 @@ export let MainPage = () => {
                     />
                 }
             />
+            
             <Route exact path={appUrl} component={ MainContents }/>
-            <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
         </>
     );
 }
