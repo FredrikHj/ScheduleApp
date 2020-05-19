@@ -36,7 +36,7 @@ let MainApp = () => {
 
       <Route exact path={ appUrl } component={ MainPage } />
       <Route exact path={ appUrl + routeName.auth } component={ Auth }/>
-     < Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
+      <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
       <Route exact path={ appUrl + routeName.login } component={ LogedIn }/>  
     </HashRouter>
   );

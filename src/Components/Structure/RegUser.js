@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
-// React Router - ES6 modules
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import {Helmet} from "react-helmet";
 import '../Style/RegUser.css';
-import { specificStyleNewUserSend, specificStyleCancellUserReg } from '../Style/SpecificStyle';
+import { specificStyleNewUserSend, specificStyleCancelUserReg } from '../Style/SpecificStyle';
 import { RegStyle } from '../Style/RegStyle';
 
-import { headName$ } from '../Storage.js';
+import { headName$, updateGotoPage } from '../Storage.js';
 
-import { axiosPost, axiosGet } from '../Data/Axios.js';
+import { axiosPost } from '../Data/Axios.js';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
 import { Headbar } from './Headbar.js';
 import { SubmitBtn } from '../Data/SubmitBtn';
 
-
-let countRegUser = 0;
-
-export let RegUser = (props) => {
+export let RegUser = () => {
     let [ appName, setAppName ] = useState(''); 
-    let [ appUrl, setAppUrl ] = useState('/');
-    let [ inlogedUser, updateInlogedUser ] = useState('');
-
+    
     let [ userFullName, setUserFullName ] = useState('');
     let [ userName, setUserName  ] = useState('');
     let [ userPwd, setUserPWD ] = useState('');
@@ -32,21 +25,22 @@ export let RegUser = (props) => {
             setAppName(headName);
         });
     }, []);
+    let runCancel = (e) => {
+        // Gets the element        
+        let targetBtnId = e.target.id; 
+        updateGotoPage(targetBtnId);
+    };
     let setStrsType = (e) => {
-        //console.log('nyh');
-        
         let type = e.target;
         let inputStr = type.value;            
         const {dataset} = type;
-        //console.log(inputStr);
         
-
         if (dataset.type === 'fullName') setUserFullName(inputStr);
         if (dataset.type === 'userName') setUserName(inputStr);
         if (dataset.type === 'userPwd') setUserPWD(inputStr);
     };
+    let runSendNewUser = (e) => {
 
-     let sendUserReg = (e) => {
         let targetBtnId = e.target.id; 
         // Created a body for the added data
         let sqlBody = {
@@ -54,18 +48,13 @@ export let RegUser = (props) => {
             userName: userName,
             userPassWord: userPwd
         }
-        //console.log(sqlBody);
+        console.log(sqlBody);
         
-        axiosPost('userReg', 'targetBtnId', sqlBody);
+        axiosPost(targetBtnId, sqlBody);
             // Save the body into the table for showing it exckluding the first item
-            //sqlBody.splice(0, 1);
+            //sqlBody
+        e.stopPropagation();
     };
-    let runSendNewUser = (e) => {
-
-    }
-    let runCancell = (e) => {
-
-    }
     return (
         <>
             <Helmet>
@@ -77,10 +66,10 @@ export let RegUser = (props) => {
                     <RegStyle.headContainer>
                         <RegStyle.regStatus>{ 'Regstatus' }</RegStyle.regStatus>
                         <SubmitBtn
-                            style={ specificStyleCancellUserReg }
+                            style={ specificStyleCancelUserReg }
                             name={ 'Avbryt' }
-                            onClickFunction={ runCancell }
-                            id={ 'Auth' }
+                            onClickFunction={ runCancel }
+                            id={ '/' }
                             type="buttom"
                         />
                     </RegStyle.headContainer>

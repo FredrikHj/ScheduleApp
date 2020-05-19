@@ -108,7 +108,7 @@ export const specificStyleNewUserSend = {
         fontSize: '18px',
     }
 }
-export const specificStyleCancellUserReg = {
+export const specificStyleCancelUserReg = {
     btn: {
         width: '150px',
         height: '21px',

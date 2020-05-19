@@ -7,7 +7,6 @@ import { log } from 'util';
 let savedSQLDataArr = [];
 
 export let axiosGet = (getType, tokenStr) => {
-    console.log("axiosGet -> getType", getType)
         let routes = '';
 
     // Type of post method
@@ -74,9 +73,8 @@ export let axiosPost = (postType, bodyData) => {
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).then(response => {
             console.log("axiosPost -> response", response)
-            if (postType === 'Auth'){
-                // Incomming userdata. T
-                
+            if (postType === 'userReg'){
+                // Incomming userdata.         
                 let logedInUserInfoObj = {
                     responsType: response.status,
                     logInMess: response.statusText, 
@@ -87,8 +85,9 @@ export let axiosPost = (postType, bodyData) => {
                 
                 //Send the incomming data for displaying the user login status
                 updateUserData(logedInUserInfoObj);
-
-                if (response.status === 200) updateGotoPage(postType);
+                
+                // Get back to mainPage loggin with the new user. Will fix some automatic later
+                if (response.status === 201) updateGotoPage('/');
             }
         }).catch(error => {
             ////;
