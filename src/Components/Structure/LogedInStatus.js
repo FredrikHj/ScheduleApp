@@ -24,6 +24,7 @@ export let LogedInStatus = (props) => {
                     name={ 'Logga Ut' }
                     onClickFunction={ functionLogOut }
                     id={ '/' }
+                    btnOptional={ '' }
                 /> 
         </LogedInStyle.headContainer>
     );

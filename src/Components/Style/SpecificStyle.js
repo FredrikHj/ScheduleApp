@@ -16,7 +16,7 @@ export const labelFormFocused = {
     position:'absolute',
     height: '50px',
     marginLeft: '10px',
-    marginBottom: -'25px',
+    marginBottom : '-25px',
     marginTop: '-25px',
     fontFamily: 'Roboto',
     fontStyle: '500',

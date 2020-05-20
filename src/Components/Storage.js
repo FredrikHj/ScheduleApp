@@ -27,6 +27,7 @@ export const LocalStorage$ = new BehaviorSubject('');
 The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
 */
 export function updateUserData(loginData){
+    console.log("updateUserData -> updateUserData", updateUserData)
     updateLocalstorage(loginData);
     if(loginData) {
         userData$.next(loginData);

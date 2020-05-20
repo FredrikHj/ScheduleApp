@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { updateSiteLoga, updateSavedSQLData, updateOptionColList, updateUserData, updateGotoPage } from '../Storage.js';
 import { backendURL } from './BackendURLPath';
-import { setTimeout } from 'timers';
-import { log } from 'util';
-
 let savedSQLDataArr = [];
 
 export let axiosGet = (getType, tokenStr) => {
@@ -51,29 +48,27 @@ export let axiosGet = (getType, tokenStr) => {
 const storageData = (saveData) => {
     updateSavedSQLData(saveData);
 }
-let getUserId = () => {
-    let getUserId = JSON.parse(window.localStorage.getItem("userData")).userId;
-    return getUserId;
-}
+
 export let axiosPost = (postType, bodyData) => {  
+    console.log("axiosPost -> postType", postType)
     console.log("axiosPost -> bodyData", bodyData)
-    //;
+    
     let type = '';
-    let sendToSqlBackend = {
-        bodyData,
-    };
-    ////;
-    // Type of post method
     if (postType === 'Auth') type = 'Auth';
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') type = 'AddRecord';
     if (postType === 'userReg') type = 'UserReg';
+    if (postType === 'runRemoveRecord') type = 'RemoveRecord';
     
+    let sendToSqlBackend = {
+        bodyData,
+    };
+    console.log("axiosPost -> sendToSqlBackend", sendToSqlBackend)
     axios.post(
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).then(response => {
             console.log("axiosPost -> response", response)
-            if (postType === 'userReg'){
+            if (postType === 'Auth'){
                 // Incomming userdata.         
                 let logedInUserInfoObj = {
                     responsType: response.status,
@@ -85,9 +80,8 @@ export let axiosPost = (postType, bodyData) => {
                 
                 //Send the incomming data for displaying the user login status
                 updateUserData(logedInUserInfoObj);
-                
-                // Get back to mainPage loggin with the new user. Will fix some automatic later
-                if (response.status === 201) updateGotoPage('/');
+               
+                if (response.status === 200) updateGotoPage(postType);
             }
         }).catch(error => {
             ////;

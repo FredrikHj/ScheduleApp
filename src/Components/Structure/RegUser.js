@@ -7,7 +7,6 @@ import { RegStyle } from '../Style/RegStyle';
 import { headName$, updateGotoPage } from '../Storage.js';
 
 import { axiosPost } from '../Data/Axios.js';
-import { localPubAppUrls } from '../Data/runAppUrls.js';
 import { Headbar } from './Headbar.js';
 import { SubmitBtn } from '../Data/SubmitBtn';
 
@@ -53,6 +52,8 @@ export let RegUser = () => {
         axiosPost(targetBtnId, sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody
+        // Get back to mainPage so you can loggin with the new user. Will fix some automatic later
+        updateGotoPage('/');
         e.stopPropagation();
     };
     return (
@@ -71,6 +72,7 @@ export let RegUser = () => {
                             onClickFunction={ runCancel }
                             id={ '/' }
                             type="buttom"
+                            btnOptional={ '' }
                         />
                     </RegStyle.headContainer>
                     
@@ -98,6 +100,7 @@ export let RegUser = () => {
                         onClickFunction={ runSendNewUser }
                         id={ 'userReg' }
                         type="buttom"
+                        btnOptional={ '' }
                     />
                     </div>
                 </form>

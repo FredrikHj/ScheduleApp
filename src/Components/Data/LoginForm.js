@@ -40,6 +40,7 @@ export let LoginForm = (props) => {
                     onClickFunction={ runAuth }
                     id={ 'Auth' }
                     type="buttom"
+                    btnOptional={ '' }
                 />
             </LoginFormStyle.btnLoginContainer>
             <SubmitBtn
@@ -48,6 +49,7 @@ export let LoginForm = (props) => {
                     onClickFunction={ runReg }
                     id={ 'Registrera' }
                     type="buttom"
+                    btnOptional={ '' }
             />
             <LoginFormStyle.userInfoContainer>
                 <LoginFormStyle.userErrorMess>

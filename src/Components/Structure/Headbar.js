@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GenerallyStyle, HeadbarStyle, logaImage } from '../Style/MainStyle';
+import { HeadbarStyle, logaImage } from '../Style/MainStyle';
 
 import { backendURL } from '../Data/BackendURLPath';
 import { axiosGet } from '../Data/Axios.js';
@@ -7,9 +7,6 @@ import { axiosGet } from '../Data/Axios.js';
 
 import { userData$, gotoPage$, incommingSiteLoga$ } from '../Storage.js';
 
-import { LogedIn } from '../../LogedIn.js';
-
-import { localPubAppUrls } from '../Data/runAppUrls.js';
 
 // Sending over formData for RunLogInOut
 export let formInputObj = {};

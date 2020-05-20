@@ -7,7 +7,6 @@ export let runLogOut = (e) => {
     updateGotoPage(targetBtnId);
 
     updateLocalstorage(window.localStorage.clear());
-    //axiosPost('', targetBtnId, '');
 }
 export let runAddRecord = (e) => {
     // Gets the element
