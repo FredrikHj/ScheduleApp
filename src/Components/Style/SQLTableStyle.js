@@ -26,16 +26,13 @@ export let SQLTableStyle = {
         flex-direction: row;
     `,
     sideTool: styled.section`
-        border: 1px solid red;
         margin-left: 10px;
         margin-top: 32px;
     `,
     sideToolRow1:styled.section`
-        border: 1px solid red;
         margin-top: 0;
     `,
     sideToolRow2: styled.section`
-        border: 1px solid red;
         margin-top: 30px;
     `  ,
 }

@@ -18,7 +18,6 @@ export const logaImage = {
 
 export let HeadbarStyle = {
   header: styled.section`
-    border: px solid red;
     background-color: white;
     width: 100%;
   `,
@@ -35,7 +34,6 @@ export let HeadbarStyle = {
     width: 36%;
   `,
   appStatusContainer: styled.section`
-  border: px solid red;
     width: 62%;
   `,
   headline: styled.section`

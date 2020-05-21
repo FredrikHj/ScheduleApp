@@ -72,10 +72,8 @@ export let RegUser = () => {
                             onClickFunction={ runCancel }
                             id={ '/' }
                             type="buttom"
-                            btnOptional={ '' }
                         />
                     </RegStyle.headContainer>
-                    
                 }
             />
             <section className="regUser__regContainer">
@@ -93,19 +91,16 @@ export let RegUser = () => {
                         <input type="text" id="userPwd" data-type="userPwd" onChange={ setStrsType } placeholder="  ..."/>
                     </div>
                     <div>
-
                     <SubmitBtn
                         style={ specificStyleNewUserSend }
                         name={ 'Registrera' }
                         onClickFunction={ runSendNewUser }
                         id={ 'userReg' }
                         type="buttom"
-                        btnOptional={ '' }
                     />
                     </div>
                 </form>
             </section>
-     
         </>  
     );
 }

@@ -97,8 +97,7 @@ export let MainPage = () => {
                         inlogMess={inlogMess}
                     />
                 }
-            />
-            
+            />            
             <Route exact path={appUrl} component={ MainContents }/>
         </>
     );

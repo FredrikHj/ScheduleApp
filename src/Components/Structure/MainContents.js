@@ -115,7 +115,6 @@ export let MainContents = () => {
                                     name={ 'Lägg Till' }
                                     onClickFunction={ runAddRow }
                                     id={ 'add' }
-                                    btnOptional={ '' }
                                 />
                             </SQLTableStyle.sideToolRow1>
                             <SQLTableStyle.sideToolRow2> 

@@ -8,7 +8,7 @@ export const specificStyleLogin = {
     },
     text: {
         marginLeft: '0',
-        marginTop: '-3px',
+        marginTop: '10px',
     }
 }
 
@@ -31,7 +31,7 @@ export const specificStyleLogout = {
         border: 'none',
         width: '135px',
         marginLeft: '-25px',
-        marginTop: '-8px',
+        marginTop: '8px',
         boxShadow: 'none',
         background:'none',
     },
@@ -64,9 +64,6 @@ export const specificStyleAddRow = {
     }
 }
 export const specificStyleRemoveRecord = {
-    btnContainer: {
-
-    },
     btn: {
         width: '77px',
         height: '34px',
@@ -85,7 +82,7 @@ export const specificStyleUserReg = {
         width: '150px',
         height: '21px',
         marginLeft: '15px',
-        marginTop: '39px',
+        marginTop: '52px',
         marginBottom: '-12px',
         border: 'none',
         boxShadow: 'none',
@@ -101,11 +98,11 @@ export const specificStyleNewUserSend = {
         width: '141px',
         height: '40px',
         marginLeft: '10px',
-        marginTop: '-10px',
         marginBottom: '-12px',
     },
     text: {
         fontSize: '18px',
+        marginTop: '20px',
     }
 }
 export const specificStyleCancelUserReg = {
@@ -113,8 +110,7 @@ export const specificStyleCancelUserReg = {
         width: '150px',
         height: '21px',
         marginLeft: '22px',
-        marginTop: '6.5px',
-        marginBottom: '-12px',
+        marginTop: '24px',
         border: 'none',
         boxShadow: 'none',
         background:'none',
