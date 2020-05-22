@@ -1,6 +1,7 @@
+/* ================================================== Style Rouls for Auth ==================================================
+Imports module */
 import styled from 'styled-components';
 
-// ============================== Auth ==============================
 export let AuthStyle = {
   statusContainer: styled.section`
     width: 400px;

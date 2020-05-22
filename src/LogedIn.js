@@ -1,15 +1,14 @@
+/* ================================================== LogedIn page ==================================================
+   Imports module */
 import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
+
+// Import inportant components for the specific page
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from './Components/Storage.js';
-
-import './Components/Style/Spinner.scss';
-import { LogedInStatus } from './Components/Structure/LogedInStatus';
-
-import { Headbar } from './Components/Structure/Headbar';
-
 import { MainContents } from './Components/Structure/MainContents';
-
+import { LogedInStatus } from './Components/Structure/LogedInStatus';
 import { runLogOut } from './Components/Data/CommonFunction';
+import { Headbar } from './Components/Structure/Headbar';
 
 export let LogedIn = () => {
     let [ inlogedUser, updateInlogedUser ] = useState('');
@@ -42,7 +41,6 @@ export let LogedIn = () => {
                     />
                 }
             />  
-
             <MainContents/>                 
         </>
     );

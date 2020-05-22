@@ -1,5 +1,6 @@
+/* ================================================== Help page ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
-import { headName$ } from '../Storage.js';
 
 export let Information = () => {
     //let [ appName, setAppName ] = useState('');   

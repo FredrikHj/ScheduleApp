@@ -1,4 +1,7 @@
+/* ================================================== Style Rouls for SQLTable ==================================================
+Imports module */
 import styled from 'styled-components';
+
 // ============================== SQLTable ==============================
 export let SQLTableStyle = {
     container: styled.section`

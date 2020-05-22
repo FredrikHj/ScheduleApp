@@ -1,26 +1,28 @@
+/* ================================================== HeadBar ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
-// React Router - ES6 modules
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import { LoginFormStyle } from '../Style/LoginFormStyle';
-import { SubmitBtn } from '../Data/SubmitBtn';
-import { specificStyleLogin, labelFormFocused, specificStyleUserReg } from '../Style/SpecificStyle';
 
-import { routeName } from './RouteNames';
+// Import CSS rouls
+import { specificStyleLogin, labelFormFocused, specificStyleUserReg } from '../Style/SpecificStyle';
+import { LoginFormStyle } from '../Style/LoginFormStyle';
+
+// Import inportant components for the specific page
+import { SubmitBtn } from '../Data/SubmitBtn';
+
 export let LoginForm = (props) => {
-    const {appUrl, onChangeUserName, onChangeUserPwd, userNameStr, userPwdStr, runAuth, runReg, inlogStatus, inlogMess} = props;    
+    const {onChangeUserName, onChangeUserPwd, userNameStr, userPwdStr, runAuth, runNewUserReg, inlogStatus, inlogMess} = props;    
     const [ specificFocusStyleUsrLabel, setSpecificFocusStyleUsrLabel ] = useState({});
     const [ specificFocusStylePswLabel, setSpecificFocusStylePswLabel ] = useState({});
     useEffect(() => {
 
     }, [specificFocusStyleUsrLabel])
+    // Handle the inlogg forms and its behaviour when clicking
     const handleInputForm = (e) => {
         const targetForm = e.target;
         const inputFormId = targetForm.id;
-        console.log("handleInputForm -> inputFormId", inputFormId)
         if(inputFormId === "labelUserName") setSpecificFocusStyleUsrLabel(labelFormFocused);
         if(inputFormId === "labelPassword") setSpecificFocusStylePswLabel(labelFormFocused);
     }
-   
     return(
         <LoginFormStyle.headContainer>
             <LoginFormStyle.formContainer>
@@ -45,7 +47,7 @@ export let LoginForm = (props) => {
             <SubmitBtn
                     style={ specificStyleUserReg }
                     name={ 'Ny Användare' }
-                    onClickFunction={ runReg }
+                    onClickFunction={ runNewUserReg }
                     id={ 'Registrera' }
                     type="buttom"
             />

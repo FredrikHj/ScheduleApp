@@ -1,3 +1,4 @@
+// ================================================== Routes Name ==================================================
 export const routeName = {
     mainPage: '/',
     userReg: 'Registrera',

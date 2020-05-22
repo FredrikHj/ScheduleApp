@@ -1,5 +1,6 @@
+/* ================================================== Style Rouls for LoginForm ==================================================
+Imports module */
 import styled from 'styled-components';
-import { CommonBtnStyle, CommonTexStyle} from './CommonStyle';
 
 // ============================== Headbar ==============================
 export let HeadbarStyle = {

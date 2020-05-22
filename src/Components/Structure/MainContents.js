@@ -1,36 +1,34 @@
+/* ================================================== MainContents ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
 // React Router - ES6 modules
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+// Import CSS rouls
+import { specificStyleAddRow, specificStyleRemoveRecord } from '../Style/SpecificStyle';
 import { SQLTableStyle } from '../Style/SQLTableStyle';
 import '../Style/SQLTable.css';
-import { correctRoutes } from '../Data/runAppUrls';
-import { axiosPost, axiosGet } from '../Data/Axios';
 
-import { SubmitBtn } from '../Data/SubmitBtn';
-import { specificStyleAddRow, specificStyleRemoveRecord } from '../Style/SpecificStyle';
-import { incommingSQLDataArr$ } from '../Storage';
-
-import { TableHead } from './TableHead';
-import { gotoPage$ } from '../Storage';
+// Import inportant components for the specific page
 import { TableColsHeadline } from '../Data/TableColsHeadline';
 import { getLocalStorageData } from '../Data/LocalStorage';
-
-//import { axiosGet } from '../Data/Axios';
-//import { correctRoutes } from '../Data/runAppUrls';
-import { ListSQLData } from './ListSQLData';
-import { SearchBar } from './SearchBar';
+import { axiosPost, axiosGet } from '../Data/Axios';
+import { correctRoutes } from '../Data/runAppUrls';
+import { incommingSQLDataArr$ } from '../Storage';
 import { routeName } from '../Data/RouteNames';
+import { SubmitBtn } from '../Data/SubmitBtn';
+import { ListSQLData } from './ListSQLData';
 import { ListAddForm } from './ListAddForm';
+import { TableHead } from './TableHead';
+import { SearchBar } from './SearchBar';
+import { gotoPage$ } from '../Storage';
 
 export let MainContents = () => {
     let [ redirectToPage, updateRedirectToPage ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ addedRecordData, updateAddedRecordData ] = useState([]);
-    let [ recordTimeStamp, updateRecordTimeStamp ] = useState('');
     useEffect(() => {
-        gotoPage$.subscribe((gotoPage) => {
-            console.log("HeadTable -> gotoPage", gotoPage);
-            
+        gotoPage$.subscribe((gotoPage) => {            
             updateRedirectToPage(gotoPage);
         });
         incommingSQLDataArr$.subscribe((SQLDataArr) => {
@@ -41,12 +39,10 @@ export let MainContents = () => {
         createAddedRecordDataArr();
 
     },[ redirectToPage, addedRecordData ]);
-    
     const createAddedRecordDataArr = () => {
         const puschToAddedRecordData = [...addedRecordData];
         for (let index = 0; index < TableColsHeadline.length; index++) puschToAddedRecordData.push('');
         if (addedRecordData.length === 0) updateAddedRecordData(puschToAddedRecordData);
-
     }
     const choosenSelectOption = (e) => {
         const puschToAddedRecordData = [...addedRecordData];
@@ -61,9 +57,7 @@ export let MainContents = () => {
         const puschToAddedRecordData = [...addedRecordData];
         let type = e.target;
         let inputStr = type.value;                    
-        const {dataset} = type;
-        console.log("setStrsType -> inputStr", inputStr)
-        
+        const {dataset} = type;        
         for (let index = 0; index < TableColsHeadline.length; index++) if (dataset.type === TableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
         updateAddedRecordData(puschToAddedRecordData);
     }
@@ -85,7 +79,6 @@ export let MainContents = () => {
         }, 400);
         e.stopPropagation();
     }
-    console.log("MainContents -> addedRecordData", addedRecordData)
     return (
         <> 
             <SQLTableStyle.container>
@@ -138,8 +131,8 @@ export let MainContents = () => {
                     </SQLTableStyle.body__contents>
 
                 </SQLTableStyle.col2>
-
                 <SQLTableStyle.col1_3>
+
                 </SQLTableStyle.col1_3>
             </SQLTableStyle.container>
         </>

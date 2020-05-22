@@ -1,5 +1,6 @@
+/* ================================================== Style Rouls for user LogedIn ==================================================
+Imports module */
 import styled from 'styled-components';
-import { CommonBtnStyle } from './CommonStyle';
 
 // ============================== Already logedIn ==============================
 export let LogedInStyle = {

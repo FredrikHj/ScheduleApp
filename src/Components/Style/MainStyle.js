@@ -1,7 +1,8 @@
+/* ================================================== Style Rouls for Generall style ==================================================
+Imports module */
 import styled from 'styled-components';
 
 // ============================== GenerallyStyle ==============================
-const commonColorBlue =  'rgb(68, 68, 223)';
 export let GenerallyStyle = {
   askMarkMove: styled.section`
     float: right;

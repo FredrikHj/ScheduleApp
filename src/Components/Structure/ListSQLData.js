@@ -1,13 +1,16 @@
+/* ================================================== Render all the SQLData ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
 
-import Spinner from '../Data/Spinner.js';
-import { correctRoutes } from '../Data/runAppUrls';
+// Import inportant components for the specific page
+import { getLocalStorageData } from '../Data/LocalStorage';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
+import { correctRoutes } from '../Data/runAppUrls';
 import { incommingSQLDataArr$ } from '../Storage';
 import { axiosGet } from '../Data/Axios';
-import { getLocalStorageData } from '../Data/LocalStorage';
+import Spinner from '../Data/Spinner.js';
 
-export let ListSQLData = (props) => {
+export let ListSQLData = () => {
     let [ appUrl, setAppUrl ] = useState('/');
     let [ routes, updateRoutes ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);

@@ -1,15 +1,17 @@
+/* ================================================== HeadBar ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
+
+// Import inportant components for the specific page
 import { HeadbarStyle, logaImage } from '../Style/MainStyle';
 
+import { userData$, gotoPage$, incommingSiteLoga$ } from '../Storage.js';
 import { backendURL } from '../Data/BackendURLPath';
 import { axiosGet } from '../Data/Axios.js';
 
-
-import { userData$, gotoPage$, incommingSiteLoga$ } from '../Storage.js';
-
-
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
+
 export let Headbar = (props) => {
     const { appStatus } = props;
     let [ inBackendURL, setInBackendUrl ] = useState('');
@@ -22,17 +24,13 @@ export let Headbar = (props) => {
 
     useEffect(() => {
         axiosGet('getLoga', '');
-
         incommingSiteLoga$.subscribe((incommingSiteLoga) => {  
-        console.log("Headbar -> incommingSiteLoga", incommingSiteLoga)
             if (logaNotSet === false) {
                 setSiteLoga(incommingSiteLoga);
-                console.log("Headbar -> logaNotSet", logaNotSet)
                 setLogaNotSet(true);
             }
         });
         setInBackendUrl(backendURL);
-        console.log("Headbar -> backendURL", backendURL)
         userData$.subscribe((userDispalyingObj) => {
             setInlogStatus(userDispalyingObj.responsType);
             setInlogMess(userDispalyingObj.logInMess);
@@ -41,8 +39,6 @@ export let Headbar = (props) => {
             updateGotoIntoPage(gotoPage);
         });
     }, [inBackendURL, gotoIntoPage]);
-    console.log("Headbar -> siteLoga", siteLoga)
-
     return (
         <>
             <HeadbarStyle.header>

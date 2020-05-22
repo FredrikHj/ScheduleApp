@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from 'react';
+/* ================================================== Spinner ==================================================
+Imports module */
+import React from 'react';
+
+// Import CSS rouls
 import '../Style/Spinner.scss';
+
+// Import inportant components for the specific page
 export let Spinner = (props) => {
     return(
         <>

@@ -1,4 +1,5 @@
- /* Checkbox filter ----------- */
+/* ================================================== To be Implemented as Styled Components ================================================== */
+/* Checkbox filter ----------- */
 .container__checkboxMonth, .container__checkboxConcerned{
   display: flex;
   flex-direction: row;

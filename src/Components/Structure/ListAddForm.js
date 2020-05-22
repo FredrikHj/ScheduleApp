@@ -1,14 +1,14 @@
+/* ================================================== AddRecord ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
 
+// Import inportant components for the specific page
 import { TableColsHeadline } from '../Data/TableColsHeadline';
-import { CellInput } from '../Data/CellInput';
 import { optionColListArr$ } from '../Storage';
+import { CellInput } from '../Data/CellInput';
 
 export let ListAddForm = (props) => {
-    //let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ optionColListArr, updateOptionColListArr ] = useState([]);
-    //let [ addedCellData, updateAddedCellData ] = useState([]);
-    
     const { setStrsType, choosenSelectOption, addedRecordData } = props;
 
     useEffect(() => {

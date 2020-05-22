@@ -1,7 +1,9 @@
+/* ==================================================  Props handler ==================================================
+Imports module */
 import {BehaviorSubject} from "rxjs";
 
-import {getTokenData} from './CommonFunctions';
 import {getLocalStorageData} from './Data/LocalStorage';
+import {getTokenData} from './CommonFunctions';
 const inlogedUserFullName = '';
 const incommingSQLDataArr = [];
 const incommingSiteLoga = '';
@@ -13,42 +15,38 @@ const gotoPage = '';
 //===============================================
 
 export const inlogedUserFullName$ = new BehaviorSubject(inlogedUserFullName);
+export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
+export const incommingSiteLoga$ = new BehaviorSubject(incommingSiteLoga);
+export const optionColListArr$ = new BehaviorSubject(optionColListArr);
 export const headName$ = new BehaviorSubject(headName);
 export const userData$ = new BehaviorSubject(userData);
-export const incommingSiteLoga$ = new BehaviorSubject(incommingSiteLoga);
-export const incommingSQLDataArr$ = new BehaviorSubject(incommingSQLDataArr);
-export const optionColListArr$ = new BehaviorSubject(optionColListArr);
-
 export const gotoPage$ = new BehaviorSubject(gotoPage);
-
 export const LocalStorage$ = new BehaviorSubject('');
 
-/* The functions are triggered in another place and send in its data
-The incomming data is stored in a new object and the object is then, in the last function, save too localstorage 
-*/
 export function updateUserData(loginData){
-    console.log("updateUserData -> updateUserData", updateUserData)
+    /* The functions are triggered in another place.
+        The function updateLocalstorage is triggered together with the incomming data.
+        The incomming data is saved for the subscriber.  
+    */
     updateLocalstorage(loginData);
     if(loginData) {
         userData$.next(loginData);
     }
 }
 export const updateLocalstorage = (saveLoginData) =>{
+    // The localstorage is set with the data
     localStorage.setItem('loginData', JSON.stringify(saveLoginData));
 }
+
 export function getLogStatus(){
     // Run if a data i saved into the localstorage else no run
     if (window.localStorage.length !== 0) {
-        
         const getStatusType = JSON.parse(window.localStorage.getItem("userData")).responsType;
         const getLogInMess = JSON.parse(window.localStorage.getItem("userData")).logInMess;
-        
         const logInStatus = {
             type: getStatusType,
             mess: getLogInMess
         };
-        //;
-        
         return logInStatus;
     }
 }
@@ -59,28 +57,15 @@ export function updateHeadName(headName){
     if(headName) headName$.next(headName);
 }
 export function updateSiteLoga(incommingSiteLoga){
-    if(incommingSiteLoga) {
-        console.log("updateSiteLoga -> incommingSiteLoga", incommingSiteLoga)
-        incommingSiteLoga$.next(incommingSiteLoga);
-    }
+    if(incommingSiteLoga) incommingSiteLoga$.next(incommingSiteLoga);
 }
 export function updateSavedSQLData(incommingSQLDataArr){
-    if(incommingSQLDataArr) {
-        console.log("updateSavedSQLData -> incommingSQLDataArr", incommingSQLDataArr)
-        incommingSQLDataArr$.next(incommingSQLDataArr);
-    }
+    if(incommingSQLDataArr) incommingSQLDataArr$.next(incommingSQLDataArr);
 }
 export function updateOptionColList(optionColListArr){
-    if(optionColListArr) {
-        optionColListArr$.next(optionColListArr);
-    }
+    if(optionColListArr) optionColListArr$.next(optionColListArr);
 }
-export function updateGotoPage(gotoPage){
-console.log("updateGotoPage -> gotoPage", gotoPage)
-    
-    if(gotoPage) {
-        gotoPage$.next(gotoPage);
-    }
+export function updateGotoPage(gotoPage){    
+    if(gotoPage) gotoPage$.next(gotoPage);
     return gotoPage;
 }
-

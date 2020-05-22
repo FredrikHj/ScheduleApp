@@ -1,8 +1,11 @@
+/* ================================================== HeadBar ==================================================
+Imports module */
 import React from 'react';
-import { AddSQLDataStyle } from'../Style/SQLTableStyle';
 
+// Import CSS rouls
 import { UserInputForm, UserInputSelect } from '../Style/LogedInStyle';
 import { selectContainers } from '../Style/SQLTableStyle';
+import { AddSQLDataStyle } from'../Style/SQLTableStyle';
 
 export let CellInput = (props) => {
     const { dataType, cellIndex, inputOnChange, sOonClick, valueStr } = props;

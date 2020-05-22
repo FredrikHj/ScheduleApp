@@ -1,31 +1,29 @@
+/* ================================================== MainApp for the app ==================================================
+   Imports module */
 import React, { useState, useEffect } from 'react';
-import { routeName } from './Components/Data/RouteNames';
-
 // React Router - ES6 modules
 import { HashRouter, Route, Redirect } from "react-router-dom";
-import { updateHeadName, gotoPage$ } from './Components/Storage.js';
 
-import { LogedIn } from './LogedIn';
-import { MainPage } from './MainPage.js';
-import { Auth } from './Components/Data/Authorization';
+// Import inportant components for the specific page
+import { updateHeadName, gotoPage$ } from './Components/Storage.js';
+import { routeName } from './Components/Data/RouteNames';
 import { RegUser } from './Components/Structure/RegUser';
+import { Auth } from './Components/Data/Authorization';
+import { MainPage } from './MainPage.js';
+import { LogedIn } from './LogedIn';
 
 updateHeadName('Årsklockan');
 
 let MainApp = () => {
   let [ appUrl, setAppUrl ] = useState('/');
   let [ redirectToPage, updateRedirectToPage ] = useState('');
-  console.log("MainApp -> redirectToPage", redirectToPage)
   
   useEffect(() => {
     gotoPage$.subscribe((gotoPage) => {
-    console.log("MainApp -> gotoPage", gotoPage)
       updateRedirectToPage(gotoPage);
     });
     
   },[redirectToPage]);
-  console.log("MainApp -> appUrl", appUrl)
-  console.log("MainApp -> redirectToPage", redirectToPage)
 
   return (
     <HashRouter basename='/'>

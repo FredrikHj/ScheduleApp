@@ -1,20 +1,21 @@
+/* ================================================== MainApp for the app ==================================================
+   Imports module */
 import React, { useState, useEffect } from 'react';
-
+import {Helmet} from "react-helmet";
 // React Router - ES6 modules
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+// Import inportant components for the specific page
 import { headName$, userData$, updateGotoPage} from './Components/Storage.js';
-
-import {Helmet} from "react-helmet";
-
+import { MainContents } from './Components/Structure/MainContents';
+import { Headbar } from './Components/Structure/Headbar.js';
 import { routeName } from './Components/Data/RouteNames';
 import { LoginForm } from './Components/Data/LoginForm'
 import {axiosPost } from './Components/Data/Axios';
 
-import { Headbar } from './Components/Structure/Headbar.js';
-import { MainContents } from './Components/Structure/MainContents';
-
 // Sending over formData for RunLogInOut
 export let formInputObj = {};
+
 export let MainPage = () => {
     let [ appUrl, setAppUrl ] = useState('/');
     let [ appName, setAppName ] = useState('');
@@ -22,42 +23,31 @@ export let MainPage = () => {
     let [ inlogStatus, setInlogStatus ] = useState(0);
     const [ userNameStr, updateUserNameStr ] = useState('');
     const [ userPwdStr, updateUserPwdStr ] = useState('');
-    let [ redirectToPage, updateRedirectToPage ] = useState('Auth');
+    let [ redirectToPage ] = useState('Auth');
 
     useEffect(() => {   
-        //console.log('ecsfv');
         headName$.subscribe((headName) => {
-            //console.log(headName);
             setAppName(headName);
         });
         userData$.subscribe((returningUserDispalyingObj) => {
-            //console.log(returningUserDispalyingObj);
             setInlogStatus(returningUserDispalyingObj.responsType);
             setInlogMess(returningUserDispalyingObj.logInMess);
         });
-        //if(redirectToPage ===  routeName.mainPage) return <Redirect to='/' />
         if(redirectToPage === routeName.userReg) return <Redirect to={ `${ routeName.userReg }` } />
         
     }, [ redirectToPage ]);
-    //console.log(inlogStatus);
     let onChangeUserName = (e) => {
         let targetUserName = e.target.value;
-        //;
-        
         updateUserNameStr(targetUserName);
-        //formInputObj['userNameStr'] = targetUserName;
     }
     let onChangeUserPwd = (e) => {
         let targetUserPwd = e.target.value;
-        //;
         updateUserPwdStr(targetUserPwd);
-        //formInputObj['userPwdStr'] = targetUserPwd;
     }
     let runAuth = (e) => {
         let userInformation = {};
         // Gets the element
         let targetBtnId = e.target.id; 
-        console.log("runAuth -> targetBtnId", targetBtnId)
   
         /* Authorization with a token as response backValidate that the user is found as a valid user
             if user do not find it will not login and shows an error mess instead
@@ -68,15 +58,11 @@ export let MainPage = () => {
         updateGotoPage(targetBtnId);
         //if (inlogStatus === 203) return; 
     }
-    let runReg = (e) =>{
+    let runNewUserReg = (e) =>{
         // Gets the element
         let targetBtnId = e.target.id; 
-        console.log("runReg -> targetBtnId", targetBtnId)
-        updateGotoPage(targetBtnId);
-        
+        updateGotoPage(targetBtnId); 
     }    
-    console.log("MainPage -> redirectToPage", redirectToPage)
-    console.log("MainPage -> appUrl + routeName.userReg", appUrl + routeName.userReg)
     return (
         <>  
             <Helmet>
@@ -92,7 +78,7 @@ export let MainPage = () => {
                         onChangeUserPwd={onChangeUserPwd}
                         userPwdStr={userPwdStr}
                         runAuth={runAuth}
-                        runReg={runReg}
+                        runNewUserReg={runNewUserReg}
                         inlogStatus={inlogStatus}
                         inlogMess={inlogMess}
                     />

@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+/* ================================================== HeadBar ==================================================
+Imports module */
+import React from 'react';
+
+// Import inportant components for the specific page
 import { CommonBtnStyle, CommonTexStyle } from '../Style/CommonStyle';
 
 export let SubmitBtn = (props) => {

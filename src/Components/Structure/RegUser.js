@@ -1,14 +1,18 @@
+/* ================================================== UserReg ==================================================
+Imports module */
 import React, { useState, useEffect } from 'react';
 import {Helmet} from "react-helmet";
-import '../Style/RegUser.css';
+
+// Import CSS rouls
 import { specificStyleNewUserSend, specificStyleCancelUserReg } from '../Style/SpecificStyle';
 import { RegStyle } from '../Style/RegStyle';
+import '../Style/RegUser.css';
 
+// Import inportant components for the specific page
 import { headName$, updateGotoPage } from '../Storage.js';
-
+import { SubmitBtn } from '../Data/SubmitBtn';
 import { axiosPost } from '../Data/Axios.js';
 import { Headbar } from './Headbar.js';
-import { SubmitBtn } from '../Data/SubmitBtn';
 
 export let RegUser = () => {
     let [ appName, setAppName ] = useState(''); 
@@ -39,16 +43,13 @@ export let RegUser = () => {
         if (dataset.type === 'userPwd') setUserPWD(inputStr);
     };
     let runSendNewUser = (e) => {
-
         let targetBtnId = e.target.id; 
         // Created a body for the added data
         let sqlBody = {
             fullName: userFullName,
             userName: userName,
             userPassWord: userPwd
-        }
-        console.log(sqlBody);
-        
+        }        
         axiosPost(targetBtnId, sqlBody);
             // Save the body into the table for showing it exckluding the first item
             //sqlBody

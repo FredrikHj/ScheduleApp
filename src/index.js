@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// Imports the mail CSS file, is meant to be a container for the basic rouls that you not need touching
 import './Components/Style/Body.css';
 import MainApp from './MainApp';
 import * as serviceWorker from './serviceWorker';

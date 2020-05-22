@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { LogedInStyle } from '../Style/LogedInStyle';
+/* ================================================== Headbar Stgatus when user is logedIn ==================================================
+Imports module */
+import React from 'react';
+
+// Import CSS rouls
 import { specificStyleLogout } from '../Style/SpecificStyle';
-import Spinner from '../Data/Spinner';
+import { LogedInStyle } from '../Style/LogedInStyle';
+
+// Import inportant components for the specific page
 import { SubmitBtn } from '../Data/SubmitBtn';
+import Spinner from '../Data/Spinner';
 
 export let LogedInStatus = (props) => {
     const { inlogedUser, functionLogOut } = props;

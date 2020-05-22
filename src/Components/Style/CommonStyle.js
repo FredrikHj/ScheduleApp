@@ -1,3 +1,5 @@
+/* ================================================== Style Rouls for Shared rouls ==================================================
+Imports module */
 import styled from 'styled-components';
 
 // ============================== Common Style ==============================
