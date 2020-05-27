@@ -44,7 +44,7 @@ export let Headbar = (props) => {
             <HeadbarStyle.header>
                 <HeadbarStyle.headContainer>
                     <HeadbarStyle.siteLogaContainer>
-                        <img src={ inBackendURL + siteLoga } style={ logaImage } alt="waef"/>
+                        <img src={ inBackendURL + siteLoga } style={ logaImage } alt="HBG Loga"/>
                         <HeadbarStyle.headline>{ appName }</HeadbarStyle.headline>
                     </HeadbarStyle.siteLogaContainer>
                     <HeadbarStyle.appStatusContainer>
