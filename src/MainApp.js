@@ -10,7 +10,7 @@ import { routeName } from './Components/Data/RouteNames';
 import { RegUser } from './Components/Structure/RegUser';
 import { Auth } from './Components/Data/Authorization';
 import { MainPage } from './MainPage.js';
-import { LogedIn } from './LogedIn';
+import { LogedInPage } from './LogedInPage';
 
 updateHeadName('Årsklockan');
 
@@ -35,7 +35,7 @@ let MainApp = () => {
       <Route exact path={ appUrl } component={ MainPage } />
       <Route exact path={ appUrl + routeName.auth } component={ Auth }/>
       <Route exact path={ appUrl + routeName.userReg } component={ RegUser }/>   
-      <Route exact path={ appUrl + routeName.login } component={ LogedIn }/>  
+      <Route exact path={ appUrl + routeName.login } component={ LogedInPage }/>  
     </HashRouter>
   );
 }

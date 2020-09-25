@@ -10,7 +10,7 @@
 #table1_tbody{
   margin-top: 2px;
   display: block;
-  height: 60vh;
+  height: 550px;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -26,6 +26,7 @@ thead, tbody tr{
 #table1_body tr{
   background: #FFFFFF;
   border: 1px solid #E5E5E5;
+  word-break: break-all;
 }
 #table1_body th {
   padding-top: 12px;

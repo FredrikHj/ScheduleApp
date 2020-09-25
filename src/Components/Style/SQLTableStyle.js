@@ -21,7 +21,10 @@ export let SQLTableStyle = {
         margin-top: 81px;
         width: 862px;
     `,
-    // Table  content ----------------------
+    // Table  contents ----------------------
+    tableHeadline: styled.p`
+        margin: 0;
+    `,
     body__contents: styled.section`
         width: 920px;
         margin-left: calc(50% - 450px);
@@ -36,8 +39,13 @@ export let SQLTableStyle = {
         margin-top: 0;
     `,
     sideToolRow2: styled.section`
-        margin-top: 30px;
+        margin-top: 60px;
     `  ,
+    toolContainer: styled.section`
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+    `,
 }
 // ============================== Add Data ==============================
 export let AddSQLDataStyle = {
@@ -50,4 +58,56 @@ export let AddSQLDataStyle = {
 }
 export const selectContainers = {
     width: '100%',
+}
+
+// ============================== SQLData Sort ==============================
+export let SQLDataSort = {
+    sortUpDnContainer: styled.span`
+        display: flex;
+        flex-direction: row;
+        margin: -20px 0px 0px 105px;
+    `,
+    arrows: styled.button`
+        padding: 0;
+        background: none;
+        border: none;
+    `,
+}
+
+// ============================== SQLData Pagination =============================
+export let SQLDataPagination = {
+    container: styled.section`
+        width: 200px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 30px;
+        margin-left: calc(50% - 100px)
+    `,
+    arrowDubbleLeft: styled.span`
+       transform: rotate(180deg); 
+    `,
+    arrowGroupLeft: styled.section`
+        
+    `,
+    arrowLeft: styled.span`
+    `,
+    
+    inputNrGroupMiddle: styled.section`
+
+    `,
+    inputSide: styled.input`
+        width: 40px;
+    `,
+
+    totSides: styled.span`
+
+    `,
+    arrowGroupRight: styled.section`
+
+    `,
+    arrowRight: styled.span`
+    `,
+    arrowDubbleLRight: styled.span`
+    `,
 }

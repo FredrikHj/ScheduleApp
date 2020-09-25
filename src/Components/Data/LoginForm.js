@@ -4,35 +4,36 @@ import React, { useState, useEffect } from 'react';
 
 // Import CSS rouls
 import { specificStyleLogin, labelFormFocused, specificStyleUserReg } from '../Style/SpecificStyle';
-import { LoginFormStyle } from '../Style/LoginFormStyle';
+import { LoginFormStyle } from '../Style/HeadbarStyle';
 
 // Import inportant components for the specific page
 import { SubmitBtn } from '../Data/SubmitBtn';
 
 export let LoginForm = (props) => {
     const {onChangeUserName, onChangeUserPwd, userNameStr, userPwdStr, runAuth, runNewUserReg, inlogStatus, inlogMess} = props;    
-    const [ specificFocusStyleUsrLabel, setSpecificFocusStyleUsrLabel ] = useState({});
-    const [ specificFocusStylePswLabel, setSpecificFocusStylePswLabel ] = useState({});
+    const [ inputFormSpecificFocusStyle, setInputFormSpecificFocusStyle ] = useState(null);
     useEffect(() => {
 
-    }, [specificFocusStyleUsrLabel])
+    }, [inputFormSpecificFocusStyle])
     // Handle the inlogg forms and its behaviour when clicking
     const handleInputForm = (e) => {
         const targetForm = e.target;
         const inputFormId = targetForm.id;
-        if(inputFormId === "labelUserName") setSpecificFocusStyleUsrLabel(labelFormFocused);
-        if(inputFormId === "labelPassword") setSpecificFocusStylePswLabel(labelFormFocused);
+        console.log("handleInputForm -> inputFormId", inputFormId)
+        if(inputFormId === "inputUserPassword"){
+            setInputFormSpecificFocusStyle(labelFormFocused);
+        }
     }
     return(
         <LoginFormStyle.headContainer>
-            <LoginFormStyle.formContainer>
+            <LoginFormStyle.formContainer style={(inputFormSpecificFocusStyle === null) ? {marginTop: '22px'} : {marginTop: '35px'}}>
                 <LoginFormStyle.usernameContainer>
-                    <LoginFormStyle.labelFormNoFocus id="labelUserName" style={ specificFocusStyleUsrLabel } onClick={ handleInputForm }>Användarnamn</LoginFormStyle.labelFormNoFocus>
-                    <LoginFormStyle.inputForm id="labelUserName" type="text" onChange={ onChangeUserName } value={ userNameStr } onClick={ handleInputForm }/>
+                    <LoginFormStyle.labelFormNoFocus id="inputUserPassword" style={ inputFormSpecificFocusStyle } onClick={ handleInputForm }>Användarnamn</LoginFormStyle.labelFormNoFocus>
+                    <LoginFormStyle.inputForm id="inputUserPassword" type="text" onChange={ onChangeUserName } value={ userNameStr } onClick={ handleInputForm }/>
                 </LoginFormStyle.usernameContainer> 
                 <LoginFormStyle.passwordContainer>
-                    <LoginFormStyle.labelFormNoFocus id="labelPassword" style={ specificFocusStylePswLabel } onClick={ handleInputForm }>Lösenord</LoginFormStyle.labelFormNoFocus>
-                    <LoginFormStyle.inputForm id="labelPassword" type="text" onChange={ onChangeUserPwd } value={ userPwdStr } onClick={ handleInputForm }/>
+                    <LoginFormStyle.labelFormNoFocus id="inputUserPassword" style={ inputFormSpecificFocusStyle } onClick={ handleInputForm }>Lösenord</LoginFormStyle.labelFormNoFocus>
+                    <LoginFormStyle.inputForm id="inputUserPassword" type="text" onChange={ onChangeUserPwd } value={ userPwdStr } onClick={ handleInputForm }/>
                 </LoginFormStyle.passwordContainer>  
             </LoginFormStyle.formContainer>
                 <LoginFormStyle.btnLoginContainer>

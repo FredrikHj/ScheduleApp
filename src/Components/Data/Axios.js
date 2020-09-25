@@ -47,8 +47,9 @@ export let axiosPost = (postType, bodyData) => {
     if (postType === 'filter') type = 'filter';
     if (postType === 'add') type = 'AddRecord';
     if (postType === 'userReg') type = 'UserReg';
-    if (postType === 'runRemoveRecord') type = 'RemoveRecord';
-    
+    if (postType === 'removeRecord') type = 'RemoveRecord';
+    if (postType === 'editRecord') type = 'EditRecord';
+
     let sendToSqlBackend = {
         bodyData,
     };

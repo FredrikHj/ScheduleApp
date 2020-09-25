@@ -130,7 +130,7 @@ export let SearchBar = () => {
    
     return(
         <>
-                Komande sökfunktion!!!
+            Kommande sökfunktion!!!
             {/* <input type="text" className="searchContainer__searchBar" id="searchBar" placeholder="  Sök"/>
             <button className="searchContainer__searchBtn" onClick={ runFilter} id="searchBtn">
                 <Link to="/SearchResult" className="searchContainer__searchHeadline" onClick={ runFilter } id="searchBtn">Sök</Link>

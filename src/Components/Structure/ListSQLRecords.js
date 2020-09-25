@@ -7,10 +7,11 @@ import { getLocalStorageData } from '../Data/LocalStorage';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
 import { correctRoutes } from '../Data/runAppUrls';
 import { incommingSQLDataArr$ } from '../Storage';
+import { routeName } from '../Data/RouteNames';
 import { axiosGet } from '../Data/Axios';
 import Spinner from '../Data/Spinner.js';
 
-export let ListSQLData = () => {
+export let ListSQLRecords = () => {
     let [ appUrl, setAppUrl ] = useState('/');
     let [ routes, updateRoutes ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
@@ -50,6 +51,10 @@ export let ListSQLData = () => {
             updateErroLoadingSQLData(result);
         })
     }
+    
+    console.log("ListSQLRecords -> routeName", routeName.login)
+    console.log("ListSQLRecords -> correctRoutes", correctRoutes())
+
     return(
         <>
             {(incommingNewSQLData.length !== 0) 
@@ -63,6 +68,11 @@ export let ListSQLData = () => {
                             <td>{ item.type }</td>
                             <td>{ item.place }</td>
                             <td>{ item.content }</td>
+                            <td>{(correctRoutes() === routeName.login)
+                                    ?   'Inloggad'
+                                    :   'Ej inloggad'
+                                }
+                            </td>
                         </tr>
                     );
                 })

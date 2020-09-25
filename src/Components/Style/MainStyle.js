@@ -14,13 +14,13 @@ const headContainerCenterPoss = headerWidth/2;
 export const logaImage = {
     width: '210px',
     marginTop: '40px',
-    marginBottom: '0',
 }
 
 export let HeadbarStyle = {
   header: styled.section`
     background-color: white;
     width: 100%;
+    height: 5vh;
   `,
   headContainer: styled.section`
     display: flex;
@@ -36,6 +36,7 @@ export let HeadbarStyle = {
   `,
   appStatusContainer: styled.section`
     width: 62%;
+    margin-top: -21px;
   `,
   headline: styled.section`
     display: flex;

@@ -17,13 +17,14 @@ export let Headbar = (props) => {
     let [ inBackendURL, setInBackendUrl ] = useState('');
     let [ logaNotSet, setLogaNotSet ] = useState(false);
     let [ siteLoga, setSiteLoga ] = useState('');
-    let [ appName ] = useState('******* ENHETEN • WORKSHOPS');
+    let [ appName ] = useState('');
+    //******* ENHETEN • WORKSHOPS
     let [ inlogMess, setInlogMess ] = useState('');
     let [ inlogStatus, setInlogStatus ] = useState(0);
     let [ gotoIntoPage, updateGotoIntoPage ] = useState('');
 
     useEffect(() => {
-        axiosGet('getLoga', '');
+        //axiosGet('getLoga', '');
         incommingSiteLoga$.subscribe((incommingSiteLoga) => {  
             if (logaNotSet === false) {
                 setSiteLoga(incommingSiteLoga);
@@ -44,9 +45,10 @@ export let Headbar = (props) => {
             <HeadbarStyle.header>
                 <HeadbarStyle.headContainer>
                     <HeadbarStyle.siteLogaContainer>
-                        <img src={ inBackendURL + siteLoga } style={ logaImage } alt="HBG Loga"/>
+                        <img src={ inBackendURL + siteLoga } style={ logaImage } alt="Logotype plats"/>
                         <HeadbarStyle.headline>{ appName }</HeadbarStyle.headline>
                     </HeadbarStyle.siteLogaContainer>
+                    
                     <HeadbarStyle.appStatusContainer>
                         {appStatus}
                     </HeadbarStyle.appStatusContainer>

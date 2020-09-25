@@ -68,7 +68,23 @@ export const specificStyleRemoveRecord = {
     btn: {
         width: '77px',
         height: '34px',
-        marginTop: '0',
+        marginTop: '1.7px',
+        marginBottom: '-12px',
+        border: 'none',
+        boxShadow: 'none',
+        background:'none',
+    },
+    text: {
+        color: 'darkRed',
+        fontWeight: 'bold',
+        fontSize: '20px', 
+    }
+}
+export const specificStyleEditRecord = {
+    btn: {
+        width: '77px',
+        height: '34px',
+        marginTop: '1.7px',
         marginBottom: '-12px',
         border: 'none',
         boxShadow: 'none',
@@ -76,6 +92,8 @@ export const specificStyleRemoveRecord = {
     },
     text: {
         color: 'black',
+        fontWeight: 'bold',
+        fontSize: '20px', 
     }
 }
 export const specificStyleUserReg = {

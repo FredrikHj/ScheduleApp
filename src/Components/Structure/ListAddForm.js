@@ -17,7 +17,7 @@ export let ListAddForm = (props) => {
             if (SQLColListArr) if(optionColListArr.length === 0) updateOptionColListArr(Object.values(SQLColListArr));
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
-    });
+    }, []);
     return(
         <>
             <tr>
