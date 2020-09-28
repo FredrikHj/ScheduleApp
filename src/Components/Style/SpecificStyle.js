@@ -1,4 +1,9 @@
 // ================================================== Style Rouls for a specific purposes ==================================================
+export const specificStyleBtnIcon = {
+    width: '83px',
+    height: '30px',
+    zIndex: '-1',
+}
 export const specificStyleLogin = {
     btn: {
         width: '83px',
@@ -49,10 +54,11 @@ export const specificStyleAddRow = {
         width: '83px',
         height: '30px',
         marginLeft: '0',
-        marginTop: '46px',
+        marginTop: '15px',
         border: 'none',
         boxShadow: 'none',
         background:'none',
+        zIndex: '1',
     },
     text: {
         fontFamily: 'Roboto',
@@ -62,7 +68,7 @@ export const specificStyleAddRow = {
         letterSpacing: '0.05em',
         textTransform: 'uppercase',
         color: 'black',
-    }
+    },
 }
 export const specificStyleRemoveRecord = {
     btn: {
@@ -73,6 +79,7 @@ export const specificStyleRemoveRecord = {
         border: 'none',
         boxShadow: 'none',
         background:'none',
+        zIndex: '1',
     },
     text: {
         color: 'darkRed',
@@ -89,6 +96,7 @@ export const specificStyleEditRecord = {
         border: 'none',
         boxShadow: 'none',
         background:'none',
+        zIndex: '1',
     },
     text: {
         color: 'black',

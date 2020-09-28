@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 // Import inportant components for the specific page
 import { headName$, userData$, updateGotoPage} from './Components/Storage.js';
-import { MainContents } from './Components/Structure/MainContents';
+import { RunSQLTable } from './Components/Structure/RunSQLTable';
 import { Headbar } from './Components/Structure/Headbar.js';
 import { routeName } from './Components/Data/RouteNames';
 import { LoginForm } from './Components/Data/LoginForm'
@@ -84,7 +84,7 @@ export let MainPage = () => {
                     />
                 }
             />            
-            <Route exact path={appUrl} component={ MainContents }/>
+            <Route exact path={appUrl} component={ RunSQLTable }/>
         </>
     );
 }

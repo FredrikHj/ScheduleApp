@@ -5,7 +5,7 @@ import {Helmet} from "react-helmet";
 
 // Import inportant components for the specific page
 import { headName$, updateInlogedUserFullName, inlogedUserFullName$ } from './Components/Storage.js';
-import { MainContents } from './Components/Structure/MainContents';
+import { RunSQLTable } from './Components/Structure/RunSQLTable';
 import { LogedIn } from './Components/Structure/LogedIn';
 import { runLogOut } from './Components/Data/CommonFunction';
 import { Headbar } from './Components/Structure/Headbar';
@@ -41,7 +41,7 @@ export let LogedInPage = () => {
                     />
                 }
             />  
-            <MainContents/>                 
+            <RunSQLTable/>                 
         </>
     );
 }

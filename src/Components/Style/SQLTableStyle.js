@@ -9,6 +9,11 @@ export let SQLTableStyle = {
         display: flex;
         flex-direction: row;
     `,
+    toolContainer: styled.section`
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+    `,
     col1_3: styled.section`
         width: 10%;
         height:500px;

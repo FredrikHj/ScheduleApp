@@ -1,6 +1,6 @@
 /* ================================================== Tables head part ==================================================
 Imports module */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import CSS rouls
 import '../Style/SQLTable.css';
@@ -11,12 +11,20 @@ import { TableColsHeadline } from '../Data/TableColsHeadline';
 import { correctRoutes } from '../Data/runAppUrls';
 import { routeName } from '../Data/RouteNames';
 
-export let TableHead = () => {
+//console.log("TableHead -> TableColsHeadline()", TableColsHeadline())
+export let RunSQLTableHeader = () => {
+    let [ tableColsHeadlines, setTableColsHeadlines ] = useState([]); 
+
+    useEffect(() =>{
+        if(tableColsHeadlines.length === 0) setTableColsHeadlines(TableColsHeadline());
+        console.log("TableHead -> tableColsHeadlines", tableColsHeadlines)
+    },[tableColsHeadlines])
+
     return(
         <thead>
             <tr>
-                {
-                    TableColsHeadline.map((item, index) => {
+               {
+                    tableColsHeadlines.map((item, index) => {
                         return(
                             <th key={ index }>
                                 <>

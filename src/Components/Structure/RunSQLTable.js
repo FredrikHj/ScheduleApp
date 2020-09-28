@@ -12,21 +12,22 @@ import '../Style/SQLTable.css';
 // Import inportant components for the specific page
 import { TableColsHeadline } from '../Data/TableColsHeadline';
 import { getLocalStorageData } from '../Data/LocalStorage';
-import { axiosPost, axiosGet } from '../Data/Axios';
+import { runAddRow } from '../Data/FunctionsTableToolBtn';
+import { RunSQLTableHeader } from './RunSQLTableHeader';
+import { RunSQLTableData } from './RunSQLTableData';
 import { correctRoutes } from '../Data/runAppUrls';
 import { incommingSQLDataArr$ } from '../Storage';
-import { ListSQLRecords } from './ListSQLRecords';
 import { routeName } from '../Data/RouteNames';
 import { SubmitBtn } from '../Data/SubmitBtn';
-import { ListAddForm } from './ListAddForm';
-import { TableHead } from './TableHead';
+import { axiosPost, axiosGet } from '../Data/Axios';
 import { SearchBar } from './SearchBar';
 import { gotoPage$ } from '../Storage';
+import { AddForm } from './AddForm';
 
-export let MainContents = () => {
+export let RunSQLTable = () => {
     let [ redirectToPage, updateRedirectToPage ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-    let [ addedRecordData, updateAddedRecordData ] = useState([]);
+    let [ addedSQLData, updateAddedSQLData ] = useState([]);
     let [ editMode, setEditMode ] = useState(false);
     let [ editBtn, setEditBtn ] = useState('');
 
@@ -39,37 +40,41 @@ export let MainContents = () => {
             if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
-        createAddedRecordDataArr();
-
-    },[ redirectToPage, addedRecordData, editMode, editBtn ]);
+        if(addedSQLData === []) createAddedRecordDataArr();
+        
+    },[ redirectToPage, addedSQLData, editMode, editBtn ]);
     const createAddedRecordDataArr = () => {
-        const puschToAddedRecordData = [...addedRecordData];
+        const puschToAddedRecordData = [...addedSQLData];
         for (let index = 0; index < TableColsHeadline.length; index++) puschToAddedRecordData.push('');
-        if (addedRecordData.length === 0) updateAddedRecordData(puschToAddedRecordData);
+        if (addedSQLData.length === 0) updateAddedSQLData(puschToAddedRecordData);
     }
     const choosenSelectOption = (e) => {
-        const puschToAddedRecordData = [...addedRecordData];
+        const puschToAddedRecordData = [...addedSQLData];
         const selectedOption = e.target; 
         const selectedStr = selectedOption.value;
         const selectedIndex = selectedOption.options.selectedIndex;
         const selectedCellIndex = selectedOption.options[selectedIndex].dataset.cell;
         puschToAddedRecordData[selectedCellIndex] = selectedStr;
-        updateAddedRecordData(puschToAddedRecordData);
+        updateAddedSQLData(puschToAddedRecordData);
     }
     let setStrsType = (e) => {
-        const puschToAddedRecordData = [...addedRecordData];
+        const puschToAddedRecordData = [...addedSQLData];
         let type = e.target;
         let inputStr = type.value;                    
+        console.log("setStrsType -> inputStr", inputStr)
         const {dataset} = type;        
-        for (let index = 0; index < TableColsHeadline.length; index++) if (dataset.type === TableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-        updateAddedRecordData(puschToAddedRecordData);
+        for (let index = 0; index < TableColsHeadline.length-1; index++) if (dataset.type === TableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
+        console.log("setStrsType -> TableColsHeadline", TableColsHeadline)
+        console.log("setStrsType -> puschToAddedRecordData", puschToAddedRecordData)
+        updateAddedSQLData(puschToAddedRecordData);
     }
-    const runAddRow  = (e) => {
-        const addId = e.target.id;
-        axiosPost(addId, addedRecordData);
-        setTimeout(() => {
-            axiosGet('userSpec', getLocalStorageData('token'));
-        }, 400);
+    const tableToolBtn= (e) => {
+        let targetBtn = e.target;
+        console.log("tableToolBtn -> targetBtn", targetBtn);
+        let targetBtnId = targetBtn.id;
+        console.log("tableToolBtn -> targetBtnId", targetBtnId)
+        if(targetBtnId === 'addRecord') runAddRow(targetBtnId, addedSQLData);
+
         e.stopPropagation();
     }
     const runEditMode  = (e) => {
@@ -113,16 +118,17 @@ export let MainContents = () => {
                     <SQLTableStyle.searchBar><SearchBar/></SQLTableStyle.searchBar>
                     <SQLTableStyle.body__contents>
                         <table id="table1_body">
-                            <TableHead/>
+                            <RunSQLTableHeader/>
                             <tbody id="table1_tbody">
                                 {correctRoutes() === routeName.login && <Redirect to={ `/${ routeName.login }`} />}
-                                <Route path={ '/inloggad' } render={(props) => <ListAddForm {...props}
+                                <Route path={ '/inloggad' } render={(props) => <AddForm {...props}
+                                        tableToolBtn={ tableToolBtn }
                                         setStrsType={ setStrsType }
                                         choosenSelectOption={ choosenSelectOption }
-                                        addedRecordData={ addedRecordData }
+                                        addedSQLData={ addedSQLData }
                                     />}
                                 />
-                                <ListSQLRecords/>
+                                <RunSQLTableData/>
                             </tbody>
 
                             <SQLDataPagination.container>
@@ -143,7 +149,7 @@ export let MainContents = () => {
 
                         </table>
                         
-                        <SQLTableStyle.sideTool style={(correctRoutes() === `/${ routeName.login }` ) ? {display: 'block'} : {display: 'none'}}>
+                        {/* <SQLTableStyle.sideTool style={(correctRoutes() === `/${ routeName.login }` ) ? {display: 'block'} : {display: 'none'}}>
                             <SQLTableStyle.sideToolRow1>
                                 <SubmitBtn
                                     style={ specificStyleAddRow }
@@ -188,7 +194,7 @@ export let MainContents = () => {
                                 }
 
                             </SQLTableStyle.sideToolRow2>
-                        </SQLTableStyle.sideTool>
+                        </SQLTableStyle.sideTool> */}
                     </SQLTableStyle.body__contents>
 
                 </SQLTableStyle.col2>
