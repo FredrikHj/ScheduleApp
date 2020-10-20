@@ -3,15 +3,20 @@ Imports module */
 import React, { useState, useEffect } from 'react';
 
 // Import inportant components for the specific page
-import { TableColsHeadline } from '../Data/TableColsHeadline';
+import { TableColsHeadlineOutloged, TableColsHeadlineInloged } from '../Data/TableColsHeadline';
 import { optionColListArr$ } from '../Storage';
 import { CellInput } from '../Data/CellInput';
+import { routeName } from '../Data/RouteNames';
+import { correctRoutes } from '../Data/runAppUrls';
 
 export let ListAddForm = (props) => {
     let [ optionColListArr, updateOptionColListArr ] = useState([]);
     const { setStrsType, choosenSelectOption, addedRecordData } = props;
+    let [ tableColsHeadline, setTableColsHeadline ] = useState([]);
 
     useEffect(() => {
+        if(tableColsHeadline.length === 0 && correctRoutes() === `/${routeName.login}`) setTableColsHeadline(TableColsHeadlineInloged); 
+
         optionColListArr$.subscribe((SQLColListArr) => {
             // It can handle the data an perform its task regardless the data infrastructure 
             if (SQLColListArr) if(optionColListArr.length === 0) updateOptionColListArr(Object.values(SQLColListArr));
@@ -22,7 +27,7 @@ export let ListAddForm = (props) => {
         <>
             <tr>
                 {
-                    TableColsHeadline.map((item, cellIndex) => {                   
+                    tableColsHeadline.map((item, cellIndex) => {                   
                         return(
                             <td key={ cellIndex }>                
                                 <CellInput 

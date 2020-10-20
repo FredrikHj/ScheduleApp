@@ -1,4 +1,3 @@
 // ================================================== SQLCol header ==================================================
-export const TableColsHeadline = [
-    'Datum', 'Akitvitet', 'Berörda', 'Typ', 'Plats', 'Innehåll', 'Verktyg'
-];
+export const TableColsHeadlineOutloged = ['Datum', 'Akitvitet', 'Berörda', 'Typ', 'Plats', 'Innehåll'];
+export const TableColsHeadlineInloged = ['Datum', 'Akitvitet', 'Berörda', 'Typ', 'Plats', 'Innehåll', 'Verktyg'];

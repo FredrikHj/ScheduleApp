@@ -10,7 +10,7 @@ import { SQLTableStyle, SQLDataPagination } from '../Style/SQLTableStyle';
 import '../Style/SQLTable.css';
 
 // Import inportant components for the specific page
-import { TableColsHeadline } from '../Data/TableColsHeadline';
+import { TableColsHeadlineOutloged, TableColsHeadlineInloged } from '../Data/TableColsHeadline';
 import { getLocalStorageData } from '../Data/LocalStorage';
 import { axiosPost, axiosGet } from '../Data/Axios';
 import { correctRoutes } from '../Data/runAppUrls';
@@ -29,8 +29,12 @@ export let MainContents = () => {
     let [ addedRecordData, updateAddedRecordData ] = useState([]);
     let [ editMode, setEditMode ] = useState(false);
     let [ editBtn, setEditBtn ] = useState('');
+    let [ tableColsHeadline, setTableColsHeadline ] = useState([]);
 
     useEffect(() => {
+        if (tableColsHeadline.length === 0 && correctRoutes() === routeName.mainPage) setTableColsHeadline(TableColsHeadlineOutloged);
+        if(tableColsHeadline.length === 0 && correctRoutes() === `/${routeName.login}`) setTableColsHeadline(TableColsHeadlineInloged); 
+
         gotoPage$.subscribe((gotoPage) => {            
             updateRedirectToPage(gotoPage);
         });
@@ -41,10 +45,10 @@ export let MainContents = () => {
         });
         createAddedRecordDataArr();
 
-    },[ redirectToPage, addedRecordData, editMode, editBtn ]);
+    },[ tableColsHeadline, redirectToPage, addedRecordData, editMode, editBtn ]);
     const createAddedRecordDataArr = () => {
         const puschToAddedRecordData = [...addedRecordData];
-        for (let index = 0; index < TableColsHeadline.length; index++) puschToAddedRecordData.push('');
+        for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
         if (addedRecordData.length === 0) updateAddedRecordData(puschToAddedRecordData);
     }
     const choosenSelectOption = (e) => {
@@ -61,7 +65,7 @@ export let MainContents = () => {
         let type = e.target;
         let inputStr = type.value;                    
         const {dataset} = type;        
-        for (let index = 0; index < TableColsHeadline.length; index++) if (dataset.type === TableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
+        for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
         updateAddedRecordData(puschToAddedRecordData);
     }
     const runAddRow  = (e) => {
@@ -122,7 +126,11 @@ export let MainContents = () => {
                                         addedRecordData={ addedRecordData }
                                     />}
                                 />
-                                <ListSQLRecords/>
+                                <ListSQLRecords
+                                    runRemove={ runRemove }
+                                    runEditRow={ runEditRow }
+                                    runEditMode={ runEditMode }
+                                />
                             </tbody>
 
                             <SQLDataPagination.container>
@@ -152,7 +160,7 @@ export let MainContents = () => {
                                     id={ 'add' }
                                 />
                             </SQLTableStyle.sideToolRow1>
-                            <SQLTableStyle.sideToolRow2> 
+                           {/*  <SQLTableStyle.sideToolRow2> 
                                 {
 
                                     incommingNewSQLData.map((item, index) => {
@@ -187,7 +195,7 @@ export let MainContents = () => {
                                     })
                                 }
 
-                            </SQLTableStyle.sideToolRow2>
+                            </SQLTableStyle.sideToolRow2> */}
                         </SQLTableStyle.sideTool>
                     </SQLTableStyle.body__contents>
 

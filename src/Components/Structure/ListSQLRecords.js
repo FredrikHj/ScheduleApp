@@ -2,6 +2,12 @@
 Imports module */
 import React, { useState, useEffect } from 'react';
 
+// Import CSS rouls
+import { specificStyleRemoveRecord, specificStyleEditRecord } from '../Style/SpecificStyle';
+import { SQLTableStyle } from '../Style/SQLTableStyle';
+import '../Style/SQLTable.css';
+//import { FaUserEdit } from 'react-icons/fa';
+
 // Import inportant components for the specific page
 import { getLocalStorageData } from '../Data/LocalStorage';
 import { localPubAppUrls } from '../Data/runAppUrls.js';
@@ -10,12 +16,17 @@ import { incommingSQLDataArr$ } from '../Storage';
 import { routeName } from '../Data/RouteNames';
 import { axiosGet } from '../Data/Axios';
 import Spinner from '../Data/Spinner.js';
+import { SubmitBtn } from '../Data/SubmitBtn';
 
-export let ListSQLRecords = () => {
+export let ListSQLRecords = (props) => {
     let [ appUrl, setAppUrl ] = useState('/');
     let [ routes, updateRoutes ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
+    let [ editMode, setEditMode ] = useState(false);
+    let [ editBtn, setEditBtn ] = useState('');
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
+    
+    let { runRemove, runEditRow, runEditMode} = props;
 
     let countGetMethod = 1;
     useEffect(() =>{
@@ -68,10 +79,32 @@ export let ListSQLRecords = () => {
                             <td>{ item.type }</td>
                             <td>{ item.place }</td>
                             <td>{ item.content }</td>
-                            <td>{(correctRoutes() === routeName.login)
-                                    ?   'Inloggad'
-                                    :   'Ej inloggad'
-                                }
+                            <td style={(correctRoutes() !== `/${routeName.login}`) ? {display: 'none'} : null}>
+                                <SQLTableStyle.toolContainer key={ index+1*10 }>
+                                    <SubmitBtn key={ index+10*10 }
+                                        style={ specificStyleRemoveRecord }
+                                        name={ 'X' }
+                                        onClickFunction={ runRemove }
+                                        id={ 'removeRecord' }
+                                        btnOptional={ item.timeStamp }
+                                    />
+                                    {(editMode === true && item.timeStamp === editBtn)
+                                        ?   <SubmitBtn key={ index+20*10 }
+                                                style={ specificStyleEditRecord }
+                                                name={ 'Utför' }
+                                                onClickFunction={ runEditRow }
+                                                id={ `editRecord` }
+                                                btnOptional={ item.timeStamp }
+                                            />
+                                        :   <SubmitBtn key={ index+20*10 }
+                                                style={ specificStyleEditRecord }
+                                                name={ <span class="material-icons">edit</span> }
+                                                onClickFunction={ runEditMode }
+                                                id={ `editRecord` }
+                                                btnOptional={ item.timeStamp }
+                                            />
+                                    }
+                                </SQLTableStyle.toolContainer>
                             </td>
                         </tr>
                     );
