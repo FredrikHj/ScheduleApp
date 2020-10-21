@@ -18,13 +18,15 @@ import { axiosGet } from '../Data/Axios';
 import { FiEdit } from "react-icons/fi";
 import Spinner from '../Data/Spinner';
 
-export let RunSQLTableData = () => {
+export let RunSQLTableData = (props) => {
     let [ appUrl, setAppUrl ] = useState('/');
     let [ routes, updateRoutes ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     let [ editMode, setEditMode ] = useState(false);
     let [ editBtn, setEditBtn ] = useState('');
+
+    const { runRemove, runEditRow, runEditMode } = props;
 
     let countGetMethod = 1;
     useEffect(() =>{
@@ -81,7 +83,7 @@ export let RunSQLTableData = () => {
                                                 <SubmitBtn key={ index+10*10 }
                                                     style={ specificStyleRemoveRecord }
                                                     name={ <FcDeleteRow style={ specificStyleBtnIcon }/> }
-                                                    onClickFunction={ 'runRemove' }
+                                                    onClickFunction={ runRemove }
                                                     id={ 'removeRecord' }
                                                     btnOptional={ 'item.timeStamp' }
                                                 />
@@ -89,16 +91,16 @@ export let RunSQLTableData = () => {
                                                     ?   <SubmitBtn key={ index+20*10 }
                                                             style={ specificStyleEditRecord }
                                                             name={ <FcApproval  style={ specificStyleBtnIcon }/> }
-                                                            onClickFunction={ 'runEditRow' }
+                                                            onClickFunction={ runEditRow }
                                                             id={ `editRecord` }
-                                                            btnOptional={ 'item.timeStamp' }
+                                                            btnOptional={ item.timeStamp }
                                                         />
                                                     :   <SubmitBtn key={ index+20*10 }
                                                             style={ specificStyleEditRecord }
                                                             name={ <FiEdit  style={ specificStyleBtnIcon }/> }
-                                                            onClickFunction={ 'runEditMode' }
+                                                            onClickFunction={ runEditMode }
                                                             id={ `editRecord` }
-                                                            btnOptional={ 'item.timeStamp' }
+                                                            btnOptional={ item.timeStamp }
                                                         />
                                                 }
                                             </SQLTableStyle.toolContainer>

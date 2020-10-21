@@ -44,23 +44,13 @@ export let RunSQLTable = () => {
             if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
-<<<<<<< HEAD:src/Components/Structure/MainContents.js
-        createAddedRecordDataArr();
-
-    },[ tableColsHeadline, redirectToPage, addedRecordData, editMode, editBtn ]);
-    const createAddedRecordDataArr = () => {
-        const puschToAddedRecordData = [...addedRecordData];
-        for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
-        if (addedRecordData.length === 0) updateAddedRecordData(puschToAddedRecordData);
-=======
         if(addedSQLData === []) createAddedRecordDataArr();
         
     },[ redirectToPage, addedSQLData, editMode, editBtn ]);
     const createAddedRecordDataArr = () => {
         const puschToAddedRecordData = [...addedSQLData];
-        for (let index = 0; index < TableColsHeadline.length; index++) puschToAddedRecordData.push('');
+        for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
         if (addedSQLData.length === 0) updateAddedSQLData(puschToAddedRecordData);
->>>>>>> b87f68ab5510fa1be005a204842a139f105104cc:src/Components/Structure/RunSQLTable.js
     }
     const choosenSelectOption = (e) => {
         const puschToAddedRecordData = [...addedSQLData];
@@ -77,15 +67,8 @@ export let RunSQLTable = () => {
         let inputStr = type.value;                    
         console.log("setStrsType -> inputStr", inputStr)
         const {dataset} = type;        
-<<<<<<< HEAD:src/Components/Structure/MainContents.js
         for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-        updateAddedRecordData(puschToAddedRecordData);
-=======
-        for (let index = 0; index < TableColsHeadline.length-1; index++) if (dataset.type === TableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-        console.log("setStrsType -> TableColsHeadline", TableColsHeadline)
-        console.log("setStrsType -> puschToAddedRecordData", puschToAddedRecordData)
         updateAddedSQLData(puschToAddedRecordData);
->>>>>>> b87f68ab5510fa1be005a204842a139f105104cc:src/Components/Structure/RunSQLTable.js
     }
     const tableToolBtn= (e) => {
         let targetBtn = e.target;
@@ -98,6 +81,7 @@ export let RunSQLTable = () => {
     }
     const runEditMode  = (e) => {
         let targetBtn = e.target;
+        console.log("runEditMode -> targetBtn", targetBtn)
 
         const editId = targetBtn.id;
         const {dataset} = targetBtn; 
@@ -119,10 +103,11 @@ export let RunSQLTable = () => {
     }
     const runRemove  = (e) => {
         let targetBtn = e.target;
+        console.log("runRemove -> targetBtn", targetBtn)
         const removeId = targetBtn.id;
         const {dataset} = targetBtn; 
         axiosPost(removeId, dataset.optional);
-        setTimeout(() => {
+          setTimeout(() => {
             axiosGet('userSpec', getLocalStorageData('token'));
         }, 400);
         e.stopPropagation();
@@ -147,15 +132,11 @@ export let RunSQLTable = () => {
                                         addedSQLData={ addedSQLData }
                                     />}
                                 />
-<<<<<<< HEAD:src/Components/Structure/MainContents.js
-                                <ListSQLRecords
+                                <RunSQLTableData
                                     runRemove={ runRemove }
                                     runEditRow={ runEditRow }
                                     runEditMode={ runEditMode }
                                 />
-=======
-                                <RunSQLTableData/>
->>>>>>> b87f68ab5510fa1be005a204842a139f105104cc:src/Components/Structure/RunSQLTable.js
                             </tbody>
 
                             <SQLDataPagination.container>
@@ -175,58 +156,6 @@ export let RunSQLTable = () => {
                             </SQLDataPagination.container>
 
                         </table>
-                        
-                        {/* <SQLTableStyle.sideTool style={(correctRoutes() === `/${ routeName.login }` ) ? {display: 'block'} : {display: 'none'}}>
-                            <SQLTableStyle.sideToolRow1>
-                                <SubmitBtn
-                                    style={ specificStyleAddRow }
-                                    name={ 'Lägg Till' }
-                                    onClickFunction={ runAddRow }
-                                    id={ 'add' }
-                                />
-                            </SQLTableStyle.sideToolRow1>
-                           {/*  <SQLTableStyle.sideToolRow2> 
-                                {
-
-                                    incommingNewSQLData.map((item, index) => {
-                                        console.log("editBtn", editBtn);
-                                        return(
-                                            <SQLTableStyle.toolContainer key={ index+1*10 }>
-                                                <SubmitBtn key={ index+10*10 }
-                                                    style={ specificStyleRemoveRecord }
-                                                    name={ 'X' }
-                                                    onClickFunction={ runRemove }
-                                                    id={ 'removeRecord' }
-                                                    btnOptional={ item.timeStamp }
-                                                />
-                                                {(editMode === true && item.timeStamp === editBtn)
-                                                    ?   <SubmitBtn key={ index+20*10 }
-                                                            style={ specificStyleEditRecord }
-                                                            name={ 'Utför' }
-                                                            onClickFunction={ runEditRow }
-                                                            id={ `editRecord` }
-                                                            btnOptional={ item.timeStamp }
-                                                        />
-                                                    :   <SubmitBtn key={ index+20*10 }
-                                                            style={ specificStyleEditRecord }
-                                                            name={ 'Ändra' }
-                                                            onClickFunction={ runEditMode }
-                                                            id={ `editRecord` }
-                                                            btnOptional={ item.timeStamp }
-                                                        />
-                                                }
-                                            </SQLTableStyle.toolContainer>
-                                        );
-                                    })
-                                }
-
-<<<<<<< HEAD:src/Components/Structure/MainContents.js
-                            </SQLTableStyle.sideToolRow2> */}
-                        </SQLTableStyle.sideTool>
-=======
-                            </SQLTableStyle.sideToolRow2>
-                        </SQLTableStyle.sideTool> */}
->>>>>>> b87f68ab5510fa1be005a204842a139f105104cc:src/Components/Structure/RunSQLTable.js
                     </SQLTableStyle.body__contents>
 
                 </SQLTableStyle.col2>

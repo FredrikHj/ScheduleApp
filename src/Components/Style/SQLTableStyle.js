@@ -31,8 +31,8 @@ export let SQLTableStyle = {
         margin: 0;
     `,
     body__contents: styled.section`
-        width: 920px;
-        margin-left: calc(50% - 450px);
+        width: 1100px;
+        margin-left: calc(50% - 550px);
         display: flex;
         flex-direction: row;
     `,

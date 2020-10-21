@@ -15,20 +15,15 @@ import { routeName } from '../Data/RouteNames';
 export let RunSQLTableHeader = () => {
     let [ tableColsHeadlines, setTableColsHeadlines ] = useState([]); 
 
-    useEffect(() =>{
+/*     useEffect(() =>{
         if(tableColsHeadlines.length === 0) setTableColsHeadlines(TableColsHeadline());
         console.log("TableHead -> tableColsHeadlines", tableColsHeadlines)
     },[tableColsHeadlines])
-
+ */
     return(
         <thead>
             <tr>
-<<<<<<< HEAD:src/Components/Structure/TableHead.js
                 {(correctRoutes() === routeName.mainPage && TableColsHeadlineOutloged || TableColsHeadlineInloged).map((item, index) => {
-=======
-               {
-                    tableColsHeadlines.map((item, index) => {
->>>>>>> b87f68ab5510fa1be005a204842a139f105104cc:src/Components/Structure/RunSQLTableHeader.js
                         return(
                             <th key={ index }>
                                 <>

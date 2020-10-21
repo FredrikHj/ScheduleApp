@@ -10,9 +10,8 @@ import { selectContainers } from '../Style/SQLTableStyle';
 import { AddSQLDataStyle } from'../Style/SQLTableStyle';
 
 // Import inportant components for the specific page
-import { FcAddRow } from "react-icons/fc";
 import { SubmitBtn } from './SubmitBtn';
-import { FcCalendar } from "react-icons/fc";
+import { FcAddRow, FcCalendar } from "react-icons/fc";
 
 export let AddFormCellInput = (props) => {
     const { dataType, cellIndex, inputOnChange, sOonClick, tableToolBtn, valueStr } = props;
