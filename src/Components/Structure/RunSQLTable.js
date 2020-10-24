@@ -98,7 +98,7 @@ export let RunSQLTable = () => {
         console.log("runEditRow -> editId", dataset.optional)
         
         setEditMode(false);
-        
+        setEditBtn('');
         e.stopPropagation();
     }
     const runRemove  = (e) => {
@@ -136,6 +136,8 @@ export let RunSQLTable = () => {
                                     runRemove={ runRemove }
                                     runEditRow={ runEditRow }
                                     runEditMode={ runEditMode }
+                                    inEditModeSetting={ editMode }
+                                    targetBtn={ editBtn }
                                 />
                             </tbody>
 

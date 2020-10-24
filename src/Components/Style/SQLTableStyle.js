@@ -47,9 +47,10 @@ export let SQLTableStyle = {
         margin-top: 60px;
     `  ,
     toolContainer: styled.section`
+        border: 1px solid red;
         display: flex;
         flex-direction: row;
-        width: 100px;
+        width: 300px;
     `,
 }
 // ============================== Add Data ==============================
