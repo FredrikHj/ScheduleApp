@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 // Import CSS rouls
-import { specificStyleAddRow, specificStyleRemoveRecord, specificStyleEditRecord } from '../Style/SpecificStyle';
 import { SQLTableStyle, SQLDataPagination } from '../Style/SQLTableStyle';
 import '../Style/SQLTable.css';
 
@@ -14,12 +13,11 @@ import { TableColsHeadlineOutloged, TableColsHeadlineInloged } from '../Data/Tab
 import { getLocalStorageData } from '../Data/LocalStorage';
 import { runAddRow } from '../Data/FunctionsTableToolBtn';
 import { RunSQLTableHeader } from './RunSQLTableHeader';
+import { axiosPost, axiosGet } from '../Data/Axios';
 import { RunSQLTableData } from './RunSQLTableData';
 import { correctRoutes } from '../Data/runAppUrls';
 import { incommingSQLDataArr$ } from '../Storage';
 import { routeName } from '../Data/RouteNames';
-import { SubmitBtn } from '../Data/SubmitBtn';
-import { axiosPost, axiosGet } from '../Data/Axios';
 import { SearchBar } from './SearchBar';
 import { gotoPage$ } from '../Storage';
 import { AddForm } from './AddForm';
@@ -27,15 +25,16 @@ import { AddForm } from './AddForm';
 export let RunSQLTable = () => {
     let [ redirectToPage, updateRedirectToPage ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
-    let [ addedSQLData, updateAddedSQLData ] = useState([]);
+    let [ addArr, updateAddArr ] = useState([]);
+    let [ editArr, updateEditArr ] = useState([]);
     let [ editMode, setEditMode ] = useState(false);
     let [ editBtn, setEditBtn ] = useState('');
     let [ tableColsHeadline, setTableColsHeadline ] = useState([]);
-
+    
     useEffect(() => {
         if (tableColsHeadline.length === 0 && correctRoutes() === routeName.mainPage) setTableColsHeadline(TableColsHeadlineOutloged);
         if(tableColsHeadline.length === 0 && correctRoutes() === `/${routeName.login}`) setTableColsHeadline(TableColsHeadlineInloged); 
-
+        
         gotoPage$.subscribe((gotoPage) => {            
             updateRedirectToPage(gotoPage);
         });
@@ -44,74 +43,88 @@ export let RunSQLTable = () => {
             if (SQLDataArr) updateIncommingNewSQLData(SQLDataArr);
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
-        if(addedSQLData === []) createAddedRecordDataArr();
+        if(addArr.length === 0) createAddArr();
         
-    },[ redirectToPage, addedSQLData, editMode, editBtn ]);
-    const createAddedRecordDataArr = () => {
-        const puschToAddedRecordData = [...addedSQLData];
+    },[ redirectToPage, addArr, editArr, editMode, editBtn ]);
+    
+    const createAddArr = () => {
+        const puschToAddedRecordData = [...addArr];
         for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
-        if (addedSQLData.length === 0) updateAddedSQLData(puschToAddedRecordData);
+        if (addArr.length === 0) updateAddArr(puschToAddedRecordData);
     }
-    const choosenSelectOption = (e) => {
-        const puschToAddedRecordData = [...addedSQLData];
-        const selectedOption = e.target; 
-        const selectedStr = selectedOption.value;
-        const selectedIndex = selectedOption.options.selectedIndex;
-        const selectedCellIndex = selectedOption.options[selectedIndex].dataset.cell;
-        puschToAddedRecordData[selectedCellIndex] = selectedStr;
-        updateAddedSQLData(puschToAddedRecordData);
-    }
-    let setStrsType = (e) => {
-        const puschToAddedRecordData = [...addedSQLData];
-        let type = e.target;
-        let inputStr = type.value;                    
-        console.log("setStrsType -> inputStr", inputStr)
-        const {dataset} = type;        
-        for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-        updateAddedSQLData(puschToAddedRecordData);
-    }
+    
     const tableToolBtn= (e) => {
         let targetBtn = e.target;
         console.log("tableToolBtn -> targetBtn", targetBtn);
         let targetBtnId = targetBtn.id;
         console.log("tableToolBtn -> targetBtnId", targetBtnId)
-        if(targetBtnId === 'addRecord') runAddRow(targetBtnId, addedSQLData);
-
-        e.stopPropagation();
-    }
-    const runEditMode  = (e) => {
-        let targetBtn = e.target;
-        console.log("runEditMode -> targetBtn", targetBtn)
-
-        const editId = targetBtn.id;
-        const {dataset} = targetBtn; 
-
-        setEditBtn(dataset.optional);
-        setEditMode(true);
-
-        e.stopPropagation();
-    }
-    const runEditRow  = (e) => {
-        let targetBtn = e.target;
-        const editId = targetBtn.id;
-        const {dataset} = targetBtn; 
-        console.log("runEditRow -> editId", dataset.optional)
+        if(targetBtnId === 'addRecord') runAddRow(targetBtnId, addArr);
         
-        setEditMode(false);
-        setEditBtn('');
         e.stopPropagation();
     }
-    const runRemove  = (e) => {
+    const choosenSelectOption = (e) => {
+        const puschToAddedRecordData = [...addArr];
+        const selectedOption = e.target; 
+        const selectedStr = selectedOption.value;
+        const selectedIndex = selectedOption.options.selectedIndex;
+        const selectedCellIndex = selectedOption.options[selectedIndex].dataset.cell;
+        puschToAddedRecordData[selectedCellIndex] = selectedStr;
+        updateAddArr(puschToAddedRecordData);
+    }
+    let setStrsType = (e) => {
+        let type = e.target;
+        let typeId = type.id;
+
+        if (typeId === 'addRecord') {
+            const puschToAddedRecordData = [...addArr];
+            let inputStr = type.value;                    
+            console.log("setStrsType -> inputStr", inputStr)
+            const {dataset} = type;        
+            for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
+            updateAddArr(puschToAddedRecordData);
+        }
+        if (typeId === 'editRecord') {
+            const puschToAddedRecordData = [...editArr];
+            let inputStr = type.value;                    
+            console.log("setStrsType -> inputStr", inputStr)
+            const {dataset} = type;        
+            for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
+            updateEditArr(puschToAddedRecordData);
+        }
+        e.stopPropagation();
+    }
+    const setTargetEditRecord = (timeStamp) => {
+        let targetObj = {};
+        incommingNewSQLData.map((item, index) => { 
+            if(item.timeStamp === timeStamp) targetObj = item;
+            
+        });
+        let targetArr = Object.values(targetObj);
+        console.log(targetArr.slice(2))
+        updateEditArr(targetArr.slice(2));
+    }
+    const runHandleRecord = (e) => {
         let targetBtn = e.target;
-        console.log("runRemove -> targetBtn", targetBtn)
-        const removeId = targetBtn.id;
-        const {dataset} = targetBtn; 
-        axiosPost(removeId, dataset.optional);
-          setTimeout(() => {
-            axiosGet('userSpec', getLocalStorageData('token'));
-        }, 400);
+        const btnId = targetBtn.id;
+        
+        if (btnId === 'removeRecord') {
+            const {dataset} = targetBtn; 
+            axiosPost(btnId, dataset.optional);
+            setTimeout(() => {axiosGet('userSpec', getLocalStorageData('token')); }, 400);
+        }
+        if (btnId === 'editRecord') {                
+            setEditMode(false);
+            setEditBtn('');
+        }
+        if (btnId === 'setEditMode') {
+            const {dataset} = targetBtn; 
+            setEditBtn(dataset.optional);
+            setTargetEditRecord(dataset.optional);
+            
+            setEditMode(true);
+        }
         e.stopPropagation();
-    }
+    }    
     return (
         <> 
             <SQLTableStyle.container>
@@ -129,15 +142,16 @@ export let RunSQLTable = () => {
                                         tableToolBtn={ tableToolBtn }
                                         setStrsType={ setStrsType }
                                         choosenSelectOption={ choosenSelectOption }
-                                        addedSQLData={ addedSQLData }
+                                        addArr={ addArr }
                                     />}
                                 />
                                 <RunSQLTableData
-                                    runRemove={ runRemove }
-                                    runEditRow={ runEditRow }
-                                    runEditMode={ runEditMode }
+                                    runHandleRecord={ runHandleRecord }
                                     inEditModeSetting={ editMode }
                                     targetBtn={ editBtn }
+                                    editArr={ editArr }
+
+
                                 />
                             </tbody>
 

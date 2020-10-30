@@ -12,7 +12,7 @@ import { correctRoutes } from '../Data/runAppUrls';
 export let AddForm = (props) => {
     let [ optionColListArr, updateOptionColListArr ] = useState([]);
     let [ tableColsHeadline, setTableColsHeadline ] = useState([]);
-    const { setStrsType, choosenSelectOption, addedSQLData, tableToolBtn } = props;
+    const { setStrsType, choosenSelectOption, addArr, tableToolBtn } = props;
 
     useEffect(() => {
         if(tableColsHeadline.length === 0 && correctRoutes() === `/${routeName.login}`) setTableColsHeadline(TableColsHeadlineInloged); 
@@ -31,13 +31,14 @@ export let AddForm = (props) => {
                     tableColsHeadline.map((item, cellIndex) => {                   
                         return(
                             <td key={ cellIndex }>                
-                                <AddFormCellInput 
+                                <AddFormCellInput
+                                    id={ 'addRecord' }
                                     tableToolBtn={ tableToolBtn }
                                     dataType={ item }
                                     cellIndex={ cellIndex }
                                     inputOnChange={ setStrsType }
                                     sOonClick={ choosenSelectOption }
-                                    valueStr={ addedSQLData[cellIndex] }
+                                    valueStr={ addArr[cellIndex] }
                                     options={ optionColListArr[cellIndex] !== undefined && optionColListArr[cellIndex] }
                                />
                             </td>

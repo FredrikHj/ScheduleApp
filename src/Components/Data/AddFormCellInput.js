@@ -14,7 +14,7 @@ import { SubmitBtn } from './SubmitBtn';
 import { FcAddRow, FcCalendar } from "react-icons/fc";
 
 export let AddFormCellInput = (props) => {
-    const { dataType, cellIndex, inputOnChange, sOonClick, tableToolBtn, valueStr } = props;
+    const { dataType, cellIndex, inputOnChange, sOonClick, tableToolBtn, valueStr, id } = props;
     return(
         <>
             {(cellIndex === 0)
@@ -28,6 +28,7 @@ export let AddFormCellInput = (props) => {
                             />
                             <input 
                                 type="text"
+                                id={ id }
                                 style={ UserInputForm.date }
                                 data-type={ dataType } 
                                 data-typenr={ cellIndex }
@@ -41,6 +42,7 @@ export let AddFormCellInput = (props) => {
                     ?    <>
                             <input 
                                 type="text"
+                                id={ id }
                                 style={ UserInputForm.general }
                                 data-type={ dataType } 
                                 data-typenr={ cellIndex }

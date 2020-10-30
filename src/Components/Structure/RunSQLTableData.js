@@ -3,10 +3,12 @@ Imports module */
 import React, { useState, useEffect } from 'react';
 
 // Import CSS rouls
-import { SQLTableStyle } from '../Style/SQLTableStyle';
 import { specificStyleRemoveRecord, specificStyleEditRecord, specificStyleBtnIcon } from '../Style/SpecificStyle';
+import { UserInputForm } from '../Style/LogedInStyle';
+import { SQLTableStyle } from '../Style/SQLTableStyle';
 
 // Import inportant components for the specific page
+import { TableColsHeadlineOutloged } from '../Data/TableColsHeadline';
 import { getLocalStorageData } from '../Data/LocalStorage';
 import { FcDeleteRow, FcApproval } from "react-icons/fc";
 import { localPubAppUrls } from '../Data/runAppUrls.js';
@@ -23,8 +25,10 @@ export let RunSQLTableData = (props) => {
     let [ routes, updateRoutes ] = useState('');
     let [ incommingNewSQLData, updateIncommingNewSQLData ] = useState([]);
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
+    let [ addedSQLData, updateAddedSQLData ] = useState([]);
+    let [ tableColsHeadline, setTableColsHeadline ] = useState([]);
 
-    const { runRemove, runEditRow, runEditMode, targetBtn, inEditModeSetting } = props;
+    const { runHandleRecord, targetBtn, inEditModeSetting, editArr } = props;
     
     let countGetMethod = 1;
     useEffect(() =>{
@@ -36,7 +40,10 @@ export let RunSQLTableData = (props) => {
             //if (SQLDataArr.statusText === 'OK') updateIncommingNewSQLData(SQLDataArr.data[0]);
         });
         updateRoutes(correctRoutes());
-    },[routes])
+        if(tableColsHeadline.length === 0 && correctRoutes() === `/${routeName.login}`) setTableColsHeadline(TableColsHeadlineOutloged); 
+       
+        if(addedSQLData.length === 0) createAddedRecordDataArr();
+    },[routes, addedSQLData]);
     let getSQLData = () => {
         let axiosUntilGettingData = new Promise((success, error) => {
             if (countGetMethod === 1) {
@@ -60,9 +67,23 @@ export let RunSQLTableData = (props) => {
             updateErroLoadingSQLData(result);
         })
     }
-    console.log("RunSQLTableData -> inEditModeSetting", inEditModeSetting)
-    console.log("RunSQLTableData -> targetBtn", targetBtn)
-
+    const createAddedRecordDataArr = () => {
+        console.log('Hej');
+        const puschToAddedRecordData = [...addedSQLData];
+        for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
+        if (addedSQLData.length === 0) updateAddedSQLData(puschToAddedRecordData);
+    }
+    
+    
+    let setStrsType = (e) => {
+        const puschToAddedRecordData = [...addedSQLData];
+        let type = e.target;
+        let inputStr = type.value;                    
+        console.log("setStrsType -> inputStr", inputStr)
+        const {dataset} = type;        
+        for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
+        updateAddedSQLData(puschToAddedRecordData);
+    }
     return(
         <>
             {(incommingNewSQLData.length !== 0) 
@@ -74,13 +95,13 @@ export let RunSQLTableData = (props) => {
                                 ?   <>
                                     {(item.timeStamp === targetBtn)
                                         ?
-                                            <>
-                                                <td>{ <input value={ item.date } />}</td>
-                                                <td>{ <input value={ item.activity }/>}</td>
-                                                <td>{ <input value={ item.concerned }/>}</td>
-                                                <td>{ <input value={ item.type }/>}</td>
-                                                <td>{ <input value={ item.place }/>}</td>
-                                                <td>{ <input value={ item.content }/>}</td>
+                                        <>
+                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[0] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[1] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[2] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[3] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[4] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[5] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
                                             </>
 
                                         :
@@ -98,24 +119,24 @@ export let RunSQLTableData = (props) => {
                                             <SQLTableStyle.toolContainer key={ index+1*10 }>
                                                 <SubmitBtn key={ index+10*10 }
                                                     style={ specificStyleRemoveRecord }
-                                                    name={ <FcDeleteRow style={ specificStyleBtnIcon } onclick={ runRemove }/>  }
-                                                    onClickFunction={ runRemove }
+                                                    name={ <FcDeleteRow style={ specificStyleBtnIcon } onclick={ runHandleRecord }/>  }
+                                                    onClickFunction={ runHandleRecord }
                                                     id={ 'removeRecord' }
-                                                    btnOptional={ 'item.timeStamp' }
+                                                    btnOptional={ item.timeStamp }
                                                 />
                                                 {(inEditModeSetting === true && item.timeStamp === targetBtn)
                                                     ?   <SubmitBtn key={ index+20*10 }
                                                             style={ specificStyleEditRecord }
-                                                            name={ <FcApproval style={ specificStyleBtnIcon } onclick={ runEditRow }/> }
-                                                            onClickFunction={ runEditRow }
-                                                            id={ `editRecord` }
+                                                            name={ <FcApproval style={ specificStyleBtnIcon } onclick={ runHandleRecord }/> }
+                                                            onClickFunction={ runHandleRecord }
+                                                            id={ 'editRecord' }
                                                             btnOptional={ item.timeStamp }
                                                         />
                                                     :   <SubmitBtn key={ index+20*10 }
                                                             style={ specificStyleEditRecord }
-                                                            name={ <FiEdit style={ specificStyleBtnIcon } onclick={ runEditMode }/> }
-                                                            onClickFunction={ runEditMode }
-                                                            id={ `editRecord` }
+                                                            name={ <FiEdit style={ specificStyleBtnIcon } onclick={ runHandleRecord }/> }
+                                                            onClickFunction={ runHandleRecord }
+                                                            id={ 'setEditMode' }
                                                             btnOptional={ item.timeStamp }
                                                         />
                                                 }

@@ -15,7 +15,7 @@ export const UserInputForm = {
   dateIcon: {
     width: '30px',
     height: '60px',    
-},
+  },
 }
 export let UserInputSelect = {
   container: styled.section`
