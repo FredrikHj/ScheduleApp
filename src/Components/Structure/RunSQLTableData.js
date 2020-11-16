@@ -27,8 +27,8 @@ export let RunSQLTableData = (props) => {
     let [ erroLoadingSQLData, updateErroLoadingSQLData ] = useState(false);
     let [ addedSQLData, updateAddedSQLData ] = useState([]);
     let [ tableColsHeadline, setTableColsHeadline ] = useState([]);
-
-    const { runHandleRecord, targetBtn, inEditModeSetting, editArr } = props;
+    
+    const { runHandleRecord, targetBtn, inEditModeSetting, editArr, setStrsType } = props;
     
     let countGetMethod = 1;
     useEffect(() =>{
@@ -41,9 +41,12 @@ export let RunSQLTableData = (props) => {
         });
         updateRoutes(correctRoutes());
         if(tableColsHeadline.length === 0 && correctRoutes() === `/${routeName.login}`) setTableColsHeadline(TableColsHeadlineOutloged); 
-       
-        if(addedSQLData.length === 0) createAddedRecordDataArr();
-    },[routes, addedSQLData]);
+        console.log("RunSQLTableData -> TableColsHeadlineOutloged", TableColsHeadlineOutloged)
+        
+        if(incommingNewSQLData.length === 0) createAddedRecordDataArr();
+    },[routes]);
+    console.log("RunSQLTableData -> incommingNewSQLData", incommingNewSQLData)
+    console.log("RunSQLTableData -> addedSQLData", addedSQLData)
     let getSQLData = () => {
         let axiosUntilGettingData = new Promise((success, error) => {
             if (countGetMethod === 1) {
@@ -70,20 +73,12 @@ export let RunSQLTableData = (props) => {
     const createAddedRecordDataArr = () => {
         console.log('Hej');
         const puschToAddedRecordData = [...addedSQLData];
-        for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
-        if (addedSQLData.length === 0) updateAddedSQLData(puschToAddedRecordData);
+        console.log("createAddedRecordDataArr -> TableColsHeadlineOutloged", TableColsHeadlineOutloged)
+        for (let index = 0; index < TableColsHeadlineOutloged.length; index++) puschToAddedRecordData.push('');
+        console.log("createAddedRecordDataArr -> puschToAddedRecordData", puschToAddedRecordData)
+        if (incommingNewSQLData.length === 0) updateAddedSQLData(puschToAddedRecordData);
     }
-    
-    
-    let setStrsType = (e) => {
-        const puschToAddedRecordData = [...addedSQLData];
-        let type = e.target;
-        let inputStr = type.value;                    
-        console.log("setStrsType -> inputStr", inputStr)
-        const {dataset} = type;        
-        for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-        updateAddedSQLData(puschToAddedRecordData);
-    }
+    console.log("RunSQLTableData -> tableColsHeadline", tableColsHeadline)
     return(
         <>
             {(incommingNewSQLData.length !== 0) 
@@ -95,15 +90,14 @@ export let RunSQLTableData = (props) => {
                                 ?   <>
                                     {(item.timeStamp === targetBtn)
                                         ?
-                                        <>
-                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[0] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
-                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[1] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
-                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[2] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
-                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[3] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
-                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[4] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
-                                                <td>{ <input style={ UserInputForm.general } type="text" value={ editArr[5] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                            <>
+                                                <td>{ <input style={ UserInputForm.general } type="text" data-type={ tableColsHeadline[0] } data-typenr={ 0 } value={ editArr[0] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" data-type={ tableColsHeadline[1] } data-typenr={ 1 } value={ editArr[1] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" data-type={ tableColsHeadline[2] } data-typenr={ 2 } value={ editArr[2] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" data-type={ tableColsHeadline[3] } data-typenr={ 3 } value={ editArr[3] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" data-type={ tableColsHeadline[4] } data-typenr={ 4 } value={ editArr[4] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
+                                                <td>{ <input style={ UserInputForm.general } type="text" data-type={ tableColsHeadline[5] } data-typenr={ 5 } value={ editArr[5] } onChange={ setStrsType } id={ 'editRecord' } />}</td>
                                             </>
-
                                         :
                                             <>
                                                 <td>{ item.date}</td>
@@ -129,7 +123,7 @@ export let RunSQLTableData = (props) => {
                                                             style={ specificStyleEditRecord }
                                                             name={ <FcApproval style={ specificStyleBtnIcon } onclick={ runHandleRecord }/> }
                                                             onClickFunction={ runHandleRecord }
-                                                            id={ 'editRecord' }
+                                                            id={ 'runEditRecord' }
                                                             btnOptional={ item.timeStamp }
                                                         />
                                                     :   <SubmitBtn key={ index+20*10 }

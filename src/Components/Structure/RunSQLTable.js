@@ -48,9 +48,9 @@ export let RunSQLTable = () => {
     },[ redirectToPage, addArr, editArr, editMode, editBtn ]);
     
     const createAddArr = () => {
-        const puschToAddedRecordData = [...addArr];
-        for (let index = 0; index < tableColsHeadline.length; index++) puschToAddedRecordData.push('');
-        if (addArr.length === 0) updateAddArr(puschToAddedRecordData);
+        const pushToAddedRecordData = [...addArr];
+        for (let index = 0; index < tableColsHeadline.length; index++) pushToAddedRecordData.push('');
+        if (addArr.length === 0) updateAddArr(pushToAddedRecordData);
     }
     
     const tableToolBtn= (e) => {
@@ -63,41 +63,50 @@ export let RunSQLTable = () => {
         e.stopPropagation();
     }
     const choosenSelectOption = (e) => {
-        const puschToAddedRecordData = [...addArr];
+        const pushToAddedRecordData = [...addArr];
         const selectedOption = e.target; 
         const selectedStr = selectedOption.value;
         const selectedIndex = selectedOption.options.selectedIndex;
         const selectedCellIndex = selectedOption.options[selectedIndex].dataset.cell;
-        puschToAddedRecordData[selectedCellIndex] = selectedStr;
-        updateAddArr(puschToAddedRecordData);
+        pushToAddedRecordData[selectedCellIndex] = selectedStr;
+        updateAddArr(pushToAddedRecordData);
     }
     let setStrsType = (e) => {
         let type = e.target;
         let typeId = type.id;
-
+        console.log("setStrsType -> typeId", typeId)
+        
         if (typeId === 'addRecord') {
-            const puschToAddedRecordData = [...addArr];
+            const pushToAddedRecordData = [...addArr];
             let inputStr = type.value;                    
             console.log("setStrsType -> inputStr", inputStr)
             const {dataset} = type;        
-            for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-            updateAddArr(puschToAddedRecordData);
+            console.log("setStrsType -> type", type)
+            for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) pushToAddedRecordData[dataset.typenr] = inputStr;
+            console.log("setStrsType -> pushToAddedRecordData", pushToAddedRecordData)
+            updateAddArr(pushToAddedRecordData);
         }
         if (typeId === 'editRecord') {
-            const puschToAddedRecordData = [...editArr];
+            const pushToAddedRecordData = [...editArr];
             let inputStr = type.value;                    
             console.log("setStrsType -> inputStr", inputStr)
-            const {dataset} = type;        
-            for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) puschToAddedRecordData[dataset.typenr] = inputStr;
-            updateEditArr(puschToAddedRecordData);
+            const {dataset} = type;   
+            console.log("setStrsType -> type", dataset.type)
+            console.log("setStrsType -> tableColsHeadline", tableColsHeadline);
+
+            // Fel kollumn namn angets, nyckel ska visas men nu är det dess värde som står som villkor
+            for (let index = 0; index < tableColsHeadline.length; index++) if (dataset.type === tableColsHeadline[index]) pushToAddedRecordData[dataset.typenr] = inputStr;
+            console.log(pushToAddedRecordData);
+            
+            updateEditArr(pushToAddedRecordData);
+
         }
         e.stopPropagation();
     }
     const setTargetEditRecord = (timeStamp) => {
         let targetObj = {};
-        incommingNewSQLData.map((item, index) => { 
+        incommingNewSQLData.map((item) => { 
             if(item.timeStamp === timeStamp) targetObj = item;
-            
         });
         let targetArr = Object.values(targetObj);
         console.log(targetArr.slice(2))
@@ -112,11 +121,15 @@ export let RunSQLTable = () => {
             axiosPost(btnId, dataset.optional);
             setTimeout(() => {axiosGet('userSpec', getLocalStorageData('token')); }, 400);
         }
-        if (btnId === 'editRecord') {                
+        if (btnId === 'runEditRecord') { 
             setEditMode(false);
             setEditBtn('');
+            
+            //Call the Axios which will send the edited data to the server 
+            axiosPost('editRecord', editArr );
         }
         if (btnId === 'setEditMode') {
+            console.log('hej');
             const {dataset} = targetBtn; 
             setEditBtn(dataset.optional);
             setTargetEditRecord(dataset.optional);
@@ -125,6 +138,7 @@ export let RunSQLTable = () => {
         }
         e.stopPropagation();
     }    
+    console.log("RunSQLTable -> editArr", editArr)
     return (
         <> 
             <SQLTableStyle.container>
@@ -150,8 +164,7 @@ export let RunSQLTable = () => {
                                     inEditModeSetting={ editMode }
                                     targetBtn={ editBtn }
                                     editArr={ editArr }
-
-
+                                    setStrsType={ setStrsType }
                                 />
                             </tbody>
 

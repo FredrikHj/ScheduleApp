@@ -56,6 +56,7 @@ export let axiosPost = (postType, bodyData) => {
     axios.post(
         `${backendURL}/SQLData/${ type }`
         , sendToSqlBackend ).then(response => {
+        console.log("axiosPost -> response", response)
             if (postType === 'Auth'){
                 // Incomming userdata.         
                 let logedInUserInfoObj = {
