@@ -127,6 +127,7 @@ export let RunSQLTable = () => {
             
             //Call the Axios which will send the edited data to the server 
             axiosPost('editRecord', editArr );
+            setTimeout(() => {axiosGet('userSpec', getLocalStorageData('token')); }, 400);
         }
         if (btnId === 'setEditMode') {
             console.log('hej');
@@ -168,7 +169,7 @@ export let RunSQLTable = () => {
                                 />
                             </tbody>
 
-                            <SQLDataPagination.container>
+{/*                             <SQLDataPagination.container>
                                 <SQLDataPagination.arrowGroupLeft>
                                     <SQLDataPagination.arrowDubbleLeft className="material-icons"> double_arrow </SQLDataPagination.arrowDubbleLeft>
                                     <SQLDataPagination.arrowLeft className="material-icons"> chevron_left </SQLDataPagination.arrowLeft>
@@ -182,7 +183,7 @@ export let RunSQLTable = () => {
                                     <SQLDataPagination.arrowRight className="material-icons"> chevron_right </SQLDataPagination.arrowRight>
                                     <SQLDataPagination.arrowDubbleLRight className="material-icons"> double_arrow </SQLDataPagination.arrowDubbleLRight>
                                 </SQLDataPagination.arrowGroupRight>
-                            </SQLDataPagination.container>
+                            </SQLDataPagination.container> */}
 
                         </table>
                     </SQLTableStyle.body__contents>
